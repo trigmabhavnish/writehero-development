@@ -1,0 +1,59 @@
+<!--login html starts-->
+
+<div class="writehero-bg-primary-code">
+    <div class="register-content-outer pb-lg-5">
+        <div class="container-custom">
+            <div class="row">
+            <div class="col-lg-6">
+                    <div class="register-bg">
+                        <h1 class="register-main-title"><span class="child-primary">Welcome</span></h1>
+                        <p class="register-subtitle">To keep connected with us please
+                            login with your personal info.</p>
+                        <div class="">
+                        <img src="assets/image/loginbg01.png" class="img-fluid">
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="register-form-outer">
+                    <h4 class="register-heading-bold">Login</h4>
+                    <form [formGroup]="loginForm">
+                        <div class="form-row-outer row">
+                            <div class="col-lg-12 pb-3">
+                                <label>ENTER Email address</label>
+                                <input type="text" formControlName="email" placeholder="" class="field-design" [ngClass]="{ 'is-invalid': (loginForm.controls.email.touched || loginSubmitted) && loginForm.controls.email.errors }">
+                                <p *ngIf="loginForm.controls.email.touched || loginSubmitted">
+                                    <app-form-validation-errors  errorPrefix="Email " [errors]="loginForm.controls.email.errors"></app-form-validation-errors> 
+                                </p>
+                            </div>
+                            <div class="col-lg-12 pb-3">
+                                <label>Enter PASSWORD</label>
+                                <input type="password" formControlName="password" placeholder="" class="field-design" [ngClass]="{ 'is-invalid': (loginForm.controls.password.touched || loginSubmitted) && loginForm.controls.password.errors }">
+                                <p *ngIf="loginForm.controls.password.touched || loginSubmitted">
+                                    <app-form-validation-errors minLength=10 maxLength=50 errorPrefix="Password " [errors]="loginForm.controls.password.errors"></app-form-validation-errors>  
+                                </p>
+                            </div>
+                            <div class="col-lg-12 text-right">
+                                <a class="forgot-password" href="#">Forgot password</a>
+                            </div>
+                            <div class="col-md-12 my-3">
+                                <input type="submit" value="login">
+                            </div>
+                        </div>
+                    </form>
+
+                    <p class="login-social-media-font">- OR CONNECT WITH SOCIAL MEDIA -</p>
+
+                    <button class="btn-fbook"><i class="fa fa-facebook"></i>Connect with Facebook</button>
+                    <button class="btn-tweet"><i class="fa fa-twitter"></i>Connect with Twitter</button>
+                    
+                    <div class="col-lg-12 text-center">
+                        <a class="forgot-password" routerLink="/user/signup">REGISTER</a>
+                    </div>
+                </div>
+            </div>       
+            </div>
+        </div>
+    </div>
+</div>
+<!--login html ends-->
