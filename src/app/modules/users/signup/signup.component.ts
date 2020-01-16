@@ -1,7 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+import { of, Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
+import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 
 import { CustomValidator } from '../../../core/_helpers/custom-validator';
+
+// import environment
+import { environment } from '../../../../environments/environment';
+
+//import Lodash
+import * as _ from 'lodash';
+
+//import shared services
+import { PageLoaderService } from '../../../shared/_services'
+
+//import core services
+import { UsersService, CommonUtilsService } from '../../../core/_services';
 
 @Component({
   selector: 'app-signup',
@@ -13,12 +30,13 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   signUpSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private userAuthService: UsersService) { }
 
   private buildSignupForm() {
     this.signUpForm = this.formBuilder.group({        
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
+      user_name: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([
           Validators.required,
@@ -54,14 +72,34 @@ export class SignupComponent implements OnInit {
   }
 
   validateSignUpForm():void{
+
     this.signUpSubmitted = true;
     if(this.signUpForm.invalid) {
       return;
     }
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.SIGNING_UP);
+
+    //set username  before signup
+    let user_name = this.commonUtilsService.generateUsername(this.signUpForm.controls.email.value);    
+    this.signUpForm.controls.user_name.setValue(user_name);
+
+    this.userAuthService.userSignUp(this.signUpForm.value).pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {         
+        this.commonUtilsService.onSuccess(res.response);
+        //case error 
+      }, error => {
+        this.commonUtilsService.onError(error);
+    });
   }
 
   ngOnInit() {
     this.buildSignupForm();
+  }
+
+  // This method must be present, even if empty.
+  ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
   }
 
 

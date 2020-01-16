@@ -5,7 +5,11 @@
 export const environment = {
   production: false,
   API_ENDPOINT: 'http://localhost:3000',
-  GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs'
+  GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
+  MESSAGES: {
+    ERROR_TEXT_LOADER: 'Oops!',
+    SIGNING_UP: 'Signing up.. please wait',
+  }
 };
 
 /*
