@@ -37,7 +37,7 @@
                                 <a class="forgot-password" href="#">Forgot password</a>
                             </div>
                             <div class="col-md-12 my-3">
-                                <input type="submit" value="login">
+                                <input (click)="validateLoginForm()" [disabled]="loginForm.invalid" type="submit" value="login">
                             </div>
                         </div>
                     </form>

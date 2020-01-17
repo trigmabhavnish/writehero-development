@@ -1,7 +1,8 @@
 import { Injectable ,Output,EventEmitter} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError, map } from 'rxjs/operators';
+import { retry, catchError } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Router, ActivatedRoute } from "@angular/router";
@@ -11,15 +12,52 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class UsersService {
 
+  public loggedIn: Subject<any> = new Subject<any>();
   constructor(private httpClient: HttpClient, private router: Router) { }
 
+  isLoggedIn(value: boolean, accountType: String) {
+    this.loggedIn.next({ isLoggedIn: value, accountType: accountType });
+  }
+  checkLoggedinStatus(): Observable<any> {
+    return this.loggedIn.asObservable();
+  }
+
+  /**
+  * New User Registeration
+  * @return string
+  */
   userSignUp(postedData): Observable<any> {
 
     return this.httpClient
-      .post('api/user/signup', postedData)
+      .post('user/signup', postedData)
       .map((response: Response) => {
         return response;
       });
 
   }
+
+  /**
+  * User Login
+  * @return string
+  */
+  userLogin(postedData): Observable<any> {
+    return this.httpClient
+      .post('user/login', postedData)
+      .map((response: Response) => {
+        return response;
+    });
+  }
+
+  /**
+  * get Director Id for New User Registeration
+  * @return number
+  */
+  getDirectorID(postedData): Observable<any> {
+    return this.httpClient
+      .post('user/get_director_id', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+  }
+
 }

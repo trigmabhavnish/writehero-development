@@ -353,6 +353,31 @@
 
 
 @media (max-width:991px) { 
+
+    /*wizard responsive settings*/
+    /* .ful_circle::before {
+        display: none;
+    } */
+    .step4-submit-fields input {
+        margin-bottom: 15px;
+    }
+    .wizard-specs-info {
+        left: 0;
+    }
+    .ful_circle::before {
+        width: 73%;
+    }
+    .ful_circle_last_step::after {
+        display: none;
+    }
+    .ful_circle.step_first::after {
+        display: none;
+    }
+    .counting-stepbar-wizard {
+        padding-left: 0px;
+    }
+    /*wizard responsive settings*/
+
     nav .container-custom {
         padding: 0;
     }

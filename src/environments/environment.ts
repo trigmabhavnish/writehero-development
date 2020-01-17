@@ -9,6 +9,7 @@ export const environment = {
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
+    WAIT_TEXT: 'Please wait...',
   }
 };
 

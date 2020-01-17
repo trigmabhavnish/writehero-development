@@ -2593,10 +2593,233 @@ textarea {
     margin-bottom: 0px;
 }
 /*tabing age design starts*/
-.age-bracket-inputs-outer > input {
-    display: none;
+.radio {
+	display: none;
+}
+.tab {
+	cursor: pointer;
+    padding: 8px 20px;
+    margin: 0px 8px 5px 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    color: #fff;
+    border-radius: 3px 3px 0px 0px;
+    box-shadow: 0 0.1rem 0.3rem#00000080;
+    border-radius: 25px;
+    font-size: 14px !important;
+}
+#one:checked ~ .tabs #one-tab, #two:checked ~ .tabs #two-tab, #three:checked ~ .tabs #three-tab {
+	
+background: rgba(49,58,238,1);
+background: -moz-linear-gradient(left, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(49,58,238,1)), color-stop(100%, rgba(4,71,164,1)));
+background: -webkit-linear-gradient(left, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
+background: -o-linear-gradient(left, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
+background: -ms-linear-gradient(left, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
+background: linear-gradient(to right, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#313aee', endColorstr='#0447a4', GradientType=1 );
+color: #fff;
 }
 /*tabing age design ends*/
+
+/*Wizard css starts*/
+.ful_circle {
+	position: relative;
+	margin: 50px 0;
+}
+.ful_circle::before {
+	content: "";
+	position: absolute;
+	height: 4px;
+	width: 90%;
+	background: #3b38ff;
+	top: -3px;
+    left: 44px;
+    border-radius: 10px;
+}
+.ful_circle.step_first::after {
+	content: "";
+	position: absolute;
+	height: 4px;
+	width: 49px;
+	left: -51px;
+	background: #3b38ff;
+	top: -4px;
+	border-radius: 6px;
+}
+.overlay-wizard-count {
+	height: 30px;
+	width: 30px;
+	background: #f4f6fa;
+	position: absolute;
+	border-radius: 50%;
+	top: -16px;
+	left: 6px;
+	z-index: 5;
+	color: #000;
+	text-align: center;
+	padding: 3px 3px;
+	font-weight: 500;
+}
+.quarter-circle-top-left {
+	width: 20px;
+	height: 20px;
+	background: #c1d8fa;
+	display: inline-block;
+	position: absolute;
+	left: 22px;
+	border-radius: 0 0 100px 0;
+	-moz-border-radius: 0 0 100px 0;
+	-webkit-border-radius: 0 0 100px 0;
+}
+.quarter-circle-top-right {
+	width: 20px;
+	height: 20px;
+	background: #c1d8fa;
+	border-radius: 0 0 0 100px;
+	display: inline-block;
+	-moz-border-radius: 0 0 0 100px;
+	-webkit-border-radius: 0 0 0 100px;
+}
+.quarter-circle-bottom-left {
+	width: 20px;
+	height: 20px;
+	background: #c1d8fa;
+	border-radius: 0 100px 0 0;
+	display: inline-block;
+	position: absolute;
+	top: -23px;
+	left: 22px;
+	-moz-border-radius: 0 100px 0 0;
+	-webkit-border-radius: 0 100px 0 0;
+}
+.quarter-circle-bottom-right {
+	width: 20px;
+	height: 20px;
+	background-color: #c1d8fa;
+	border-radius: 100px 0 0 0;
+	display: inline-block;
+	position: absolute;
+	top: -23px;
+	left: 0;
+	-moz-border-radius: 100px 0 0 0;
+	-webkit-border-radius: 100px 0 0 0;
+}
+.ful_circle_last_step {
+	position: relative;
+	margin: 50px 0;
+}
+.ful_circle_last_step::after {
+	content: "";
+	position: absolute;
+	height: 4px;
+	width: 49px;
+	left: 44px;
+	background: #3b38ff;
+	top: -4px;
+	border-radius: 6px;
+}
+.create-project-top-heading {
+    font-weight: 500;
+    color: #002249;
+    font-size: 25px;
+}
+.counting-stepbar-wizard {
+	padding-left: 55px;
+	position: relative;
+}
+.wizard-goals.wiz-active {
+    background: #3b38ff;
+    transition: 0.2s all;
+}
+.wizard-specs-info {
+    font-size: 12px;
+    font-weight: 700;
+    color: #01004a;
+    position: relative;
+    left: -25px;
+}
+.step-progress-fields-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #01004a;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.step-progress-fields-content {
+    font-weight: 300;
+    font-size: 14px;
+    color:#01004a;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding-left: 5px;
+}
+.step-4-summary-all {
+    background-color: rgba(178,177,255,0.1);
+    border-top: 1px solid rgba(59,56,255,0.2);
+    border-bottom: 1px solid rgba(59,56,255,0.2);
+    padding: 15px 20px;
+    margin-top: 15px;
+    margin: 15px 0px 35px 0px;
+}
+.step-4-summary-all-sections{
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    line-height: normal;
+}
+.step-4-summary-all-sections label {
+    margin-bottom: 0px;
+}
+.step-4-summary-all-sections p {
+    margin-bottom: 0px;
+    line-height: normal;
+    font-weight: 400;
+    display: inline-block;
+    padding-left: 5px;
+}
+.color-primary-wr {
+    color: #01004a;
+}
+.step-4-summary-all-sections + .step-4-summary-all-sections {
+    margin-top: 12px;
+}
+.step-4-summary-all-sections-result {
+    margin-top: 25px;
+}
+.step-4-summary-all-sections-result p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+.step-4-summary-all-sections-result span {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 0px;
+    display: block;
+    line-height: normal;
+}
+.step4-submit-fields input{
+    width: 100%;
+}
+.editing-btn {
+    background: #fff;
+    border: 2px solid #243fd8;
+    color: #243fd8;
+    font-weight: 600;
+}
+.bdr-input {
+    border: 2px solid #fe4f32;
+}
+.step-4-summary-all-tags {
+    font-size: 16px;
+    color: #01004a;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0px;
+}
+/*Wizard css ends*/
+
 /*New design css ends*/
 /*project detail css ends*/
 /*Project css ends*/

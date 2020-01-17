@@ -56,8 +56,8 @@
                                     <recaptcha formControlName="myRecaptcha" ></recaptcha>
                                 </div>    
                                 <div class="col-lg-12 pb-3">                                    
-                                    <input type="checkbox" formControlName="accept_terms" class="form-check-input" [ngClass]="{ 'is-invalid': (signUpForm.controls.accept_terms.touched || signUpSubmitted) && signUpForm.controls.accept_terms.errors }"/>
-                                    <label>I agree to Terms and Conditions</label>
+                                    <input type="checkbox" formControlName="accept_terms" class="form-check-input ml-0" [ngClass]="{ 'is-invalid': (signUpForm.controls.accept_terms.touched || signUpSubmitted) && signUpForm.controls.accept_terms.errors }"/>
+                                    <label class="ml-4">I agree to Terms and Conditions</label>
                                     <p *ngIf="signUpForm.controls.accept_terms.touched || signUpSubmitted">
                                         <app-form-validation-errors errorPrefix="Accept Ts & Cs " [errors]="signUpForm.controls.accept_terms.errors"></app-form-validation-errors>
                                     </p>

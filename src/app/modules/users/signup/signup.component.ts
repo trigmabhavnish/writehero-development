@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, NgZone } from '@angular/core';
+import { Location } from '@angular/common';
 import { AbstractControl, FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { Subscription } from 'rxjs/Subscription';
 import { of, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -30,13 +32,14 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   signUpSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private userAuthService: UsersService) { }
+  constructor(private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
 
   private buildSignupForm() {
     this.signUpForm = this.formBuilder.group({        
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       user_name: [''],
+      director_id: [3],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([
           Validators.required,
@@ -64,6 +67,7 @@ export class SignupComponent implements OnInit {
         ])
       ],
       confirm_password: ['', Validators.required],
+      status: ['Y'],
       myRecaptcha: [false],
       accept_terms: [false, Validators.required]
     }, {
@@ -87,9 +91,10 @@ export class SignupComponent implements OnInit {
       //case success
       (res) => {         
         this.commonUtilsService.onSuccess(res.response);
+        this.router.navigate(['/user/login']);
         //case error 
       }, error => {
-        this.commonUtilsService.onError(error);
+        this.commonUtilsService.onError(error.response);
     });
   }
 

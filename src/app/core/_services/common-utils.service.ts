@@ -62,4 +62,6 @@ export class CommonUtilsService {
     this.toastrManager.errorToastr(message, 'Oops!',{maxShown:1});//showing error toaster message  
   }
 
+  
+
 }

@@ -1,4 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { Subscription } from 'rxjs/Subscription';
+import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
+
+// import environment
+import { environment } from '../../../../environments/environment';
+
+//import Lodash
+import * as _ from 'lodash';
+
+//import shared services
+import { PageLoaderService } from '../../../shared/_services'
+
+//import core services
+import { UsersService, CommonUtilsService } from '../../../core/_services';
+
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -7,9 +24,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isLoggedin: boolean = false;
+  loginSubscription: Subscription;
+
+  constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
+
+    // Page Refresh
+    if (localStorage.getItem('isLoggedIn')) {
+      this.isLoggedin = true;
+    }
+
+    this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
+      this.isLoggedin = loginStatus.isLoggedIn;
+    });
+
+    
   }
 
 }

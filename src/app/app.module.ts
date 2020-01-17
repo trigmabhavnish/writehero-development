@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
@@ -12,6 +12,16 @@ import { ApiIntercepter } from './core/interceptors/api.interceptor';
 import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import { PageLoaderComponent } from './shared/components/page-loader/page-loader.component';
 
+//import core services
+import { UsersService, CommonUtilsService } from './core/_services';
+
+//services 
+import { PageLoaderService } from './shared/_services'
+
+//import shared module
+import { SharedModule } from './core/shared/shared.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +31,15 @@ import { PageLoaderComponent } from './shared/components/page-loader/page-loader
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [
+    UsersService,
+    CommonUtilsService,
+    PageLoaderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiIntercepter, multi: true
