@@ -49,11 +49,11 @@
         top: 70px;
         left: 0;
     }
-    .navbar-vertical.navbar-expand-xl + .dashboard-content {
+    .dashboard-content {
         padding-left: 16.625rem;
         margin-right: 15px;
     }
-    .navbar-vertical.navbar-expand-xl + .dashboard-content .navbar-top .navbar-toggler {
+    .dashboard-content .navbar-top .navbar-toggler {
         display: none;
     }
     .dashboard-topbar {

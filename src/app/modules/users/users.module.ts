@@ -4,24 +4,40 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../core/shared/shared.module'; // Shared Module
 import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha Module
 
+import { ArchwizardModule } from 'angular-archwizard';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../../../environments/environment';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
+import { AddNewProjectComponent } from './add-new-project/add-new-project.component'
+
+import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  acceptedFiles: '.jpg, .png, .jpeg',
+  createImageThumbnails: true
+};
 
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, DashboardComponent],
+  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ArchwizardModule,
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
+  ],
+  providers: [
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
   ]
 })
 export class UsersModule { }

@@ -1,0 +1,317 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+        <app-left-sidebar></app-left-sidebar>
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <!--Project HTML starts-->
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Create New
+                                                Project</h4>
+                                            <div class="counting-stepbar-wizard">
+                                                <div class="row">
+                                                    <div class="col-3 col-md-2">
+                                                        <div class="ful_circle step_first">
+                                                            <div class="overlay-wizard-count">1
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-right wizard-goals">
+                                                            </div>
+                                                            <p class="wizard-specs-info">Project
+                                                                Specs</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3 col-md-2">
+                                                        <div class="ful_circle">
+                                                            <div class="overlay-wizard-count">2
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-right wizard-goals">
+                                                            </div>
+                                                            <p class="wizard-specs-info">Project
+                                                                Details</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3 col-md-2">
+                                                        <div class="ful_circle">
+                                                            <div class="overlay-wizard-count">3
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-right wizard-goals">
+                                                            </div>
+                                                            <p class="wizard-specs-info">Writters
+                                                                Details</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3 col-md-2">
+                                                        <div class="ful_circle_last_step">
+                                                            <div class="overlay-wizard-count">4
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            </div>
+                                                            <div class="quarter-circle-top-right wizard-goals">
+                                                            </div>
+                                                            <p class="wizard-specs-info">Review
+                                                                Project</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <aw-wizard #wizard>
+                                            <aw-wizard-step stepTitle="Project Specs">
+                                                <form [formGroup]="projectSpecsForm">
+                                                    <div class="col-lg-8 step-progress-fields">
+                                                        <label>Project Name</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                            elit. Praesent diam lorem, fermentum in tempus sed,
+                                                            aliquet sed enim</p>
+                                                        <input type="text" class="col-lg-4"
+                                                            formControlName="project_name" placeholder=""
+                                                            class="field-design"
+                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
+                                                        <p
+                                                            *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
+                                                            <app-form-validation-errors minLength=2 maxLength=50
+                                                                errorPrefix="Project Name "
+                                                                [errors]="projectSpecsForm.controls.project_name.errors">
+                                                            </app-form-validation-errors>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-8 step-progress-fields">
+                                                        <label>Project Topic</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                            elit. Praesent diam lorem, fermentum in tempus sed,
+                                                            aliquet sed enim</p>
+                                                        <div class="col-lg-4 px-0">
+                                                            <select class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="project_topic" placeholder=""
+                                                                class="field-design"
+                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_topic.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_topic.errors }">
+                                                                <option value="">Choose topic</option>
+                                                                <option *ngFor="let projectCategory of productCategoriesArray" value="{{projectCategory}}">{{projectCategory}}</option>
+                                                            </select>
+                                                            <p
+                                                                *ngIf="projectSpecsForm.controls.project_topic.touched || projectSpecsSubmitted">
+                                                                <app-form-validation-errors errorPrefix="Project Topic "
+                                                                    [errors]="projectSpecsForm.controls.project_topic.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8 step-progress-fields">
+                                                        <label>Project Type</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                            elit. Praesent diam lorem, fermentum in tempus sed,
+                                                            aliquet sed enim</p>
+                                                        <div class="col-lg-4 px-0">
+                                                            <select class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="project_type_id" placeholder=""
+                                                                class="field-design"
+                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_type_id.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_type_id.errors }">
+                                                                <option value="">Choose Project Type</option>
+                                                                <option *ngFor="let projectType of projectTypeArray" value="{{projectType}}">{{projectType}}</option>
+                                                            </select>
+                                                            <p
+                                                                *ngIf="projectSpecsForm.controls.project_type_id.touched || projectSpecsSubmitted">
+                                                                <app-form-validation-errors errorPrefix="Project Type "
+                                                                    [errors]="projectSpecsForm.controls.project_type_id.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mt-4">
+                                                        <button (click)="validateProjectSpecsWizard()" type="button"
+                                                            awNextStep 
+                                                            class="submit-btn-feedback min-w-130">
+                                                            NEXT
+                                                        </button>
+                                                        <a href="#" class="advance-text">( or go advance )</a>
+                                                    </div>
+                                                </form>
+                                            </aw-wizard-step>
+                                            <aw-wizard-step stepTitle="Project Details">
+                                                <form [formGroup]="projectDetailsForm">
+                                                    <div class="row m-0">
+                                                        <div class="col-lg-5">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Quantity</label>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit. Praesent diam lorem,
+                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    </p>
+                                                                    <input type="text">
+                                                                </div>
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Word for each space</label>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit. Praesent diam lorem,
+                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    </p>
+                                                                    <input type="text">
+                                                                </div>
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Choose your package</label>
+                                                                    <div
+                                                                        class="project-package-plans package-design basic-package">
+                                                                        <h6 class="project-package-plans-title">
+                                                                            Basic</h6>
+                                                                        <p class="project-package-plans-amount">$1
+                                                                        </p>
+                                                                        <p class="project-package-plans-limit">Per
+                                                                            $100 words</p>
+                                                                        <ul>
+                                                                            <li>Lorem ipsum dolor sit amet,
+                                                                                consectetur </li>
+                                                                            <li>Nunc quis elit non est dictum
+                                                                                elementum</li>
+                                                                            <li>Praesent ullamcorper velit vel eros
+                                                                                posuere</li>
+                                                                        </ul>
+                                                                        <button class="submit-btn-feedback"
+                                                                            role="button">Select plan</button>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="project-package-plans package-design premium-package">
+                                                                        <h6 class="project-package-plans-title">
+                                                                            Premium</h6>
+                                                                        <p class="project-package-plans-amount">$1.2
+                                                                        </p>
+                                                                        <p class="project-package-plans-limit">Per
+                                                                            $100 words</p>
+                                                                        <ul>
+                                                                            <li>Nunc commodo purus eget</li>
+                                                                            <li>Donec ut est convallis, suscipit
+                                                                                eros vel</li>
+                                                                            <li>Etiam eget justo placerat</li>
+                                                                        </ul>
+                                                                        <button class="submit-btn-feedback"
+                                                                            role="button">Select plan</button>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="project-package-plans package-design pro-package">
+                                                                        <h6 class="project-package-plans-title">Pro
+                                                                        </h6>
+                                                                        <p class="project-package-plans-amount">$1.6
+                                                                        </p>
+                                                                        <p class="project-package-plans-limit">Per
+                                                                            $100 words</p>
+                                                                        <ul>
+                                                                            <li>In vitae ipsum id justo vehicula
+                                                                            </li>
+                                                                            <li>Donec porta nisi vitae est fringilla
+                                                                                modo</li>
+                                                                            <li>Suspendisse lobortis enim
+                                                                                scelerisque</li>
+                                                                        </ul>
+                                                                        <button class="submit-btn-feedback"
+                                                                            role="button">Select plan</button>
+                                                                    </div>
+
+                                                                    <div class="package-total-cost">
+                                                                        <h4>Total Cost : <span>$500</span></h4>
+                                                                        <p>Estimated arround: 1-2 weeks</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Project Details</label>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit. Praesent diam lorem,
+                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    </p>
+                                                                    <textarea name="" id="" cols="5"
+                                                                        rows="3"></textarea>
+                                                                </div>
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Additional Resources</label>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit. Praesent diam lorem,
+                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    </p>
+                                                                    <textarea name="" id="" cols="5"
+                                                                        rows="3"></textarea>
+                                                                </div>
+                                                                <div class="col-lg-12 col-lg-12 step-progress-fields">
+                                                                    <label>Attach File?</label>
+                                                                    <div class="uploadcode">
+                                                                        <div class="file-upload-wrapper"
+                                                                            data-text="Select your file!">
+                                                                            <input name="file-upload-field" type="file"
+                                                                                class="file-upload-field" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 mt-4 text-right">
+                                                                    <input type="submit" value="NEXT"
+                                                                        class="submit-btn-feedback min-w-130">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </aw-wizard-step>
+                                        </aw-wizard>
+                                    </div>
+                                    <!--Project HTML ends-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Dashboard HTML Ends-->
+</div>

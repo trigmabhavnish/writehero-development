@@ -21,8 +21,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         // server-side error
                         errorMessage = error.error
                     }
-                    // window.alert(errorMessage);
-                    console.log('the error is', errorMessage);
+                    // window.alert(errorMessage);                    
                     let redirectUrl = '';
                     if (errorMessage == 'Invalid token' || errorMessage  == 'Access denied. No token provided.') {
                         

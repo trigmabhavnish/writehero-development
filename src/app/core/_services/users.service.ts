@@ -42,8 +42,8 @@ export class UsersService {
   */
   userLogin(postedData): Observable<any> {
     return this.httpClient
-      .post('user/login', postedData)
-      .map((response: Response) => {
+      .post('user/login', postedData, { observe: 'response' })
+      .map((response: any) => {        
         return response;
     });
   }

@@ -8,6 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 
+
 import { CustomValidator } from '../../../core/_helpers/custom-validator';
 
 // import environment
@@ -55,14 +56,14 @@ export class LoginComponent implements OnInit {
 
     this.userAuthService.userLogin(this.loginForm.value).pipe(untilDestroyed(this)).subscribe(
       //case success
-      (res) => {         
-        this.commonUtilsService.onSuccess(res.response);
+      (res) => {   
+        console.log(res)      
+        this.commonUtilsService.onSuccess(res.body.response);        
         localStorage.setItem('x-auth-token', res.headers.get('x-auth-token'));
-        localStorage.setItem('account_type', res.account_type);
+        localStorage.setItem('account_type', res.body.accountType);
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
-
-        this.userAuthService.isLoggedIn(true, res.account_type); //trigger loggedin observable 
-        //this.router.navigate(['/user/login']);
+        this.userAuthService.isLoggedIn(true, res.accountType); //trigger loggedin observable 
+        this.router.navigate(['/user/dashboard']);
         //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);
