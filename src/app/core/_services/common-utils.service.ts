@@ -20,7 +20,7 @@ export class CommonUtilsService {
   * @param email user email for signup
   * @return username
   */
-  public generateUsername(email: string): string {     
+  public generateUsername(email: string): string {
     let username = email.substring(0, email.lastIndexOf("."))
     return String(username.replace("@", "_"));
   }
@@ -28,7 +28,7 @@ export class CommonUtilsService {
   * Show page loder on fetching data
   * @return void
   */
-  public showPageLoader(message):void{
+  public showPageLoader(message): void {
     this.pageLoaderService.setLoaderText(message);//setting loader text
     this.pageLoaderService.pageLoader(true);//show page loader
   }
@@ -59,9 +59,41 @@ export class CommonUtilsService {
   public onError(message): void {
     this.pageLoaderService.setLoaderText('');//setting loader text
     this.pageLoaderService.pageLoader(false);//hide page loader
-    this.toastrManager.errorToastr(message, 'Oops!',{maxShown:1});//showing error toaster message  
+    this.toastrManager.errorToastr(message, 'Oops!', { maxShown: 1 });//showing error toaster message  
   }
 
-  
+  /**
+  * To check the image validity for type jpeg, png, jpg
+  * @return boolean
+  * @param base64string image base64 string 
+  * @param type image type (jpeg, png, jpg)
+  */
+  public isFileCorrupted(base64string, type): boolean {
+
+    if (type == 'png') {
+      console.log('get filetype', type)
+      const imageData = Array.from(atob(base64string.replace('data:image/png;base64,', '')), c => c.charCodeAt(0))
+      const sequence = [0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130]; // in hex: 
+
+      //check last 12 elements of array so they contains needed values
+      for (let i = 12; i > 0; i--) {
+        if (imageData[imageData.length - i] !== sequence[12 - i]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+    else if (type == 'pdf') {
+      return true;
+    }
+    else if (type == 'jpeg' || type == 'jpg') {
+      const imageDataJpeg = Array.from(atob(base64string.replace('data:image/jpeg;base64,', '')), c => c.charCodeAt(0))
+      const imageCorrupted = ((imageDataJpeg[imageDataJpeg.length - 1] === 217) && (imageDataJpeg[imageDataJpeg.length - 2] === 255))
+      return imageCorrupted;
+    }
+  }
+
+
 
 }

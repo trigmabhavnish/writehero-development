@@ -13,7 +13,7 @@ import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor
 import { PageLoaderComponent } from './shared/components/page-loader/page-loader.component';
 
 //import core services
-import { UsersService, CommonUtilsService } from './core/_services';
+import { UsersService, CommonUtilsService, ProjectsService } from './core/_services';
 
 //services 
 import { PageLoaderService } from './shared/_services'

@@ -15,8 +15,9 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component'
 
 import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  acceptedFiles: '.jpg, .png, .jpeg',
+  acceptedFiles: '.jpg, .png, .jpeg, .pdf',
   createImageThumbnails: true
 };
 
@@ -29,6 +30,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule,
     SharedModule,
     ArchwizardModule,
+    DropzoneModule,
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
