@@ -16,6 +16,8 @@ export class FormValidationErrorsComponent implements OnInit {
   @Input() maxValue: number;
   @Input() patternError: string;
   @Input() errors: ValidationErrors;
+  @Input() isInteger: boolean;
+  @Input() minIntegerValue: number;
 
   constructor() { }
 

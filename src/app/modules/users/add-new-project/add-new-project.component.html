@@ -102,12 +102,12 @@
                                             <aw-wizard-step stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
                                                     <div class="col-lg-8 step-progress-fields">
-                                                        <label>Project Name</label>
+                                                        <label>Project Name <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
                                                         <input type="text" class="col-lg-4"
-                                                            formControlName="project_name" placeholder=""
+                                                            #project_name formControlName="project_name" placeholder=""
                                                             class="field-design"
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
@@ -119,12 +119,12 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-lg-8 step-progress-fields">
-                                                        <label>Project Topic</label>
+                                                        <label>Project Topic <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
                                                         <div class="col-lg-4 px-0">
-                                                            <select class="custom-select"
+                                                            <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_topic" placeholder=""
                                                                 class="field-design"
@@ -144,34 +144,34 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-8 step-progress-fields">
-                                                        <label>Project Type</label>
+                                                        <label>Project Type <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
                                                         <div class="col-lg-4 px-0">
-                                                            <select class="custom-select"
+                                                            <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
-                                                                formControlName="project_type_id" placeholder=""
+                                                                formControlName="project_type" placeholder=""
                                                                 class="field-design"
-                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_type_id.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_type_id.errors }">
+                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_type.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_type.errors }">
                                                                 <option value="">Choose Project Type</option>
                                                                 <option *ngFor="let projectType of projectTypeArray"
                                                                     value="{{projectType}}">{{projectType}}</option>
                                                             </select>
                                                             <p
-                                                                *ngIf="projectSpecsForm.controls.project_type_id.touched || projectSpecsSubmitted">
+                                                                *ngIf="projectSpecsForm.controls.project_type.touched || projectSpecsSubmitted">
                                                                 <app-form-validation-errors errorPrefix="Project Type "
-                                                                    [errors]="projectSpecsForm.controls.project_type_id.errors">
+                                                                    [errors]="projectSpecsForm.controls.project_type.errors">
                                                                 </app-form-validation-errors>
                                                             </p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mt-4">
-                                                        <button (click)="validateProjectSpecsWizard()" type="button"
+                                                        <button [disabled]="projectSpecsForm.invalid" (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
                                                         </button>
-                                                        <a href="#" class="advance-text">( or go advance )</a>
+                                                        <!--a href="#" class="advance-text">( or go advance )</a-->
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
@@ -181,38 +181,38 @@
                                                         <div class="col-lg-5">
                                                             <div class="row">
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Quantity</label>
+                                                                    <label>Quantity <span class="red">*</span></label>
                                                                     <p>Lorem ipsum dolor sit amet, consectetur
                                                                         adipiscing elit. Praesent diam lorem,
                                                                         fermentum in tempus sed, aliquet sed enim
                                                                     </p>
-                                                                    <input type="text" class="col-lg-4"
+                                                                    <input type="number" (change)="calculateProjectCost(quantity.value, word_count.value)" #quantity class="col-lg-4"
                                                                         formControlName="quantity" placeholder=""
                                                                         class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.quantity.touched || projectDetailsSubmitted) && projectDetailsForm.controls.quantity.errors }">
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.quantity.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors
-                                                                            errorPrefix="Quantity "
+                                                                        [isInteger]=true minIntegerValue="1" errorPrefix="Quantity "
                                                                             [errors]="projectDetailsForm.controls.quantity.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
                                                                 </div>
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Project Details</label>
+                                                                    <label>Project Details <span class="red">*</span></label>
                                                                     <p>Lorem ipsum dolor sit amet, consectetur
                                                                         adipiscing elit. Praesent diam lorem,
                                                                         fermentum in tempus sed, aliquet sed enim
                                                                     </p>
 
 
-                                                                    <textarea cols="5" rows="3"
+                                                                    <textarea #project_details cols="5" rows="3" minLength=10 maxLength=200
                                                                         formControlName="project_details" placeholder=""
                                                                         class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted) && projectDetailsForm.controls.project_details.errors }"></textarea>
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
-                                                                        <app-form-validation-errors
+                                                                        <app-form-validation-errors minLength=10 maxLength=200
                                                                             errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
@@ -226,19 +226,19 @@
                                                             <div class="row">
 
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Word for each space</label>
+                                                                    <label>Word for each space <span class="red">*</span></label>
                                                                     <p>Lorem ipsum dolor sit amet, consectetur
                                                                         adipiscing elit. Praesent diam lorem,
                                                                         fermentum in tempus sed, aliquet sed enim
                                                                     </p>
-                                                                    <input type="text" class="col-lg-4"
+                                                                    <input type="number" (change)="calculateProjectCost(quantity.value, word_count.value)" #word_count class="col-lg-4"
                                                                         formControlName="word_count" placeholder=""
                                                                         class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.word_count.touched || projectDetailsSubmitted) && projectDetailsForm.controls.word_count.errors }">
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.word_count.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors
-                                                                            errorPrefix="Word for each space "
+                                                                        [isInteger]=true minIntegerValue="1" errorPrefix="Word for each space "
                                                                             [errors]="projectDetailsForm.controls.word_count.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -250,13 +250,13 @@
                                                                         adipiscing elit. Praesent diam lorem,
                                                                         fermentum in tempus sed, aliquet sed enim
                                                                     </p>
-                                                                    <textarea cols="5" rows="3"
+                                                                    <textarea #additional_resources cols="5" rows="3" minLength=10 maxLength=200
                                                                         formControlName="additional_resources"
                                                                         placeholder="" class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted) && projectDetailsForm.controls.additional_resources.errors }"></textarea>
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted">
-                                                                        <app-form-validation-errors
+                                                                        <app-form-validation-errors minLength=10 maxLength=200
                                                                             errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.additional_resources.errors">
                                                                         </app-form-validation-errors>
@@ -267,12 +267,12 @@
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="row step-progress-fields">
-                                                                <label class="col-md-12">Choose your package</label>
+                                                                <label class="col-md-12">Choose your package <span class="red">*</span></label>
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
                                                                     class="project-package-plans package-design basic-package col-lg-4">
                                                                     <h6 class="project-package-plans-title">
                                                                         {{projectPackage.project_type_name}}</h6>
-                                                                    <p class="project-package-plans-amount">$1
+                                                                    <p class="project-package-plans-amount">${{projectPackage.price * 100}}
                                                                     </p>
                                                                     <p class="project-package-plans-limit">Per
                                                                         $100 words</p>
@@ -284,8 +284,9 @@
                                                                         <li>Praesent ullamcorper velit vel eros
                                                                             posuere</li>
                                                                     </ul>
-                                                                    <button class="submit-btn-feedback"
-                                                                        role="button">Select plan</button>
+                                                                    <input (change)="getProjectPackagePrice($event, quantity.value, word_count.value)" type="radio" [attr.data-packagePrice]="projectPackage.price" [checked]="projectPackage.id == selectedProjectPackageId" #project_package formControlName="project_package" value="{{projectPackage.id}}" id="{{projectPackage.id}}"/>
+                                                                    <label for="{{projectPackage.id}}" class="submit-btn-feedback"
+                                                                        >Select plan</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -311,7 +312,7 @@
                                                         <div class="col-lg-5">
                                                             <div class="col-lg-12 mt-4 text-left">
                                                                 <div class="package-total-cost">
-                                                                    <h4>Total Cost : <span>$500</span></h4>
+                                                                    <h4>Total Cost : <span>${{calculateCost}}</span></h4>
                                                                     <p>Estimated arround: 1-2 weeks</p>
                                                                 </div>
                                                             </div>
@@ -321,7 +322,7 @@
                                                                     class="submit-btn-feedback min-w-130">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button (click)="validateProjectDetailsWizard()"
+                                                                <button [disabled]="projectDetailsForm.invalid" (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130">
                                                                     NEXT
@@ -344,25 +345,19 @@
                                                                 </p>
                                                                 <div class="col-lg-4 pl-0">
 
-                                                                    <select class="custom-select"
+                                                                    <select #choice_of_writers class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
-                                                                        formControlName="choice_of_writers" placeholder=""
-                                                                        class="field-design"
-                                                                        [ngClass]="{ 'is-invalid': (writersDetailsForm.controls.choice_of_writers.touched || writersDetailsSubmitted) && writersDetailsForm.controls.choice_of_writers.errors }">
-                                                                        <option value="">Choose topic</option>
+                                                                        formControlName="choice_of_writers"
+                                                                        placeholder="" class="field-design"
+                                                                        >
+                                                                        <option value="">Choose Writer</option>
                                                                         <option
-                                                                            *ngFor="let projectCategory of productCategoriesArray"
-                                                                            value="{{projectCategory}}">
-                                                                            {{projectCategory}}
+                                                                            *ngFor="let choiceOfWriter of choiceOfWriterArray"
+                                                                            value="{{choiceOfWriter}}">
+                                                                            {{choiceOfWriter}}
                                                                         </option>
                                                                     </select>
-                                                                    <p
-                                                                        *ngIf="writersDetailsForm.controls.choice_of_writers.touched || writersDetailsSubmitted">
-                                                                        <app-form-validation-errors
-                                                                            errorPrefix="Project Topic "
-                                                                            [errors]="writersDetailsForm.controls.choice_of_writers.errors">
-                                                                        </app-form-validation-errors>
-                                                                    </p>
+                                                                    
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12 step-progress-fields">
@@ -372,13 +367,18 @@
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
                                                                 <div class="col-lg-4 pl-0">
-                                                                    <select class="custom-select"
-                                                                        id="inlineFormCustomSelectPref">
-                                                                        <option selected="">Career</option>
-                                                                        <option value="1">One</option>
-                                                                        <option value="2">Two</option>
-                                                                        <option value="3">Three</option>
+                                                                    <select #writers_career class="custom-select"
+                                                                        id="inlineFormCustomSelectPref"
+                                                                        formControlName="writers_career" placeholder=""
+                                                                        class="field-design">
+                                                                        <option value="">Choose Career</option>
+                                                                        <option
+                                                                            *ngFor="let writterCareer of writterCareerArray"
+                                                                            value="{{writterCareer}}">
+                                                                            {{writterCareer}}
+                                                                        </option>
                                                                     </select>
+                                                                    
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12 step-progress-fields">
@@ -389,19 +389,13 @@
                                                                 </p>
 
                                                                 <div class="warpper">
-                                                                    <input class="radio" id="one" name="group"
-                                                                        type="radio" checked="">
-                                                                    <input class="radio" id="two" name="group"
-                                                                        type="radio">
-                                                                    <input class="radio" id="three" name="group"
-                                                                        type="radio">
-                                                                    <div class="tabs">
-                                                                        <label class="tab" id="one-tab" for="one">18 -
-                                                                            25 yrs</label>
-                                                                        <label class="tab" id="two-tab" for="two">25 -
-                                                                            35 yrs</label>
-                                                                        <label class="tab" id="three-tab"
-                                                                            for="three">35+ yrs</label>
+
+                                                                    <div *ngFor="let writerAge of writterAgeArray; let i=index"
+                                                                        class="tabs">
+                                                                        <input formControlName="writers_age" class="radio" id="{{i}}" 
+                                                                            type="radio">
+                                                                        <label class="tab"
+                                                                            for="{{i}}">{{writerAge}}</label>
                                                                     </div>
                                                                 </div>
 
@@ -413,23 +407,157 @@
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
                                                                 <div class="col-lg-4 pl-0">
-                                                                    <select class="custom-select"
-                                                                        id="inlineFormCustomSelectPref">
-                                                                        <option selected="">Choose</option>
-                                                                        <option value="1">One</option>
-                                                                        <option value="2">Two</option>
-                                                                        <option value="3">Three</option>
+                                                                    <select #writers_location class="custom-select"
+                                                                        id="inlineFormCustomSelectPref"
+                                                                        formControlName="writers_location" placeholder=""
+                                                                        class="field-design">
+                                                                        <option value="">Choose Location</option>
+                                                                        <option
+                                                                            *ngFor="let writterLocation of writterLocationArray; let i= index;"
+                                                                            value="{{writterLocation.abbreviation}}">
+                                                                            {{writterLocation.name}}
+                                                                        </option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12 mt-4">
-                                                                <input type="submit" value="NEXT"
+                                                                <button type="button" awPreviousStep
                                                                     class="submit-btn-feedback min-w-130">
-                                                                <a href="#" class="advance-text">( or skip )</a>
+                                                                    PREVIOUS
+                                                                </button>
+                                                                <button (click)="validateProjectDetailsWizard()"
+                                                                    type="button" awNextStep
+                                                                    class="submit-btn-feedback min-w-130">
+                                                                    NEXT
+                                                                </button>
+                                                                <!--a href="#" class="advance-text">( or skip )</a-->
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </form>
+                                            </aw-wizard-step>
+                                            <aw-wizard-step stepTitle="Review Project">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-8 step-progress-fields mb-4">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur
+                                                                adipiscing elit. Praesent diam lorem,
+                                                                fermentum in tempus sed, aliquet sed enim
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div>
+                                                                <label class="step-progress-fields-label">Project
+                                                                    Name :</label>
+                                                                <p class="step-progress-fields-content">
+                                                                        {{project_name?.value}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div>
+                                                                <label class="step-progress-fields-label">Project
+                                                                    Topic :</label>
+                                                                <p class="step-progress-fields-content">
+                                                                        {{project_topic?.value}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="step-progress-fields-label">Project
+                                                                Type :</label>
+                                                            <p class="step-progress-fields-content">{{project_type?.value}}</p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="step-4-summary-all">
+                                                                <div class="step-4-summary-all-sections">
+                                                                    <label>Quantity : </label>
+                                                                    <p>{{quantity?.value}}</p>
+                                                                </div>
+                                                                <div class="step-4-summary-all-sections">
+                                                                    <label>Words for each piece : </label>
+                                                                    <p>{{word_count?.value}}</p>
+                                                                </div>
+                                                                <div class="step-4-summary-all-sections">
+                                                                    <label>Package : </label>
+                                                                    <p class="color-primary-wr">Premium</p>
+                                                                </div>
+                                                                <div class="step-4-summary-all-sections">
+                                                                    <label>Estimated turnarround :</label>
+                                                                    <p class="color-primary-wr">1 - 2 weeks
+                                                                    </p>
+                                                                </div>
+                                                                <div class="step-4-summary-all-sections-result">
+                                                                    <p class="color-primary-wr">Total Cost
+                                                                    </p>
+                                                                    <span class="color-primary-wr">${{calculateCost}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div>
+                                                                <label class="step-progress-fields-label">Project
+                                                                    Details :</label>
+                                                                <p class="step-progress-fields-content">
+                                                                    {{project_details?.value}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div>
+                                                                <label class="step-progress-fields-label">Additional
+                                                                    Resources :</label>
+                                                                <p class="step-progress-fields-content">
+                                                                        {{additional_resources?.value}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="step-progress-fields-label">Choice
+                                                                Of Writers :</label>
+                                                            <p class="step-progress-fields-content">{{choice_of_writers?.value}}</p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="step-progress-fields-label">Career
+                                                                :</label>
+                                                            <p class="step-progress-fields-content">{{writers_career?.value}}</p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="step-progress-fields-label">Age
+                                                                Bracket :</label>
+                                                            <p class="step-progress-fields-content">{{writers_location?.value}}</p>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="step-progress-fields-label">Location
+                                                                :</label>
+                                                            <p class="step-progress-fields-content">{{writers_location?.value}}</p>
+                                                        </div>
+                                                        <div class="col-lg-10 mt-4 step4-submit-fields">
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                        <button type="button" awPreviousStep
+                                                                        class="submit-btn-feedback min-w-130">
+                                                                        PREVIOUS
+                                                                    </button>
+
+                                                                    <button type="button" (click)="onSubmitAddNewProject()"
+                                                                        class="submit-btn-feedback min-w-130">
+                                                                        CREATE PROJECT
+                                                                    </button>
+                                                                    
+                                                                </div>
+                                                                <!--div class="col-lg-3">
+                                                                    <input type="submit" value="SAVE AS DRAFT"
+                                                                        class="submit-btn-feedback min-w-130 editing-btn">
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <input type="submit" value="CANCEL PROJECT"
+                                                                        class="submit-btn-feedback min-w-130 editing-btn">
+                                                                </div>
+                                                                <div class="col-lg-3">
+                                                                    <input type="submit" value="EDIT PROJECT"
+                                                                        class="submit-btn-feedback min-w-130 editing-btn">
+                                                                </div-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </aw-wizard-step>
                                         </aw-wizard>
                                     </div>

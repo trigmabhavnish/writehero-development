@@ -12,3 +12,4 @@
 <ng-container *ngIf="errors && errors['mustMatch']">Password and confirm password do not match.<br/></ng-container>
 <ng-container *ngIf="errors && errors['emailTaken']">Email already registered in our system.<br/></ng-container>
 <ng-container *ngIf="errors && errors['emailNotExist']">Email do not exist in our system.<br/></ng-container>
+<ng-container *ngIf="errors && isInteger && errors['min']">{{errorPrefix}}should be minimum {{minIntegerValue}}.<br /></ng-container>
