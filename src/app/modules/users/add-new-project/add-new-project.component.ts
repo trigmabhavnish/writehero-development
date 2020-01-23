@@ -43,10 +43,10 @@ export class AddNewProjectComponent implements OnInit {
   public projectImageConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
-  calculateCost:any = 0;
-  selectedProjectPackageId:number;
-  packagePrice:any;
- 
+  calculateCost: any = 0;
+  selectedProjectPackageId: number;
+  packagePrice: any;
+
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -347,9 +347,9 @@ export class AddNewProjectComponent implements OnInit {
     }
   }
 
-   /**
-  * Validate Project Details Wizard Fields.
-  */
+  /**
+ * Validate Project Details Wizard Fields.
+ */
   validateProjectDetailsWizard() {
     this.projectDetailsSubmitted = true;
     if (this.projectDetailsForm.invalid) {
@@ -358,8 +358,8 @@ export class AddNewProjectComponent implements OnInit {
     }
   }
 
-  onSubmitAddNewProject(){
-    
+  onSubmitAddNewProject() {
+
   }
 
   /**
@@ -374,7 +374,7 @@ export class AddNewProjectComponent implements OnInit {
         //console.log(res.projectPackages);
         this.getProjectPackageArray = res.projectPackages;
         this.selectedProjectPackageId = res.projectPackages[0].id;
-        this.packagePrice = res.projectPackages[0].price;        
+        this.packagePrice = res.projectPackages[0].price;
         //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);
@@ -501,8 +501,8 @@ export class AddNewProjectComponent implements OnInit {
   *  @param package_price number
   * @return Price (number)
   */
-  calculateProjectCost(quantity, word_count){
-    if(quantity && word_count){      
+  calculateProjectCost(quantity, word_count) {
+    if (quantity && word_count) {
       this.calculateCost = (quantity * word_count * this.packagePrice).toFixed(2);
       this.projectDetailsForm.controls.project_cost.patchValue(this.calculateCost);
     }
@@ -515,10 +515,23 @@ export class AddNewProjectComponent implements OnInit {
   *  @param package_price number
   * @return void
   */
-  getProjectPackagePrice(event, quantity, word_count){
+  getProjectPackagePrice(event, quantity, word_count) {
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
   }
+
+  /**
+   * validate wizard and move to either direction. 
+   * @param validityStatus boolean(form validation status)
+   * @param direction boolean(wizard direction)
+   * @return  boolean
+   */
+  moveDirection = (validityStatus, direction) => {
+    if (direction === MovingDirection.Backwards) {
+      return true;
+    }
+    return validityStatus;
+  };
 
   ngOnInit() {
     this.projectSpecs(); // Project Specs Wizard

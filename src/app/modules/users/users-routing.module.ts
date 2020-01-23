@@ -4,8 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component'; // User Signup
 import { LoginComponent } from './login/login.component'; // User Login
 import { DashboardComponent } from './dashboard/dashboard.component' // User Dashboard
-import { AddNewProjectComponent } from './add-new-project/add-new-project.component'
-import { UserAuthGuardService } from '../../core/guards/user-auth-guard.service'
+import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
+import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
+import { UserAuthGuardService } from '../../core/guards/user-auth-guard.service';
 
 const routes: Routes = [
   {
@@ -33,6 +35,18 @@ const routes: Routes = [
     path: 'add-new-project',
     component: AddNewProjectComponent,
     data: { title: 'Add New Project' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'custom-wizard',
+    component: CustomWizardComponent,
+    data: { title: 'Add New Project' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'buy-credits',
+    component: BuyCreditsComponent,
+    data: { title: 'Buy Credits' },
     canActivate: [UserAuthGuardService]
   }
 ];

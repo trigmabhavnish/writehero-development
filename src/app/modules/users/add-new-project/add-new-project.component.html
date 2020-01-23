@@ -7,7 +7,7 @@
         <div class="dashboard-content">
 
             <nav class="navbar-top scrolling-on">
-                <a href="#" class="mobile-dashboard-logo"><img src="image/wh-mobile-logo.png"></a>
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
                 <p class="mobile-dashboard-heading">Dashboard</p>
                 <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
@@ -99,7 +99,7 @@
                                             </div>
                                         </div>
                                         <aw-wizard #wizard>
-                                            <aw-wizard-step stepTitle="Project Specs">
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectSpecsForm.valid)" stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
                                                     <div class="col-lg-8 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
@@ -175,7 +175,7 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step stepTitle="Project Details">
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectDetailsForm.valid)" stepTitle="Project Details">
                                                 <form [formGroup]="projectDetailsForm">
                                                     <div class="row m-0">
                                                         <div class="col-lg-5">

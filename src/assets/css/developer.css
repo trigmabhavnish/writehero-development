@@ -3,3 +3,4 @@ input[type="submit"]:disabled {opacity: 0.5;}
 app-form-validation-errors {font-size: 0.8em;color: #f00;font-weight: 500;}
 button.submit-btn-feedback:disabled {opacity: 0.5;}
 span.red{color: #f00}
+aw-wizard-navigation-bar.horizontal.small {display: none;}

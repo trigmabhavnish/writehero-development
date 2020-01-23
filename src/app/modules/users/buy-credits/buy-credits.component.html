@@ -1,0 +1,160 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+        <app-left-sidebar></app-left-sidebar>
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <!--Project HTML starts-->
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Buy Credits</h4>
+                                            <aw-wizard [disableNavigationBar]="true">
+                                                <aw-wizard-step
+                                                    [canExit]="moveDirection.bind(this, buyCreditsForm.valid)">
+                                                    <form [formGroup]="buyCreditsForm">
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Buy More Credits</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <div class="col-lg-4 pl-0">
+
+                                                                            <input type="number" #credits
+                                                                                class="col-lg-4"
+                                                                                formControlName="credits" placeholder=""
+                                                                                class="field-design"
+                                                                                [ngClass]="{ 'is-invalid': (buyCreditsForm.controls.credits.touched || buyCreditsSubmitted) && buyCreditsForm.controls.credits.errors }">
+                                                                            <p
+                                                                                *ngIf="buyCreditsForm.controls.credits.touched || buyCreditsSubmitted">
+                                                                                <app-form-validation-errors
+                                                                                    [isInteger]=true minIntegerValue="1"
+                                                                                    errorPrefix="Credits "
+                                                                                    [errors]="buyCreditsForm.controls.credits.errors">
+                                                                                </app-form-validation-errors>
+                                                                            </p>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Discount Code</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <div class="col-lg-4 pl-0">
+                                                                            <input type="text" class="col-lg-4"
+                                                                                #coupon_code
+                                                                                formControlName="coupon_code"
+                                                                                placeholder="" class="field-design">
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Pay Via</label>
+                                                                        <div class="col-lg-4 pl-0">
+                                                                            <input type="radio"
+                                                                                formControlName="pay_via" value="paypal"
+                                                                                id="paypal" />
+                                                                            <label for="paypal"
+                                                                                class="submit-btn-feedback">Paypal</label>
+
+                                                                            <input type="radio"
+                                                                                formControlName="pay_via" value="skrill"
+                                                                                id="skrill" />
+                                                                            <label for="skrill"
+                                                                                class="submit-btn-feedback">Skrill</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 mt-4">
+
+                                                                        <button [disabled]="buyCreditsForm.invalid"
+                                                                            (click)="validateBuyCreditsWizard()"
+                                                                            type="button"
+                                                                            class="submit-btn-feedback min-w-130"
+                                                                            awNextStep>
+                                                                            ADD CREDITS
+                                                                        </button>
+                                                                        <!--a href="#" class="advance-text">( or skip )</a-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </aw-wizard-step>
+                                                <aw-wizard-step>
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label"> Payment
+                                                                        Gateway:</label>
+                                                                    <p class="step-progress-fields-content">
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label"> Discount
+                                                                        Code:</label>
+                                                                    <p  class="step-progress-fields-content">
+                                                                        {{(coupon_code.value)?coupon_code.value:'NA'}}
+                                                                    </p>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label">
+                                                                        Credits:</label>
+                                                                    <p class="step-progress-fields-content">
+                                                                        {{credits?.value}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </aw-wizard-step>
+                                            </aw-wizard>
+                                        </div>
+
+                                    </div>
+                                    <!--Project HTML ends-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Dashboard HTML Ends-->
+</div>
