@@ -6,10 +6,14 @@ export const environment = {
   production: false,
   API_ENDPOINT: 'http://localhost:3000',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
+  PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
     WAIT_TEXT: 'Please wait...',
+    COUPON_CODE_APPLIED: 'Coupon Code Applied.',
+    COUPON_CODE_INVALID: 'Invalid Coupon Code.',
+    COUPON_CODE_REMOVED: 'Coupon removed successfully..',
   }
 };
 

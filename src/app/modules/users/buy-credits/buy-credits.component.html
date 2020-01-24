@@ -66,10 +66,28 @@
                                                                             fermentum in tempus sed, aliquet sed enim
                                                                         </p>
                                                                         <div class="col-lg-4 pl-0">
-                                                                            <input type="text" class="col-lg-4"
+                                                                            <input [hidden]="isCouponApplied"
+                                                                                type="text" class="col-lg-4"
                                                                                 #coupon_code
                                                                                 formControlName="coupon_code"
                                                                                 placeholder="" class="field-design">
+
+                                                                            <p [hidden]="!isCouponApplied"
+                                                                                class="coupon_code_text">
+                                                                                {{coupon_code?.value}}</p>
+
+                                                                            <a [hidden]="isCouponApplied"
+                                                                                href="javascript:void(0)"
+                                                                                (click)="calculateDiscount(coupon_code.value, credits.value)"
+                                                                                class="apply_coupon_code">Apply</a>
+                                                                            <a [hidden]="!isCouponApplied"
+                                                                                (click)="removeDiscount()"
+                                                                                href="javascript:void(0)"
+                                                                                class="remove_coupon_code">Remove</a>
+                                                                            <p [innerHTML]="couponCodeResponse"
+                                                                                class="coupon_code_response">
+                                                                                {{couponCodeResponse}}</p>
+
 
 
                                                                         </div>
@@ -78,16 +96,16 @@
                                                                     <div class="col-lg-12 step-progress-fields">
                                                                         <label>Pay Via</label>
                                                                         <div class="col-lg-4 pl-0">
-                                                                            <input type="radio"
+                                                                            <input #paypal type="radio"
                                                                                 formControlName="pay_via" value="paypal"
-                                                                                id="paypal" />
-                                                                            <label for="paypal"
+                                                                                id="paypalRadio" />
+                                                                            <label for="paypalRadio"
                                                                                 class="submit-btn-feedback">Paypal</label>
 
-                                                                            <input type="radio"
+                                                                            <input #skrill type="radio"
                                                                                 formControlName="pay_via" value="skrill"
-                                                                                id="skrill" />
-                                                                            <label for="skrill"
+                                                                                id="skrillRadio" />
+                                                                            <label for="skrillRadio"
                                                                                 class="submit-btn-feedback">Skrill</label>
                                                                         </div>
                                                                     </div>
@@ -115,28 +133,63 @@
                                                                     <label class="step-progress-fields-label"> Payment
                                                                         Gateway:</label>
                                                                     <p class="step-progress-fields-content">
+                                                                        {{paypal.checked ? paypal.value : skrill.checked ? skrill.value : 'NA' }}
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div>
-                                                                    <label class="step-progress-fields-label"> Discount
-                                                                        Code:</label>
-                                                                    <p  class="step-progress-fields-content">
-                                                                        {{(coupon_code.value)?coupon_code.value:'NA'}}
-                                                                    </p>
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label">
+                                                                    <label class="step-progress-fields-label"> Total
                                                                         Credits:</label>
                                                                     <p class="step-progress-fields-content">
                                                                         {{credits?.value}}
                                                                     </p>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label"> Coupon
+                                                                        Code:</label>
+                                                                    <p class="step-progress-fields-content">
+                                                                        {{(appliedCouponCode)?appliedCouponCode:'NA'}}
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label">
+                                                                        Discount Percentage:</label>
+                                                                    <p class="step-progress-fields-content">
+                                                                        {{(discountPercentage)?discountPercentage + '% OFF':'NA'}}
+
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div>
+                                                                    <label class="step-progress-fields-label">
+                                                                        Amount To Pay:</label>
+                                                                    <p class="step-progress-fields-content">
+                                                                        ${{(calAmountToPay)?calAmountToPay:credits?.value}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-10 mt-4 step4-submit-fields">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3">
+                                                                        <button type="button" awPreviousStep
+                                                                            class="submit-btn-feedback min-w-130">
+                                                                            PREVIOUS
+                                                                        </button>
+                                                                        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                                                                        
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </aw-wizard-step>

@@ -22,7 +22,7 @@ export class CreditsService {
   checkCouponCodeExist(postedData): Observable<any> {
 
     return this.httpClient
-      .post('credit/checkCouponCodeExist', postedData)
+      .post('coupon/checkCouponCodeExist', postedData)
       .map((response: Response) => {
         return response;
       });
