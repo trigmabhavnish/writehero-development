@@ -14,6 +14,7 @@ export const environment = {
     COUPON_CODE_APPLIED: 'Coupon Code Applied.',
     COUPON_CODE_INVALID: 'Invalid Coupon Code.',
     COUPON_CODE_REMOVED: 'Coupon removed successfully..',
+    PAYMENT_FAILED:'Sorry, the transaction has failed due to unknown reason. Please try again in some time.',
   }
 };
 

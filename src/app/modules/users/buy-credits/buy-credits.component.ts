@@ -45,7 +45,7 @@ export class BuyCreditsComponent implements OnInit {
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
 
 
-  ngOnInit() {
+  ngOnInit() {    
     this.buyCredits();
     this.initConfig(); // Paypal Configuration    
   }
@@ -68,6 +68,13 @@ export class BuyCreditsComponent implements OnInit {
       this.buyCreditsSubmitted = false;
       return;
     }
+
+    // if coupon Code Not Applied then amount to pay is equal to credits.
+    if (!this.isCouponApplied) {
+      let calculateDiscount = this.buyCreditsForm.controls.credits.value;
+      this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount); // Update Amout to pay value
+      this.calAmountToPay = calculateDiscount;
+    }
   }
 
   /**
@@ -83,11 +90,11 @@ export class BuyCreditsComponent implements OnInit {
           {
             amount: {
               currency_code: 'USD',
-              value: '10',
+              value: this.calAmountToPay,
               breakdown: {
                 item_total: {
                   currency_code: 'USD',
-                  value: '10',
+                  value: this.calAmountToPay,
                 }
               }
             },
@@ -98,7 +105,7 @@ export class BuyCreditsComponent implements OnInit {
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
                   currency_code: 'USD',
-                  value: '10',
+                  value: this.calAmountToPay,
                 },
               }
             ]
@@ -113,7 +120,7 @@ export class BuyCreditsComponent implements OnInit {
         layout: 'vertical'
       },
       onApprove: (data, actions) => {
-        console.log('actions', actions);
+        //console.log('actions', actions);
         //this.commonUtilsService.showPageLoader(environment.MESSAGES.PAYMENT_SUCCESS);
         //console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
@@ -122,26 +129,38 @@ export class BuyCreditsComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
         //console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        console.log('data', data);
+        
+        let credits = this.buyCreditsForm.controls.credits.value;
+        let payVia = this.buyCreditsForm.controls.pay_via.value;
+        let couponCode = this.buyCreditsForm.controls.coupon_code.value;
+
+        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage)?this.discountPercentage:0, transaction_code: data.id, admin_note: "" };
+
+        this.creditsService.onTransactionComplete(transactionData).pipe(untilDestroyed(this)).subscribe(
+          //case success
+          (res) => {
+            this.commonUtilsService.onSuccess(res.response);                       
+            //case error 
+          }, error => {
+            this.commonUtilsService.onError(error.response);
+          });
 
       },
       onCancel: (data, actions) => {
-        //this.close();
-        console.log('OnCancel', data, actions);
-        //$(this.contentSection.nativeElement).modal('hide'); // Close the current popup
-        //this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
+        
+        //console.log('OnCancel', data, actions);        
+        this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onError: err => {
-        //this.close();
-        console.log('OnError', err);
-        // $(this.contentSection.nativeElement).modal('hide'); // Close the current popup
-        //this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
+        
+        //console.log('OnError', err);        
+        this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onClick: (data, actions) => {
-        console.log('onClick', data, actions);
+        //console.log('onClick', data, actions);
       },
     };
-  } 
+  }
 
   /**
    * validate wizard and move to either direction. 
@@ -194,6 +213,7 @@ export class BuyCreditsComponent implements OnInit {
       calculateDiscount = this.buyCreditsForm.controls.credits.value;
       this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount); // Update Amout to pay value
       this.calAmountToPay = calculateDiscount;
+      this.isCouponApplied = false;
     }
   }
 
@@ -207,6 +227,19 @@ export class BuyCreditsComponent implements OnInit {
     this.isCouponApplied = false;
     this.couponCodeResponse = '<span class="green">' + environment.MESSAGES.COUPON_CODE_REMOVED + '</span>';
     this.calAmountToPay = calculateDiscount;
+  }
+
+  /**
+   * Generate Random String 
+   */
+  public makeRandomString() {
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const lengthOfCode = 8;
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
   }
 
   // This method must be present, even if empty.

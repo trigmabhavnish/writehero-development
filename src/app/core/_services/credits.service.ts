@@ -28,4 +28,19 @@ export class CreditsService {
       });
 
   }
+
+  /**
+  * On Successfully Added Amount to Credit
+  * @param Transactiondata Object
+  * @return array
+  */
+ onTransactionComplete(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('credit/onTransactionComplete', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
 }
