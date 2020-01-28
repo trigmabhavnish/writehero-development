@@ -34,13 +34,13 @@ export class CreditsService {
   * @param Transactiondata Object
   * @return array
   */
- onTransactionComplete(postedData): Observable<any> {
+  onTransactionComplete(postedData): Observable<any> {
 
-  return this.httpClient
-    .post('credit/onTransactionComplete', postedData)
-    .map((response: Response) => {
-      return response;
-    });
+    return this.httpClient
+      .post('credit/onTransactionComplete', postedData)
+      .map((response: Response) => {
+        return response;
+      });
 
-}
+  }
 }

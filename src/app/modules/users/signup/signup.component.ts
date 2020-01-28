@@ -99,6 +99,9 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    // if User Logged In then redirect to Dashboard Page
+    this.userAuthService.checkLoginAndRedirect();
+    
     this.buildSignupForm();
   }
 

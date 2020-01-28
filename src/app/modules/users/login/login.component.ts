@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
 
   ngOnInit() {
+    // if User Logged In then redirect to Dashboard Page
+    this.userAuthService.checkLoginAndRedirect();
+
     this.buildLoginForm();
   }
 
@@ -56,8 +59,7 @@ export class LoginComponent implements OnInit {
 
     this.userAuthService.userLogin(this.loginForm.value).pipe(untilDestroyed(this)).subscribe(
       //case success
-      (res) => {   
-        console.log(res)      
+      (res) => {                
         this.commonUtilsService.onSuccess(res.body.response);        
         localStorage.setItem('x-auth-token', res.headers.get('x-auth-token'));
         localStorage.setItem('account_type', res.body.accountType);

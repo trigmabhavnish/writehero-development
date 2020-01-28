@@ -1,4 +1,4 @@
-import { Injectable ,Output,EventEmitter} from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -43,9 +43,21 @@ export class UsersService {
   userLogin(postedData): Observable<any> {
     return this.httpClient
       .post('user/login', postedData, { observe: 'response' })
-      .map((response: any) => {        
+      .map((response: any) => {
         return response;
-    });
+      });
+  }
+
+  /**
+  * User Logout
+  * @return object
+  */
+  userLogout(postedData): Observable<any> {
+    return this.httpClient
+      .post('user/logout', postedData)
+      .map((response: Response) => {
+        return response;
+      });
   }
 
   /**
@@ -58,6 +70,12 @@ export class UsersService {
       .map((response: Response) => {
         return response;
       });
+  }
+
+  //if user loggedin then redirect
+  checkLoginAndRedirect() {
+    if (localStorage.getItem('isLoggedIn'))
+      this.router.navigate(['/user/dashboard']);
   }
 
 }
