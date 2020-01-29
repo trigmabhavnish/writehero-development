@@ -395,7 +395,7 @@ export class AddNewProjectComponent implements OnInit {
       autoReset: null,
       errorReset: null,
       cancelReset: null,
-      acceptedFiles: '.jpg, .png, .jpeg, .pdf',
+      acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv',
       maxFilesize: 2, // MB,
       dictDefaultMessage: '<span class="button red">Attach File</span>',
       //previewsContainer: "#offerInHandsPreview",
@@ -403,7 +403,7 @@ export class AddNewProjectComponent implements OnInit {
       //resizeWidth: 125,
       //resizeHeight: 125,
       //createImageThumbnails:false,
-      dictInvalidFileType: 'Only valid jpeg, jpg, png and pdf file is accepted.',
+      dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
       dictFileTooBig: 'Maximum upload file size limit is 2MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
@@ -413,7 +413,7 @@ export class AddNewProjectComponent implements OnInit {
       },
 
       accept: function (file, done) {
-
+       
 
         if ((componentObj.projectImagesArray.length + 1) > 1) {
           componentObj.commonUtilsService.onError('You cannot upload any more files.');
@@ -478,9 +478,11 @@ export class AddNewProjectComponent implements OnInit {
         });
 
         this.on("error", function (file, error) {
+          //console.log('error', error);
+
           this.removeFile(file);
 
-          componentObj.commonUtilsService.onError(error.response);
+          componentObj.commonUtilsService.onError(error);
         });
 
       }
