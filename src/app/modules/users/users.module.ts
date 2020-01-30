@@ -15,9 +15,11 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { NgxPayPalModule } from 'ngx-paypal';
+
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -26,7 +28,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent],
+  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

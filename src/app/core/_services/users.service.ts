@@ -37,6 +37,18 @@ export class UsersService {
   }
 
   /**
+  * User Forgot Password
+  * @return string
+  */
+  userForgotPassword(postedData): Observable<any> {
+    return this.httpClient
+      .post('user/forgotPassword', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+  }
+
+  /**
   * User Login
   * @return string
   */
