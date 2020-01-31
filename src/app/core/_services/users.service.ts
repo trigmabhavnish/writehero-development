@@ -84,6 +84,18 @@ export class UsersService {
       });
   }
 
+  /**
+  * User Forgot Password
+  * @return string
+  */
+  userVerifyAuthToken(postedData): Observable<any> {
+    return this.httpClient
+      .post('user/verifyAuthToken', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+  }
+
   //if user loggedin then redirect
   checkLoginAndRedirect() {
     if (localStorage.getItem('isLoggedIn'))

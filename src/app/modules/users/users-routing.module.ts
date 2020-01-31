@@ -9,6 +9,7 @@ import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { UserAuthGuardService } from '../../core/guards/user-auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'forgot-password',
     component: ForgotPasswordComponent,
     data: { title: 'Forgot Password' }
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+    data: { title: 'Reset Password' }
   },
   {
     path: 'dashboard',
