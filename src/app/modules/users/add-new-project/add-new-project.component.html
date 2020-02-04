@@ -1,7 +1,10 @@
 <!--Dashboard HTML Starts-->
 <div class="dashboard-gutter">
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
-
+        <div [hidden]="userCreditsCheck" class="notEnoughCredits">
+            <span>Credits: ${{userCredits}}. Please buy credits to create new projects.</span>
+            <a routerLink="/user/buy-credits">Buy Credits</a>
+        </div>
         <app-left-sidebar></app-left-sidebar>
 
         <div class="dashboard-content">
@@ -168,7 +171,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mt-4">
-                                                        <button [disabled]="projectSpecsForm.invalid"
+                                                        
+                                                        <button [disabled]="projectSpecsForm.invalid && !userCreditsCheck"
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
@@ -365,7 +369,7 @@
                                                                     class="submit-btn-feedback min-w-130">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button [disabled]="projectDetailsForm.invalid"
+                                                                <button [disabled]="projectDetailsForm.invalid && userCreditsCheck"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130">
@@ -585,7 +589,7 @@
                                                                         PREVIOUS
                                                                     </button>
 
-                                                                    <button type="button"
+                                                                    <button type="button" [disabled]="userCreditsCheck"
                                                                         (click)="onSubmitAddNewProject()"
                                                                         class="submit-btn-feedback min-w-130">
                                                                         CREATE PROJECT

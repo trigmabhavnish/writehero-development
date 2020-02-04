@@ -105,6 +105,18 @@ export class CommonUtilsService {
       })
   }
 
+  /**
+  * Remove Image from AWS Bucket
+  * @return boolean
+  */
+ public userAccountCredits(params): Observable<any> {
+  return this.httpClient
+    .post('common/getUserCredits', params)
+    .map((response: Response) => {
+      return response;
+    })
+}
+
 
 
 }

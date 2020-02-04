@@ -46,6 +46,8 @@ export class AddNewProjectComponent implements OnInit {
   calculateCost: any = 0;
   selectedProjectPackageId: number;
   packagePrice: any;
+  userCredits:any;
+  userCreditsCheck:boolean = false;
 
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
@@ -577,7 +579,30 @@ export class AddNewProjectComponent implements OnInit {
     return validityStatus;
   };
 
+  /**
+   * Verify User Account Credits
+   * return number 
+   */
+  checkAccountCredits() {
+    this.commonUtilsService.userAccountCredits({}).pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {
+        //case error 
+        //console.log('response', res)
+        this.userCredits = res.available_credits;
+        
+        if(res.available_credits > 0){ this.userCreditsCheck = true; }
+        console.log(this.userCreditsCheck);
+      }, error => {
+        this.commonUtilsService.onError(error.response);
+        //this.tokenVerified = false;
+        //this.router.navigate(['/user/forgot-password']);
+      });
+  }
+
   ngOnInit() {
+
+    this.checkAccountCredits(); // Check User Balance
     this.projectSpecs(); // Project Specs Wizard
     this.projectDetails(); // Project Details Wizard
     this.writersDetails(); // Writer Details Wizard
