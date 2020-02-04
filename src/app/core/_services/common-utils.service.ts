@@ -70,7 +70,7 @@ export class CommonUtilsService {
   */
   public isFileCorrupted(base64string, type): boolean {
 
-    if (type == 'png') {      
+    if (type == 'png') {
       const imageData = Array.from(atob(base64string.replace('data:image/png;base64,', '')), c => c.charCodeAt(0))
       const sequence = [0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130]; // in hex: 
 
@@ -91,6 +91,18 @@ export class CommonUtilsService {
       const imageCorrupted = ((imageDataJpeg[imageDataJpeg.length - 1] === 217) && (imageDataJpeg[imageDataJpeg.length - 2] === 255))
       return imageCorrupted;
     }
+  }
+
+  /**
+  * Remove Image from AWS Bucket
+  * @return boolean
+  */
+  public removeImageFromBucket(params): Observable<any> {
+    return this.httpClient
+      .post('common/deleteObject', params)
+      .map((response: Response) => {
+        return response;
+      })
   }
 
 
