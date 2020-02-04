@@ -413,10 +413,10 @@ export class AddNewProjectComponent implements OnInit {
       },
 
       accept: function (file, done) {
-       
+
 
         if ((componentObj.projectImagesArray.length + 1) > 1) {
-          componentObj.commonUtilsService.onError('You cannot upload any more files.');
+          componentObj.commonUtilsService.onError(environment.MESSAGES.CANNOT_UPLOAD_MORE);
           this.removeFile(file);
           return false;
         }
@@ -470,7 +470,7 @@ export class AddNewProjectComponent implements OnInit {
 
 
           componentObj.zone.run(() => {
-            componentObj.projectImagesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'offer_in_hands' }));
+            componentObj.projectImagesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
           });
 
           this.removeFile(file);
@@ -487,6 +487,48 @@ export class AddNewProjectComponent implements OnInit {
 
       }
     };
+  }
+
+
+  /**
+   * remove Vehicle Image
+   * @param index index of the image array
+   * @return  boolean
+   */
+  removeImage(index, file_category, file_key): void {
+
+    this.projectImagesArray.removeAt(index);
+    this.removeImageFromBucket(file_key);
+  }
+
+  /**
+   * remove image from AWS Bucket
+   * @param imagePath image url
+   * @param bucket s3 bucket name
+   */
+  removeImageFromBucket(file_key) {
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+
+    const params = { fileKey: file_key }
+
+    this.commonUtilsService.removeImageFromBucket(params)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res) => {
+          this.commonUtilsService.onSuccess(res.response);
+        },
+        error => {
+          this.commonUtilsService.onError(error.response);
+        });
+  }
+
+  /**
+* set check object array length.
+* @param object
+*  @return number
+*/
+  public checkObjectLength(object): number {
+    return Object.keys(object).length;
   }
 
   /**
