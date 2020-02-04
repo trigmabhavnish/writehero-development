@@ -20,6 +20,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
+import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 
 
 
@@ -29,7 +31,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent],
+  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

@@ -1,0 +1,136 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+        <app-left-sidebar></app-left-sidebar>
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <!--Project HTML starts-->
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Create Ticket</h4>
+                                            <aw-wizard [disableNavigationBar]="true">
+                                                <aw-wizard-step
+                                                    [canExit]="moveDirection.bind(this, createTicketForm.valid)">
+                                                    <form [formGroup]="createTicketForm">
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Create New Ticket</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                       
+                                                                        <div class="col-lg-6 pl-0">
+                                                                            <label>Support Type</label>
+                                                                            <select formControlName="support_type">
+                                                                                <option value="">Select Support Type</option>
+                                                                                <option value="General Inquiry">General Inquiry</option>
+                                                                                <option value="Order Quate">Order Quate</option>
+                                                                                <option value="Sample Request">Sample Request </option>
+                                                                                <option value="Project Update">Project Update</option>
+                                                                                <option value="Revision Request">Revision Request</option>
+                                                                                <option value="System Inquiry">System Inquiry</option>
+                                                                            </select>
+                                                            
+                                                                             <p
+                                                                                 *ngIf="createTicketForm.controls.support_type.touched || isSubmitted">
+                                                                                 <app-form-validation-errors
+                                                                                     
+                                                                                     errorPrefix="Support Type "
+                                                                                     [errors]="createTicketForm.controls.support_type.errors">
+                                                                                 </app-form-validation-errors>
+                                                                             </p>
+ 
+                                                                         </div>
+                                                                         <div class="col-lg-6 pl-0">
+                                                                            <label>Subject</label>
+                                                                           
+                                                                             <input type="text"
+                                                                                 class="col-lg-4"
+                                                                                 formControlName="subject" placeholder=""
+                                                                                 class="field-design"
+                                                                                 [ngClass]="{ 'is-invalid': (createTicketForm.controls.subject.touched || isSubmitted) && createTicketForm.controls.subject.errors }">
+                                                                             <p
+                                                                                 *ngIf="createTicketForm.controls.subject.touched || isSubmitted">
+                                                                                 <app-form-validation-errors 
+                                                                                     errorPrefix="Subject "
+                                                                                     [errors]="createTicketForm.controls.subject.errors">
+                                                                                 </app-form-validation-errors>
+                                                                             </p>
+ 
+                                                                         </div>
+                                                                         <div class="col-lg-6 pl-0">
+                                                                            <label>Message</label>
+  
+                                                                               <textarea formControlName="message">
+
+                                                                               </textarea>
+                                                                             <p
+                                                                                 *ngIf="createTicketForm.controls.message.touched || buyCreditsSubmitted">
+                                                                                 <app-form-validation-errors
+                                                                                     errorPrefix="Message "
+                                                                                     [errors]="createTicketForm.controls.message.errors">
+                                                                                 </app-form-validation-errors>
+                                                                             </p>
+ 
+                                                                         </div>
+                                                                    </div>
+                                                                
+
+                                                                    <div class="col-lg-12 mt-4">
+
+                                                                        <button [disabled]="createTicketForm.invalid"
+                                                                            (click)="submitTicket()"
+                                                                            type="button"
+                                                                            class="submit-btn-feedback min-w-130"
+                                                                            awNextStep>
+                                                                            Submit
+                                                                        </button>
+                                                                        <!--a href="#" class="advance-text">( or skip )</a-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </aw-wizard-step>
+                                               
+                                            </aw-wizard>
+                                        </div>
+
+                                    </div>
+                                    <!--Project HTML ends-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Dashboard HTML Ends-->
+</div>
