@@ -390,7 +390,7 @@ export class AddNewProjectComponent implements OnInit {
       clickable: true,
       paramName: "file",
       uploadMultiple: false,
-      url: environment.API_ENDPOINT + "/api/project/imageUploadtoBucket",
+      url: environment.API_ENDPOINT + "/api/common/imageUploadtoBucket",
       maxFiles: 1,
       autoReset: null,
       errorReset: null,
@@ -434,12 +434,12 @@ export class AddNewProjectComponent implements OnInit {
           }
 
 
-          const isValidFile = componentObj.commonUtilsService.isFileCorrupted(base64String, _.toLower(fileExtension))
+          /* const isValidFile = componentObj.commonUtilsService.isFileCorrupted(base64String, _.toLower(fileExtension))
           if (!isValidFile) {
             done('File is corrupted or invalid.');
             _this.removeFile(file);
             return false;
-          }
+          } */
 
 
           componentObj.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
@@ -453,7 +453,7 @@ export class AddNewProjectComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'OfferInHands');
+          formData.append('folder', 'Project');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', componentObj.base64StringFile);
         });
