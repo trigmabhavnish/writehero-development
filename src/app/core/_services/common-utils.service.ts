@@ -70,8 +70,7 @@ export class CommonUtilsService {
   */
   public isFileCorrupted(base64string, type): boolean {
 
-    if (type == 'png') {
-      console.log('get filetype', type)
+    if (type == 'png') {      
       const imageData = Array.from(atob(base64string.replace('data:image/png;base64,', '')), c => c.charCodeAt(0))
       const sequence = [0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130]; // in hex: 
 

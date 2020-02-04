@@ -49,6 +49,18 @@ export class UsersService {
   }
 
   /**
+  * User Reset Password
+  * @return string
+  */
+ userResetPassword(postedData): Observable<any> {
+  return this.httpClient
+    .post('user/resetPassword', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+}
+
+  /**
   * User Login
   * @return string
   */
