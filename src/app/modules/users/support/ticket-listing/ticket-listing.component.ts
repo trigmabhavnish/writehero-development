@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupportService } from 'src/app/core/_services';
 
 @Component({
   selector: 'app-ticket-listing',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketListingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private supportService:SupportService) { }
 
   ngOnInit() {
+    this.supportService.getSupportTickets({}).subscribe(response=>{
+      console.log('the message is',response)
+    })
   }
 
 }
