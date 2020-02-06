@@ -1,6 +1,6 @@
 <main [className]="isLoggedin ? 'writehero-bg-primary-code' : ''"> 
 <app-header></app-header>
-<app-left-sidebar></app-left-sidebar>
+<app-left-sidebar *ngIf="isLoggedin"></app-left-sidebar>
 <router-outlet></router-outlet>
 <app-footer [hidden]="isLoggedin"></app-footer>
 </main>
