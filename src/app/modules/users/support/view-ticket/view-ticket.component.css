@@ -1,0 +1,59 @@
+.hero_img{width:100%;;background-repeat:no-repeat;background-size:cover;height:510px;}
+.company_update h2 {color:#3c3c3c;font-size: 55px;padding-top:53px;margin:0;}
+.dispute_content p{font-size:25px;color:#363636;padding-bottom: 50px;margin: 0;}
+.dispute_form {padding-top: 50px;}
+.description_list h4 {border-bottom: 5px solid red;padding-bottom: 17px;margin: 0;}
+.dispute_form button{margin-top:40px;}
+.dispute_left span{color:#4c4c4c;font-size: 16px;display: block;width: 100%;text-align: left;}
+.dispute_right span{display: block;width: 100%;text-align: right;}
+.dispute_left p {color:#363636;font-size: 18px;text-align: left;}
+.dispute_right p{text-align: right;color:#363636;font-size: 18px;max-width: 670px;float: right;}
+.dispute_media img{height:91px;width:92px;}
+.dispute_left{padding:0 !important;max-width: 670px;text-align: right;margin-right: 30px;}
+.dispute_right{padding:0 !important;margin-right: 40px;}
+.dispute_form textarea{width:100%;padding: 20px;font-weight: bold;color:#989898;}
+.msg-group.center {padding: 40px 0;}
+.dispute_media {margin-top: 40px;}
+.dispute_left h6{font-size:22px;font-weight:bold;color:#363636;text-align: left;}
+.dispute_right h6{font-size:22px;font-weight:bold;color:#363636;}
+.description_list h4 {color:#363636;font-size: 28px;font-weight: bold;}
+.dispute_media {display: flex;flex-flow: row wrap;}
+.dispute_left-image {width: 115px;height: 92px;}
+.dispute_right-contents h6 {text-align: right;}
+.dispute_right-contents span {text-align: right;}
+.dispute_right-contents p {text-align: right;}
+@media only screen and (max-width: 992px){
+	.dispute_media {
+		flex-flow: column wrap;
+	}
+	.dispute_left-image {
+		margin: 0 auto;
+	}
+	.msg-group.center{
+		padding:0;
+	}
+	.dispute_left {
+
+    text-align: center;
+    margin-right: 0;
+	}
+	.dispute_left-image {
+    padding-bottom: 110px;
+	}
+	.dispute_left span{
+		text-align:center;
+	}
+	.dispute_content p{
+		font-size:18px;
+	}
+	.dispute_left p{
+		text-align:center;
+		font-size:16px;
+	}
+	.dispute_left h6{
+		text-align:center;
+	}
+	.description_list h4{
+		font-size:22px;
+	}
+}

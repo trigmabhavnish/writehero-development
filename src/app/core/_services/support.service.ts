@@ -10,6 +10,24 @@ export class SupportService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
+
+
+
+  /**
+  * get Project Packages
+  * @return array
+  */
+ createSupportTicket(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('support/createSupportTicket', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
+
+
   /**
   * get Project Packages
   * @return array
@@ -23,4 +41,17 @@ export class SupportService {
       });
 
   }
+    /**
+  * get Project Packages
+  * @return array
+  */
+ getTicketDetails(postedData): Observable<any> {
+   console.log('the rq',postedData)
+  return this.httpClient
+    .post('support/getTicketDetails', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
 }

@@ -1,501 +1,389 @@
-<p>ticket-listing works!</p><!--Dashboard HTML Starts-->
+<p>ticket-listing works!</p>
+<!--Dashboard HTML Starts-->
 <div class="dashboard-gutter">
-        <div class="container-fluid px-lg-0" data-layout="container-fluid">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
 
-          <app-left-sidebar></app-left-sidebar>  
+        <app-left-sidebar></app-left-sidebar>
 
-            <div class="dashboard-content">
+        <div class="dashboard-content">
 
-                <nav class="navbar-top scrolling-on">
-                    <a routerLink="/" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
-                    <p class="mobile-dashboard-heading">Dashboard</p>
-                    <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse"
-                        aria-expanded="true" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <nav class="navbar-top scrolling-on">
+                <a routerLink="/" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                </nav>
+            </nav>
 
-                <div class="Dashboard-inner-contents">
-                    <div class="row ipad-margin-gutter">
-                        <div class="col-md-12">
-                            <div class="Dashboard-inner-contents-outer">
-                                <div class="row">
-                                    <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
-
-
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
 
 
 
-                                       
-                                        <div class="dashboard-welcome-note">
-                                            <p>SUPPORT</p>
-                                        </div>
-                                        <p class="support-content-desc">This is Photoshop's version of
-                                            Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
-                                            Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
-                                            consequat ipsum, nec sagittis sem nibh id elit.</p>
-                                        <div class="support-all-grid">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="create-project-button-tab">
-                                                        <i class="fa fa-plus"></i>
-                                                        <a routerLink="/user/create-ticket" class="pro-btn-tab">Create new support ticket
-                                                        </a>
-                                                    </div>
+
+
+
+                                    <div class="dashboard-welcome-note">
+                                        <p>SUPPORT</p>
+                                    </div>
+                                    <p class="support-content-desc">This is Photoshop's version of
+                                        Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+                                        Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
+                                        consequat ipsum, nec sagittis sem nibh id elit.</p>
+                                    <div class="support-all-grid">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="create-project-button-tab">
+                                                    <i class="fa fa-plus"></i>
+                                                    <a routerLink="/user/create-ticket" class="pro-btn-tab">Create new
+                                                        support ticket
+                                                    </a>
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <div class="support-desc-tabs">
-                                                        <p class="sp-msg-title">Hello</p>
-                                                        <p class="sp-msg-desc">This is Photoshop's
-                                                            version of Lorem Ipsum. Proin gravida nibh
-                                                            vel velit auctor aliquet. </p>
-                                                        <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">19/12/12</span></p>
-                                                        <p class="sp-date"><span>Status : </span> <span
-                                                                class="sp-msg-status sp-solved">Solved</span>
-                                                        </p>
-                                                        <div class="sp-reply-outer">
-                                                            <div class="sp-profile-outer">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="support-desc-tabs" *ngFor="let ticket of tickets | paginate: { id: 'foo',
+                                                    itemsPerPage: pageSize,
+                                                    currentPage: currentPage,
+                                                    totalItems: totalItems };let i = index;">
+                                                    <p (click)="viewDetails(ticket)" class="sp-msg-title">{{ticket?.subject}}</p>
+                                                    <p class="sp-msg-desc">
+                                                        {{ticket?.messages[0]?.message | slice:1:100}} </p>
+                                                    <p class="sp-date"><span>Date : </span> <span
+                                                            class="sp-msg-dt">{{ticket?.created_on | date :'dd/mm/yy'}}</span>
+                                                    </p>
+                                                    <p class="sp-date"><span>Status : </span> <span
+                                                            class="sp-msg-status  "
+                                                            [ngClass]="[ticket?.support_status == 'unsolved' ? 'sp-pending' : 'sp-solved']">{{ticket?.support_status == 'unsolved' ? 'PENDING' : 'SOLVED'}}</span>
+                                                    </p>
+                                                    <div class="sp-reply-outer">
+                                                        <div class="sp-profile-outer">
+                                                            <ng-container
+                                                                *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id == 0">
+                                                                <img [src]="'assets/image/dummyuser.png'">
+                                                            </ng-container>
+                                                            <ng-container
+                                                                *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id != 0">
                                                                 <img
-                                                                    src="assets/image/testimnial_thumb_01.png">
-                                                            </div>
-                                                            <div class="sp-profile-cmnt-outer">
-                                                                <p class="sp-profile-cmnt-reply">Last
-                                                                    Reply</p>
-                                                                <p class="sp-profile-cmnt-content">Proin
-                                                                    gravida nibh vel velit auctor </p>
-                                                            </div>
+                                                                    [src]="user?.profile_pic ? user?.profile_pic :'assets/image/dummyuser.png'">
+                                                            </ng-container>
+
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4" data-toggle="modal"
-                                                    data-target="#crtTicketReply">
-                                                    <div class="support-desc-tabs">
-                                                        <p class="sp-msg-title">Hello</p>
-                                                        <p class="sp-msg-desc">This is Photoshop's
-                                                            version of Lorem Ipsum. Proin gravida nibh
-                                                            vel velit auctor aliquet. </p>
-                                                        <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">19/12/12</span></p>
-                                                        <p class="sp-date"><span>Status : </span> <span
-                                                                class="sp-msg-status sp-pending">Pending</span>
-                                                        </p>
-                                                        <div class="sp-reply-outer">
-                                                            <div class="sp-profile-outer">
-                                                                <img
-                                                                    src="assets/image/testimnial_thumb_01.png">
-                                                            </div>
-                                                            <div class="sp-profile-cmnt-outer">
-                                                                <p class="sp-profile-cmnt-reply">Last
-                                                                    Reply</p>
-                                                                <p class="sp-profile-cmnt-content">Proin
-                                                                    gravida nibh vel velit auctor </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="support-desc-tabs">
-                                                        <p class="sp-msg-title">Hello</p>
-                                                        <p class="sp-msg-desc">This is Photoshop's
-                                                            version of Lorem Ipsum. Proin gravida nibh
-                                                            vel velit auctor aliquet. </p>
-                                                        <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">19/12/12</span></p>
-                                                        <p class="sp-date"><span>Status : </span> <span
-                                                                class="sp-msg-status sp-solved">Solved</span>
-                                                        </p>
-                                                        <div class="sp-reply-outer">
-                                                            <div class="sp-profile-outer">
-                                                                <img
-                                                                    src="assets/image/testimnial_thumb_01.png">
-                                                            </div>
-                                                            <div class="sp-profile-cmnt-outer">
-                                                                <p class="sp-profile-cmnt-reply">Last
-                                                                    Reply</p>
-                                                                <p class="sp-profile-cmnt-content">Proin
-                                                                    gravida nibh vel velit auctor </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="support-desc-tabs">
-                                                        <p class="sp-msg-title">Hello</p>
-                                                        <p class="sp-msg-desc">This is Photoshop's
-                                                            version of Lorem Ipsum. Proin gravida nibh
-                                                            vel velit auctor aliquet. </p>
-                                                        <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">19/12/12</span></p>
-                                                        <p class="sp-date"><span>Status : </span> <span
-                                                                class="sp-msg-status sp-solved">Solved</span>
-                                                        </p>
-                                                        <div class="sp-reply-outer">
-                                                            <div class="sp-profile-outer">
-                                                                <img
-                                                                    src="assets/image/testimnial_thumb_01.png">
-                                                            </div>
-                                                            <div class="sp-profile-cmnt-outer">
-                                                                <p class="sp-profile-cmnt-reply">Last
-                                                                    Reply</p>
-                                                                <p class="sp-profile-cmnt-content">Proin
-                                                                    gravida nibh vel velit auctor </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="support-desc-tabs">
-                                                        <p class="sp-msg-title">Hello</p>
-                                                        <p class="sp-msg-desc">This is Photoshop's
-                                                            version of Lorem Ipsum. Proin gravida nibh
-                                                            vel velit auctor aliquet. </p>
-                                                        <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">19/12/12</span></p>
-                                                        <p class="sp-date"><span>Status : </span> <span
-                                                                class="sp-msg-status sp-solved">Solved</span>
-                                                        </p>
-                                                        <div class="sp-reply-outer">
-                                                            <div class="sp-profile-outer">
-                                                                <img
-                                                                    src="assets/image/testimnial_thumb_01.png">
-                                                            </div>
-                                                            <div class="sp-profile-cmnt-outer">
-                                                                <p class="sp-profile-cmnt-reply">Last
-                                                                    Reply</p>
-                                                                <p class="sp-profile-cmnt-content">Proin
-                                                                    gravida nibh vel velit auctor </p>
-                                                            </div>
+                                                        <div class="sp-profile-cmnt-outer">
+                                                            <p class="sp-profile-cmnt-reply">Last
+                                                                Reply</p>
+                                                            <p class="sp-profile-cmnt-content">
+                                                                {{ticket.messages[ticket.messages.length -1]?.message | slice:1:100}}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                          
+                                          
+                                           
+                                           
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12 writer-pagination mb-3">
-                                                <ul class="">
+                                    <div class="row">
+                                        <div class="col-md-12 writer-pagination mb-3">
+
+                                            <!-- <ul class="">
                                                     <li class="page-prev"><a href="#">Prev</a></li>
                                                     <li class="page-middle page-active"><a
                                                             href="#">1</a></li>
                                                     <li class="page-middle"><a href="#">2</a></li>
                                                     <li class="page-middle"><a href="#">3</a></li>
                                                     <li class="page-next"><a href="#">Next</a></li>
-                                                </ul>
-                                            </div>
+                                                </ul> -->
+                                            <pagination-controls id="foo" (pageChange)="pageChanged($event)"
+                                                (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
+                                                directionLinks="true"  responsive="true"
+                                                previousLabel="Previous" nextLabel="Next"
+                                                screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                                            >
+                                            </pagination-controls>
                                         </div>
+                                    </div>
 
-                                        <p class="faq-head-title">Frequently Asked Questions</p>
+                                    <p class="faq-head-title">Frequently Asked Questions</p>
 
-                                        <div class="row">
-                                            <div class="col-lg-8 mb-4 mb-lg-0">
-                                                <div class="support-accordion-outer">
-                                                    <!--accordion starts-->
-                                                    <div class="bs-example">
-                                                        <div class="accordion" id="accordionExample">
-                                                            <div class="card">
-                                                                <div class="card-header"
-                                                                    id="headingOne">
-                                                                    <h2 class="mb-0">
-                                                                        <i
-                                                                            class="fa fa-angle-right"></i>
-                                                                        <button type="button"
-                                                                            class="btn btn-link collapsed"
-                                                                            data-toggle="collapse"
-                                                                            data-target="#collapseOne"
-                                                                            aria-expanded="false"><i
-                                                                                class="fa fa-plus-square-o fapm"></i>
-                                                                            Proin gravida nibh vel velit
-                                                                            auctor aliquet.
-                                                                            Aenean?</button>
-                                                                    </h2>
-                                                                </div>
-                                                                <div id="collapseOne" class="collapse"
-                                                                    aria-labelledby="headingOne"
-                                                                    data-parent="#accordionExample">
-                                                                    <div class="card-body">
-                                                                        <p>HTML stands for HyperText
-                                                                            Markup Language. HTML is the
-                                                                            standard markup language for
-                                                                            describing the structure of
-                                                                            web pages. <a
-                                                                                href="https://www.tutorialrepublic.com/html-tutorial/"
-                                                                                target="_blank">Learn
-                                                                                more.</a></p>
-                                                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-8 mb-4 mb-lg-0">
+                                            <div class="support-accordion-outer">
+                                                <!--accordion starts-->
+                                                <div class="bs-example">
+                                                    <div class="accordion" id="accordionExample">
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingOne">
+                                                                <h2 class="mb-0">
+                                                                    <i class="fa fa-angle-right"></i>
+                                                                    <button type="button" class="btn btn-link collapsed"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapseOne"
+                                                                        aria-expanded="false"><i
+                                                                            class="fa fa-plus-square-o fapm"></i>
+                                                                        Proin gravida nibh vel velit
+                                                                        auctor aliquet.
+                                                                        Aenean?</button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseOne" class="collapse"
+                                                                aria-labelledby="headingOne"
+                                                                data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <p>HTML stands for HyperText
+                                                                        Markup Language. HTML is the
+                                                                        standard markup language for
+                                                                        describing the structure of
+                                                                        web pages. <a
+                                                                            href="https://www.tutorialrepublic.com/html-tutorial/"
+                                                                            target="_blank">Learn
+                                                                            more.</a></p>
                                                                 </div>
                                                             </div>
-                                                            <div class="card">
-                                                                <div class="card-header"
-                                                                    id="headingTwo">
-                                                                    <h2 class="mb-0">
-                                                                        <i
-                                                                            class="fa fa-angle-right"></i>
-                                                                        <button type="button"
-                                                                            class="btn btn-link collapsed"
-                                                                            data-toggle="collapse"
-                                                                            data-target="#collapseTwo"
-                                                                            aria-expanded="false"><i
-                                                                                class="fa fa-plus-square-o fapm"></i>
-                                                                            Proin gravida nibh vel velit
-                                                                            auctor aliquet.
-                                                                            Aenean?</button>
-                                                                    </h2>
-                                                                </div>
-                                                                <div id="collapseTwo" class="collapse"
-                                                                    aria-labelledby="headingTwo"
-                                                                    data-parent="#accordionExample">
-                                                                    <div class="card-body">
-                                                                        <p>Bootstrap is a sleek,
-                                                                            intuitive, and powerful
-                                                                            front-end framework for
-                                                                            faster and easier web
-                                                                            development. It is a
-                                                                            collection of CSS and HTML
-                                                                            conventions. <a
-                                                                                href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/"
-                                                                                target="_blank">Learn
-                                                                                more.</a></p>
-                                                                    </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingTwo">
+                                                                <h2 class="mb-0">
+                                                                    <i class="fa fa-angle-right"></i>
+                                                                    <button type="button" class="btn btn-link collapsed"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapseTwo"
+                                                                        aria-expanded="false"><i
+                                                                            class="fa fa-plus-square-o fapm"></i>
+                                                                        Proin gravida nibh vel velit
+                                                                        auctor aliquet.
+                                                                        Aenean?</button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseTwo" class="collapse"
+                                                                aria-labelledby="headingTwo"
+                                                                data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <p>Bootstrap is a sleek,
+                                                                        intuitive, and powerful
+                                                                        front-end framework for
+                                                                        faster and easier web
+                                                                        development. It is a
+                                                                        collection of CSS and HTML
+                                                                        conventions. <a
+                                                                            href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/"
+                                                                            target="_blank">Learn
+                                                                            more.</a></p>
                                                                 </div>
                                                             </div>
-                                                            <div class="card">
-                                                                <div class="card-header"
-                                                                    id="headingThree">
-                                                                    <h2 class="mb-0">
-                                                                        <i
-                                                                            class="fa fa-angle-right"></i>
-                                                                        <button type="button"
-                                                                            class="btn btn-link collapsed"
-                                                                            data-toggle="collapse"
-                                                                            data-target="#collapseThree"
-                                                                            aria-expanded="false"><i
-                                                                                class="fa fa-plus-square-o fapm"></i>
-                                                                            Proin gravida nibh vel velit
-                                                                            auctor aliquet.
-                                                                            Aenean?</button>
-                                                                    </h2>
-                                                                </div>
-                                                                <div id="collapseThree" class="collapse"
-                                                                    aria-labelledby="headingThree"
-                                                                    data-parent="#accordionExample">
-                                                                    <div class="card-body">
-                                                                        <p>CSS stands for Cascading
-                                                                            Style Sheet. CSS allows you
-                                                                            to specify various style
-                                                                            properties for a given HTML
-                                                                            element such as colors,
-                                                                            backgrounds, fonts etc. <a
-                                                                                href="https://www.tutorialrepublic.com/css-tutorial/"
-                                                                                target="_blank">Learn
-                                                                                more.</a></p>
-                                                                    </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingThree">
+                                                                <h2 class="mb-0">
+                                                                    <i class="fa fa-angle-right"></i>
+                                                                    <button type="button" class="btn btn-link collapsed"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapseThree"
+                                                                        aria-expanded="false"><i
+                                                                            class="fa fa-plus-square-o fapm"></i>
+                                                                        Proin gravida nibh vel velit
+                                                                        auctor aliquet.
+                                                                        Aenean?</button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseThree" class="collapse"
+                                                                aria-labelledby="headingThree"
+                                                                data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <p>CSS stands for Cascading
+                                                                        Style Sheet. CSS allows you
+                                                                        to specify various style
+                                                                        properties for a given HTML
+                                                                        element such as colors,
+                                                                        backgrounds, fonts etc. <a
+                                                                            href="https://www.tutorialrepublic.com/css-tutorial/"
+                                                                            target="_blank">Learn
+                                                                            more.</a></p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--accordion ends-->
                                                 </div>
+                                                <!--accordion ends-->
                                             </div>
-                                            <div class="col-lg-4">
-                                                <div
-                                                    class="d-flex align-items-end  justify-content-end h-100">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn-ticket"
-                                                        data-toggle="modal"
-                                                        data-target="#crtTicketNew">Create New
-                                                        Ticket</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="d-flex align-items-end  justify-content-end h-100">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn-ticket" data-toggle="modal"
+                                                    data-target="#crtTicketNew">Create New
+                                                    Ticket</button>
 
-                                                </div>
+                                            </div>
 
-                                                <!--Modal bootstrap starts 1-->
-                                                <!-- Modal -->
-                                                <div class="modal fade crt-ticket-modal"
-                                                    id="crtTicketNew" tabindex="-1" role="dialog"
-                                                    aria-labelledby="crtTicketNew" aria-hidden="true">
+                                            <!--Modal bootstrap starts 1-->
+                                            <!-- Modal -->
+                                            <div class="modal fade crt-ticket-modal" id="crtTicketNew" tabindex="-1"
+                                                role="dialog" aria-labelledby="crtTicketNew" aria-hidden="true">
 
-                                                    <div class="bt-modal-centered">
-                                                        <div class="modal-dialog col-lg-6"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header border-none">
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span
-                                                                            aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
+                                                <div class="bt-modal-centered">
+                                                    <div class="modal-dialog col-lg-6" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header border-none">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
 
-                                                                    <form action="" class="row">
-                                                                        <div class="col-md-3">
-                                                                            <label
-                                                                                class="crt-ticket-modal-text">Subject
-                                                                                :</label>
-                                                                        </div>
-                                                                        <div class="col-md-9 mb-15">
-                                                                            <input type="text"
-                                                                                class="crt-ticket-modal-input">
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <label
-                                                                                for="inlineFormCustomSelectPref"
-                                                                                class="crt-ticket-modal-text">project
-                                                                                :</label>
-                                                                        </div>
-                                                                        <div class="col-md-9 mb-15">
-                                                                            <select
-                                                                                class="custom-select crt-ticket-modal-input"
-                                                                                id="inlineFormCustomSelectPref">
-                                                                                <option selected>X39B -
-                                                                                    COMPUTER</option>
-                                                                                <option value="1">One
-                                                                                </option>
-                                                                                <option value="2">Two
-                                                                                </option>
-                                                                                <option value="3">Three
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <label for=""
-                                                                                class="crt-ticket-modal-text">
-                                                                                Details :
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <textarea
-                                                                                class="crt-ticket-modal-input">
+                                                                <form action="" class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label class="crt-ticket-modal-text">Subject
+                                                                            :</label>
+                                                                    </div>
+                                                                    <div class="col-md-9 mb-15">
+                                                                        <input type="text"
+                                                                            class="crt-ticket-modal-input">
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label for="inlineFormCustomSelectPref"
+                                                                            class="crt-ticket-modal-text">project
+                                                                            :</label>
+                                                                    </div>
+                                                                    <div class="col-md-9 mb-15">
+                                                                        <select
+                                                                            class="custom-select crt-ticket-modal-input"
+                                                                            id="inlineFormCustomSelectPref">
+                                                                            <option selected>X39B -
+                                                                                COMPUTER</option>
+                                                                            <option value="1">One
+                                                                            </option>
+                                                                            <option value="2">Two
+                                                                            </option>
+                                                                            <option value="3">Three
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="" class="crt-ticket-modal-text">
+                                                                            Details :
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <textarea class="crt-ticket-modal-input">
 
                                                         </textarea>
-                                                                        </div>
+                                                                    </div>
 
-                                                                        <div class="col-md-12 mt-3">
-                                                                            <div class="uploadcode">
-                                                                                <div class="file-upload-wrapper"
-                                                                                    data-text="Select your file!">
-                                                                                    <input
-                                                                                        name="file-upload-field"
-                                                                                        type="file"
-                                                                                        class="file-upload-field"
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12 mt-3">
-                                                                            <input type="submit"
-                                                                                class="btn-reply-custom"
-                                                                                data-dismiss="modal"
-                                                                                value="Reply">
-                                                                        </div>
-
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <!--Modal bootstrap ends 1-->
-
-                                                <!--Modal bootsrtap starts 2-->
-                                                <div class="modal fade crt-ticket-modal"
-                                                    id="crtTicketReply" tabindex="-1" role="dialog"
-                                                    aria-labelledby="crtTicketReply" aria-hidden="true">
-
-                                                    <div class="bt-modal-centered">
-                                                        <div class="modal-dialog col-lg-6"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header border-none">
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span
-                                                                            aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <p
-                                                                                class="modal-each-rely-title">
-                                                                                HEllo!</p>
-                                                                            <p
-                                                                                class="modal-each-rely-subtitle">
-                                                                                <span>PROJECT
-                                                                                    :</span><span
-                                                                                    class="pl-2">3axb
-                                                                                    Computers</span></p>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <div
-                                                                                class="sp-reply-outer d-inline-block w-100">
-                                                                                <div
-                                                                                    class="sp-profile-outer">
-                                                                                    <img
-                                                                                        src="assets/image/testimnial_thumb_01.png">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="sp-profile-cmnt-outer">
-                                                                                    <p
-                                                                                        class="sp-profile-cmnt-reply">
-                                                                                        Last Reply</p>
-                                                                                    <p
-                                                                                        class="sp-profile-cmnt-content">
-                                                                                        Proin gravida
-                                                                                        nibh vel velit
-                                                                                        auctor </p>
-                                                                                </div>
+                                                                    <div class="col-md-12 mt-3">
+                                                                        <div class="uploadcode">
+                                                                            <div class="file-upload-wrapper"
+                                                                                data-text="Select your file!">
+                                                                                <input name="file-upload-field"
+                                                                                    type="file"
+                                                                                    class="file-upload-field" value="">
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
-                                                                    <form action="" class="row">
-                                                                        <div class="col-md-12">
-                                                                            <label for=""
-                                                                                class="crt-ticket-modal-text">
-                                                                                Details :
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <textarea
-                                                                                class="crt-ticket-modal-input">
+                                                                    <div class="col-md-12 mt-3">
+                                                                        <input type="submit" class="btn-reply-custom"
+                                                                            data-dismiss="modal" value="Reply">
+                                                                    </div>
 
-                                                    </textarea>
-                                                                        </div>
-                                                                        <div class="col-md-12 mt-3">
-                                                                            <input type="submit"
-                                                                                class="btn-reply-custom"
-                                                                                data-dismiss="modal"
-                                                                                value="Reply">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
-
                                                     </div>
+
                                                 </div>
-                                                <!--modal bootstrap ends 2-->
-
                                             </div>
+                                            <!--Modal bootstrap ends 1-->
+
+                                            <!--Modal bootsrtap starts 2-->
+                                            <div class="modal fade crt-ticket-modal" id="crtTicketReply" tabindex="-1"
+                                                role="dialog" aria-labelledby="crtTicketReply" aria-hidden="true">
+
+                                                <div class="bt-modal-centered">
+                                                    <div class="modal-dialog col-lg-6" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header border-none">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <p class="modal-each-rely-title">
+                                                                            HEllo!</p>
+                                                                        <p class="modal-each-rely-subtitle">
+                                                                            <span>PROJECT
+                                                                                :</span><span class="pl-2">3axb
+                                                                                Computers</span></p>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div
+                                                                            class="sp-reply-outer d-inline-block w-100">
+                                                                            <div class="sp-profile-outer">
+                                                                                <img
+                                                                                    src="assets/image/testimnial_thumb_01.png">
+                                                                            </div>
+                                                                            <div class="sp-profile-cmnt-outer">
+                                                                                <p class="sp-profile-cmnt-reply">
+                                                                                    Last Reply</p>
+                                                                                <p class="sp-profile-cmnt-content">
+                                                                                    Proin gravida
+                                                                                    nibh vel velit
+                                                                                    auctor </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <form action="" class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label for="" class="crt-ticket-modal-text">
+                                                                            Details :
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <textarea class="crt-ticket-modal-input">
+
+                                                    </textarea>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-3">
+                                                                        <input type="submit" class="btn-reply-custom"
+                                                                            data-dismiss="modal" value="Reply">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!--modal bootstrap ends 2-->
+
                                         </div>
-                                   
+                                    </div>
 
 
-                                        
-                                        </div>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>

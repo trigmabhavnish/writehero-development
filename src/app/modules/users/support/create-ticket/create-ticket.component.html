@@ -97,7 +97,44 @@
  
                                                                          </div>
                                                                     </div>
-                                                                
+                                                                    <div class="col-lg-5">
+                                                                        <div class="col-lg-12 col-lg-12 step-progress-fields">
+                                                                            <label>Attach File?</label>
+                                                                            <div class="uploadcode">
+                                                                                <div class="uploadImages position-relative">
+                                                                                    <div class="dropzone dropzone-container"
+                                                                                        [dropzone]="supportFileConfiguration"
+                                                                                        [disabled]="disabled"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                        <!--Upload Images Section-->
+                                                                        <div class="col-md-12">
+                                                                            <div class="thumbnails"
+                                                                                *ngIf="checkObjectLength(projectFilesArray.value) > 0">
+                                                                                <div class="thumbnail_list"
+                                                                                    *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
+            
+                                                                                    <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
+                                                                                        src="{{projectImage.value.file_path}}">
+            
+                                                                                    <a class="upload_pdf" data-toggle="tooltip"
+                                                                                        title="{{projectImage.value.file_name}}"
+                                                                                        *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
+                                                                                        href="{{projectImage.value.file_path}}"
+                                                                                        target="_blank"><img
+                                                                                            src="assets/image/pdf_icon.png"></a>
+            
+                                                                                    <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
+                                                                                        class="fa fa-times" aria-hidden="true"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                        <!--Upload Images Section-->
+            
+                                                                    </div>
 
                                                                     <div class="col-lg-12 mt-4">
 

@@ -16,7 +16,8 @@ export const environment = {
     COUPON_CODE_REMOVED: 'Coupon removed successfully..',
     PAYMENT_FAILED:'Sorry, the transaction has failed due to unknown reason. Please try again in some time.',
     FAILED_TO_VERIFY: "Token expired or Failed to verify your account. Please try again.",
-    CANNOT_UPLOAD_MORE: "You cannot upload any more files."
+    CANNOT_UPLOAD_MORE: "You cannot upload any more files.",
+    TICKET_CREATED:'The ticket has been created successfully.'
   }
 };
 

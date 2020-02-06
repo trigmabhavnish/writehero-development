@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
+import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 const routes: Routes = [
   {
     path: '',
@@ -60,6 +61,12 @@ const routes: Routes = [
     path: 'create-ticket',
     component: CreateTicketComponent,
     data: { title: 'Create Ticket' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'ticket-detail/:_id',
+    component: ViewTicketComponent,
+    data: { title: 'Ticket Details' },
     canActivate: [UserAuthGuardService]
   },
   {

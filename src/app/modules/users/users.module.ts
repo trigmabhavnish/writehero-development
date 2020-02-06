@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../core/shared/shared.module'; // Shared Module
 import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha Module
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ArchwizardModule } from 'angular-archwizard';
 
 import { UsersRoutingModule } from './users-routing.module';
@@ -22,6 +22,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
+import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 
 
 
@@ -31,7 +32,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent],
+  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -41,6 +42,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ArchwizardModule,
     DropzoneModule,
     NgxPayPalModule,
+    NgxPaginationModule,
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
