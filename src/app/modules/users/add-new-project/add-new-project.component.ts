@@ -334,7 +334,7 @@ export class AddNewProjectComponent implements OnInit {
     this.writersDetailsForm = this.formBuilder.group({
       choice_of_writers: [''],
       writers_career: [''],
-      writers_age: [''],
+      writers_age: ['18-25'],
       writers_location: [''],
     });
   }
@@ -378,7 +378,7 @@ export class AddNewProjectComponent implements OnInit {
         //case success
         (res) => {
           this.commonUtilsService.onSuccess(res.response);
-
+          this.router.navigate(['/user/projects-listing']);
           //case error 
         }, error => {
           this.commonUtilsService.onError(error.response);

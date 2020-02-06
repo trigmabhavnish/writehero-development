@@ -11,7 +11,6 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../../../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
@@ -20,6 +19,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DropzoneModule, DropzoneConfigInterface, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
 
 
 
@@ -29,7 +29,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, DashboardComponent, LeftSidebarComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent],
+  declarations: [SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, ProjectsListingComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

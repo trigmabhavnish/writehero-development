@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { LeftSidebarComponent } from './core/components/left-sidebar/left-sidebar.component';
 
 //importing intercepters
 import { ApiIntercepter } from './core/interceptors/api.interceptor';
@@ -26,6 +27,7 @@ import { SharedModule } from './core/shared/shared.module';
   declarations: [
     AppComponent,
     HeaderComponent,
+    LeftSidebarComponent,
     FooterComponent,
     PageLoaderComponent
   ],
