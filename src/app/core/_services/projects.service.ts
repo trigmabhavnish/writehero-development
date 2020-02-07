@@ -18,10 +18,24 @@ export class ProjectsService {
   * get Project Packages
   * @return array
   */
- getProjectPackages(postedData): Observable<any> {
+  getProjectPackages(postedData): Observable<any> {
 
     return this.httpClient
       .post('project/getProjectPackages', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+
+  }
+
+  /**
+  * create New Project
+  * @return array
+  */
+  createNewProject(postedData): Observable<any> {
+
+    return this.httpClient
+      .post('project/addNewProject', postedData)
       .map((response: Response) => {
         return response;
       });

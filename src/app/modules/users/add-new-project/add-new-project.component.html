@@ -1,11 +1,14 @@
 <!--Dashboard HTML Starts-->
 <div class="dashboard-gutter">
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
-
-        <app-left-sidebar></app-left-sidebar>
+        
+        
 
         <div class="dashboard-content">
-
+            <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
+                <span>You have {{userCredits}} credits in your account. Please buy credits to create your project.</span> 
+                <a routerLink="/user/buy-credits">Buy Credits</a>
+            </div>
             <nav class="navbar-top scrolling-on">
                 <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
                 <p class="mobile-dashboard-heading">Dashboard</p>
@@ -168,7 +171,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mt-4">
-                                                        <button [disabled]="projectSpecsForm.invalid"
+                                                        
+                                                        <button [disabled]="projectSpecsForm.invalid || userCreditsCheck"
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
@@ -328,9 +332,9 @@
                                                             <!--Upload Images Section-->
                                                             <div class="col-md-12">
                                                                 <div class="thumbnails"
-                                                                    *ngIf="checkObjectLength(projectImagesArray.value) > 0">
+                                                                    *ngIf="checkObjectLength(projectFilesArray.value) > 0">
                                                                     <div class="thumbnail_list"
-                                                                        *ngFor="let projectImage of projectImagesArray.value | keyvalue; let projectImage = index;">
+                                                                        *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
 
                                                                         <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
                                                                             src="{{projectImage.value.file_path}}">
@@ -365,7 +369,7 @@
                                                                     class="submit-btn-feedback min-w-130">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button [disabled]="projectDetailsForm.invalid"
+                                                                <button [disabled]="projectDetailsForm.invalid || userCreditsCheck"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130">
@@ -585,7 +589,7 @@
                                                                         PREVIOUS
                                                                     </button>
 
-                                                                    <button type="button"
+                                                                    <button type="button" [disabled]="userCreditsCheck"
                                                                         (click)="onSubmitAddNewProject()"
                                                                         class="submit-btn-feedback min-w-130">
                                                                         CREATE PROJECT

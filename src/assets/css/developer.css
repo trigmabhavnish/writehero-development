@@ -5,3 +5,25 @@ button.submit-btn-feedback:disabled {opacity: 0.5;}
 span.red{color: #f00}
 aw-wizard-navigation-bar.horizontal.small {display: none;}
 .uploadImages .dz-preview{display:none;}
+.notEnoughCredits {
+    background-color: #ff4444;
+    padding: 8px 16px;
+    border-radius: 3px;
+    color: #fff;
+    box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.19);
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 15px;
+    margin: 12px 0px 15px;
+    display: inline-block;
+}
+.notEnoughCredits a {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 9px;
+    font-size: 12px;
+    text-decoration: none;    
+    background-color: #ea4949;
+    padding: 6px 10px;
+}

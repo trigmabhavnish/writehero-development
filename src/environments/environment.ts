@@ -17,7 +17,8 @@ export const environment = {
     PAYMENT_FAILED:'Sorry, the transaction has failed due to unknown reason. Please try again in some time.',
     FAILED_TO_VERIFY: "Token expired or Failed to verify your account. Please try again.",
     CANNOT_UPLOAD_MORE: "You cannot upload any more files.",
-    TICKET_CREATED:'The ticket has been created successfully.'
+    TICKET_CREATED:'The ticket has been created successfully.',
+    NOT_ENOUGH_CREDITS: "You dont have enough credits to create your project."
   }
 };
 

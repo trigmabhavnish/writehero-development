@@ -46,6 +46,8 @@ export class AddNewProjectComponent implements OnInit {
   calculateCost: any = 0;
   selectedProjectPackageId: number;
   packagePrice: any;
+  userCredits: any;
+  userCreditsCheck: boolean = true;
 
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
@@ -303,6 +305,7 @@ export class AddNewProjectComponent implements OnInit {
   */
   private projectSpecs() {
     this.projectSpecsForm = this.formBuilder.group({
+      project_code: [this.makeRandomString()],
       project_name: ['', [Validators.required]],
       project_topic: ['', [Validators.required]],
       project_type: ['', [Validators.required]]
@@ -320,7 +323,7 @@ export class AddNewProjectComponent implements OnInit {
       additional_resources: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(200)])],
       project_package: ['', [Validators.required]],
       project_cost: [''],
-      project_images: this.formBuilder.array([]),
+      project_files: this.formBuilder.array([]),
     });
   }
 
@@ -331,7 +334,7 @@ export class AddNewProjectComponent implements OnInit {
     this.writersDetailsForm = this.formBuilder.group({
       choice_of_writers: [''],
       writers_career: [''],
-      writers_age: [''],
+      writers_age: ['18-25'],
       writers_location: [''],
     });
   }
@@ -360,6 +363,27 @@ export class AddNewProjectComponent implements OnInit {
 
   onSubmitAddNewProject() {
 
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value);
+
+    let projectCost = this.projectDetailsForm.controls.project_cost.value;
+
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    //check if Project Cost is greater than available credits.
+    if (projectCost > this.userCredits) {
+      this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
+      this.userCreditsCheck = true;
+    } else { 
+      this.userCreditsCheck = false;     
+      this.projectsService.createNewProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
+        //case success
+        (res) => {
+          this.commonUtilsService.onSuccess(res.response);
+          this.router.navigate(['/user/projects-listing']);
+          //case error 
+        }, error => {
+          this.commonUtilsService.onError(error.response);
+        });
+    }
   }
 
   /**
@@ -396,7 +420,7 @@ export class AddNewProjectComponent implements OnInit {
       errorReset: null,
       cancelReset: null,
       acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv',
-      maxFilesize: 2, // MB,
+      maxFilesize: 5, // MB,
       dictDefaultMessage: '<span class="button red">Attach File</span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
@@ -404,7 +428,7 @@ export class AddNewProjectComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictFileTooBig: 'Maximum upload file size limit is 5MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {
@@ -415,7 +439,7 @@ export class AddNewProjectComponent implements OnInit {
       accept: function (file, done) {
 
 
-        if ((componentObj.projectImagesArray.length + 1) > 1) {
+        if ((componentObj.projectFilesArray.length + 1) > 1) {
           componentObj.commonUtilsService.onError(environment.MESSAGES.CANNOT_UPLOAD_MORE);
           this.removeFile(file);
           return false;
@@ -470,7 +494,7 @@ export class AddNewProjectComponent implements OnInit {
 
 
           componentObj.zone.run(() => {
-            componentObj.projectImagesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
+            componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
           });
 
           this.removeFile(file);
@@ -497,7 +521,7 @@ export class AddNewProjectComponent implements OnInit {
    */
   removeImage(index, file_category, file_key): void {
 
-    this.projectImagesArray.removeAt(index);
+    this.projectFilesArray.removeAt(index);
     this.removeImageFromBucket(file_key);
   }
 
@@ -534,8 +558,8 @@ export class AddNewProjectComponent implements OnInit {
   /**
   * get Product Image Form Array
   */
-  get projectImagesArray(): FormArray {
-    return this.projectDetailsForm.controls.project_images as FormArray;
+  get projectFilesArray(): FormArray {
+    return this.projectDetailsForm.controls.project_files as FormArray;
   }
 
   /**
@@ -549,6 +573,12 @@ export class AddNewProjectComponent implements OnInit {
     if (quantity && word_count) {
       this.calculateCost = (quantity * word_count * this.packagePrice).toFixed(2);
       this.projectDetailsForm.controls.project_cost.patchValue(this.calculateCost);
+      //if cost is greater than user credits.
+      if(this.calculateCost > this.userCredits){
+        this.userCreditsCheck = true;
+      }else{
+        this.userCreditsCheck = false;
+      }
     }
   }
 
@@ -577,7 +607,43 @@ export class AddNewProjectComponent implements OnInit {
     return validityStatus;
   };
 
+  /**
+   * Verify User Account Credits
+   * return number 
+   */
+  checkAccountCredits() {
+    this.commonUtilsService.userAccountCredits({}).pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {
+        //case error 
+        //console.log('response', res)
+        this.userCredits = res.available_credits;
+
+        if (res.available_credits > 0) { this.userCreditsCheck = false; }
+
+      }, error => {
+        this.commonUtilsService.onError(error.response);
+        //this.tokenVerified = false;
+        //this.router.navigate(['/user/forgot-password']);
+      });
+  }
+
+  /**
+   * Generate Random String 
+   */
+  public makeRandomString() {
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const lengthOfCode = 10;
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
   ngOnInit() {
+
+    this.checkAccountCredits(); // Check User Balance
     this.projectSpecs(); // Project Specs Wizard
     this.projectDetails(); // Project Details Wizard
     this.writersDetails(); // Writer Details Wizard

@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component'; // User Signup
 import { LoginComponent } from './login/login.component'; // User Login
 import { DashboardComponent } from './dashboard/dashboard.component' // User Dashboard
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { UserAuthGuardService } from '../../core/guards/user-auth-guard.service';
@@ -67,6 +68,13 @@ const routes: Routes = [
     path: 'ticket-detail/:_id',
     component: ViewTicketComponent,
     data: { title: 'Ticket Details' },
+    canActivate: [UserAuthGuardService]
+  },
+
+  {
+    path: 'projects-listing',
+    component: ProjectsListingComponent,
+    data: { title: 'Projects Listing' },
     canActivate: [UserAuthGuardService]
   },
   {
