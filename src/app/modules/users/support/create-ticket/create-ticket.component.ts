@@ -28,7 +28,6 @@ export class CreateTicketComponent implements OnInit {
   ngOnInit() {
     this.supportFileDropzoneInit(); // initilize DropZone
     this.initilizeCreateTicketForm() // initilize Create Ticket Form
-
   }
 
   /**

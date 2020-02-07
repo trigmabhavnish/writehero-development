@@ -15,7 +15,7 @@ export class ViewTicketComponent implements OnInit {
   supportId: any;
   supportData: any;
   ticketReplyForm: FormGroup;
-
+  isSubmitted:boolean=false;
 
   public supportFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;

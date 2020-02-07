@@ -18,7 +18,8 @@ export const environment = {
     FAILED_TO_VERIFY: "Token expired or Failed to verify your account. Please try again.",
     CANNOT_UPLOAD_MORE: "You cannot upload any more files.",
     TICKET_CREATED:'The ticket has been created successfully.',
-    NOT_ENOUGH_CREDITS: "You dont have enough credits to create your project."
+    NOT_ENOUGH_CREDITS: "You dont have enough credits to create your project.",
+    NO_PROJECTS_FOUND: "No Projects Found."
   }
 };
 

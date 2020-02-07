@@ -87,7 +87,7 @@
 
                                                                                </textarea>
                                                                              <p
-                                                                                 *ngIf="createTicketForm.controls.message.touched || buyCreditsSubmitted">
+                                                                                 *ngIf="createTicketForm.controls.message.touched || isSubmitted">
                                                                                  <app-form-validation-errors
                                                                                      errorPrefix="Message "
                                                                                      [errors]="createTicketForm.controls.message.errors">

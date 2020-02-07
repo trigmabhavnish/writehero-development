@@ -9,19 +9,19 @@ import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 import { MovingDirection } from 'angular-archwizard'; // Wizard
 import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { CustomValidator } from '../../../core/_helpers/custom-validator';
+import { CustomValidator } from '../../../../core/_helpers/custom-validator';
 
 // import environment
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 //import Lodash
 import * as _ from 'lodash';
 
 //import shared services
-import { PageLoaderService } from '../../../shared/_services'
+import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../core/_services';
+import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
 
 @Component({
   selector: 'app-add-new-project',

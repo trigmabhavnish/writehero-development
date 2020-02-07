@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component'; // User Signup
 import { LoginComponent } from './login/login.component'; // User Login
 import { DashboardComponent } from './dashboard/dashboard.component' // User Dashboard
-import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
-import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
+import { AddNewProjectComponent } from './projects/add-new-project/add-new-project.component';
+import { ProjectsListingComponent } from './projects/projects-listing/projects-listing.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { UserAuthGuardService } from '../../core/guards/user-auth-guard.service';

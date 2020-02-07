@@ -11,7 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../../../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import { AddNewProjectComponent } from './projects/add-new-project/add-new-project.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -22,7 +22,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
-import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
+import { ProjectsListingComponent } from './projects/projects-listing/projects-listing.component';
 
 
 

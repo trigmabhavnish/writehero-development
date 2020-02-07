@@ -29,6 +29,20 @@ export class ProjectsService {
   }
 
   /**
+  * get Project Listings
+  * @return array
+  */
+ getProjectListings(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('project/getProjectListings', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
+
+  /**
   * create New Project
   * @return array
   */
