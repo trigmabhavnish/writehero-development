@@ -29,18 +29,32 @@ export class ProjectsService {
   }
 
   /**
+  * get Project Details
+  * @return array
+  */
+  getProjectDetails(postedData): Observable<any> {
+
+    return this.httpClient
+      .post('project/getProjectDetailsById', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+
+  }
+
+  /**
   * get Project Listings
   * @return array
   */
- getProjectListings(postedData): Observable<any> {
+  getProjectListings(postedData): Observable<any> {
 
-  return this.httpClient
-    .post('project/getProjectListings', postedData)
-    .map((response: Response) => {
-      return response;
-    });
+    return this.httpClient
+      .post('project/getProjectListings', postedData)
+      .map((response: Response) => {
+        return response;
+      });
 
-}
+  }
 
   /**
   * create New Project

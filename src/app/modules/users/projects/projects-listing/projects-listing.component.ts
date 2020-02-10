@@ -43,10 +43,13 @@ export class ProjectsListingComponent implements OnInit {
   * @return Listing Array
   */
   private getProjectListings() {
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
     this.projectsService.getProjectListings({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
         if (res.totalProjects > 0) {
+          //console.log(res.projectListings);
+          this.commonUtilsService.hidePageLoader();
           this.projects = res.projectListings;
           this.totalProjects = res.totalProjects;
         } else {
@@ -75,6 +78,14 @@ export class ProjectsListingComponent implements OnInit {
   public pageChanged(pageNumber: any): void {
     this.currentPage = pageNumber;
     this.getProjectListings();
+  }
+
+  /**
+   * Redirect to project detail page
+   */
+  public viewDetails(proejctId: any): void {
+    this.router.navigate(['/user/project-detail/' + proejctId])
+
   }
 
   ngOnInit() {

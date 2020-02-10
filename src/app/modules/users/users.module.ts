@@ -23,6 +23,8 @@ import { TicketListingComponent } from './support/ticket-listing/ticket-listing.
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 import { ProjectsListingComponent } from './projects/projects-listing/projects-listing.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
 
 
 
@@ -32,7 +34,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent],
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

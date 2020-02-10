@@ -36,17 +36,16 @@
                                             itemsPerPage: pageSize,
                                             currentPage: currentPage,
                                             totalItems: totalProjects };let i = index;">
-                                                <div class="support-desc-tabs whole-pattern project-lists-padding">
-                                                    <p class="project-code-title">X394BD8</p>
-                                                    <p class="project-code-heading">COMPUTER
-                                                        NETWORKING</p>
-                                                    <p class="project-code-date-title">Nov 5, 2018
+                                                <div (click)="viewDetails(project.id)" class="support-desc-tabs whole-pattern project-lists-padding">
+                                                    <p class="project-code-title">{{project.code}}</p>
+                                                    <p class="project-code-heading">{{project.project_name}}</p>
+                                                    <p class="project-code-date-title">{{project.project_cdate | date : "MM-dd-yyyy"}}
                                                     </p>
-                                                    <p class="project-per-words"><span>5 X
-                                                            500</span><span class="words-text">Words</span></p>
-                                                    <p class="project-code-bugs">$300</p>
+                                                    <p class="project-per-words"><span>{{project.quantity}} X
+                                                        {{project.word_count}}</span><span class="words-text">Words</span></p>
+                                                    <p class="project-code-bugs">${{project.project_cost}}</p>
                                                     <p class="pro-date"><span>Status : </span> <span
-                                                            class="pro-msg-status pro-active">Active</span>
+                                                            class="pro-msg-status pro-active">{{project.project_status}}</span>
                                                     </p>
                                                 </div>
                                             </div>

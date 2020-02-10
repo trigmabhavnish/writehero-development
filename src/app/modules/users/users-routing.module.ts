@@ -14,6 +14,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -75,6 +78,18 @@ const routes: Routes = [
     path: 'projects-listing',
     component: ProjectsListingComponent,
     data: { title: 'Projects Listing' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'project-detail/:_id',
+    component: ProjectDetailsComponent,
+    data: { title: 'Project Details' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'edit-project/:_id',
+    component: EditProjectComponent,
+    data: { title: 'Edit Project' },
     canActivate: [UserAuthGuardService]
   },
   {
