@@ -27,3 +27,126 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     background-color: #ea4949;
     padding: 6px 10px;
 }
+
+/*Ticket css starts*/
+.ticket--span-date {
+    color: #01004a !important;
+    font-weight: 700 !important;
+    margin: 5px 0px 10px !important;
+    font-size: 15px !important;
+}
+.ticket--span-p {
+    font-size: 16px !important;
+}
+.ticket--download {
+    color: #fff !important;
+    display: inline-block;
+    padding: 8px 10px;
+    text-transform: uppercase;
+    background: rgba(254,80,50,1);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(254,80,50,1)), color-stop(100%, rgba(224,39,113,1)));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(254,80,50,1)), to(rgba(224,39,113,1)));
+    background: linear-gradient(to right, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5032', endColorstr='#e02771', GradientType=1 );
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.send--rply-btn {
+    text-align: right;
+    padding: 15px 0px;
+}
+.send--rply-btn a {
+    margin-right: 15px;
+    background-color: #01004a;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 0px;
+    text-transform: capitalize;
+    border: none !important;
+    padding: 8px 16px;
+}
+.solving--btn-outer a {
+    color: #fff !important;
+    display: inline-block;
+    padding: 8px 10px;
+    text-transform: uppercase;
+    background: rgba(254,80,50,1);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(254,80,50,1)), color-stop(100%, rgba(224,39,113,1)));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(254,80,50,1)), to(rgba(224,39,113,1)));
+    background: linear-gradient(to right, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5032', endColorstr='#e02771', GradientType=1 );
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 3px;
+}
+.solving--btn-outer {
+    margin-top: 25px;
+}
+.sr__only tr td:nth-child(3) {
+    width: 45%;
+}
+.ht--130 {
+    height: 130px;
+}
+.uploadcode {
+    background: rgba(254,80,50,1);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(254,80,50,1)), color-stop(100%, rgba(224,39,113,1)));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(254,80,50,1)), to(rgba(224,39,113,1)));
+    background: linear-gradient(to right, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+    background-color: rgba(0, 0, 0, 0);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5032', endColorstr='#e02771', GradientType=1 );
+    position: relative;
+    color: #fff;
+    border: 0px;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+    width: 150px !important;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+.attach--label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #01004a;
+    margin-bottom: 10px;
+}
+.uploadcode .red {
+    color: #fff !important;
+}
+.thumbnails {
+    padding: 10px 0px;
+}
+.thumbnail_list {
+    display: inline-block;
+    background: rgba(10, 0, 74,0.25);
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+.thumbnail_list a {
+    display: inline-block;
+}
+.thumbnail_list i.fa.fa-times {
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    background: #c9c2dc;
+    padding: 3px;
+    border-radius: 50%;
+    color: #cc4a4b;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-in;
+    cursor: pointer;
+}
+.thumbnail_list:hover i.fa.fa-times {
+    opacity: 1;
+    visibility: visible;
+}

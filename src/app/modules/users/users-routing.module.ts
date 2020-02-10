@@ -14,6 +14,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
+import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
+import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
+import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -56,6 +59,24 @@ const routes: Routes = [
     path: 'ticket-listing',
     component: TicketListingComponent,
     data: { title: 'Ticket Listing' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'feed-back-listing',
+    component: FeedBackListingComponent,
+    data: { title: 'Feed Back Listing' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'create-feed-back',
+    component: CreateFeedBackComponent,
+    data: { title: 'Create Feed Back' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'feedback-details/:user_id/:project_id',
+    component: FeedbackDetailsComponent,
+    data: { title: 'Details Feed Back' },
     canActivate: [UserAuthGuardService]
   },
   {

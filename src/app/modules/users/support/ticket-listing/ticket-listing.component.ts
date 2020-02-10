@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupportService } from 'src/app/core/_services';
 import { Router } from '@angular/router';
-import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-ticket-listing',
@@ -9,17 +8,27 @@ import { tick } from '@angular/core/testing';
   styleUrls: ['./ticket-listing.component.css']
 })
 export class TicketListingComponent implements OnInit {
-  tickets:any = [];
-  user:any;
+  tickets: any = [];
+  user: any;
   //pagination initilize
-  pageSize :number = 1;
-  currentPage:number = 1;
+  pageSize: number = 10;
+  currentPage: number = 1;
   totalItems: number = 0
-  constructor(private supportService:SupportService,private router:Router) { }
+  constructor(private supportService: SupportService, private router: Router) { }
 
   ngOnInit() {
-    this.supportService.getSupportTickets({pageNumber:this.currentPage,pageSize:this.pageSize}).subscribe(response=>{
-      console.log('the message is',response)
+    this.getSuppotsData();//get supports tikcets data
+  }
+
+
+
+
+  /**
+   * get supports tickets data of user
+   */
+  private getSuppotsData(): void {
+    this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
+      console.log('the message is', response)
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
       this.user = response.user;
@@ -27,16 +36,24 @@ export class TicketListingComponent implements OnInit {
   }
 
 
-public viewDetails(ticket:any):void{
-  this.router.navigate(['/user/ticket-detail/'+ticket.id])
 
-}
+  /**
+   * navigate to View Details of the ticket
+   * @param ticket containg the id of the ticket
+   */
+  public viewDetails(ticket: any): void {
+    this.router.navigate(['/user/ticket-detail/' + ticket.id])
 
-/**
- * 
- * @param pageNumber is the page number on change pagination click
- */
-  public pageChanged(pageNumber:any):void{
+  }
 
+
+
+  /**
+   * 
+   * @param pageNumber is the page number on change pagination click
+   */
+  public pageChanged(pageNumber: any): void {
+    this.currentPage = pageNumber;
+    this.getSuppotsData();
   }
 }

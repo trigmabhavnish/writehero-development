@@ -25,156 +25,192 @@
                                     <!--Project HTML starts-->
                                     <div class="row">
 
-                                        <div class="col-md-12">
-                                            <h4 class="create-project-top-heading">Ticket Details</h4>
-                                            <div class="dashboard-latest-project-outer">
-                                                <div class="row">
-                                                    <div class="col-lg-9 px-lg-3 p-0">
-                                                        <div class="my-dashboard-project-main">
-                                                            <h2 class="dashboard-latest-project-title">
-                                                                Subject: {{supportData?.support[0]?.subject}}</h2>
+<div class="col-md-12 ">
+<h4 class="create-project-top-heading">Ticket Details</h4>
+<div class="dashboard-latest-project-outer">
+<div class="row">
+<div class="col-lg-9 px-lg-3 p-0">
+<div class="my-dashboard-project-main">
+<h2 class="dashboard-latest-project-title">
+    Subject: {{supportData?.support[0]?.subject}}</h2>
+
+<h6 class="dashboard-latest-project-subject">
+    Ticket: {{supportData?.support[0]?.code}}</h6>
+<h6 class="dashboard-latest-project-subject">
+    Submitted On:
+    {{supportData?.support[0]?.created_on | date:'dd/mm/yy'}}
+</h6>
+<h6 class="dashboard-latest-project-subject">
+    Status:
+    {{supportData?.support[0]?.support_status}}
+</h6>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="">
 
 
 
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                Ticket: {{supportData?.support[0]?.code}}</h6>
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                Submitted On:
-                                                                {{supportData?.support[0]?.created_on | date:'dd/mm/yy'}}
-                                                            </h6>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-
-                                                                    <div class="">
-                                                                      
-
-
-                                                                        <div class="description_list">
-                                                                            <h4></h4>
-                                                                        </div>
-
-                                                                        <div class="msg-group center">
-                                                                          
-                                                                            <div *ngFor="let message of supportData?.messages;let i = index;">
-                                                                            <div *ngIf="message.instanciate_id == 0" class="dispute_media">
-
-                                                                                <div
-                                                                                    class="card-body dispute_left dispute_right-content">
-                                                                                    <h6 class="card-subtitle">{{supportData?.director[0]?.director_name}}</h6>
-                                                                                 
-                                                                                        <span
-                                                                                        class="card-text float-left">{{message?.cur_date | date:'dd/mm/yy'}}</span>
-                                                                                    <p>{{message?.message}}</p>
-                                                                                    <a *ngIf="message?.support_file" href="{{ message?.support_file }}" target="_blank" >Download Attachment</a>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div *ngIf="message.instanciate_id > 0" class="dispute_media flex-row-reverse">
-
-                                                                                <div
-                                                                                    class="card-body dispute_left dispute_right-contents">
-                                                                                    <h6 class="card-subtitle">
-                                                                                        {{supportData?.user?.first_name}} {{supportData?.user?.last_name}}</h6>
-                                                                                    <span
-                                                                                        class="card-text float-right">{{message?.cur_date | date:'dd/mm/yyyyy'}}</span>
-                                                                                    <p>{{message?.message}}</p>
-                                                                                    <a *ngIf="message?.support_file" href="{{ message?.support_file }}" target="_blank" >Download Attachment</a>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                          
-
-
-                                                                         
-                                                                        </div>
-
-                                                                        <div class="description_list">
-                                                                            <h4>Discussions</h4>
-                                                                        </div>
-
-                                                                        <form  [formGroup]="ticketReplyForm"
-                                                                            class="dispute_form">
-                                                                            <textarea placeholder="Message" formControlName="message"
-                                                                                name="message" rows="10"
-                                                                                cols="20"></textarea>
-                                                                                <p
-                                                                                *ngIf="ticketReplyForm.controls.message.touched || isSubmitted">
-                                                                                <app-form-validation-errors
-                                                                                    errorPrefix="Message "
-                                                                                    [errors]="ticketReplyForm.controls.message.errors">
-                                                                                </app-form-validation-errors>
-                                                                            </p>
-                                                                            <br>
-                                                                            <div class="col-lg-5">
-                                                                                <div class="col-lg-12 col-lg-12 step-progress-fields">
-                                                                                    <label>Attach File?</label>
-                                                                                    <div class="uploadcode">
-                                                                                        <div class="uploadImages position-relative">
-                                                                                            <div class="dropzone dropzone-container"
-                                                                                                [dropzone]="supportFileConfiguration"
-                                                                                                [disabled]="disabled"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                    
-                                                                                <!--Upload Images Section-->
-                                                                                <div class="col-md-12">
-                                                                                    <div class="thumbnails"
-                                                                                        *ngIf="checkObjectLength(projectFilesArray.value) > 0">
-                                                                                        <div class="thumbnail_list"
-                                                                                            *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
-                    
-                                                                                            <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
-                                                                                                src="{{projectImage.value.file_path}}">
-                    
-                                                                                            <a class="upload_pdf" data-toggle="tooltip"
-                                                                                                title="{{projectImage.value.file_name}}"
-                                                                                                *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                                                href="{{projectImage.value.file_path}}"
-                                                                                                target="_blank"><img
-                                                                                                    src="assets/image/pdf_icon.png"></a>
-                    
-                                                                                            <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
-                                                                                                class="fa fa-times" aria-hidden="true"></i>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                    
-                                                                                <!--Upload Images Section-->
-                    
-                                                                            </div>
-        
-                                                                            <button type="button"
-                                                                                class="btn btn-danger">Send
-                                                                                Reply</button>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                          
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!--Project HTML ends-->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="description_list">
+                <h4></h4>
             </div>
 
+            <div class="msg-group center">
+
+                <div
+                    *ngFor="let message of supportData?.messages;let i = index;">
+                    <div *ngIf="message.instanciate_id == 0"
+                        class="dispute_media">
+
+                        <div
+                            class="card-body dispute_left dispute_right-content">
+                            <h6 class="card-subtitle">
+                                {{supportData?.director[0]?.director_name}}
+                            </h6>
+
+                            <span
+                                class="card-text float-left">{{message?.cur_date | date:'dd/mm/yy'}}</span>
+                            <p>{{message?.message}}</p>
+                            <a class="float-left"
+                                *ngIf="message?.support_file"
+                                href="{{ message?.support_file }}"
+                                target="_blank">Download
+                                Attachment</a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="message.instanciate_id > 0"
+                        class="dispute_media flex-row-reverse">
+
+                        <div
+                            class="card-body dispute_left dispute_right-contents">
+                            <h6 class="card-subtitle">
+                                {{supportData?.user?.first_name}}
+                                {{supportData?.user?.last_name}}
+                            </h6>
+                            <span
+                                class="card-text float-right ticket--span-date">{{message?.cur_date | date:'dd/mm/yy'}}</span>
+                            <p class="ticket--span-p">{{message?.message}}</p>
+                            <a class="ticket--download" *ngIf="message?.support_file"
+                                href="{{ message?.support_file }}"
+                                target="_blank">Download
+                                Attachment</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="description_list" [hidden]="supportData?.support[0]?.support_status == 'solved'">
+                <h4>Discussions</h4>
+            </div>
+            <div [hidden]="supportData?.support[0]?.support_status == 'solved'">
+                <form [formGroup]="ticketReplyForm"
+                    class="dispute_form">
+                    <textarea placeholder="Message"
+                        formControlName="message"
+                        name="message" rows="10"
+                        cols="20"></textarea>
+                    <p
+                        *ngIf="ticketReplyForm.controls.message.touched || isSubmitted">
+                        <app-form-validation-errors
+                            errorPrefix="Message "
+                            [errors]="ticketReplyForm.controls.message.errors">
+                        </app-form-validation-errors>
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="col-lg-12 col-lg-12 step-progress-fields">
+                                <label>Attach File?</label>
+                                <div class="uploadcode">
+                                    <div
+                                        class="uploadImages position-relative">
+                                        <div class="dropzone dropzone-container"
+                                            [dropzone]="supportFileConfiguration"
+                                            [disabled]="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                                <!--Upload Images Section-->
+                                <div class="col-md-12">
+                                    <div class="thumbnails"
+                                        *ngIf="checkObjectLength(supportFilesArray.value) > 0">
+                                        <div class="thumbnail_list"
+                                            *ngFor="let supportFile of supportFilesArray.value | keyvalue; let projectImage = index;">
+        
+                                            <img *ngIf="supportFile.value.file_mimetype != 'application/pdf'"
+                                                src="{{supportFile.value.file_path}}">
+        
+                                            <a class="upload_pdf"
+                                                data-toggle="tooltip"
+                                                title="{{supportFile.value.file_name}}"
+                                                *ngIf="supportFile.value.file_mimetype == 'application/pdf'"
+                                                href="{{supportFile.value.file_path}}"
+                                                target="_blank"><img
+                                                    src="assets/image/pdf_icon.png"></a>
+        
+                                            <i (click)="removeFile(supportFile.key, 'project',supportFile.value.file_key)"
+                                                class="fa fa-times"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <!--Upload Images Section-->
+        
+                            </div>
+                        <div class="col-lg-6 offset-lg-1 send--rply-btn">
+                            <a type="button"
+                            (click)="submitReply()"
+                            class="btn btn-danger">Send
+                            Reply</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 solving--btn-outer">
+
+                        <a> Click the solved button if the
+                            ticket is solved » <a
+                                type="button"
+                                (click)="solveTicket()"
+                                class="btn btn-danger">Solved
+                            </a> </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!--Dashboard HTML Ends-->
+</div>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+<!--Project HTML ends-->
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!--Dashboard HTML Ends-->
 </div>

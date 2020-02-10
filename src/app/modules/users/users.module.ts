@@ -5,6 +5,7 @@ import { SharedModule } from '../../core/shared/shared.module'; // Shared Module
 import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha Module
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ArchwizardModule } from 'angular-archwizard';
+import {RatingModule} from "ngx-rating";
 
 import { UsersRoutingModule } from './users-routing.module';
 import { SignupComponent } from './signup/signup.component';
@@ -23,7 +24,9 @@ import { TicketListingComponent } from './support/ticket-listing/ticket-listing.
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
-
+import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
+import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
+import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -32,7 +35,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent],
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -41,6 +44,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SharedModule,
     ArchwizardModule,
     DropzoneModule,
+    RatingModule,
     NgxPayPalModule,
     NgxPaginationModule,
     RecaptchaModule.forRoot({
