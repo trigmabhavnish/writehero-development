@@ -20,7 +20,8 @@ export const environment = {
     TICKET_CREATED:'The ticket has been created successfully.',
     NOT_ENOUGH_CREDITS: "You dont have enough credits to create your project.",
     MESSAGE_SEND:'Message send successfully.',
-    TICKET_UPDATE:'Ticket updated successfully.'
+    TICKET_UPDATE:'Ticket updated successfully.',
+    FEEDBACK_SUCCESS:'Feedback has been submitted successfully.'
   }
 };
 

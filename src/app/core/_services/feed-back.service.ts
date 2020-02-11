@@ -16,22 +16,22 @@ export class FeedBackService {
   * get Project Packages
   * @return array
   */
- submitReply(postedData): Observable<any> {
+  submitFeedBack(postedData): Observable<any> {
 
-  return this.httpClient
-    .post('support/saveMessage', postedData)
-    .map((response: Response) => {
-      return response;
-    });
+    return this.httpClient
+      .post('feedback/saveFeedBack', postedData)
+      .map((response: Response) => {
+        return response;
+      });
 
-}
+  }
 
 
   /**
-  * get Project Packages
+  * get feedback listing
   * @return array
   */
- getFeedBackListing(postedData): Observable<any> {
+  getFeedBackListing(postedData): Observable<any> {
 
     return this.httpClient
       .post('feedback/getFeedBacks', postedData)
@@ -41,4 +41,32 @@ export class FeedBackService {
 
   }
 
+  /**
+ * get FeedBack Details
+ * @return array
+ */
+  getFeedBackDetails(postedData): Observable<any> {
+
+    return this.httpClient
+      .post('feedback/getFeedBackDetails', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+
+  }
+
+
+    /**
+ * get FeedBacks Projects
+ * @return array
+ */
+getCompletedProjects(): Observable<any> {
+
+  return this.httpClient
+    .post('feedback/getCompletedProjects',{})
+    .map((response: Response) => {
+      return response;
+    });
+
+}
 }
