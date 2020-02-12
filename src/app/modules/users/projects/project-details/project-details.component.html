@@ -1,0 +1,241 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="wr-hero-project-details-outer">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <div class="dashboard-project-cum-header">
+                                                            <p class="wr-hero-pro-detail-code">{{projectDetails?.code}}
+                                                            </p>
+                                                            <p class="wr-hero-pro-detail-subject">
+                                                                {{projectDetails?.project_name}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="wr-hero-project-history whole-pattern">
+                                                            <h6 class="wr-hero-project-history-title"><span
+                                                                    class="fnt-18-0">{{projectDetails?.project_type_id}}</span><span
+                                                                    class="fnt-30-0">${{projectDetails?.project_cost}}</span>
+                                                            </h6>
+                                                            <p class="pcs10">{{projectDetails?.quantity}} x
+                                                                {{projectDetails?.word_count}} words</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="dashboard-project-cum-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+
+                                                                <div class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        project topic :
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.project_topic}}</p>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        project Type :
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.project_type}}</p>
+                                                                </div>
+
+                                                                <div class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        project details :
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.project_dtl}}</p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.additional_resources"
+                                                                    class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Additional Resources :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.additional_resources"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.additional_resources}}</p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.project_file"
+                                                                    class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Files :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.project_file"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <a target="_blank" href="{{projectDetails.project_file}}">Download</a>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.choice_of_writers" class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Choice of writers :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.choice_of_writers" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.choice_of_writers}}</p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_career" class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Writers career :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_career" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_career}}</p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_age" class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Writers age bracker :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_age" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_age}}</p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_location" class="col-lg-12">
+                                                                    <p class="dashboard-project-cum-body-labels">
+                                                                        Writers location :
+                                                                    </p>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.writers_location" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_location}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 text-lg-right">
+                                                            <a routerLink="/user/dashboard" *ngIf="projectDetails.project_status == 'Pending'" class="btn-cmn-pro mr-2">Ask update</a>
+                                                            <a routerLink="/user/edit-project/{{projectDetails.id}}" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">edit project</a>
+                                                            <a routerLink="/user/cancel-project/" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">Cancel project</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-4 pr-lg-0">
+                                            <div class="right-thumb-feeds-outer">
+                                                <div class="updates-vertical-outer min-100vh">
+                                                    <div class="dashboard-rightside-updates">
+                                                        <div class="dashboard-rightside-updates-haeder">
+                                                            <p class="dashboard-rightside-updates-header-title">Progress
+                                                                History</p>
+                                                        </div>
+                                                        <div class="dashboard-rightside-updates-content-outer">
+
+                                                            <ul class="list-unstyled display">
+                                                                <li>
+                                                                    <span
+                                                                        class="blibker blinker-yellow blinker-yellow"></span>
+                                                                    <p class="mb-0"><span
+                                                                            class="wr-hero-project-history-date">Jan
+                                                                            2,2019 - </span><span
+                                                                            class="wr-hero-project-history-assigned">PROJECT
+                                                                            CREATED</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="blibker blinker-green"></span>
+                                                                    <p class="mb-0"><span
+                                                                            class="wr-hero-project-history-date">Jan
+                                                                            5,2019 - </span><span
+                                                                            class="wr-hero-project-history-assigned">PROJECT
+                                                                            ASSIGNED TO MARTHA</span>
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="dashboard-rightside-updates latest-feedback">
+                                                        <div class="dashboard-rightside-updates-haeder">
+                                                            <p class="dashboard-rightside-updates-header-title">Project
+                                                                Status : <span class="font-weight-bold">Active</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="project-status-active-o">
+                                                            <div class="display-table">
+                                                                <div class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">
+                                                                            turnaround - </p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned"> 1-2
+                                                                            days</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">E To</p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            March 13, 2019</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">Notes
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            please contact</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

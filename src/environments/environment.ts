@@ -11,6 +11,7 @@ export const environment = {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
     WAIT_TEXT: 'Please wait...',
+    UNABLE_TO_FIND_DETAILS: 'Unable to find details.',
     COUPON_CODE_APPLIED: 'Coupon Code Applied.',
     COUPON_CODE_INVALID: 'Invalid Coupon Code.',
     COUPON_CODE_REMOVED: 'Coupon removed successfully..',
@@ -18,9 +19,11 @@ export const environment = {
     FAILED_TO_VERIFY: "Token expired or Failed to verify your account. Please try again.",
     CANNOT_UPLOAD_MORE: "You cannot upload any more files.",
     TICKET_CREATED:'The ticket has been created successfully.',
-    NOT_ENOUGH_CREDITS: "You dont have enough credits to create your project.",
+    NOT_ENOUGH_CREDITS: "You dont have enough credits.",
+    NO_PROJECTS_FOUND: "No Projects Found.",    
     MESSAGE_SEND:'Message send successfully.',
     TICKET_UPDATE:'Ticket updated successfully.',
+    CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.'
   }
 };

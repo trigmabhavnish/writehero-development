@@ -28,6 +28,7 @@ export class TicketListingComponent implements OnInit {
    */
   private getSuppotsData(): void {
     this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
+      
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
       this.user = response.user;
@@ -43,7 +44,7 @@ export class TicketListingComponent implements OnInit {
    * @param ticket containg the id of the ticket
    */
   public viewDetails(ticket: any): void {
-    this.router.navigate(['/user/ticket-detail/' + ticket.id])
+    this.router.navigate(['/user/ticket-detail/' + ticket.id]);
 
   }
 

@@ -12,7 +12,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../../../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import { AddNewProjectComponent } from './projects/add-new-project/add-new-project.component';
 import { CustomWizardComponent } from './custom-wizard/custom-wizard.component';
 import { BuyCreditsComponent } from './buy-credits/buy-credits.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -23,7 +23,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TicketListingComponent } from './support/ticket-listing/ticket-listing.component';
 import { CreateTicketComponent } from './support/create-ticket/create-ticket.component';
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
-import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
+import { ProjectsListingComponent } from './projects/projects-listing/projects-listing.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+
 import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
 import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
 import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
@@ -36,7 +39,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent, BillingListingComponent],
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent],  
   imports: [
     CommonModule,
     UsersRoutingModule,

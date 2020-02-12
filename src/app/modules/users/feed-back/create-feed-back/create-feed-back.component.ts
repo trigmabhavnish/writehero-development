@@ -13,10 +13,11 @@ import { Router } from '@angular/router';
 export class CreateFeedBackComponent implements OnInit {
   feedbackForm: FormGroup;
   projects: any;
-  isSubmitted:boolean =false;
-  constructor(private router:Router,private fb: FormBuilder, private feedbackservice: FeedBackService,private commonUtilsService: CommonUtilsService) { }
+  isSubmitted:boolean = false;
+  constructor(private router: Router, private fb: FormBuilder, private feedbackservice: FeedBackService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
+
     this.feedbackForm = this.fb.group({
       project_id: ["", Validators.required],
       O: [0],
@@ -30,6 +31,8 @@ export class CreateFeedBackComponent implements OnInit {
     });
     this.getCompletedProject();
   }
+
+
   /**
 * validate wizard and move to either direction. 
 * @param validityStatus boolean(form validation status)
@@ -44,31 +47,27 @@ export class CreateFeedBackComponent implements OnInit {
   };
 
 
-  public getCompletedProject():void{
-    this.feedbackservice.getCompletedProjects().subscribe(response=>{
+  public getCompletedProject(): void {
+    this.feedbackservice.getCompletedProjects().subscribe(response => {
       this.projects = response.projects
-    },error=>{
+    }, error => {
 
     })
   }
 
-/**
- * SUBMIT FEEDBACK ON THE COMPLETED PROJECT
- */
-  public submitFeedBack():void{
-    this.isSubmitted = true;
-    if(this.feedbackForm.invalid) return;
-   this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response=>{
-        this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
-        this.isSubmitted = false;
-        this.feedbackForm.reset();
-        this.router.navigate(['/user/feedback-listing'])
-   },
-   
-   error=>{
-    this.isSubmitted = false;
-    this.commonUtilsService.onError(error.response);
-   })
+  /**
+   * SUBMIT FEEDBACK ON THE COMPLETED PROJECT
+   */
+  public submitFeedBack(): void {
+    if (this.feedbackForm.invalid) return;
+    this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response => {
+      this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
+      this.feedbackForm.reset();
+      this.router.navigate(['/user/feed-back-listing'])
+    },
+      error => {
+        this.commonUtilsService.onError(error);
+      })
 
   }
 }

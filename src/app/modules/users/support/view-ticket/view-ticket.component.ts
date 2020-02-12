@@ -220,7 +220,7 @@ export class ViewTicketComponent implements OnInit {
       this.ticketReplyForm.reset();
       this.ticketReplyForm.patchValue({
         support_id: this.supportId,
-        support_files:[]
+        support_files: []
       });
       this.isSubmitted = false;
       this.getTicketDetails()
@@ -242,7 +242,7 @@ export class ViewTicketComponent implements OnInit {
       if (result.value) {
         this.supportService.updateSupportTicket({ support_id: this.supportId }).subscribe(response => {
           this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_UPDATE);
-          
+
           this.getTicketDetails();
         }, error => {
           this.commonUtilsService.onError(error.response);

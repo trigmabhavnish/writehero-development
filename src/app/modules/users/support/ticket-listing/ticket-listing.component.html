@@ -38,19 +38,19 @@
                                     <div class="support-all-grid">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <div class="create-project-button-tab">
+                                                <div class="create-project-button-tab min--height-box">
                                                     <i class="fa fa-plus"></i>
                                                     <a routerLink="/user/create-ticket" class="pro-btn-tab">Create new
                                                         support ticket
                                                     </a>
                                                 </div>
                                             </div>
-                                            <ng-container *ngIf="tickets.length">
+                                            <ng-container *ngIf="!tickets.length">
                                                 <div class="col-lg-4" *ngFor="let ticket of tickets | paginate: { id: 'foo',
                                             itemsPerPage: pageSize,
                                             currentPage: currentPage,
                                             totalItems: totalItems };let i = index;">
-                                                    <div class="support-desc-tabs">
+                                                    <div class="support-desc-tabs min--height-box">
                                                         <p (click)="viewDetails(ticket)" class="sp-msg-title">
                                                             {{ticket?.subject}}</p>
                                                         <p class="sp-msg-desc">
@@ -86,8 +86,8 @@
                                                     </div>
                                                 </div>
                                             </ng-container>
-                                            <div class="col-lg-4" *ngIf="!tickets.length">
-                                                <div class="support-desc-tabs">
+                                            <div class="col-lg-4" *ngIf="tickets.length">
+                                                <div class="support-desc-tabs min--height-box align-items-center justify-content-center">
                                                     <i class="fa fa-plus"></i>
                                                     <p>No Ticket Found</p>
                                                 </div>
