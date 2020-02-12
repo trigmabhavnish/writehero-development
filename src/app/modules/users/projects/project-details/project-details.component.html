@@ -39,7 +39,7 @@
                                                     <div class="col-lg-4">
                                                         <div class="wr-hero-project-history whole-pattern">
                                                             <h6 class="wr-hero-project-history-title"><span
-                                                                    class="fnt-18-0">{{projectDetails?.project_type_id}}</span><span
+                                                                    class="fnt-18-0">{{projectDetails?.project_type_name}}</span><span
                                                                     class="fnt-30-0">${{projectDetails?.project_cost}}</span>
                                                             </h6>
                                                             <p class="pcs10">{{projectDetails?.quantity}} x
@@ -138,7 +138,7 @@
                                                         <div class="col-md-12 text-lg-right">
                                                             <a routerLink="/user/dashboard" *ngIf="projectDetails.project_status == 'Pending'" class="btn-cmn-pro mr-2">Ask update</a>
                                                             <a routerLink="/user/edit-project/{{projectDetails.id}}" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">edit project</a>
-                                                            <a routerLink="/user/cancel-project/" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">Cancel project</a>
+                                                            <a (click)="onCancelProject()" href="javascript:void(0)" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">Cancel project</a>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -321,7 +321,7 @@ export class AddNewProjectComponent implements OnInit {
       word_count: [0, Validators.compose([Validators.required, Validators.min(1)])],
       project_details: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(200)])],
       additional_resources: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(200)])],
-      project_package: ['', [Validators.required]],
+      project_package: [''],
       project_cost: [''],
       project_files: this.formBuilder.array([]),
     });
@@ -398,6 +398,7 @@ export class AddNewProjectComponent implements OnInit {
         //console.log(res.projectPackages);
         this.getProjectPackageArray = res.projectPackages;
         this.selectedProjectPackageId = res.projectPackages[0].id;
+        this.projectDetailsForm.controls.project_package.patchValue(res.projectPackages[0].id);
         this.packagePrice = res.projectPackages[0].price;
         //case error 
       }, error => {

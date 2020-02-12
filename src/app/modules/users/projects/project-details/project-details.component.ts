@@ -27,6 +27,7 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 })
 export class ProjectDetailsComponent implements OnInit {
   projectId: any;
+  projectCost: any;
   projectDetails: any = {};
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
@@ -45,6 +46,7 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
+        this.projectCost = res.project_details.project_cost;
       }, error => {
         this.commonUtilsService.onError(error.response);
       });
@@ -53,16 +55,30 @@ export class ProjectDetailsComponent implements OnInit {
   /**
    * Cancel the Project
    */
-  private onCancelProject(): void {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
-    this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
-      //case success
-      (res) => {
-        this.commonUtilsService.hidePageLoader();
-        this.projectDetails = res.project_details;
-      }, error => {
-        this.commonUtilsService.onError(error.response);
-      });
+  onCancelProject(): void {
+
+    Swal.fire({
+      title: environment.MESSAGES.CANCEL_PROJECT,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+        this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
+          //case success
+          (res) => {
+            this.commonUtilsService.onSuccess(res.response);
+
+          }, error => {
+            this.commonUtilsService.onError(error.response);
+          });
+      }
+
+    })
+
+
   }
 
 
