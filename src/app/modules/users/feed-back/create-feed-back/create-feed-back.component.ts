@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class CreateFeedBackComponent implements OnInit {
   feedbackForm: FormGroup;
   projects: any;
+  isSubmitted:boolean =false;
   constructor(private router:Router,private fb: FormBuilder, private feedbackservice: FeedBackService,private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
@@ -55,14 +56,18 @@ export class CreateFeedBackComponent implements OnInit {
  * SUBMIT FEEDBACK ON THE COMPLETED PROJECT
  */
   public submitFeedBack():void{
+    this.isSubmitted = true;
     if(this.feedbackForm.invalid) return;
    this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response=>{
         this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
+        this.isSubmitted = false;
         this.feedbackForm.reset();
-        this.router.navigate(['/user/feed-back-listing'])
+        this.router.navigate(['/user/feedback-listing'])
    },
+   
    error=>{
-    this.commonUtilsService.onError(error);
+    this.isSubmitted = false;
+    this.commonUtilsService.onError(error.response);
    })
 
   }

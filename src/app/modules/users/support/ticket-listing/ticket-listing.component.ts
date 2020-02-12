@@ -28,10 +28,11 @@ export class TicketListingComponent implements OnInit {
    */
   private getSuppotsData(): void {
     this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
-      console.log('the message is', response)
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
       this.user = response.user;
+    },error=>{
+      
     })
   }
 

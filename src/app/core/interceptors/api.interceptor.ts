@@ -14,7 +14,6 @@ export class ApiIntercepter implements HttpInterceptor {
 
     // check Dealer Subscription Expired or Not
 
-    //console.log('API_ENDPOINT:' + environment.API_ENDPOINT)
     let setHeaders;
     if (localStorage.getItem('isLoggedIn')) {
       setHeaders = { 'x-auth-token': localStorage.getItem('x-auth-token') };

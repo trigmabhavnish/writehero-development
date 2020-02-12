@@ -29,7 +29,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         //localStorage.removeItem('loggedinUser');
                         localStorage.clear();
                         //this.userAuthService.isLoggedIn(false, '');
-                        //console.log('the redirect url is'+redirectUrl)
                         this.router.navigate(['/user/login']);
                     }
                     return throwError(errorMessage);

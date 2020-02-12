@@ -29,6 +29,8 @@ export class FeedBackListingComponent implements OnInit {
     this.feedbckservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
       this.feedbacks = response.feedback;
       this.totalItems = response.totalItems;
+    },error=>{
+      
     })
   }
 

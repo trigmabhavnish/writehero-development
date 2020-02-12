@@ -74,7 +74,6 @@ export class SupportService {
   * @return array
   */
  getTicketDetails(postedData): Observable<any> {
-   console.log('the rq',postedData)
   return this.httpClient
     .post('support/getTicketDetails', postedData)
     .map((response: Response) => {

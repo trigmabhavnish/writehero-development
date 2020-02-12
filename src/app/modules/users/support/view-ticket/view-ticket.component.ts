@@ -179,11 +179,10 @@ export class ViewTicketComponent implements OnInit {
         });
 
         this.on("error", function (file, error) {
-          //console.log('error', error);
 
           this.removeFile(file);
 
-          self.commonUtilsService.onError(error);
+          self.commonUtilsService.onError(error.response);
         });
 
       }
@@ -226,7 +225,7 @@ export class ViewTicketComponent implements OnInit {
       this.isSubmitted = false;
       this.getTicketDetails()
     }, error => {
-      this.commonUtilsService.onError(error);
+      this.commonUtilsService.onError(error.response);
     })
   }
 
@@ -246,7 +245,7 @@ export class ViewTicketComponent implements OnInit {
           
           this.getTicketDetails();
         }, error => {
-          this.commonUtilsService.onError(error);
+          this.commonUtilsService.onError(error.response);
         })
       }
 

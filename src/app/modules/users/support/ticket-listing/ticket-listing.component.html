@@ -97,17 +97,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" *ngIf="tickets.length > 0">
                                         <div class="col-md-12 writer-pagination mb-3">
-
-                                            <!-- <ul class="">
-                                                    <li class="page-prev"><a href="#">Prev</a></li>
-                                                    <li class="page-middle page-active"><a
-                                                            href="#">1</a></li>
-                                                    <li class="page-middle"><a href="#">2</a></li>
-                                                    <li class="page-middle"><a href="#">3</a></li>
-                                                    <li class="page-next"><a href="#">Next</a></li>
-                                                </ul> -->
                                             <pagination-controls id="foo" (pageChange)="pageChanged($event)"
                                                 (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
                                                 directionLinks="true" responsive="true" previousLabel="Previous"

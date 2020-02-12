@@ -1,0 +1,109 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a routerLink="/" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+
+
+
+
+
+
+                                    <div class="dashboard-welcome-note">
+                                        <p>Billing</p>
+                                    </div>
+                                    <p class="support-content-desc">This is Photoshop's version of
+                                        Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+                                        Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
+                                        consequat ipsum, nec sagittis sem nibh id elit.</p>
+                                    <div class="support-all-grid">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="create-project-button-tab">
+                                                    <i class="fa fa-plus"></i>
+                                                    <a routerLink="/user/create-ticket" class="pro-btn-tab">Buy
+                                                         Credit
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <ng-container *ngIf="billingListing.length">
+                                                <div class="col-lg-4" *ngFor="let billing of billingListing | paginate: { id: 'foo',
+                                            itemsPerPage: pageSize,
+                                            currentPage: currentPage,
+                                            totalItems: totalItems };let i = index;">
+                                            <div class="support-desc-tabs whole-pattern">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <img *ngIf="billing.payment_method == 'P'" src="assets/image/paypal_logo.png">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="paypal-info-right">
+                                                            <p class="paypal-info-right-p">
+                                                                Invoice</p>
+                                                            <p class="paypal-info-right-p">
+                                                                {{billing?.code}}</p>
+                                                            <p class="paypal-info-right-p">{{billing?.payment_date | date:'dd/mm/yy'}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p class="paypal-cost-amnt">${{billing?.cost}}</p>
+                                                        <p class="paypal-transact-desc">
+                                                            Transactions ID : <span
+                                                                class="paypal-transact-desc-id">{{billing?.transaction_code}}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </div>
+                                            </ng-container>
+                                            <div class="col-lg-4" *ngIf="!billingListing.length">
+                                                <div class="support-desc-tabs">
+                                                    <i class="fa fa-plus"></i>
+                                                    <p>No Credit Found</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row" *ngIf="billingListing.length">
+                                        <div class="col-md-12 writer-pagination mb-3">
+                                            <pagination-controls id="foo" (pageChange)="pageChanged($event)"
+                                                (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
+                                                directionLinks="true" responsive="true" previousLabel="Previous"
+                                                nextLabel="Next" screenReaderPaginationLabel="Pagination"
+                                                screenReaderPageLabel="page">
+                                            </pagination-controls>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

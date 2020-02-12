@@ -150,3 +150,17 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     opacity: 1;
     visibility: visible;
 }
+
+.ps__thumb-y {
+    background: linear-gradient(45deg, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+}
+.ps .ps__rail-x.ps--clicking, .ps .ps__rail-x:focus, .ps .ps__rail-x:hover, .ps .ps__rail-y.ps--clicking, .ps .ps__rail-y:focus, .ps .ps__rail-y:hover, .ps__rail-y.ps--clicking .ps__thumb-y, .ps__rail-y:focus>.ps__thumb-y, .ps__rail-y:hover>.ps__thumb-y, .ps__thumb-y {
+    background-color: transparent !important;
+}
+.ps--focus>.ps__rail-x, .ps--focus>.ps__rail-y, .ps--scrolling-x>.ps__rail-x, .ps--scrolling-y>.ps__rail-y, .ps:hover>.ps__rail-x, .ps:hover>.ps__rail-y {
+    opacity: 1 !important;
+}
+perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scrolling-y>.ps__rail-y {
+    opacity: 1 !important;
+    background-color: transparent !important;
+}
