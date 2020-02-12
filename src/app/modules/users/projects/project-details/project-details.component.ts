@@ -6,7 +6,7 @@ import { of, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
-
+import Swal from 'sweetalert2'
 import { CustomValidator } from '../../../../core/_helpers/custom-validator';
 // import environment
 import { environment } from '../../../../../environments/environment';
@@ -45,18 +45,27 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
-        console.log(res.project_details);
-        
-        //this.getProjectPackageArray = res.projectPackages;
-        //this.selectedProjectPackageId = res.projectPackages[0].id;
-        //this.packagePrice = res.projectPackages[0].price;
-        //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);
       });
   }
 
-  
+  /**
+   * Cancel the Project
+   */
+  private onCancelProject(): void {
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {
+        this.commonUtilsService.hidePageLoader();
+        this.projectDetails = res.project_details;
+      }, error => {
+        this.commonUtilsService.onError(error.response);
+      });
+  }
+
+
 
   // This method must be present, even if empty.
   ngOnDestroy() {

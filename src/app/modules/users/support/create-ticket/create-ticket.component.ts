@@ -45,7 +45,7 @@ export class CreateTicketComponent implements OnInit {
   /**
   * get Product Image Form Array
   */
-  get projectFilesArray(): FormArray {
+  get supportFilesArray(): FormArray {
     return this.createTicketForm.controls.support_files as FormArray;
   }
 
@@ -118,7 +118,7 @@ export class CreateTicketComponent implements OnInit {
       accept: function (file, done) {
 
 
-        if ((self.projectFilesArray.length + 1) > 1) {
+        if ((self.supportFilesArray.length + 1) > 1) {
           self.commonUtilsService.onError(environment.MESSAGES.CANNOT_UPLOAD_MORE);
           this.removeFile(file);
           return false;
@@ -156,7 +156,7 @@ export class CreateTicketComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Project');
+          formData.append('folder', 'Support');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', self.base64StringFile);
         });
@@ -173,7 +173,7 @@ export class CreateTicketComponent implements OnInit {
 
 
           self.zone.run(() => {
-            self.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
+            self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Support' }));
           });
 
           this.removeFile(file);
@@ -199,9 +199,9 @@ export class CreateTicketComponent implements OnInit {
  * @param index index of the image array
  * @return  boolean
  */
-  removeImage(index, file_category, file_key): void {
+  removeFile(index, file_category, file_key): void {
 
-    this.projectFilesArray.removeAt(index);
+    this.supportFilesArray.removeAt(index);
     this.removeFileFromBucket(file_key);
   }
 
@@ -212,7 +212,6 @@ export class CreateTicketComponent implements OnInit {
    * Validate create ticket form and submit from value to Db
    */
   public submitTicket(): void {
-    console.log(this.createTicketForm.value)
     if (this.createTicketForm.invalid) return
     this.supportService.createSupportTicket(this.createTicketForm.value).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_CREATED);

@@ -1,4 +1,3 @@
-<p>ticket-listing works!</p>
 <!--Dashboard HTML Starts-->
 <div class="dashboard-gutter">
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
@@ -46,48 +45,55 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <div class="support-desc-tabs" *ngFor="let ticket of tickets | paginate: { id: 'foo',
-                                                    itemsPerPage: pageSize,
-                                                    currentPage: currentPage,
-                                                    totalItems: totalItems };let i = index;">
-                                                    <p (click)="viewDetails(ticket)" class="sp-msg-title">{{ticket?.subject}}</p>
-                                                    <p class="sp-msg-desc">
-                                                        {{ticket?.messages[0]?.message | slice:1:100}} </p>
-                                                    <p class="sp-date"><span>Date : </span> <span
-                                                            class="sp-msg-dt">{{ticket?.created_on | date :'dd/mm/yy'}}</span>
-                                                    </p>
-                                                    <p class="sp-date"><span>Status : </span> <span
-                                                            class="sp-msg-status  "
-                                                            [ngClass]="[ticket?.support_status == 'unsolved' ? 'sp-pending' : 'sp-solved']">{{ticket?.support_status == 'unsolved' ? 'PENDING' : 'SOLVED'}}</span>
-                                                    </p>
-                                                    <div class="sp-reply-outer">
-                                                        <div class="sp-profile-outer">
-                                                            <ng-container
-                                                                *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id == 0">
-                                                                <img [src]="'assets/image/dummyuser.png'">
-                                                            </ng-container>
-                                                            <ng-container
-                                                                *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id != 0">
-                                                                <img
-                                                                    [src]="user?.profile_pic ? user?.profile_pic :'assets/image/dummyuser.png'">
-                                                            </ng-container>
+                                            <ng-container *ngIf="tickets.length">
+                                                <div class="col-lg-4" *ngFor="let ticket of tickets | paginate: { id: 'foo',
+                                            itemsPerPage: pageSize,
+                                            currentPage: currentPage,
+                                            totalItems: totalItems };let i = index;">
+                                                    <div class="support-desc-tabs">
+                                                        <p (click)="viewDetails(ticket)" class="sp-msg-title">
+                                                            {{ticket?.subject}}</p>
+                                                        <p class="sp-msg-desc">
+                                                            {{ticket?.messages[0]?.message | slice:1:100}} </p>
+                                                        <p class="sp-date"><span>Date : </span> <span
+                                                                class="sp-msg-dt">{{ticket?.created_on | date :'dd/mm/yy'}}</span>
+                                                        </p>
+                                                        <p class="sp-date"><span>Status : </span> <span
+                                                                class="sp-msg-status  "
+                                                                [ngClass]="[ticket?.support_status == 'unsolved' ? 'sp-pending' : 'sp-solved']">{{ticket?.support_status == 'unsolved' ? 'PENDING' : 'SOLVED'}}</span>
+                                                        </p>
+                                                        <div class="sp-reply-outer">
+                                                            <div class="sp-profile-outer">
+                                                                <ng-container
+                                                                    *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id == 0">
+                                                                    <img [src]="'assets/image/dummyuser.png'">
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="ticket.messages[ticket.messages.length -1].instanciate_id != 0">
+                                                                    <img
+                                                                        [src]="user?.profile_pic ? user?.profile_pic :'assets/image/dummyuser.png'">
+                                                                </ng-container>
 
-                                                        </div>
-                                                        <div class="sp-profile-cmnt-outer">
-                                                            <p class="sp-profile-cmnt-reply">Last
-                                                                Reply</p>
-                                                            <p class="sp-profile-cmnt-content">
-                                                                {{ticket.messages[ticket.messages.length -1]?.message | slice:1:100}}
-                                                            </p>
+                                                            </div>
+                                                            <div class="sp-profile-cmnt-outer">
+                                                                <p class="sp-profile-cmnt-reply">Last
+                                                                    Reply</p>
+                                                                <p class="sp-profile-cmnt-content">
+                                                                    {{ticket.messages[ticket.messages.length -1]?.message | slice:1:100}}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </ng-container>
+                                            <div class="col-lg-4" *ngIf="!tickets.length">
+                                                <div class="support-desc-tabs">
+                                                    <i class="fa fa-plus"></i>
+                                                    <p>No Ticket Found</p>
+                                                </div>
                                             </div>
-                                          
-                                          
-                                           
-                                           
+
+
                                         </div>
                                     </div>
 
@@ -104,10 +110,9 @@
                                                 </ul> -->
                                             <pagination-controls id="foo" (pageChange)="pageChanged($event)"
                                                 (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
-                                                directionLinks="true"  responsive="true"
-                                                previousLabel="Previous" nextLabel="Next"
-                                                screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
-                                            >
+                                                directionLinks="true" responsive="true" previousLabel="Previous"
+                                                nextLabel="Next" screenReaderPaginationLabel="Pagination"
+                                                screenReaderPageLabel="page">
                                             </pagination-controls>
                                         </div>
                                     </div>

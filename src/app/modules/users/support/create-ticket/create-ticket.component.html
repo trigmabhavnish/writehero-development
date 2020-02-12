@@ -41,7 +41,7 @@
                                                                             fermentum in tempus sed, aliquet sed enim
                                                                         </p>
                                                                        
-                                                                        <div class="col-lg-6 pl-0">
+                                                                        <div class="col-lg-7 pl-0">
                                                                             <label>Support Type</label>
                                                                             <select formControlName="support_type">
                                                                                 <option value="">Select Support Type</option>
@@ -63,7 +63,7 @@
                                                                              </p>
  
                                                                          </div>
-                                                                         <div class="col-lg-6 pl-0">
+                                                                         <div class="col-lg-7 pl-0  mt-3">
                                                                             <label>Subject</label>
                                                                            
                                                                              <input type="text"
@@ -80,10 +80,10 @@
                                                                              </p>
  
                                                                          </div>
-                                                                         <div class="col-lg-6 pl-0">
+                                                                         <div class="col-lg-7 pl-0  mt-3">
                                                                             <label>Message</label>
   
-                                                                               <textarea formControlName="message">
+                                                                               <textarea formControlName="message" class="ht--130">
 
                                                                                </textarea>
                                                                              <p
@@ -96,40 +96,49 @@
  
                                                                          </div>
                                                                     </div>
-                                                                    <div class="col-lg-5">
-                                                                        <div class="col-lg-12 col-lg-12 step-progress-fields">
-                                                                            <label>Attach File?</label>
-                                                                            <div class="uploadcode">
-                                                                                <div class="uploadImages position-relative">
-                                                                                    <div class="dropzone dropzone-container"
-                                                                                        [dropzone]="supportFileConfiguration"
-                                                                                        [disabled]="disabled"></div>
+                                                                    <div class="col-lg-12 mt-4">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col-lg-4">
+                                                                                <label class="attach--label">Attach File?</label>
+                                                                            </div>
+                                                                            <div class="col-lg-8">
+                                                                                <div class="uploadcode">
+                                                                                    <div class="uploadImages position-relative">
+                                                                                        <div class="dropzone dropzone-container"
+                                                                                            [dropzone]="supportFileConfiguration"
+                                                                                            [disabled]="disabled">
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+           
             
                                                                         <!--Upload Images Section-->
-                                                                        <div class="col-md-12">
-                                                                            <div class="thumbnails"
-                                                                                *ngIf="checkObjectLength(projectFilesArray.value) > 0">
-                                                                                <div class="thumbnail_list"
-                                                                                    *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
-            
-                                                                                    <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
-                                                                                        src="{{projectImage.value.file_path}}">
-            
-                                                                                    <a class="upload_pdf" data-toggle="tooltip"
-                                                                                        title="{{projectImage.value.file_name}}"
-                                                                                        *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                                        href="{{projectImage.value.file_path}}"
-                                                                                        target="_blank"><img
-                                                                                            src="assets/image/pdf_icon.png"></a>
-            
-                                                                                    <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
-                                                                                        class="fa fa-times" aria-hidden="true"></i>
+                                                                        <div class="row mt-3">
+                                                                            <div class="col-md-8">
+                                                                                <div class="thumbnails"
+                                                                                    *ngIf="checkObjectLength(supportFilesArray.value) > 0">
+                                                                                    <div class="thumbnail_list"
+                                                                                        *ngFor="let supportFile of supportFilesArray.value | keyvalue; let projectImage = index;">
+                
+                                                                                        <img *ngIf="supportFile.value.file_mimetype != 'application/pdf'"
+                                                                                            src="{{supportFile.value.file_path}}">
+                
+                                                                                        <a class="upload_pdf" data-toggle="tooltip"
+                                                                                            title="{{supportFile.value.file_name}}"
+                                                                                            *ngIf="supportFile.value.file_mimetype == 'application/pdf'"
+                                                                                            href="{{supportFile.value.file_path}}"
+                                                                                            target="_blank"><img
+                                                                                                src="assets/image/pdf_icon.png"></a>
+                
+                                                                                        <i (click)="removeFile(supportFile.key, 'project',supportFile.value.file_key)"
+                                                                                            class="fa fa-times" aria-hidden="true"></i>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                            
             
                                                                         <!--Upload Images Section-->
             

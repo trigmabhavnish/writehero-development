@@ -1,0 +1,136 @@
+
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <!--Project HTML starts-->
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Submit FeedBack</h4>
+                                            <aw-wizard [disableNavigationBar]="true">
+                                                <aw-wizard-step
+                                                    [canExit]="moveDirection.bind(this, feedbackForm.valid)">
+                                                    <form [formGroup]="feedbackForm">
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                     
+                                                                       
+                                                                        <div class="col-lg-7 pl-0">
+                                                                            <label>Project FeedBack for</label>
+                                                                            <select formControlName="project_id">
+                                                                                <option value="">Select Project</option>
+                                                                                <option [value]="project.id" *ngFor="let project of projects;let i = index;">{{project?.project_name}}</option>
+                                                                             
+                                                                            </select>
+                                                            
+                                                                             <p
+                                                                                 *ngIf="feedbackForm.controls.project_id.touched || isSubmitted">
+                                                                                 <app-form-validation-errors
+                                                                                     
+                                                                                     errorPrefix="Project Name "
+                                                                                     [errors]="feedbackForm.controls.project_id.errors">
+                                                                                 </app-form-validation-errors>
+                                                                             </p>
+ 
+                                                                         </div>
+                                                                         <div class="col-lg-7 pl-0  mt-3">
+                                                                            <label>Subject</label>
+                                                                                Originality and Creativity : <rating 
+                                                                                formControlName="O"
+                                                                            >
+                                                                               </rating>
+                                                                            Reliability and Credibility: <rating 
+                                                                             formControlName="R"
+                                                                            >
+                                                                               </rating>
+                                                                            Grammar and Language:<rating 
+                                                                             formControlName="G"
+                                                                            >
+                                                                               </rating>
+                                                                            Format and structure:<rating 
+                                                                             formControlName="F"
+                                                                            >
+                                                                               </rating>
+                                                                            SEO and Keywords:<rating  
+                                                                             formControlName="S"
+                                                                            >
+                                                                               </rating>
+                                                                            Turnaround time:<rating   formControlName="T"></rating>
+ 
+                                                                         </div>
+                                                                         <div class="col-lg-7 pl-0  mt-3">
+                                                                            <label>FeedBack Message</label>
+  
+                                                                               <textarea formControlName="feed_des" class="ht--130">
+
+                                                                               </textarea>
+                                                                             <p
+                                                                                 *ngIf="feedbackForm.controls.feed_des.touched || isSubmitted">
+                                                                                 <app-form-validation-errors
+                                                                                     errorPrefix="FeedBack "
+                                                                                     [errors]="feedbackForm.controls.feed_des.errors">
+                                                                                 </app-form-validation-errors>
+                                                                             </p>
+ 
+                                                                         </div>
+                                                                    </div>
+                                                               
+
+                                                                    <div class="col-lg-12 mt-4">
+
+                                                                        <button [disabled]="feedbackForm.invalid"
+                                                                            (click)="submitFeedBack()"
+                                                                            type="button"
+                                                                            class="submit-btn-feedback min-w-130"
+                                                                            awNextStep>
+                                                                            Submit
+                                                                        </button>
+                                                                        <!--a href="#" class="advance-text">( or skip )</a-->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </aw-wizard-step>
+                                               
+                                            </aw-wizard>
+                                        </div>
+
+                                    </div>
+                                    <!--Project HTML ends-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Dashboard HTML Ends-->
+</div>

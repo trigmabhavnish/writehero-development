@@ -29,7 +29,8 @@
               "src/assets/css/main.css",
               "src/assets/css/css-loader.css",
               "src/assets/css/developer.css",
-              "src/assets/css/media.css"        
+              "src/assets/css/media.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "src/assets/js/jquery-3.4.1.min.js",

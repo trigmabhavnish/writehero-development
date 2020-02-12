@@ -179,8 +179,9 @@ export class BuyCreditsComponent implements OnInit {
    * Calculate Discount if Coupon Code is entered 
    */
   public calculateDiscount(couponCode, credits): void {
-    let calculateDiscount;
-    if (couponCode != "" && credits != "") {
+    let calculateDiscount;   
+
+    if (couponCode != "" && credits != 0) {
 
       this.creditsService.checkCouponCodeExist({ coupon_code: couponCode }).pipe(untilDestroyed(this)).subscribe(
         //case success
@@ -214,6 +215,7 @@ export class BuyCreditsComponent implements OnInit {
       this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount); // Update Amout to pay value
       this.calAmountToPay = calculateDiscount;
       this.isCouponApplied = false;
+      this.couponCodeResponse = '<span class="red">' + environment.MESSAGES.CREDITS_NOT_EMPTY + '</span>';
     }
   }
 

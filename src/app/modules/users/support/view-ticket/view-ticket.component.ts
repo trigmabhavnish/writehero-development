@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SupportService, CommonUtilsService } from 'src/app/core/_services';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import Swal from 'sweetalert2'
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 // import environment
 import { environment } from '../../../../../environments/environment';
@@ -57,7 +58,7 @@ export class ViewTicketComponent implements OnInit {
   /**
  * get Product Image Form Array
  */
-  get projectFilesArray(): FormArray {
+  get supportFilesArray(): FormArray {
     return this.ticketReplyForm.controls.support_files as FormArray;
   }
 
@@ -115,7 +116,7 @@ export class ViewTicketComponent implements OnInit {
       accept: function (file, done) {
 
 
-        if ((self.projectFilesArray.length + 1) > 1) {
+        if ((self.supportFilesArray.length + 1) > 1) {
           self.commonUtilsService.onError(environment.MESSAGES.CANNOT_UPLOAD_MORE);
           this.removeFile(file);
           return false;
@@ -153,7 +154,7 @@ export class ViewTicketComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Project');
+          formData.append('folder', 'Support');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', self.base64StringFile);
         });
@@ -170,7 +171,7 @@ export class ViewTicketComponent implements OnInit {
 
 
           self.zone.run(() => {
-            self.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
+            self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Support' }));
           });
 
           this.removeFile(file);
@@ -203,10 +204,55 @@ export class ViewTicketComponent implements OnInit {
   * @param index index of the image array
   * @return  boolean
   */
-  removeImage(index, file_category, file_key): void {
+  removeFile(index, file_category, file_key): void {
 
-    this.projectFilesArray.removeAt(index);
+    this.supportFilesArray.removeAt(index);
     this.removeFileFromBucket(file_key);
+  }
+
+  /**
+   * submit Reply 
+   */
+  public submitReply(): void {
+    this.isSubmitted = true;
+    if (this.ticketReplyForm.invalid) return
+    this.supportService.submitReply(this.ticketReplyForm.value).subscribe(response => {
+      this.commonUtilsService.onSuccess(environment.MESSAGES.MESSAGE_SEND);
+      this.ticketReplyForm.reset();
+      this.ticketReplyForm.patchValue({
+        support_id: this.supportId,
+        support_files: []
+      });
+      this.isSubmitted = false;
+      this.getTicketDetails()
+    }, error => {
+      this.commonUtilsService.onError(error);
+    })
+  }
+
+
+  public solveTicket(): void {
+
+    Swal.fire({
+      title: 'Are you sure you issue has been solved?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No, Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this.supportService.updateSupportTicket({ support_id: this.supportId }).subscribe(response => {
+          this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_UPDATE);
+
+          this.getTicketDetails();
+        }, error => {
+          this.commonUtilsService.onError(error);
+        })
+      }
+
+    })
+
+
   }
 
   // This method must be present, even if empty.

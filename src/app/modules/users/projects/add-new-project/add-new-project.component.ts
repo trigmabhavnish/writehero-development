@@ -334,7 +334,7 @@ export class AddNewProjectComponent implements OnInit {
     this.writersDetailsForm = this.formBuilder.group({
       choice_of_writers: [''],
       writers_career: [''],
-      writers_age: ['18-25'],
+      writers_age: [''],
       writers_location: [''],
     });
   }

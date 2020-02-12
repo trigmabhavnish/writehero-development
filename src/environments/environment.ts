@@ -20,7 +20,11 @@ export const environment = {
     CANNOT_UPLOAD_MORE: "You cannot upload any more files.",
     TICKET_CREATED:'The ticket has been created successfully.',
     NOT_ENOUGH_CREDITS: "You dont have enough credits.",
-    NO_PROJECTS_FOUND: "No Projects Found."
+    NO_PROJECTS_FOUND: "No Projects Found.",    
+    MESSAGE_SEND:'Message send successfully.',
+    TICKET_UPDATE:'Ticket updated successfully.',
+    CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
+    FEEDBACK_SUCCESS:'Feedback has been submitted successfully.'
   }
 };
 

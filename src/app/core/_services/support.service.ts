@@ -28,6 +28,34 @@ export class SupportService {
 }
 
 
+
+  /**
+  * get Project Packages
+  * @return array
+  */
+ submitReply(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('support/saveMessage', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
+  /**
+  * get Project Packages
+  * @return array
+  */
+ updateSupportTicket(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('support/updateTicket', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
+
   /**
   * get Project Packages
   * @return array
