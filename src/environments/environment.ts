@@ -24,7 +24,8 @@ export const environment = {
     MESSAGE_SEND:'Message send successfully.',
     TICKET_UPDATE:'Ticket updated successfully.',
     CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
-    FEEDBACK_SUCCESS:'Feedback has been submitted successfully.'
+    FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',
+    CANCEL_PROJECT:'Are you sure you want to cancel this project?'
   }
 };
 

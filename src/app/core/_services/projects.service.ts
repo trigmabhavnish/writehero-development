@@ -43,6 +43,20 @@ export class ProjectsService {
   }
 
   /**
+  * Cancel Project
+  * @return array
+  */
+  cancelProject(postedData): Observable<any> {
+
+    return this.httpClient
+      .post('project/cancelProject', postedData)
+      .map((response: Response) => {
+        return response;
+      });
+
+  }
+
+  /**
   * get Project Listings
   * @return array
   */
@@ -74,13 +88,13 @@ export class ProjectsService {
   * update Project
   * @return array
   */
- updateProject(postedData): Observable<any> {
+  updateProject(postedData): Observable<any> {
 
-  return this.httpClient
-    .post('project/updateProject', postedData)
-    .map((response: Response) => {
-      return response;
-    });
+    return this.httpClient
+      .post('project/updateProject', postedData)
+      .map((response: Response) => {
+        return response;
+      });
 
-}
+  }
 }
