@@ -220,7 +220,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails?.estimated_arrival}}
+                                                                            {{(projectDetails.estimated_arrival)?projectDetails.estimated_arrival: 'NA'}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -241,7 +241,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails?.director_notes}}</p>
+                                                                            {{(projectDetails.director_notes)?projectDetails.director_notes: 'NA'}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -344,15 +344,25 @@
                                                                     <div class="thumbnail_list"
                                                                         *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
 
-                                                                        <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
-                                                                            src="{{projectImage.value.file_path}}">
 
                                                                         <a class="upload_pdf" data-toggle="tooltip"
                                                                             title="{{projectImage.value.file_name}}"
-                                                                            *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                             href="{{projectImage.value.file_path}}"
-                                                                            target="_blank"><img
-                                                                                src="assets/images/pdf_icon.png"></a>
+                                                                            target="_blank">
+
+                                                                            <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
+                                                                                src="assets/image/pdf.png">
+
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                                src="assets/image/csv.png">
+
+                                                                            <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                                                src="assets/image/word.png">
+
+                                                                            <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
+                                                                                src="assets/image/zip.png">
+
+                                                                        </a>
 
                                                                         <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
                                                                             class="fa fa-times" aria-hidden="true"></i>
@@ -599,15 +609,26 @@
                                                                 <div class="thumbnail_list"
                                                                     *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
 
-                                                                    <img *ngIf="projectImage.value.file_mimetype != 'application/pdf'"
-                                                                        src="{{projectImage.value.file_path}}">
 
                                                                     <a class="upload_pdf" data-toggle="tooltip"
                                                                         title="{{projectImage.value.file_name}}"
-                                                                        *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                         href="{{projectImage.value.file_path}}"
-                                                                        target="_blank"><img
-                                                                            src="assets/images/pdf_icon.png"></a>
+                                                                        target="_blank">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
+                                                                            src="assets/image/pdf.png">
+
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                            src="assets/image/csv.png">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                                            src="assets/image/word.png">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
+                                                                            src="assets/image/zip.png">
+
+                                                                    </a>
+
 
                                                                     <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
                                                                         class="fa fa-times" aria-hidden="true"></i>

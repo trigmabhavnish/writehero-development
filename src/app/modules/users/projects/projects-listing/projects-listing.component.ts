@@ -53,7 +53,7 @@ export class ProjectsListingComponent implements OnInit {
           this.projects = res.projectListings;
           this.totalProjects = res.totalProjects;
         } else {
-          this.commonUtilsService.onError(environment.MESSAGES.NO_PROJECTS_FOUND);
+          //this.commonUtilsService.onError(environment.MESSAGES.NO_PROJECTS_FOUND);
         }
 
         //case error 
@@ -86,6 +86,10 @@ export class ProjectsListingComponent implements OnInit {
   public viewDetails(proejctId: any): void {
     this.router.navigate(['/user/project-detail/' + proejctId])
 
+  }
+
+  public navigateToCreateNewProject():void{
+    this.router.navigate(['/user/add-new-project'])
   }
 
   ngOnInit() {

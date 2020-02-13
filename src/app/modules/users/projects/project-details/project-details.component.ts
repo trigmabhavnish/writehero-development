@@ -71,6 +71,7 @@ export class ProjectDetailsComponent implements OnInit {
         this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
+            this.getProjectDetails();
             this.commonUtilsService.onSuccess(res.response);
 
           }, error => {
