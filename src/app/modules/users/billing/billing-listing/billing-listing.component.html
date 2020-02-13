@@ -61,13 +61,13 @@
                                                                 Invoice</p>
                                                             <p class="paypal-info-right-p">
                                                                 {{billing?.code}}</p>
-                                                            <p class="paypal-info-right-p">{{billing?.payment_date | date:'dd/mm/yy'}}</p>
+                                                            <p class="paypal-info-right-p">{{billing?.payment_date | date:'M/d/yy'}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <p class="paypal-cost-amnt">${{billing?.cost}}</p>
                                                         <p class="paypal-transact-desc">
-                                                            Transactions ID : <span
+                                                            Transaction ID : <span
                                                                 class="paypal-transact-desc-id">{{billing?.transaction_code}}</span>
                                                         </p>
                                                     </div>

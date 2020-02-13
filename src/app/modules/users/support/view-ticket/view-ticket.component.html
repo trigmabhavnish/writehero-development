@@ -38,7 +38,7 @@
                                                                 Ticket: {{supportData?.support[0]?.code}}</h6>
                                                             <h6 class="dashboard-latest-project-subject">
                                                                 Submitted On:
-                                                                {{supportData?.support[0]?.created_on | date:'dd/mm/yy'}}
+                                                                {{supportData?.support[0]?.created_on | date:'M/d/yy'}}
                                                             </h6>
                                                             <h6 class="dashboard-latest-project-subject">
                                                                 Satus :
@@ -70,7 +70,7 @@
                                                                                         </h6>
 
                                                                                         <span
-                                                                                            class="card-text float-left">{{message?.cur_date | date:'dd/mm/yy'}}</span>
+                                                                                            class="card-text float-left">{{message?.cur_date | date:'M/d/yy'}}</span>
                                                                                         <p>{{message?.message}}</p>
                                                                                         <a class="float-left"
                                                                                             *ngIf="message?.support_file"
@@ -90,7 +90,7 @@
                                                                                             {{supportData?.user?.last_name}}
                                                                                         </h6>
                                                                                         <span
-                                                                                            class="card-text float-right ticket--span-date">{{message?.cur_date | date:'dd/mm/yy'}}</span>
+                                                                                            class="card-text float-right ticket--span-date">{{message?.cur_date | date:'M/d/yy'}}</span>
                                                                                         <p class="ticket--span-p">
                                                                                             {{message?.message}}</p>
                                                                                         <a class="ticket--download"
