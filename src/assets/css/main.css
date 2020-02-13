@@ -2424,7 +2424,7 @@ textarea {
 .display li + li {
     margin-top: 15px;
 }
-.display::before {
+/* .display::before {
 	content: '';
 	position: absolute;
 	top: 7px;
@@ -2432,6 +2432,15 @@ textarea {
 	height: 35px;
 	background-color: #fff;
 	left: 4px;
+} */
+ul.display li + li::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 35px;
+    background-color: #fff;
+    left: 4px;
 }
 .display li.yellow::before {
 	content: '';

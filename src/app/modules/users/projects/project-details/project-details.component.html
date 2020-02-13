@@ -220,7 +220,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails.project_cdate | date : "dd-MM-yyyy"}}
+                                                                            {{projectDetails?.estimated_arrival}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -230,7 +230,8 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails?.estimated_arrival}}</p>
+                                                                            {{projectDetails.project_cdate | date : "dd-MM-yyyy"}}
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="table-row">

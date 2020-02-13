@@ -70,8 +70,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-4">
                                                                                     <input [hidden]="isCouponApplied"
-                                                                                        type="text"
-                                                                                        #coupon_code
+                                                                                        type="text" #coupon_code
                                                                                         formControlName="coupon_code"
                                                                                         placeholder=""
                                                                                         class="field-design text-uppercase">
@@ -107,22 +106,22 @@
 
                                                                         <div class="row input--hidden">
                                                                             <div class="col-lg-3">
-                                                                                    <input #paypal type="radio"
-                                                                                    formControlName="pay_via" value="paypal"
-                                                                                    id="paypalRadio" />
+                                                                                <input #paypal type="radio"
+                                                                                    formControlName="pay_via"
+                                                                                    value="paypal" id="paypalRadio" />
                                                                                 <label for="paypalRadio"
                                                                                     class="paypal--btn submit-btn-feedback">Paypal</label>
                                                                             </div>
                                                                             <div class="col-lg-3">
-                                                                                    <input #skrill type="radio"
-                                                                                    formControlName="pay_via" value="skrill"
-                                                                                    id="skrillRadio" />
+                                                                                <input #skrill type="radio"
+                                                                                    formControlName="pay_via"
+                                                                                    value="skrill" id="skrillRadio" />
                                                                                 <label for="skrillRadio"
                                                                                     class="paypal--btn submit-btn-feedback">Skrill</label>
                                                                             </div>
                                                                         </div>
 
-                                                                        
+
                                                                     </div>
                                                                     <div class="col-lg-12 mt-4">
 
@@ -141,7 +140,57 @@
                                                     </form>
                                                 </aw-wizard-step>
                                                 <aw-wizard-step>
-                                                    <div class="col-lg-12">
+
+
+                                                    <div class="buycredit-outer">
+                                                        <div class="buycredit-topbar">
+                                                            <p>Payement gateway : <span><img
+                                                                        src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg"
+                                                                        alt="paypal"></span></p>
+                                                            <div class="separator--bottom"></div>
+                                                        </div>
+                                                        <div class="buycredit-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 mb-4">
+                                                                    <div class="buycredit-body--content">
+                                                                        <p>Total credits :</p>
+                                                                        <span>{{credits?.value}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-4">
+                                                                    <div class="buycredit-body--content">
+                                                                        <p>Coupon code :</p>
+                                                                        <span>{{(appliedCouponCode)?appliedCouponCode:'NA'}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-4">
+                                                                    <div class="buycredit-body--content">
+                                                                        <p>Discount percentage :</p>
+                                                                        <span>{{(discountPercentage)?discountPercentage + '% OFF':'NA'}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 mb-4">
+                                                                    <div class="buycredit-body--content">
+                                                                        <p>Amount to pay :</p>
+                                                                        <span>${{(calAmountToPay)?calAmountToPay:credits?.value}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 mt-4">
+                                                                    <button awPreviousStep class="backstep--btn">Previous</button>
+                                                                </div>
+                                                                <div class="col-lg-4 mt-4">
+                                                                        <ngx-paypal #paypalCustom [config]="payPalConfig">
+                                                                            </ngx-paypal>
+                                                                </div>
+                                                                <div class="col-lg-4 mt-4">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!--div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div>
@@ -207,7 +256,7 @@
                                                             </div>
 
                                                         </div>
-                                                    </div>
+                                                    </div-->
                                                 </aw-wizard-step>
                                             </aw-wizard>
                                         </div>
