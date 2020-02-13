@@ -99,46 +99,65 @@
                                                                 </div>
                                                                 <div *ngIf="projectDetails.project_file"
                                                                     class="col-lg-12 mb-3">
-                                                                    <a target="_blank" href="{{projectDetails.project_file}}">Download</a>
+                                                                    <a target="_blank"
+                                                                        href="{{projectDetails.project_file}}">Download</a>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.choice_of_writers" class="col-lg-12">
+                                                                <div *ngIf="projectDetails.choice_of_writers"
+                                                                    class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
                                                                         Choice of writers :
                                                                     </p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.choice_of_writers" class="col-lg-12 mb-3">
-                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.choice_of_writers}}</p>
+                                                                <div *ngIf="projectDetails.choice_of_writers"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.choice_of_writers}}</p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_career" class="col-lg-12">
+                                                                <div *ngIf="projectDetails.writers_career"
+                                                                    class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
                                                                         Writers career :
                                                                     </p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_career" class="col-lg-12 mb-3">
-                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_career}}</p>
+                                                                <div *ngIf="projectDetails.writers_career"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.writers_career}}</p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_age" class="col-lg-12">
+                                                                <div *ngIf="projectDetails.writers_age"
+                                                                    class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
                                                                         Writers age bracker :
                                                                     </p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_age" class="col-lg-12 mb-3">
-                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_age}}</p>
+                                                                <div *ngIf="projectDetails.writers_age"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.writers_age}}</p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_location" class="col-lg-12">
+                                                                <div *ngIf="projectDetails.writers_location"
+                                                                    class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
                                                                         Writers location :
                                                                     </p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.writers_location" class="col-lg-12 mb-3">
-                                                                    <p class="dashboard-project-cum-body-contens">{{projectDetails?.writers_location}}</p>
+                                                                <div *ngIf="projectDetails.writers_location"
+                                                                    class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens">
+                                                                        {{projectDetails?.writers_location}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 text-lg-right">
-                                                            <a routerLink="/user/dashboard" *ngIf="projectDetails.project_status == 'Pending'" class="btn-cmn-pro mr-2">Ask update</a>
-                                                            <a routerLink="/user/edit-project/{{projectDetails.id}}" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">edit project</a>
-                                                            <a (click)="onCancelProject()" href="javascript:void(0)" *ngIf="projectDetails.project_status == 'New'" class="btn-cmn-pro mr-2">Cancel project</a>
+                                                            <a routerLink="/user/dashboard"
+                                                                *ngIf="projectDetails.project_status == 'Pending'"
+                                                                class="btn-cmn-pro mr-2">Ask update</a>
+                                                            <a routerLink="/user/edit-project/{{projectDetails.id}}"
+                                                                *ngIf="projectDetails.project_status == 'New'"
+                                                                class="btn-cmn-pro mr-2">edit project</a>
+                                                            <a (click)="onCancelProject()" href="javascript:void(0)"
+                                                                *ngIf="projectDetails.project_status == 'New'"
+                                                                class="btn-cmn-pro mr-2">Cancel project</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,27 +174,33 @@
                                                         </div>
                                                         <div class="dashboard-rightside-updates-content-outer">
 
-                                                            <ul class="list-unstyled display">
-                                                                <li>
+                                                            <ul *ngIf="projectStatus.length > 0; else elseProjectStatusBlock"
+                                                                class="list-unstyled display">
+                                                                <li *ngFor="let status of projectStatus;let i = index;">
                                                                     <span
                                                                         class="blibker blinker-yellow blinker-yellow"></span>
                                                                     <p class="mb-0"><span
-                                                                            class="wr-hero-project-history-date">Jan
-                                                                            2,2019 - </span><span
-                                                                            class="wr-hero-project-history-assigned">PROJECT
-                                                                            CREATED</span>
+                                                                            class="wr-hero-project-history-date">{{status.status_date | date : "dd-MM-yyyy"}}
+                                                                            - </span><span
+                                                                            class="wr-hero-project-history-assigned">{{status?.status_description}}</span>
                                                                     </p>
                                                                 </li>
-                                                                <li>
-                                                                    <span class="blibker blinker-green"></span>
-                                                                    <p class="mb-0"><span
-                                                                            class="wr-hero-project-history-date">Jan
-                                                                            5,2019 - </span><span
-                                                                            class="wr-hero-project-history-assigned">PROJECT
-                                                                            ASSIGNED TO MARTHA</span>
-                                                                    </p>
-                                                                </li>
+
                                                             </ul>
+                                                            <ng-template #elseProjectStatusBlock>
+                                                                <ul class="list-unstyled display">
+                                                                    <li>
+                                                                        <span
+                                                                            class="blibker blinker-yellow blinker-yellow"></span>
+                                                                        <p class="mb-0"><span
+                                                                                class="wr-hero-project-history-date">{{projectDetails?.project_cdate | date : "dd-MM-yyyy"}}
+                                                                                - </span><span
+                                                                                class="wr-hero-project-history-assigned">{{projectDetails?.project_status}}</span>
+                                                                        </p>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </ng-template>
                                                         </div>
                                                     </div>
 
@@ -194,8 +219,9 @@
                                                                             turnaround - </p>
                                                                     </div>
                                                                     <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-assigned"> 1-2
-                                                                            days</p>
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            {{projectDetails.project_cdate | date : "dd-MM-yyyy"}}
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="table-row">
@@ -204,7 +230,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            March 13, 2019</p>
+                                                                            {{projectDetails?.estimated_arrival}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="table-row">
@@ -214,7 +240,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            please contact</p>
+                                                                            {{projectDetails?.director_notes}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>

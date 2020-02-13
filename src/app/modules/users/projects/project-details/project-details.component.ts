@@ -29,6 +29,7 @@ export class ProjectDetailsComponent implements OnInit {
   projectId: any;
   projectCost: any;
   projectDetails: any = {};
+  projectStatus:any =[];
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -46,6 +47,8 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
+        console.log(res.project_status);
+        this.projectStatus = res.project_status;
         this.projectCost = res.project_details.project_cost;
       }, error => {
         this.commonUtilsService.onError(error.response);
