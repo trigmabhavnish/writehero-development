@@ -236,6 +236,23 @@ export class BuyCreditsComponent implements OnInit {
     return text;
   }
 
+
+ public makeSkrillPayment():void{
+   let paymentObj ={
+    amount:10,
+    currency:'USD',
+    subject:'Project Payment',
+    note:'Project Payment',
+    frn_trn_id:Math.floor(100000000 + Math.random() * 900000000),
+    mb_transaction_id:Math.floor(100000000 + Math.random() * 900000000)
+   }
+   this.creditsService.makeSkrillPayout(paymentObj).subscribe(response=>{
+     console.log('')
+   },error=>{
+
+   })
+ }
+
   // This method must be present, even if empty.
   ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.

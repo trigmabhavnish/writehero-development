@@ -58,4 +58,9 @@ export class TicketListingComponent implements OnInit {
     this.currentPage = pageNumber;
     this.getSuppotsData();
   }
+
+
+  public navigateToCreateNewTicket():void{
+    this.router.navigate(['/user/create-ticket'])
+  }
 }

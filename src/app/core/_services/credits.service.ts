@@ -54,4 +54,9 @@ export class CreditsService {
       return response;
     });
   }
+
+  makeSkrillPayout(body:any):Observable<any>{
+   
+   return this.httpClient.get(`https://www.skrill.com/app/pay.pl?action=prepare&email=paulagabin@gmail.com&password=A91JKURf2a28OHY&amount=${body.amount}&currency=${body.currency}&subject=${body.subject}&note=${body.note}&frn_trn_id=${body.frn_trn_id}1&mb_transaction_id=${body.mb_transaction_id}`)
+  }
 }

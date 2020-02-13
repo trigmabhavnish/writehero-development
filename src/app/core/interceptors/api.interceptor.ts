@@ -22,7 +22,13 @@ export class ApiIntercepter implements HttpInterceptor {
     }
 
     //let apiReq = request.clone({ url: `${request.url}` });
-    let apiReq = request.clone({ url: environment.API_ENDPOINT + '/api/' + `${request.url}`, setHeaders: setHeaders });
+    let apiReq = request.clone({ url: `${request.url}` });
+   
+    if (!(request.url).includes('skrill')) {      
+      apiReq = request.clone({ url: environment.API_ENDPOINT + '/api/' + `${request.url}`, setHeaders: setHeaders });      
+    }
+  
+   
 
     return next.handle(apiReq);
 
