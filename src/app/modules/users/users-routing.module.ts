@@ -20,6 +20,7 @@ import { EditProjectComponent } from './projects/edit-project/edit-project.compo
 import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
 import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
 import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
+import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
 const routes: Routes = [
   {
     path: '',
@@ -65,13 +66,13 @@ const routes: Routes = [
     canActivate: [UserAuthGuardService]
   },
   {
-    path: 'feed-back-listing',
+    path: 'feedback-listing',
     component: FeedBackListingComponent,
     data: { title: 'Feed Back Listing' },
     canActivate: [UserAuthGuardService]
   },
   {
-    path: 'create-feed-back',
+    path: 'create-feedback',
     component: CreateFeedBackComponent,
     data: { title: 'Create Feed Back' },
     canActivate: [UserAuthGuardService]
@@ -99,6 +100,12 @@ const routes: Routes = [
     path: 'projects-listing',
     component: ProjectsListingComponent,
     data: { title: 'Projects Listing' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'billing',
+    component: BillingListingComponent,
+    data: { title: 'Billing Listing' },
     canActivate: [UserAuthGuardService]
   },
   {

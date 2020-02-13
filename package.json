@@ -27,6 +27,7 @@
     "ngx-dropzone-wrapper": "^8.0.0",
     "ngx-pagination": "^5.0.0",
     "ngx-paypal": "^5.0.0",
+    "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-rating": "0.0.9",
     "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "~6.4.0",

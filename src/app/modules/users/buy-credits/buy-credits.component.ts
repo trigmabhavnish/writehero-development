@@ -120,15 +120,11 @@ export class BuyCreditsComponent implements OnInit {
         layout: 'vertical'
       },
       onApprove: (data, actions) => {
-        //console.log('actions', actions);
         //this.commonUtilsService.showPageLoader(environment.MESSAGES.PAYMENT_SUCCESS);
-        //console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
-          //console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
       onClientAuthorization: (data) => {
-        //console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         
         let credits = this.buyCreditsForm.controls.credits.value;
         let payVia = this.buyCreditsForm.controls.pay_via.value;
@@ -148,16 +144,13 @@ export class BuyCreditsComponent implements OnInit {
       },
       onCancel: (data, actions) => {
         
-        //console.log('OnCancel', data, actions);        
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onError: err => {
         
-        //console.log('OnError', err);        
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onClick: (data, actions) => {
-        //console.log('onClick', data, actions);
       },
     };
   }
@@ -186,7 +179,6 @@ export class BuyCreditsComponent implements OnInit {
       this.creditsService.checkCouponCodeExist({ coupon_code: couponCode }).pipe(untilDestroyed(this)).subscribe(
         //case success
         (res) => {
-          //console.log(res);
           if (res.cost != "") {
             let cost = res.cost;
             calculateDiscount = credits * ((100 - cost) / 100);

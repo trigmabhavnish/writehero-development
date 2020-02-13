@@ -43,4 +43,15 @@ export class CreditsService {
       });
 
   }
+
+/**
+ * Get the transaction listing in billing
+ */
+  getTransactionsListing(body:any):Observable<any>{
+    return this.httpClient
+    .post('credit/transactionListing', body)
+    .map((response: Response) => {
+      return response;
+    });
+  }
 }

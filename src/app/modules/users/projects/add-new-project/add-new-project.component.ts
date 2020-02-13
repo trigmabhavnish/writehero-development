@@ -395,7 +395,6 @@ export class AddNewProjectComponent implements OnInit {
     this.projectsService.getProjectPackages({ status: 'Y' }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        //console.log(res.projectPackages);
         this.getProjectPackageArray = res.projectPackages;
         this.selectedProjectPackageId = res.projectPackages[0].id;
         this.projectDetailsForm.controls.project_package.patchValue(res.projectPackages[0].id);
@@ -503,7 +502,6 @@ export class AddNewProjectComponent implements OnInit {
         });
 
         this.on("error", function (file, error) {
-          //console.log('error', error);
 
           this.removeFile(file);
 
@@ -617,7 +615,6 @@ export class AddNewProjectComponent implements OnInit {
       //case success
       (res) => {
         //case error 
-        //console.log('response', res)
         this.userCredits = res.available_credits;
 
         if (res.available_credits > 0) { this.userCreditsCheck = false; }

@@ -29,7 +29,7 @@
                                             <h4 class="create-project-top-heading">Ticket Details</h4>
                                             <div class="dashboard-latest-project-outer">
                                                 <div class="row">
-                                                    <div class="col-lg-9 px-lg-3 p-0">
+                                                    <div class="col-lg-12 px-lg-3 p-0">
                                                         <div class="my-dashboard-project-main">
                                                             <h2 class="dashboard-latest-project-title">
                                                                 Subject: {{supportData?.support[0]?.subject}}</h2>
@@ -41,8 +41,8 @@
                                                                 {{supportData?.support[0]?.created_on | date:'dd/mm/yy'}}
                                                             </h6>
                                                             <h6 class="dashboard-latest-project-subject">
-                                                                Status:
-                                                                {{supportData?.support[0]?.support_status}}
+                                                                Satus :
+                                                               <span [ngClass]="supportData?.support[0]?.support_status == 'solved' ? 'solved':'unsolved'" class="text ">{{supportData?.support[0]?.support_status}}</span>
                                                             </h6>
 
                                                             <div class="row">

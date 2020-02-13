@@ -32,6 +32,8 @@ export class TicketListingComponent implements OnInit {
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
       this.user = response.user;
+    },error=>{
+      
     })
   }
 

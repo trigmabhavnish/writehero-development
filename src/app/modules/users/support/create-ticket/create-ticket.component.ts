@@ -181,11 +181,10 @@ export class CreateTicketComponent implements OnInit {
         });
 
         this.on("error", function (file, error) {
-          //console.log('error', error);
 
           this.removeFile(file);
 
-          self.commonUtilsService.onError(error);
+          self.commonUtilsService.onError(error.response);
         });
 
       }
@@ -212,12 +211,15 @@ export class CreateTicketComponent implements OnInit {
    * Validate create ticket form and submit from value to Db
    */
   public submitTicket(): void {
+    this.isSubmitted = true;
     if (this.createTicketForm.invalid) return
     this.supportService.createSupportTicket(this.createTicketForm.value).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_CREATED);
+      this.isSubmitted = false;
       this.router.navigate(['/user/ticket-listing'])
     }, error => {
-      this.commonUtilsService.onError(error)
+      this.isSubmitted = false;
+      this.commonUtilsService.onError(error.response)
     })
   }
 

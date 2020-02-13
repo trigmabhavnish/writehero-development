@@ -151,6 +151,19 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     visibility: visible;
 }
 
+.ps__thumb-y {
+    background: linear-gradient(45deg, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+}
+.ps .ps__rail-x.ps--clicking, .ps .ps__rail-x:focus, .ps .ps__rail-x:hover, .ps .ps__rail-y.ps--clicking, .ps .ps__rail-y:focus, .ps .ps__rail-y:hover, .ps__rail-y.ps--clicking .ps__thumb-y, .ps__rail-y:focus>.ps__thumb-y, .ps__rail-y:hover>.ps__thumb-y, .ps__thumb-y {
+    background-color: transparent !important;
+}
+.ps--focus>.ps__rail-x, .ps--focus>.ps__rail-y, .ps--scrolling-x>.ps__rail-x, .ps--scrolling-y>.ps__rail-y, .ps:hover>.ps__rail-x, .ps:hover>.ps__rail-y {
+    opacity: 1 !important;
+}
+perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scrolling-y>.ps__rail-y {
+    opacity: 1 !important;
+    background-color: transparent !important;
+}
 /*BEM for life*/
 .project-package-plans > input[type="radio"] {
     display: none;
@@ -244,4 +257,95 @@ a.remove_coupon_code {
 .input--hidden input[type="radio"] {
     display: none;
 }
+.text {
+    padding: 5px 10px;
+    font-size: 11px;
+    color: #fff;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+.solved.text {
+    background: #009830;
+}
+.unsolved.text {
+    background: #f00;
+}
+.dispute_media .card-body.dispute_left.dispute_right-contents {
+    max-width: 100%;
+    margin-right: 0px;
+}
+.dispute_media .dispute_right-contents h6, .dispute_media .card-text.float-right.ticket--span-date, .dispute_media .card-body.dispute_left.dispute_right-contents, .dispute_media .ticket--span-p {
+    text-align: left !important;
+}
+.flex-row-reverse.dispute_media .dispute_right-contents h6, .flex-row-reverse.dispute_media .card-text.float-right.ticket--span-date, .flex-row-reverse.dispute_media .card-body.dispute_left.dispute_right-contents, .flex-row-reverse.dispute_media .ticket--span-p {
+    text-align: right !important;
+}
+.dispute_media .ticket--span-p {
+    display: inline-block;
+    width: 100%;
+}
+.pro-btn-tab {
+    color: #fff;
+    text-decoration: none;
+}
+.pro-btn-tab:hover, .pro-btn-tab:focus {
+    text-decoration: none;
+    color: #fff;
+}
+.ngx-pagination .current {
+    background: #ee3a54 !important;
+    color: #fefefe;
+    cursor: pointer !important;
+    border-radius: 50%;
+    padding: 0 !important; 
+    width: 25px;
+    height: 26px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+table.sr__only {
+    border: 1px solid #e0e0e0;
+}
+.sr__only th {
+    background: #00185d;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid #0f185c;
+}
+.sr__only tr td {
+    font-size: 14px;
+    font-weight: 500;
+}
+.sr__only .star-icon {
+    font-size: 1.8em !important;
+}
+.sr__only tbody td:last-child a {
+    color: #e63064;
+    text-align: center;
+    display: block;
+}
+.d--rating-grid {
+    display: flex;
+    align-items: center;
+    line-height: normal;
+}
+.d--rating-grid p {
+    flex: 1;
+    margin-bottom: 0px;
+}
+rating.ng-untouched.ng-pristine.ng-valid {
+    margin-left: 10px;
+    flex:1;
+}
+@media only screen and (min-width: 1200px) {
+    .min--height-box, .create-project-button-tab {
+        min-height: 260px;
+    }
+    app-billing-listing .support-desc-tabs {
+        min-height: 260px;
+    }
+  }
 /*BEM Ends here*/

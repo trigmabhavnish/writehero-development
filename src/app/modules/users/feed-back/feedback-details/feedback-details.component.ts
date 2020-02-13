@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FeedBackService } from 'src/app/core/_services';
-import { MovingDirection } from 'angular-archwizard'; // Wizard
 @Component({
   selector: 'app-feedback-details',
   templateUrl: './feedback-details.component.html',
@@ -28,7 +27,6 @@ export class FeedbackDetailsComponent implements OnInit {
       this.feedBackData = response.feedback.feedback[0];
       this.allRateData = response.feedback.allrate;
     },error=>{
-      console.log();
     })
   }
 
