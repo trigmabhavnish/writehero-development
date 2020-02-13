@@ -63,7 +63,7 @@ export class CreateFeedBackComponent implements OnInit {
     this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
       this.feedbackForm.reset();
-      this.router.navigate(['/user/feed-back-listing'])
+      this.router.navigate(['/user/feedback-listing'])
     },
       error => {
         this.commonUtilsService.onError(error);

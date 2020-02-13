@@ -54,7 +54,7 @@
                                                         <p (click)="viewDetails(ticket)" class="sp-msg-title">
                                                             {{ticket?.subject}}</p>
                                                         <p class="sp-msg-desc">
-                                                            {{ticket?.messages[0]?.message | slice:1:100}} </p>
+                                                            {{ticket?.messages[0]?.message | slice:0:100}} </p>
                                                         <p class="sp-date"><span>Date : </span> <span
                                                                 class="sp-msg-dt">{{ticket?.created_on | date :'M/d/yy'}}</span>
                                                         </p>
@@ -79,7 +79,7 @@
                                                                 <p class="sp-profile-cmnt-reply">Last
                                                                     Reply</p>
                                                                 <p class="sp-profile-cmnt-content">
-                                                                    {{ticket.messages[ticket.messages.length -1]?.message | slice:1:100}}
+                                                                    {{ticket.messages[ticket.messages.length -1]?.message | slice:0:100}}
                                                                 </p>
                                                             </div>
                                                         </div>

@@ -4,9 +4,9 @@
         <table class="table table-responsive sr__only">
             <thead>
               <tr>
-                <th>S No.</th>
+                <th>S.No.</th>
                 <th>Date</th>
-                <th>FeedBack</th>
+                <th>Feedback</th>
                 <th>Rating</th>
                 <th>Rating By</th>
                 <th>Action</th>
@@ -18,7 +18,7 @@
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
-                <td>{{feedback?.feed_date | date:'dd/mm/yy'}}</td>
+                <td>{{feedback?.feed_date | date:'M/d/yy'}}</td>
                 <td>{{feedback?.feed_desc}}</td>
                 <td><rating [(ngModel)]="feedback.overall_rate"
                     >

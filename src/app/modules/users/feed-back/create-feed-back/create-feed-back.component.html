@@ -27,7 +27,7 @@
                                     <div class="row">
 
                                         <div class="col-md-12">
-                                            <h4 class="create-project-top-heading">Submit FeedBack</h4>
+                                            <h4 class="create-project-top-heading">Submit Feedback</h4>
                                             <aw-wizard [disableNavigationBar]="true">
                                                 <aw-wizard-step
                                                     [canExit]="moveDirection.bind(this, feedbackForm.valid)">
@@ -39,7 +39,7 @@
                                                                      
                                                                        
                                                                         <div class="col-lg-7 pl-0">
-                                                                            <label>Project FeedBack for</label>
+                                                                            <label>Project Feedback for</label>
                                                                             <select formControlName="project_id">
                                                                                 <option value="">Select Project</option>
                                                                                 <option [value]="project.id" *ngFor="let project of projects;let i = index;">{{project?.project_name}}</option>
@@ -101,7 +101,7 @@
  
                                                                          </div>
                                                                          <div class="col-lg-7 pl-0  mt-3">
-                                                                            <label>FeedBack Message</label>
+                                                                            <label>Feedback Message</label>
   
                                                                                <textarea formControlName="feed_des" class="ht--130">
 

@@ -24,7 +24,7 @@ export class ApiIntercepter implements HttpInterceptor {
     //let apiReq = request.clone({ url: `${request.url}` });
     let apiReq = request.clone({ url: `${request.url}` });
    
-    if (!(request.url).includes('skrill')) {      
+    if (!(request.url).includes('moneybookers')) {      
       apiReq = request.clone({ url: environment.API_ENDPOINT + '/api/' + `${request.url}`, setHeaders: setHeaders });      
     }
   

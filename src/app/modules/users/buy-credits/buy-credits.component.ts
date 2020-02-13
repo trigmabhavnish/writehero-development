@@ -45,7 +45,7 @@ export class BuyCreditsComponent implements OnInit {
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
 
 
-  ngOnInit() {    
+  ngOnInit() {
     this.buyCredits();
     this.initConfig(); // Paypal Configuration    
   }
@@ -125,17 +125,17 @@ export class BuyCreditsComponent implements OnInit {
         });
       },
       onClientAuthorization: (data) => {
-        
+
         let credits = this.buyCreditsForm.controls.credits.value;
         let payVia = this.buyCreditsForm.controls.pay_via.value;
         let couponCode = this.buyCreditsForm.controls.coupon_code.value;
 
-        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage)?this.discountPercentage:0, transaction_code: data.id, admin_note: "" };
+        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage) ? this.discountPercentage : 0, transaction_code: data.id, admin_note: "" };
 
         this.creditsService.onTransactionComplete(transactionData).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
-            this.commonUtilsService.onSuccess(res.response);                       
+            this.commonUtilsService.onSuccess(res.response);
             //case error 
           }, error => {
             this.commonUtilsService.onError(error.response);
@@ -143,11 +143,11 @@ export class BuyCreditsComponent implements OnInit {
 
       },
       onCancel: (data, actions) => {
-        
+
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onError: err => {
-        
+
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onClick: (data, actions) => {
@@ -172,7 +172,7 @@ export class BuyCreditsComponent implements OnInit {
    * Calculate Discount if Coupon Code is entered 
    */
   public calculateDiscount(couponCode, credits): void {
-    let calculateDiscount;   
+    let calculateDiscount;
 
     if (couponCode != "" && credits != 0) {
 
@@ -237,21 +237,24 @@ export class BuyCreditsComponent implements OnInit {
   }
 
 
- public makeSkrillPayment():void{
-   let paymentObj ={
-    amount:10,
-    currency:'USD',
-    subject:'Project Payment',
-    note:'Project Payment',
-    frn_trn_id:Math.floor(100000000 + Math.random() * 900000000),
-    mb_transaction_id:Math.floor(100000000 + Math.random() * 900000000)
-   }
-   this.creditsService.makeSkrillPayout(paymentObj).subscribe(response=>{
-     console.log('')
-   },error=>{
+  public makeSkrillPayment(): void {
+    let paymentObj = {
+      amount: 10,
+      currency: 'USD',
+      subject: 'Project Payment',
+      note: 'Project Payment',
+      frn_trn_id: Math.floor(100000000 + Math.random() * 900000000),
+      mb_transaction_id: Math.floor(100000000 + Math.random() * 900000000),
+      return_url: 'http://localhost:4200/user/buy-credits',
+      cancel_url: 'http://localhost:4200/user/buy-credits',
+      status_url: 'http://localhost:4200/user/buy-credits'
+    }
+    this.creditsService.makeSkrillPayout(paymentObj).subscribe(response => {
+      console.log('')
+    }, error => {
 
-   })
- }
+    })
+  }
 
   // This method must be present, even if empty.
   ngOnDestroy() {
