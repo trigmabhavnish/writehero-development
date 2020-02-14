@@ -149,15 +149,55 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 text-lg-right">
+                                                            <!--Penidng / Revised Status-->
                                                             <a routerLink="/user/dashboard"
                                                                 *ngIf="projectDetails.project_status == 'Pending'"
                                                                 class="btn-cmn-pro mr-2">Ask update</a>
+
+                                                            <a routerLink="/user/create-ticket"
+                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised')"
+                                                                class="btn-cmn-pro mr-2">Contact Support</a>
+
+                                                            <!--NEW / Pause Status-->
                                                             <a routerLink="/user/edit-project/{{projectDetails.id}}"
-                                                                *ngIf="projectDetails.project_status == 'New'"
-                                                                class="btn-cmn-pro mr-2">edit project</a>
+                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause')"
+                                                                class="btn-cmn-pro mr-2">Edit project</a>
+                                                            <a [attr.data-projectStatus]="'Pause'"
+                                                                (click)="onUpdateStatus($event)"
+                                                                href="javascript:void(0)"
+                                                                *ngIf="(projectDetails.project_status == 'New')"
+                                                                class="btn-cmn-pro mr-2">Pause project</a>
+
                                                             <a (click)="onCancelProject()" href="javascript:void(0)"
-                                                                *ngIf="projectDetails.project_status == 'New'"
+                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause')"
                                                                 class="btn-cmn-pro mr-2">Cancel project</a>
+
+
+                                                            <!--NEW Status-->
+
+                                                            <!--Complete/Revised Status-->
+
+
+                                                            <a routerLink="/user/create-feedback"
+                                                                *ngIf="(projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Cancel')"
+                                                                class="btn-cmn-pro mr-2">Submit Feedback</a>
+
+                                                            <a routerLink="/user/create-ticket"
+                                                                *ngIf="projectDetails.project_status == 'Complete'"
+                                                                class="btn-cmn-pro mr-2">Revision Request</a>
+
+                                                            <a href="{{projectDetails?.completed_project_file}}"
+                                                                *ngIf="projectDetails.project_status == 'Complete'"
+                                                                class="btn-cmn-pro mr-2">Download</a>
+
+                                                            <!--Complete Status-->
+                                                            <!--Pause Status-->
+                                                            <a [attr.data-projectStatus]="'Resume'"
+                                                                (click)="onUpdateStatus($event)"
+                                                                href="javascript:void(0)"
+                                                                *ngIf="(projectDetails.project_status == 'Pause')"
+                                                                class="btn-cmn-pro mr-2">Resume project</a>
+                                                            <!--Pause Status-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,7 +220,7 @@
                                                                     <span
                                                                         class="blibker blinker-yellow blinker-yellow"></span>
                                                                     <p class="mb-0"><span
-                                                                            class="wr-hero-project-history-date">{{status.status_date | date : "dd-MM-yyyy"}}
+                                                                            class="wr-hero-project-history-date">{{status.status_date | date}}
                                                                             - </span><span
                                                                             class="wr-hero-project-history-assigned">{{status?.status_description}}</span>
                                                                     </p>
@@ -208,11 +248,34 @@
                                                     <div class="dashboard-rightside-updates latest-feedback">
                                                         <div class="dashboard-rightside-updates-haeder">
                                                             <p class="dashboard-rightside-updates-header-title">Project
-                                                                Status : <span class="font-weight-bold">Active</span>
+                                                                Status : <span
+                                                                    class="font-weight-bold">{{(projectDetails.project_status)?projectDetails.project_status: 'NA'}}</span>
                                                             </p>
                                                         </div>
                                                         <div class="project-status-active-o">
                                                             <div class="display-table">
+                                                                <div class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">E To</p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            {{projectDetails.project_cdate | date}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">
+                                                                            Progress - </p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            {{(projectDetails.progress)?projectDetails.progress + ' articles completed.': 'NA'}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">
@@ -220,20 +283,11 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{(projectDetails.estimated_arrival)?projectDetails.estimated_arrival: 'NA'}}
+                                                                            {{(projectDetails.estimated_arrival)?projectDetails.estimated_arrival + ' days': 'NA'}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="table-row">
-                                                                    <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-date">E To</p>
-                                                                    </div>
-                                                                    <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails.project_cdate | date : "dd-MM-yyyy"}}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
+
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">Notes
@@ -241,7 +295,21 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{(projectDetails.director_notes)?projectDetails.director_notes: 'NA'}}</p>
+                                                                            {{(projectDetails.director_notes)?projectDetails.director_notes: 'NA'}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div *ngIf="projectDetails.project_status == 'Complete'"
+                                                                    class="table-row">
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-date">Download
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="table-cell">
+                                                                        <p class="wr-hero-project-history-assigned">
+                                                                            <a href="{{projectDetails?.completed_project_file}}"
+                                                                                class="btn-cmn-pro mr-2">Download</a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>

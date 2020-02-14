@@ -57,6 +57,20 @@ export class ProjectsService {
   }
 
   /**
+  * Update Project Status
+  * @return array
+  */
+ updateProjectStatus(postedData): Observable<any> {
+
+  return this.httpClient
+    .post('project/updateProjectStatus', postedData)
+    .map((response: Response) => {
+      return response;
+    });
+
+}
+
+  /**
   * get Project Listings
   * @return array
   */
