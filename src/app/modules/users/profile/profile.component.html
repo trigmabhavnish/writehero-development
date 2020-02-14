@@ -1,0 +1,170 @@
+<!--Dashboard HTML Starts-->
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+
+
+        <div class="dashboard-content">
+
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <!--Project HTML starts-->
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Profile</h4>
+                                            <aw-wizard [disableNavigationBar]="true">
+                                                <aw-wizard-step
+                                                    [canExit]="moveDirection.bind(this, userProfileForm.valid)">
+                                                    <form [formGroup]="userProfileForm">
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>Company / Individual Name: </label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="subject" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.user_name.touched || isSubmitted) && userProfileForm.controls.user_name.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.user_name.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="
+                                                                                Name "
+                                                                                [errors]="userProfileForm.controls.user_name.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>Profession / Industry:</label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="profession" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.profession.touched || isSubmitted) && userProfileForm.controls.profession.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.profession.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="Profession "
+                                                                                [errors]="userProfileForm.controls.profession.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>Country:</label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="country" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.country.touched || isSubmitted) && userProfileForm.controls.country.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.country.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="Country "
+                                                                                [errors]="userProfileForm.controls.country.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>Birthday:</label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="subject" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.subject.touched || isSubmitted) && userProfileForm.controls.subject.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.subject.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="Subject "
+                                                                                [errors]="userProfileForm.controls.subject.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>E-mail:</label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="subject" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.email.touched || isSubmitted) && userProfileForm.controls.email.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.email.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="Email "
+                                                                                [errors]="userProfileForm.controls.email.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-7 pl-0  mt-3">
+                                                                        <label>Website:</label>
+
+                                                                        <input type="text" class="col-lg-4"
+                                                                            formControlName="website" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (userProfileForm.controls.website.touched || isSubmitted) && userProfileForm.controls.website.errors }">
+                                                                        <p
+                                                                            *ngIf="userProfileForm.controls.website.touched || isSubmitted">
+                                                                            <app-form-validation-errors
+                                                                                errorPrefix="Website "
+                                                                                [errors]="userProfileForm.controls.website.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+
+                                                                    </div>
+
+                                                                </div>
+                                                              
+
+                                                                <div class="col-lg-12 mt-4">
+
+                                                                    <button (click)="submitTicket()" type="button"
+                                                                        class="submit-btn-feedback min-w-130"
+                                                                        awNextStep>
+                                                                        Submit
+                                                                    </button>
+                                                                    <!--a href="#" class="advance-text">( or skip )</a-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                        </form>
+                                        </aw-wizard-step>
+
+                                        </aw-wizard>
+                                    </div>
+
+                                </div>
+                                <!--Project HTML ends-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Dashboard HTML Ends-->
+</div>
