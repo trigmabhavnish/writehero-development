@@ -30,6 +30,11 @@ import { ProjectsService, CommonUtilsService } from '../../../core/_services';
 })
 export class DashboardComponent implements OnInit {
 
+  latestProject: any;
+  latestSupport: any;
+  projectCount: any;
+  userName: any;
+
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
   ngOnInit() {
@@ -40,17 +45,30 @@ export class DashboardComponent implements OnInit {
   * get Dahboard Content
   * @return Listing Array
   */
-  public getDashboardContent(){
+  public getDashboardContent() {
     this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
     this.commonUtilsService.getDashboardContent({}).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-       
-
+        //console.log(res);
+        this.latestProject = res.latestProject;
+        this.latestSupport = res.latestSupport;
+        this.projectCount = res.projectCount; 
+        this.userName = res.user_name; 
+        //console.log(this.projectCount);       
         //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);
       });
+  }
+
+  /**
+* set check object array length.
+* @param object
+*  @return number
+*/
+  public checkObjectLength(object): number {
+    return Object.keys(object).length;
   }
 
   // This method must be present, even if empty.

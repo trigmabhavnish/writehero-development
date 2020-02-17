@@ -6,7 +6,7 @@
 
         <div class="dashboard-content">
 
-            <nav class="navbar-top scrolling-on">
+            <!--nav class="navbar-top scrolling-on">
                 <a routerLink="/" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
                 <p class="mobile-dashboard-heading">Dashboard</p>
                 <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
@@ -15,7 +15,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-            </nav>
+            </nav-->
 
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
@@ -32,16 +32,18 @@
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="dashboard-welcome-note">
-                                                    <p>Welcome Back, <span>Sunil</span></p>
+                                                    <p>Welcome Back, <span>{{userName}}</span></p>
                                                 </div>
-                                                <div class="dashboard-latest-project-outer">
+                                                <div *ngIf="latestProject; else elseNoLatestProject;"
+                                                    class="dashboard-latest-project-outer">
                                                     <div class="row">
                                                         <div class="col-lg-9 px-lg-3 p-0">
                                                             <div class="my-dashboard-project-main">
                                                                 <h2 class="dashboard-latest-project-title">
                                                                     Latest Project</h2>
                                                                 <h6 class="dashboard-latest-project-subject">
-                                                                    COMPUTER NETWORKING [X394BDB]</h6>
+                                                                    {{latestProject?.project_name}}
+                                                                    [{{latestProject?.code}}]</h6>
                                                                 <div class="row">
                                                                     <div class="col-lg-7">
                                                                         <div class="dashboard-project-estimation-outer">
@@ -49,21 +51,21 @@
                                                                                 <span
                                                                                     class="dashboard-latest-project-subject">Quantity</span>
                                                                                 <span
-                                                                                    class="dashboard-latest-project-result">1
-                                                                                    x 10,000
+                                                                                    class="dashboard-latest-project-result">{{latestProject?.quantity}}
+                                                                                    x {{latestProject?.word_count}}
                                                                                     Words</span>
                                                                             </div>
                                                                             <div class="dashborad-project-estimation">
                                                                                 <span
                                                                                     class="dashboard-latest-project-subject">Type</span>
                                                                                 <span
-                                                                                    class="dashboard-latest-project-result">E-book</span>
+                                                                                    class="dashboard-latest-project-result">{{latestProject?.project_type}}</span>
                                                                             </div>
                                                                             <div class="dashborad-project-estimation">
                                                                                 <span
-                                                                                    class="dashboard-latest-project-subject">Nicue</span>
+                                                                                    class="dashboard-latest-project-subject">Topic</span>
                                                                                 <span
-                                                                                    class="dashboard-latest-project-result">Technology</span>
+                                                                                    class="dashboard-latest-project-result">{{latestProject?.project_topic}}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -72,7 +74,7 @@
                                                                             <span
                                                                                 class="dashboard-latest-project-subject col-lg-12">Cost</span>
                                                                             <span
-                                                                                class="dashboard-latest-project-result font-weight-bold">$200</span>
+                                                                                class="dashboard-latest-project-result font-weight-bold">${{latestProject?.project_cost}}</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -81,14 +83,7 @@
                                                                     <span
                                                                         class="dashboard-latest-project-subject">Details</span>
                                                                     <span
-                                                                        class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0">Lorem
-                                                                        ipsum dolor sit amet,
-                                                                        consectetur adipiscing elit, sed
-                                                                        do eiusmod tempor incididunt ut
-                                                                        labore et dolore magna aliqua.
-                                                                        Quis ipsum suspendisse ultrices
-                                                                        gravida. Risus commodo
-                                                                        viverra</span>
+                                                                        class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0">{{latestProject?.project_dtl}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -96,27 +91,26 @@
                                                             <div class="dashboard-project-status-outer">
                                                                 <h6 class="project-status-heading">
                                                                     Status:</h6>
-                                                                <ul class="list-unstyled">
-                                                                    <li class="new-project-detail circle-status">
-                                                                        <span>New</span>
-                                                                        <span>7/7/2019</span></li>
-                                                                    <li class="active-project-detail circle-status">
-                                                                        <span>Active</span>
-                                                                        <span>7/7/2019</span></li>
-                                                                    <li class="under-review-detail circle-status">
-                                                                        <span>Under
-                                                                            Review</span><span>7/15/19</span>
-                                                                    </li>
-                                                                    <li
-                                                                        class="completed-project-detail circle-status font-weight-bold">
-                                                                        Completed</li>
+                                                                <ul *ngIf="latestProject.projectStatus.length > 0; else elseProjectStatusBlock"
+                                                                    class="list-unstyled">
+                                                                    <li *ngFor="let status of latestProject.projectStatus;let i = index;"
+                                                                        class="new-project-detail circle-status">
+                                                                        <span>{{status?.status_description}}</span>
+                                                                        <span>{{status.status_date | date}}</span></li>
+
                                                                 </ul>
+                                                                <ng-template #elseProjectStatusBlock>
+                                                                    <ul class="list-unstyled">
+                                                                        <li class="new-project-detail circle-status">
+                                                                            <span>{{latestProject?.project_status}}</span>
+                                                                            <span>{{latestProject.project_cdate | date}}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </ng-template>
                                                                 <div class="pgrss">
                                                                     <p class="pgrss-title">Progress</p>
-                                                                    <p class="pgrss-subtitle">Lorem
-                                                                        ipsum dolor sit amet, adipiscing
-                                                                        elit, sed do eiusmod tempor
-                                                                        incididunt</p>
+                                                                    <p class="pgrss-subtitle">
+                                                                        {{latestProject?.project_status}}</p>
                                                                 </div>
                                                                 <div class="est-date">
                                                                     <p><span>ETD :</span> <span class="etd-date">3
@@ -126,12 +120,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <ng-template #elseNoLatestProject>
+                                                    <div class="dashboard-latest-project-outer">
+                                                        No Latest Project Found
+                                                    </div>
+                                                </ng-template>
+
+
                                                 <div class="dashboard-projects-counting-outer">
+
+
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="gradient-primary">
                                                                 <p class="dashboard-project-number counter">
-                                                                    26</p>
+                                                                    {{(projectCount?.np) ? (projectCount?.np) : 0}}</p>
                                                                 <p class="dashboard-project-counter-name">
                                                                     New Projects</p>
                                                             </div>
@@ -139,7 +142,7 @@
                                                         <div class="col-lg-4">
                                                             <div class="gradient-primary">
                                                                 <p class="dashboard-project-number counter">
-                                                                    54</p>
+                                                                    {{(projectCount?.ap)?(projectCount?.ap):0}}</p>
                                                                 <p class="dashboard-project-counter-name">
                                                                     Active Projects</p>
                                                             </div>
@@ -147,7 +150,7 @@
                                                         <div class="col-lg-4">
                                                             <div class="gradient-primary ">
                                                                 <p class="dashboard-project-number counter">
-                                                                    0</p>
+                                                                    {{(projectCount?.cp)?(projectCount?.cp):0}}</p>
                                                                 <p class="dashboard-project-counter-name">
                                                                     Complete Projects</p>
                                                             </div>
@@ -155,7 +158,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="dashboard-latest-project-outer">
+                                                <div *ngIf="latestSupport; else elseNoLatestSupport;"
+                                                    class="dashboard-latest-project-outer">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="dashboard-latest-support">
@@ -214,6 +218,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <ng-template #elseNoLatestSupport>
+                                                    <div class="dashboard-latest-project-outer">
+                                                            No Latest Support Found
+                                                    </div>
+                                                </ng-template>
                                             </div>
 
                                             <div class="col-lg-3 pr-lg-0">
