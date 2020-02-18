@@ -312,7 +312,6 @@ export class EditProjectComponent implements OnInit {
       //case success
       (res) => {
         this.commonUtilsService.hidePageLoader();
-        console.log(res.project_details);
         if(res.project_details){
           // Project Specs Form
           this.projectSpecsForm.controls.project_id.patchValue(res.project_details.id);

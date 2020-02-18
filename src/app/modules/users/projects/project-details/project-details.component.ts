@@ -45,6 +45,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
+        console.log(res);
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;

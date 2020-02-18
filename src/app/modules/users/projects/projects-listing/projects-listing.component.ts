@@ -48,7 +48,6 @@ export class ProjectsListingComponent implements OnInit {
       //case success
       (res) => {
         if (res.totalProjects > 0) {
-          //console.log(res.projectListings);
           this.commonUtilsService.hidePageLoader();
           this.projects = res.projectListings;
           this.totalProjects = res.totalProjects;

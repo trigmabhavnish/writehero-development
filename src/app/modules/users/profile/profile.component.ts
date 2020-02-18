@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UsersService, CommonUtilsService } from 'src/app/core/_services';
 import { MovingDirection } from 'angular-archwizard'; // Wizard
 import { environment } from 'src/environments/environment';
 import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
+import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 declare var $: any;
 @Component({
   selector: 'app-profile',
@@ -12,20 +13,33 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
 
-  isSubmitted:boolean = false;
+  isSubmitted: boolean = false;
   myOptions: INgxMyDpOptions = {
     // other options...
     dateFormat: 'dd.mm.yyyy',
   };
+  public profileFileConfiguration: DropzoneConfigInterface;
+  base64StringFile: any;
+  profileFilesArray: any = [];
+  disabled: boolean = false;
   userProfileForm: FormGroup;
-  constructor(private fb: FormBuilder, private userService: UsersService, private commonUtilService: CommonUtilsService) { }
-
-
+  constructor(private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
 
     this.initUserProfileForm();//initilize user profile form
+    this.supportFileDropzoneInit();
     this.getUserProfileData();
+  }
+
+  ngAfterViewInit() {
+
+    $('#dob').datepicker({
+      uiLibrary: 'bootstrap4',
+      format: 'mm/dd/yyyy'
+    });
+
+
   }
 
   private initUserProfileForm(): void {
@@ -63,7 +77,6 @@ export class ProfileComponent implements OnInit {
 
   private getUserProfileData(): void {
     this.userService.getUserProfile().subscribe(response => {
-      console.log(response)
       this.patchProfile(response)
     }, error => {
 
@@ -105,33 +118,121 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * Initialize Dropzone Library(Image Upload).
+   */
+  private supportFileDropzoneInit() {
+    const self = this;
+    this.profileFileConfiguration = {
+      clickable: true,
+      paramName: "file",
+      uploadMultiple: false,
+      url: environment.API_ENDPOINT + "/api/common/imageUploadtoBucket",
+      maxFiles: 1,
+      autoReset: null,
+      errorReset: null,
+      cancelReset: null,
+      acceptedFiles: 'image/*',
+      maxFilesize: 2, // MB,
+      dictDefaultMessage: '<span class="button red">Attach File</span>',
+      //previewsContainer: "#offerInHandsPreview",
+      addRemoveLinks: true,
+      //resizeWidth: 125,
+      //resizeHeight: 125,
+      //createImageThumbnails:false,
+      dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
+      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
+      dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
+      headers: {
+        'Cache-Control': null,
+        'X-Requested-With': null,
+      },
+
+      accept: function (file, done) {
 
 
-  ngAfterViewInit() {
-    $("#dob").datepicker();
-    // $( "#format" ).on( "change", function() {
-    //   $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
-    // });
+        if ((self.profileFilesArray.length + 1) > 1) {
+          self.commonUtilsService.onError(environment.MESSAGES.CANNOT_UPLOAD_MORE);
+          this.removeFile(file);
+          return false;
+        }
 
+        const reader = new FileReader();
+        const _this = this
+        reader.onload = function (event) {
+
+          let base64String = reader.result
+          let fileExtension = (file.name).split('.').pop();
+
+          self.base64StringFile = reader.result;
+          if (fileExtension == "pdf") {
+            self.base64StringFile = self.base64StringFile.replace('data:application/pdf;base64,', '');
+          }
+
+
+          /* const isValidFile = componentObj.commonUtilsService.isFileCorrupted(base64String, _.toLower(fileExtension))
+          if (!isValidFile) {
+            done('File is corrupted or invalid.');
+            _this.removeFile(file);
+            return false;
+          } */
+
+
+          self.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+          done();
+
+        };
+        reader.readAsDataURL(file);
+      },
+      init: function () {
+
+
+        this.on('sending', function (file, xhr, formData) {
+
+          formData.append('folder', 'Profile');
+          formData.append('fileType', file.type);
+          formData.append('base64StringFile', self.base64StringFile);
+        });
+
+
+        this.on("totaluploadprogress", function (progress) {
+          self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          if (progress >= 100) {
+            self.commonUtilsService.hidePageLoader(); //hide page loader
+          }
+        })
+
+        this.on("success", function (file, serverResponse) {
+
+
+          self.zone.run(() => {
+            self.profileFilesArray.push({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Profile' });
+          });
+          self.updateProfilePic(serverResponse);
+          // this.removeFile(file);
+          self.commonUtilsService.hidePageLoader(); //hide page loader
+        });
+
+        this.on("error", function (file, error) {
+
+          this.removeFile(file);
+
+          self.commonUtilsService.onError(error.response);
+        });
+
+      }
+    };
   }
 
   /**
-* validate wizard and move to either direction. 
-* @param validityStatus boolean(form validation status)
-* @param direction boolean(wizard direction)
-* @return  booleanimport { MovingDirection } from 'angular-archwizard'; // Wizard
-*/
-  moveDirection = (validityStatus, direction) => {
-    if (direction === MovingDirection.Backwards) {
-      return true;
-    }
-    return validityStatus;
-  };
-
-
-
+   * Submit Profile Update
+   */
   public submitProfile(): void {
-
+    this.userProfileForm.patchValue({
+      dob: $('#dob').val()
+    })
+    this.isSubmitted = true;
     if (this.userProfileForm.invalid) return
     let body = this.userProfileForm.value;
     body['hide_profile'] = this.userProfileForm.controls['settings'].value.hide_profile == false ? "N" : "Y";
@@ -144,18 +245,25 @@ export class ProfileComponent implements OnInit {
     body['my_profile'] = this.userProfileForm.controls['notification'].value.my_profile == false ? "N" : "Y";
     body['other_update'] = this.userProfileForm.controls['notification'].value.other_update == false ? "N" : "Y";
 
-
-
-
-
-
-
-
-
     this.userService.updateProfile(body).subscribe(response => {
-      this.commonUtilService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
+      this.isSubmitted = false;
+      this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
     }, error => {
-      this.commonUtilService.onError(error.response)
+      this.isSubmitted = false;
+      this.commonUtilsService.onError(error.response)
     })
   }
+
+
+  public updateProfilePic(body): void {
+    this.userService.updateProfilePic(body.fileLocation).subscribe(response => {
+      this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
+    }, error => {
+      this.commonUtilsService.onError(error.response)
+    })
+  }
+
+
+
+
 }
