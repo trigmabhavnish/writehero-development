@@ -114,4 +114,10 @@ export class UsersService {
       this.router.navigate(['/user/dashboard']);
   }
 
+  getUserProfile():Observable<any>{
+    return this.httpClient.get('user/getProfile');
+  }
+  updateProfile(body:any):Observable<any>{
+    return this.httpClient.post('user/updateProfile',body);
+  }
 }

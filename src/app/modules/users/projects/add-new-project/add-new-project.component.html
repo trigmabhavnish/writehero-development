@@ -111,9 +111,8 @@
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <input type="text" class="col-lg-4" #project_name
-                                                            formControlName="project_name" placeholder=""
-                                                            class="field-design"
+                                                        <input type="text" class="col-lg-4 field-design" #project_name
+                                                            formControlName="project_name" placeholder=""                             
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
@@ -179,7 +178,7 @@
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
                                                         </button>
-                                                        <!--a href="#" class="advance-text">( or go advance )</a-->
+                                                        <a routerLink="/user/add-new-project-advanced" class="advance-text">( or go advance )</a>
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>

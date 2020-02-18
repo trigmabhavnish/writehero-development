@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     this.commonUtilsService.getDashboardContent({}).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        //console.log(res);
+        console.log(res);
         this.latestProject = res.latestProject;
         this.latestSupport = res.latestSupport;
         this.projectCount = res.projectCount; 

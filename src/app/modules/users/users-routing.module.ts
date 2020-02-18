@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { SignupComponent } from './signup/signup.component'; // User Signup
 import { LoginComponent } from './login/login.component'; // User Login
 import { DashboardComponent } from './dashboard/dashboard.component' // User Dashboard
@@ -16,11 +15,13 @@ import { CreateTicketComponent } from './support/create-ticket/create-ticket.com
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
 
 import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
 import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
 import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
 import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -47,6 +48,13 @@ const routes: Routes = [
     component: ResetPasswordComponent,
     data: { title: 'Reset Password' }
   },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: { title: 'User Profile' }
+
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -56,6 +64,12 @@ const routes: Routes = [
   {
     path: 'add-new-project',
     component: AddNewProjectComponent,
+    data: { title: 'Add New Project' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'add-new-project-advanced',
+    component: AddNewProjectAdvancedComponent,
     data: { title: 'Add New Project' },
     canActivate: [UserAuthGuardService]
   },

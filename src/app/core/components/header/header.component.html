@@ -1,16 +1,71 @@
 <!-- if User Not Logged In -->
- <section [hidden]="isLoggedin" class="writehero-banner" id="banner">
-    <header>
-            <div class="container-fluid px-lg-0">
+<section [hidden]="isLoggedin" class="writehero-banner" id="banner">
+    <header *ngIf="isHomeUrl; else elseHomeUrlBlock;">
+        <div class="container-fluid px-lg-0">
             <nav class="navbar navbar-expand-lg" id=customnavbar>
                 <div class="container-custom">
                     <a class="navbar-brand" routerLink="/"><img src="assets/image/writehero-logo-header.png"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link" href="#">How it works <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link" routerLink="/user/signup">Register</a>
+                            </li>
+                            <li class="nav-item" routerLinkActive="active">
+                                <a class="nav-link" routerLink="/user/login">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-custom hader_content-outer">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="header_content-heading">
+                            <h1>
+                                Hire niche <span>writers</span> for your small Business
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="video-outer">
+                            <div class="writehero_video-card">
+                                <img src="assets/image/youtube-picture.png" class="img-fluid"
+                                    alt="silverback-video-posters">
+                                <!-- <iframe width="560" height="415" src="https://www.youtube.com/embed/AHerdCk8Vg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <a href="#" class="btn-done">Okay, I’m interested!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <ng-template #elseHomeUrlBlock>
+        <nav class="navbar navbar-expand-lg" id=customnavbar>
+            <div class="container-custom">
+                <a class="navbar-brand" routerLink="/"><img src="assets/image/writehero-logo-header.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item" routerLinkActive="active">
                             <a class="nav-link" href="#">How it works <span class="sr-only">(current)</span></a>
                         </li>
@@ -23,48 +78,26 @@
                         <li class="nav-item" routerLinkActive="active">
                             <a class="nav-link" routerLink="/user/login">Login</a>
                         </li>
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
-                    </nav>
-                    <div class="container-custom hader_content-outer">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="header_content-heading">
-                                <h1>
-                                    Hire niche <span>writers</span> for your small Business
-                                </h1>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="video-outer">
-                                <div class="writehero_video-card">
-                                        <img src="assets/image/youtube-picture.png" class="img-fluid" alt="silverback-video-posters">
-                                        <!-- <iframe width="560" height="415" src="https://www.youtube.com/embed/AHerdCk8Vg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <a href="#" class="btn-done">Okay, I’m interested!</a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-    </header>
+            </div>
+        </nav>
+    </ng-template>
+
 </section>
-<!-- if User Not Logged In -->    
+<!-- if User Not Logged In -->
 
 <!-- if User Logged In -->
 <section [hidden]="!isLoggedin" class="dashboard-topbar scrolling-on">
-        <div class="row">
-            <div class="col-md-5">
-                <a class="dashboard-logo" routerLink="/">
+    <div class="row">
+        <div class="col-md-5">
+            <a class="dashboard-logo" routerLink="/">
                 <img src="assets/image/writehero-logo-header.png">
-                </a>
-            </div>
-            <div class="col-md-7 mx-auto">
-                <h2>Dashboard</h2>
-            </div>
-        </div>            
+            </a>
+        </div>
+        <div class="col-md-7 mx-auto">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
 </section>
 <!-- if User Logged In -->

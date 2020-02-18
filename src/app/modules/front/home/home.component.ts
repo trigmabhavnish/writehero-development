@@ -21,7 +21,7 @@ import { PageLoaderService } from '../../../shared/_services'
 
 //import core services
 import { UsersService, CommonUtilsService } from '../../../core/_services';
-
+declare var $:any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -39,6 +39,11 @@ export class HomeComponent implements OnInit {
   // This method must be present, even if empty.
   ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.
+  }
+  
+  ngAfterViewInit(){
+    $('.owl-carousel').owlCarousel();
+    $(".counter").countimator();
   }
 
 }

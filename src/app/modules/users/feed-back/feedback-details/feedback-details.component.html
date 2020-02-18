@@ -38,7 +38,7 @@
                                                                 Feedback By: {{feedBackData?.user_name}}</h6>
                                                             <h6 class="dashboard-latest-project-subject">
                                                                 Date:
-                                                                {{feedBackData?.feed_date | date:'dd/mm/yy'}}
+                                                                {{feedBackData?.feed_date | date:'M/d/yy'}}
                                                             </h6>
                                                             <h6 *ngFor="let rate of allRateData;let i = index;" class="dashboard-latest-project-subject">
                                                                 <ng-container *ngIf="rate.type == 'O'">
@@ -91,7 +91,7 @@
                                                                    </rating></h6>    
                                                                 
                                                                 <h6 class="dashboard-latest-project-subject">
-                                                                    Over All FeedBack: {{feedBackData?.feed_desc}}</h6>  
+                                                                    Over All Feedback: {{feedBackData?.feed_desc}}</h6>  
                                                            
 
 

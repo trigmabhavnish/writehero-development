@@ -256,18 +256,18 @@
                                                             <div class="display-table">
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-date">E To</p>
+                                                                        <p class="wr-hero-project-history-date">EDD</p>
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{projectDetails.project_cdate | date}}
+                                                                            {{(projectDetails.estimated_date_delivery)?(projectDetails.estimated_date_delivery | date):'NA'}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">
-                                                                            Progress - </p>
+                                                                            Progress </p>
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
@@ -279,7 +279,7 @@
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">
-                                                                            turnaround - </p>
+                                                                            turnaround </p>
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">

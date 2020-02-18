@@ -6,6 +6,7 @@ import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ArchwizardModule } from 'angular-archwizard';
 import {RatingModule} from "ngx-rating";
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { SignupComponent } from './signup/signup.component';
@@ -31,6 +32,8 @@ import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-bac
 import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
 import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
 import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -39,7 +42,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent],  
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent],  
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -51,6 +54,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     RatingModule,
     NgxPayPalModule,
     NgxPaginationModule,
+    NgxMyDatePickerModule.forRoot(),
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
