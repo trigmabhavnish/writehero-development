@@ -250,7 +250,6 @@ export class BuyCreditsComponent implements OnInit {
       status_url: 'http://localhost:4200/user/buy-credits'
     }
     this.creditsService.makeSkrillPayout(paymentObj).subscribe(response => {
-      console.log('')
     }, error => {
 
     })

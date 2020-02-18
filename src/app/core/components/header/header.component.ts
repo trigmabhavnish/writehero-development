@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
     .subscribe(() => {
      this.isHomeUrl = this.router.routerState.snapshot.url.includes('web');
     })
-    // console.log('the',this.location.href)
     this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
       this.isLoggedin = loginStatus.isLoggedIn;
     });

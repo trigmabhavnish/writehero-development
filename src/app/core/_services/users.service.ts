@@ -120,4 +120,8 @@ export class UsersService {
   updateProfile(body:any):Observable<any>{
     return this.httpClient.post('user/updateProfile',body);
   }
+  updateProfilePic(body:any):Observable<any>{
+    return this.httpClient.post('user/updateProfilePic',{profile_pic:body});
+  }
+  
 }

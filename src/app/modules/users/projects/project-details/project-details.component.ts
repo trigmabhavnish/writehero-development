@@ -47,7 +47,6 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
-        console.log(res.project_status);
         this.projectStatus = res.project_status;
         this.projectCost = res.project_details.project_cost;
       }, error => {
