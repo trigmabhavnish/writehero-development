@@ -178,162 +178,136 @@
                                                                         <span>${{(calAmountToPay)?calAmountToPay:credits?.value}}</span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-4 mt-4">
-                                                                    <button awPreviousStep class="backstep--btn">Previous</button>
-                                                                </div>
-                                                                <div class="col-lg-4 mt-4">
-                                                                        <ngx-paypal #paypalCustom [config]="payPalConfig">
-                                                                            </ngx-paypal>
-                                                                </div>
-                                                                <div class="col-lg-4 mt-4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ng-container
+                                                        *ngIf="buyCreditsForm.controls.pay_via.value == 'paypal'">
+                                                        <div class="col-lg-7 mt-4 step4-submit-fields">
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col-lg-11 d-flex align-items-start justify-content-between px-0">
+
+
+                                                                    <button type="button" awPreviousStep
+                                                                        class="submit-btn-feedback min-w-130">
+                                                                        PREVIOUS
+                                                                    </button>
+                                                                    <ngx-paypal #paypalCustom [config]="payPalConfig">
+                                                                    </ngx-paypal>
+
 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </ng-container>
+                                                    <ng-container
+                                                        *ngIf="buyCreditsForm.controls.pay_via.value == 'twocheckout'">
+                                                        <div class="col-md-7 px-0">
 
 
-                                                    <!--div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label"> Payment
-                                                                        Gateway:</label>
-                                                                    <p class="step-progress-fields-content">
-                                                                        {{paypal.checked ? paypal.value : skrill.checked ? skrill.value : 'NA' }}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label"> Total
-                                                                        Credits:</label>
-                                                                    <p class="step-progress-fields-content">
-                                                                        {{credits?.value}}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label"> Coupon
-                                                                        Code:</label>
-                                                                    <p class="step-progress-fields-content">
-                                                                        {{(appliedCouponCode)?appliedCouponCode:'NA'}}
-                                                                    </p>
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label">
-                                                                        Discount Percentage:</label>
-                                                                    <p class="step-progress-fields-content">
-                                                                        {{(discountPercentage)?discountPercentage + '% OFF':'NA'}}
 
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div>
-                                                                    <label class="step-progress-fields-label">
-                                                                        Amount To Pay:</label>
-                                                                    <p class="step-progress-fields-content">
-                                                                        ${{(calAmountToPay)?calAmountToPay:credits?.value}}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
+                                                            <form [formGroup]="checkoutTokenForm" class="mt-3 ">
+                                                                <div class="profileinfo-box">
+                                                                    <fieldset class="border-2">
+                                                                        <legend _ngcontent-fes-c5=""
+                                                                            class="profile--settings">Card Information
+                                                                        </legend>
+                                                                        <div class="row mx-0">
+                                                                            <div class="col-md-6">
+                                                                                <label
+                                                                                    class="step-progress-fields-label">
+                                                                                    <span>Card Name</span>
+                                                                                </label>
+                                                                                <input formControlName="creditCard"
+                                                                                    type="text">
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label
+                                                                                    class="step-progress-fields-label">
+                                                                                    <span>Card Number</span>
+                                                                                </label>
 
-                                                            <div class="col-lg-10 mt-4 step4-submit-fields">
-                                                                <div class="row">
-                                                                    <div class="col-lg-3">
+                                                                                <input id="cc-number"
+                                                                                    formControlName="creditCard"
+                                                                                    type="tel" autocomplete="cc-number"
+                                                                                    ccNumber>
+                                                                                <p
+                                                                                    *ngIf="checkoutTokenForm.controls.creditCard.touched || isSubmitted">
+                                                                                    <app-form-validation-errors
+                                                                                        errorPrefix="
+                                                                                    Valid card number"
+                                                                                        [errors]="checkoutTokenForm.controls.creditCard.errors">
+                                                                                    </app-form-validation-errors>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label
+                                                                                    class="step-progress-fields-label">
+                                                                                    <span>Expiration Date
+                                                                                        (MM/YYYY)</span>
+                                                                                </label>
+                                                                                <input id="cc-exp-date"
+                                                                                    formControlName="expirationDate"
+                                                                                    type="tel" autocomplete="cc-exp"
+                                                                                    ccExp>
+                                                                                <p
+                                                                                    *ngIf="checkoutTokenForm.controls.expirationDate.touched || isSubmitted">
+                                                                                    <app-form-validation-errors
+                                                                                        errorPrefix="
+                                                                                Valid card number"
+                                                                                        [errors]="checkoutTokenForm.controls.expirationDate.errors">
+                                                                                    </app-form-validation-errors>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label
+                                                                                    class="step-progress-fields-label">
+                                                                                    <span>CVC</span>
+                                                                                </label>
+                                                                                <input id="cc-cvc" formControlName="cvc"
+                                                                                    type="tel" autocomplete="off" ccCvc>
+                                                                                <p
+                                                                                    *ngIf="checkoutTokenForm.controls.cvc.touched || isSubmitted">
+                                                                                    <app-form-validation-errors
+                                                                                        errorPrefix="
+                                                                                CVC number"
+                                                                                        [errors]="checkoutTokenForm.controls.cvc.errors">
+                                                                                    </app-form-validation-errors>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+
+                                                                <div class="row mt-4">
+
+                                                                    <div class="col-md-6">
                                                                         <button type="button" awPreviousStep
                                                                             class="submit-btn-feedback min-w-130">
                                                                             PREVIOUS
                                                                         </button>
-                                                                        <ng-container
-                                                                            *ngIf="buyCreditsForm.controls.pay_via.value == 'paypal'">
-                                                                            <ngx-paypal [config]="payPalConfig">
-                                                                            </ngx-paypal>
-                                                                        </ng-container>
-
-                                                                        <ng-container
-                                                                            *ngIf="buyCreditsForm.controls.pay_via.value == 'twocheckout'">
-                                                                            <form [formGroup]="checkoutTokenForm">
-                                                                                <input id="token" name="token"
-                                                                                    type="hidden" value="">
-                                                                                <div>
-                                                                                    <label
-                                                                                        class="step-progress-fields-label">
-                                                                                        <span>Card Number</span>
-                                                                                    </label>
-
-                                                                                    <input id="cc-number"
-                                                                                        formControlName="creditCard"
-                                                                                        type="tel"
-                                                                                        autocomplete="cc-number"
-                                                                                        ccNumber>
-                                                                                    <p
-                                                                                        *ngIf="checkoutTokenForm.controls.creditCard.touched || isSubmitted">
-                                                                                        <app-form-validation-errors
-                                                                                            errorPrefix="
-                                                                                            Valid card number"
-                                                                                            [errors]="checkoutTokenForm.controls.creditCard.errors">
-                                                                                        </app-form-validation-errors>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <label
-                                                                                        class="step-progress-fields-label">
-                                                                                        <span>Expiration Date
-                                                                                            (MM/YYYY)</span>
-                                                                                    </label>
-                                                                                    <input id="cc-exp-date"
-                                                                                        formControlName="expirationDate"
-                                                                                        type="tel" autocomplete="cc-exp"
-                                                                                        ccExp>
-                                                                                    <p
-                                                                                        *ngIf="checkoutTokenForm.controls.expirationDate.touched || isSubmitted">
-                                                                                        <app-form-validation-errors
-                                                                                            errorPrefix="
-                                                                                        Valid card number"
-                                                                                            [errors]="checkoutTokenForm.controls.expirationDate.errors">
-                                                                                        </app-form-validation-errors>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <div>
-
-                                                                                    <label
-                                                                                        class="step-progress-fields-label">
-                                                                                        <span>CVC</span>
-                                                                                    </label>
-                                                                                    <input id="cc-cvc"
-                                                                                        formControlName="cvc" type="tel"
-                                                                                        autocomplete="off" ccCvc>
-                                                                                    <p
-                                                                                        *ngIf="checkoutTokenForm.controls.cvc.touched || isSubmitted">
-                                                                                        <app-form-validation-errors
-                                                                                            errorPrefix="
-                                                                                        CVC number"
-                                                                                            [errors]="checkoutTokenForm.controls.cvc.errors">
-                                                                                        </app-form-validation-errors>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <input type="btn"
-                                                                                    class="submit-btn-feedback min-w-130"
-                                                                                    (click)="generateToken()"
-                                                                                    value="Submit">
-                                                                            </form>
-                                                                        </ng-container>
-
-
-
-
                                                                     </div>
+
+
+
+                                                                    <div class="col-md-3 ml-auto">
+                                                                        <input id="token" name="token" type="hidden"
+                                                                            value="">
+
+                                                                        <input type="btn"
+                                                                            class="submit-btn-feedback w-100 text-center"
+                                                                            (click)="generateToken()" value="Submit">
+                                                                    </div>
+
                                                                 </div>
-                                                            </div>
+
+                                                            </form>
+
 
                                                         </div>
-                                                    </div-->
+                                                    </ng-container>
                                                 </aw-wizard-step>
                                             </aw-wizard>
                                         </div>

@@ -12,8 +12,7 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
 
-  isSubmitted: boolean = false;
-  
+  isSubmitted:boolean =false;
   public profileFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   profileFilesArray: any = [];

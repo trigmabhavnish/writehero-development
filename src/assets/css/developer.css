@@ -535,6 +535,16 @@ a.btn-cmn-pro:hover {
 .ngx-pagination a:hover, .ngx-pagination button:hover {
     background: transparent !important;
 }
+fieldset app-form-validation-errors {
+    position: absolute;
+    bottom: -5px;
+}
+.paypal--btn:hover {
+    cursor: pointer;
+}
+.border-2 {
+    border: 1px solid #bdbdbd !important;
+}
 /*Profile Page*/
 .profile-descircle {
 	width: 85px;

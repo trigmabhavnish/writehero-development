@@ -309,7 +309,7 @@ export class BuyCreditsComponent implements OnInit {
 
 
     this.creditsService.maketwoCheckoutPayoutRequest(body).subscribe(response => {
-         this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
+         this.commonUtilsService.onSuccess(environment.MESSAGES.PAYENT_SUCCESS);
          this.router.navigate(['/user/billing'])
     }, error => {
       this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
