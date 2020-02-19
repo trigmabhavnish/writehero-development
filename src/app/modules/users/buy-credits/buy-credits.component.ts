@@ -34,6 +34,7 @@ export class BuyCreditsComponent implements OnInit {
   checkoutTokenForm: FormGroup;
   buyCreditsForm: FormGroup;
   buyCreditsSubmitted = false;
+  loading:boolean = false;
   calAmountToPay: any;
   discountPercentage: any;
   isCouponApplied: boolean = false;
@@ -257,9 +258,10 @@ export class BuyCreditsComponent implements OnInit {
    * generate token form twoCehckout Gateway
    */
   public generateToken(): void {
-  
+    
     this.isSubmitted = true;
     if(!this.checkoutTokenForm.valid) return;
+    this.loading = true;
     let args = {
       sellerId: environment.TWO_CEHCKOUT_SELLER_ID,
       publishableKey: environment.TWO_CHECKOUT_PUBLISHKEY,
@@ -269,7 +271,7 @@ export class BuyCreditsComponent implements OnInit {
       expYear: this.checkoutTokenForm.controls.expirationDate.value.split('/')[1]
     }
     TCO.loadPubKey('sandbox', () => {
-      TCO.requestToken(this.successFullTokenGeneration.bind(this), this.errorCallback, args);
+      TCO.requestToken(this.successFullTokenGeneration.bind(this), this.errorCallback.bind(this), args);
     });
 
   }
@@ -288,6 +290,8 @@ export class BuyCreditsComponent implements OnInit {
    */
   private errorCallback(error) {
     this.isSubmitted = false;
+    this.loading = false;
+    this.commonUtilsService.onError(environment.MESSAGES.CREDIT_CARD_INVALID)
 
   }
 
@@ -309,9 +313,11 @@ export class BuyCreditsComponent implements OnInit {
 
 
     this.creditsService.maketwoCheckoutPayoutRequest(body).subscribe(response => {
+          this.loading = false;
          this.commonUtilsService.onSuccess(environment.MESSAGES.PAYENT_SUCCESS);
-         this.router.navigate(['/user/billing'])
+         this.router.navigate(['/user/billing']);
     }, error => {
+      this.loading = false;
       this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
     })
   }

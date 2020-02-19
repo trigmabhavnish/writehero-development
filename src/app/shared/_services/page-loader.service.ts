@@ -38,12 +38,8 @@ export class PageLoaderService {
     this.pageLoaderStatus.next(value)
   }
 
-  setLoaderText(text?: String) {
-    this.pageLoaderText.next(text);
-  }
-  getLoaderText(): Observable<any> {
-    return this.pageLoaderText.asObservable();
-  }
+
+  
   refreshPage(value){
      this.shouldPageLoad.next(value);
   }

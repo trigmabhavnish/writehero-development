@@ -11,6 +11,7 @@ export class FeedbackDetailsComponent implements OnInit {
   projectId:any;
   feedBackData:any;
   allRateData:any;
+  loading:boolean =false;
   constructor(private route:ActivatedRoute,private feedbckservice: FeedBackService) { }
 
   ngOnInit() {
@@ -23,9 +24,11 @@ export class FeedbackDetailsComponent implements OnInit {
      * GET FEEDBACK DETAILS
    */
   public getFeedbackDetails():void{
+    this.loading = true;
     this.feedbckservice.getFeedBackDetails({userId:this.userId,projectId:this.projectId}).subscribe(response=>{
       this.feedBackData = response.feedback.feedback[0];
       this.allRateData = response.feedback.allrate;
+      this.loading = false;
     },error=>{
     })
   }

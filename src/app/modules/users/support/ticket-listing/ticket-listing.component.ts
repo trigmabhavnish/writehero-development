@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SupportService } from 'src/app/core/_services';
+import { SupportService, CommonUtilsService } from 'src/app/core/_services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class TicketListingComponent implements OnInit {
   pageSize: number = 10;
   currentPage: number = 1;
   totalItems: number = 0
-  constructor(private supportService: SupportService, private router: Router) { }
+  constructor(private supportService: SupportService, private router: Router,private comminUtilService:CommonUtilsService) { }
 
   ngOnInit() {
     this.getSuppotsData();//get supports tikcets data

@@ -17,7 +17,7 @@ export class ViewTicketComponent implements OnInit {
   supportData: any;
   ticketReplyForm: FormGroup;
   isSubmitted: boolean = false;
-
+  loading:boolean = false;
   public supportFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
@@ -46,8 +46,10 @@ export class ViewTicketComponent implements OnInit {
    * GET the details of ticket with message
    */
   private getTicketDetails(): void {
+    this.loading = true;
     this.supportService.getTicketDetails({ supportId: this.supportId }).subscribe(response => {
       this.supportData = response;
+      this.loading = false;
     }, error => {
 
     })
@@ -215,6 +217,7 @@ export class ViewTicketComponent implements OnInit {
   public submitReply(): void {
     this.isSubmitted = true;
     if (this.ticketReplyForm.invalid) return
+    this.loading = true;
     this.supportService.submitReply(this.ticketReplyForm.value).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.MESSAGE_SEND);
       this.ticketReplyForm.reset();
@@ -223,8 +226,10 @@ export class ViewTicketComponent implements OnInit {
         support_files: []
       });
       this.isSubmitted = false;
+      this.loading = false;
       this.getTicketDetails()
     }, error => {
+      this.loading = false;
       this.commonUtilsService.onError(error.response);
     })
   }

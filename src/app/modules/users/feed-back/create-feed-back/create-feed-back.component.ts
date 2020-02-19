@@ -14,6 +14,7 @@ export class CreateFeedBackComponent implements OnInit {
   feedbackForm: FormGroup;
   projects: any;
   isSubmitted:boolean = false;
+  loading:boolean = false;
   constructor(private router: Router, private fb: FormBuilder, private feedbackservice: FeedBackService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
@@ -36,9 +37,12 @@ export class CreateFeedBackComponent implements OnInit {
 
 
   public getCompletedProject(): void {
+    this.loading = true;
     this.feedbackservice.getCompletedProjects().subscribe(response => {
+      this.loading = false;
       this.projects = response.projects
     }, error => {
+      this.loading = false;
 
     })
   }
@@ -48,9 +52,11 @@ export class CreateFeedBackComponent implements OnInit {
    */
   public submitFeedBack(): void {
     if (this.feedbackForm.invalid) return;
+    this.loading = false;
     this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
       this.feedbackForm.reset();
+      this.loading = false;
       this.router.navigate(['/user/feedback-listing'])
     },
       error => {

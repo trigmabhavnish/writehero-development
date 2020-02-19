@@ -16,6 +16,7 @@
 
             </nav>
             <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -86,7 +87,7 @@
                                                     </div>
                                                 </div>
                                             </ng-container>
-                                            <div class="col-lg-4" *ngIf="!tickets.length">
+                                            <div class="col-lg-4" *ngIf="!tickets.length && !loading" >
                                                 <div class="support-desc-tabs min--height-box align-items-center justify-content-center">
                                                     <i class="fa fa-plus"></i>
                                                     <p>No Ticket Found</p>

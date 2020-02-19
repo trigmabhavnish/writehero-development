@@ -12,6 +12,7 @@ export class BillingListingComponent implements OnInit {
   currentPage: number = 1;
   totalItems: number = 0
   billingListing:any [];
+  loading:boolean = false;
   constructor(private creditService: CreditsService) { }
 
   ngOnInit() {
@@ -19,11 +20,13 @@ export class BillingListingComponent implements OnInit {
   }
 
   public getCreditListing(): void {
+    this.loading = true;
     this.creditService.getTransactionsListing({pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
     this.billingListing = response.transactions;
-    this.totalItems =response.totalItems
+    this.totalItems =response.totalItems;
+    this.loading = false;
     }, error => {
-
+      this.loading = false;
     })
   }
 

@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   profileFilesArray: any = [];
   disabled: boolean = false;
   userProfileForm: FormGroup;
+  loading:boolean = false;
   constructor(private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
 
@@ -63,10 +64,12 @@ export class ProfileComponent implements OnInit {
 
 
   private getUserProfileData(): void {
+    this.loading = true;
     this.userService.getUserProfile().subscribe(response => {
-      this.patchProfile(response)
+      this.patchProfile(response);
+      this.loading = false;
     }, error => {
-
+      this.loading = false;
     })
   }
 
@@ -274,13 +277,15 @@ export class ProfileComponent implements OnInit {
 
 
 
-
+    this.loading = true;
     
     this.userService.updateProfile(body).subscribe(response => {
       this.isSubmitted =false;
+      this.loading = false;
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
     }, error => {
       this.isSubmitted =false;
+      this.loading = false;
       this.commonUtilsService.onError(error.response)
     })
   }

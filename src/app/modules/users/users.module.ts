@@ -57,9 +57,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgxLoadingModule.forRoot({ animationType: ngxLoadingAnimationTypes.wanderingCubes,
       backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
       backdropBorderRadius: '4px',
-      primaryColour: '#99ffe4', 
-      secondaryColour: '#99ffe4', 
-      tertiaryColour: '#99ffe4'}),
+      primaryColour: '#01004a', 
+      secondaryColour: '#01004a', 
+      tertiaryColour: '#01004a'}),
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })

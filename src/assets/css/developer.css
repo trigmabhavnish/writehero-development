@@ -430,6 +430,9 @@ rating.ng-untouched.ng-pristine.ng-valid {
     transform: rotate(45deg);
 }
 
+.backdrop{
+    position: fixed !important;
+}
 
 
 

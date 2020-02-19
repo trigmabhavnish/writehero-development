@@ -10,6 +10,7 @@ export class FeedBackListingComponent implements OnInit {
   rating: number = 1;
   feedbacks: any = [];
   user: any;
+  loading:boolean= false;
   //pagination initilize
   pageSize: number = 10;
   currentPage: number = 1;
@@ -26,9 +27,11 @@ export class FeedBackListingComponent implements OnInit {
   }
 
   private getFeedBackLsiting(): void {
+    this.loading = true;
     this.feedbckservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
       this.feedbacks = response.feedback;
       this.totalItems = response.totalItems;
+      this.loading = false;
     },error=>{
       
     })
