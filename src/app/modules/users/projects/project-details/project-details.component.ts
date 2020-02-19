@@ -29,7 +29,7 @@ export class ProjectDetailsComponent implements OnInit {
   projectId: any;
   projectCost: any;
   projectDetails: any = {};
-  projectStatus:any =[];
+  projectStatus: any = [];
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -45,6 +45,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
+        console.log(res);
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;
@@ -71,6 +72,7 @@ export class ProjectDetailsComponent implements OnInit {
         this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
+            this.getProjectDetails();
             this.commonUtilsService.onSuccess(res.response);
 
           }, error => {
@@ -81,6 +83,25 @@ export class ProjectDetailsComponent implements OnInit {
     })
 
 
+  }
+
+  /**
+   * Update the Status of Project
+   */
+  onUpdateStatus(event): void {
+
+    let projectStatus = event.target.getAttribute('data-projectStatus');
+    //console.log(projectStatus); return;
+    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.projectsService.updateProjectStatus({ project_id: this.projectId, project_status: projectStatus }).pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {
+        this.getProjectDetails();
+        this.commonUtilsService.onSuccess(res.response);
+
+      }, error => {
+        this.commonUtilsService.onError(error.response);
+      });
   }
 
 

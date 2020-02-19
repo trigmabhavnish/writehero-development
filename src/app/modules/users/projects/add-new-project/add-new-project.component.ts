@@ -506,7 +506,7 @@ export class AddNewProjectComponent implements OnInit {
 
           this.removeFile(file);
 
-          componentObj.commonUtilsService.onError(error);
+          componentObj.commonUtilsService.onError(error.response);
         });
 
       }

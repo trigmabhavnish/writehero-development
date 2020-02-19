@@ -1,0 +1,420 @@
+<div class="dashboard-gutter">
+    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+        <div class="dashboard-content">
+            <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
+                <span>You have {{userCredits}} credits in your account. Please buy credits to create your
+                    project.</span>
+                <a routerLink="/user/buy-credits">Buy Credits</a>
+            </div>
+            <nav class="navbar-top scrolling-on">
+                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+                <p class="mobile-dashboard-heading">Dashboard</p>
+                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="Dashboard-inner-contents">
+                <div class="row ipad-margin-gutter">
+                    <div class="col-md-12">
+                        <div class="Dashboard-inner-contents-outer">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <h4 class="create-project-top-heading">Create New Project</h4>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <form [formGroup]="projectSpecsForm" class="row mx-0">
+                                                    <div class="col-md-12">
+                                                        <div class="step-4-summary-all mb-3">
+                                                            <h6 class="step-4-summary-all-tags">Project Specs :</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 step-progress-fields">
+                                                        <label>Project Name</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <input type="text" class="field-design" #project_name
+                                                            formControlName="project_name" placeholder=""
+                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
+                                                        <p
+                                                            *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
+                                                            <app-form-validation-errors minLength=2 maxLength=50
+                                                                errorPrefix="Project Name "
+                                                                [errors]="projectSpecsForm.controls.project_name.errors">
+                                                            </app-form-validation-errors>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-5 step-progress-fields mt-0">
+                                                        <label>Project Topic</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <div class="col-lg-12 px-0">
+                                                            <select #project_topic class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="project_topic" placeholder=""
+                                                                class="field-design"
+                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_topic.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_topic.errors }">
+                                                                <option value="">Choose topic</option>
+                                                                <option
+                                                                    *ngFor="let projectCategory of productCategoriesArray"
+                                                                    value="{{projectCategory}}">{{projectCategory}}
+                                                                </option>
+                                                            </select>
+                                                            <p
+                                                                *ngIf="projectSpecsForm.controls.project_topic.touched || projectSpecsSubmitted">
+                                                                <app-form-validation-errors errorPrefix="Project Topic "
+                                                                    [errors]="projectSpecsForm.controls.project_topic.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 step-progress-fields">
+                                                        <label>Project Type</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <div class="col-lg-12 px-0">
+                                                            <select #project_type class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="project_type" placeholder=""
+                                                                class="field-design"
+                                                                [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_type.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_type.errors }">
+                                                                <option value="">Choose Project Type</option>
+                                                                <option *ngFor="let projectType of projectTypeArray"
+                                                                    value="{{projectType}}">{{projectType}}</option>
+                                                            </select>
+                                                            <p
+                                                                *ngIf="projectSpecsForm.controls.project_type.touched || projectSpecsSubmitted">
+                                                                <app-form-validation-errors errorPrefix="Project Type "
+                                                                    [errors]="projectSpecsForm.controls.project_type.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mt-3">
+                                                        <div class="step-4-summary-all mb-3">
+                                                            <h6 class="step-4-summary-all-tags">Project Details :</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Quantity</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <input type="number"
+                                                                            (change)="calculateProjectCost(quantity.value, word_count.value)"
+                                                                            #quantity class="col-lg-4"
+                                                                            formControlName="quantity" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.quantity.touched || projectSpecsSubmitted) && projectSpecsForm.controls.quantity.errors }">
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.quantity.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors [isInteger]=true
+                                                                                minIntegerValue="1"
+                                                                                errorPrefix="Quantity "
+                                                                                [errors]="projectSpecsForm.controls.quantity.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Word for each space</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <input type="number"
+                                                                            (change)="calculateProjectCost(quantity.value, word_count.value)"
+                                                                            #word_count class="col-lg-4"
+                                                                            formControlName="word_count" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted) && projectSpecsForm.controls.word_count.errors }">
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors [isInteger]=true
+                                                                                minIntegerValue="1"
+                                                                                errorPrefix="Word for each space "
+                                                                                [errors]="projectSpecsForm.controls.word_count.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Choose your package</label>
+
+                                                                        <div *ngFor="let projectPackage of getProjectPackageArray"
+                                                                            class="project-package-plans package-design basic-package">
+                                                                            <h6 class="project-package-plans-title">
+                                                                                {{projectPackage.project_type_name}}
+                                                                            </h6>
+                                                                            <p class="project-package-plans-amount">
+                                                                                ${{projectPackage.price * 100}}
+                                                                            </p>
+                                                                            <p class="project-package-plans-limit">Per
+                                                                                $100
+                                                                                words</p>
+                                                                            <ul>
+                                                                                <li>Lorem ipsum dolor sit amet,
+                                                                                    consectetur
+                                                                                </li>
+                                                                                <li>Nunc quis elit non est dictum
+                                                                                    elementum
+                                                                                </li>
+                                                                                <li>Praesent ullamcorper velit vel eros
+                                                                                    posuere</li>
+                                                                            </ul>
+                                                                            <input
+                                                                                (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
+                                                                                type="radio"
+                                                                                [attr.data-packagePrice]="projectPackage.price"
+                                                                                [checked]="projectPackage.id == selectedProjectPackageId"
+                                                                                #project_package
+                                                                                formControlName="project_package"
+                                                                                value="{{projectPackage.id}}"
+                                                                                id="{{projectPackage.id}}" />
+                                                                            <label for="{{projectPackage.id}}"
+                                                                                class="submit-btn-feedback clr--size">Select
+                                                                                plan</label>
+                                                                        </div>
+
+
+
+                                                                        <div class="package-total-cost">
+                                                                            <h4>Total Cost : <span>${{calculateCost}}</span></h4>
+                                                                            <p>Estimated arround: 1-2 weeks</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Project Details</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <textarea #project_details cols="5" rows="3"
+                                                                            minLength=10 maxLength=200
+                                                                            formControlName="project_details"
+                                                                            placeholder="" class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_details.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_details.errors }"></textarea>
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.project_details.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors minLength=10
+                                                                                maxLength=200
+                                                                                errorPrefix="Project Details "
+                                                                                [errors]="projectSpecsForm.controls.project_details.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Additional Resources</label>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur
+                                                                            adipiscing elit. Praesent diam lorem,
+                                                                            fermentum in tempus sed, aliquet sed enim
+                                                                        </p>
+                                                                        <textarea #additional_resources cols="5"
+                                                                            rows="3" minLength=10 maxLength=200
+                                                                            formControlName="additional_resources"
+                                                                            placeholder="" class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted) && projectSpecsForm.controls.additional_resources.errors }"></textarea>
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors minLength=10
+                                                                                maxLength=200
+                                                                                errorPrefix="Project Details "
+                                                                                [errors]="projectSpecsForm.controls.additional_resources.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-lg-12 col-lg-12 step-progress-fields">
+                                                                        <label>Attach File?</label>
+                                                                        <div class="uploadcode">
+                                                                            <div class="uploadImages position-relative">
+                                                                                <div class="dropzone dropzone-container"
+                                                                                    [dropzone]="projectImageConfiguration"
+                                                                                    [disabled]="disabled"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Upload Images Section-->
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <div class="thumbnails"
+                                                                            *ngIf="checkObjectLength(projectFilesArray.value) > 0">
+                                                                            <div class="thumbnail_list"
+                                                                                *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
+
+
+                                                                                <a class="upload_pdf"
+                                                                                    data-toggle="tooltip"
+                                                                                    title="{{projectImage.value.file_name}}"
+                                                                                    href="{{projectImage.value.file_path}}"
+                                                                                    target="_blank">
+
+                                                                                    <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
+                                                                                        src="assets/image/pdf.png">
+
+                                                                                    <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                                        src="assets/image/csv.png">
+
+                                                                                    <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                                                        src="assets/image/word.png">
+
+                                                                                    <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
+                                                                                        src="assets/image/zip.png">
+
+                                                                                </a>
+
+                                                                                <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
+                                                                                    class="fa fa-times"
+                                                                                    aria-hidden="true"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Upload Images Section-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="step-4-summary-all mb-3">
+                                                            <h6 class="step-4-summary-all-tags">Writter Details :</h6>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 step-progress-fields">
+                                                        <label>Choice of writters</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <div class="col-lg-4 pl-0">
+                                                            <select #choice_of_writers class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="choice_of_writers" placeholder=""
+                                                                class="field-design">
+                                                                <option value="">Choose Writer</option>
+                                                                <option
+                                                                    *ngFor="let choiceOfWriter of choiceOfWriterArray"
+                                                                    value="{{choiceOfWriter}}">
+                                                                    {{choiceOfWriter}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 step-progress-fields">
+                                                        <label>Career</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <div class="col-lg-4 pl-0">
+                                                            <select #writers_career class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="writers_career" placeholder=""
+                                                                class="field-design">
+                                                                <option value="">Choose Career</option>
+                                                                <option *ngFor="let writterCareer of writterCareerArray"
+                                                                    value="{{writterCareer}}">
+                                                                    {{writterCareer}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 step-progress-fields">
+                                                        <label>Age Bracket</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+
+                                                        <div class="warpper">
+                                                            <div *ngFor="let writerAge of writterAgeArray; let i=index"
+                                                                class="tabs">
+                                                                <input formControlName="writers_age" class="radio"
+                                                                    id="{{i}}" type="radio" value="{{writerAge}}">
+                                                                <label class="tab" for="{{i}}">{{writerAge}}</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-lg-12 step-progress-fields">
+                                                        <label>Location</label>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Praesent
+                                                            diam lorem, fermentum in tempus
+                                                            sed, aliquet sed enim</p>
+                                                        <div class="col-lg-4 pl-0">
+                                                            <select #writers_location class="custom-select"
+                                                                id="inlineFormCustomSelectPref"
+                                                                formControlName="writers_location" placeholder=""
+                                                                class="field-design">
+                                                                <option value="">Choose Location</option>
+                                                                <option
+                                                                    *ngFor="let writterLocation of writterLocationArray; let i= index;"
+                                                                    value="{{writterLocation.abbreviation}}">
+                                                                    {{writterLocation.name}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-lg-10 mt-4 step4-submit-fields">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <button type="button" [disabled]="projectSpecsForm.invalid ||userCreditsCheck"
+                                                                    (click)="onSubmitAddNewProject()"
+                                                                    class="submit-btn-feedback min-w-130">
+                                                                    CREATE PROJECT
+                                                                </button>
+                                                            </div>
+                                                            <!--div class="col-lg-3">
+                                                                <input type="submit" value="SAVE AS DRAFT"
+                                                                    class="submit-btn-feedback min-w-130 editing-btn">
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="submit" value="CANCEL PROJECT"
+                                                                    class="submit-btn-feedback min-w-130 editing-btn">
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <input type="submit" value="EDIT PROJECT"
+                                                                    class="submit-btn-feedback min-w-130 editing-btn">
+                                                            </div -->
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

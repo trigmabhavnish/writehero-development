@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService, CommonUtilsService } from 'src/app/core/_services';
 import { MovingDirection } from 'angular-archwizard'; // Wizard
 import { environment } from 'src/environments/environment';
@@ -21,8 +21,6 @@ export class ProfileComponent implements OnInit {
   loading:boolean = false;
   constructor(private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
-
-
   ngOnInit() {
 
     this.initUserProfileForm();//initilize user profile form
@@ -30,25 +28,29 @@ export class ProfileComponent implements OnInit {
     this.getUserProfileData();
   }
 
+  ngAfterViewInit() {
+
+    $('#dob').datepicker({
+      uiLibrary: 'bootstrap4',
+      format: 'mm/dd/yyyy'
+    });
+
+
+  }
+
   private initUserProfileForm(): void {
     this.userProfileForm = this.fb.group({
       profile_pic: [],
       company_name: [],
       user_name: [],
-      first_name: [],
-      last_name: [],
+      first_name: [null,Validators.required],
+      last_name: [null,Validators.required],
       profession: [""],
-      email: [],
+      email: [null,[Validators.email,Validators.required]],
       website: [],
       country: [],
       dob: [],
-      settings: this.fb.group({
-        gender_winter: [""],
-        country_winter: [""],
-        age_brack_writers: [""],
-        specialization: [""],
-        hide_profile: ["N"]
-      }),
+    
       notification: this.fb.group({
         new_project: [],
         complet_project: [],
@@ -87,14 +89,8 @@ export class ProfileComponent implements OnInit {
       email: profile.email,
       website: profile.website,
       country: profile.country,
-      dob: profile.dob,
-      settings: {
-        gender_winter: settings.gender_winter,
-        country_winter: settings.country_winter,
-        age_brack_writers: settings.age_brack_writers,
-        specialization: settings.specialization,
-        hide_profile: settings.hide_profile == "N" ? false : true
-      },
+      dob: $('#dob').val(profile.dob ? profile.dob.split('T')[0]:''),
+    
       notification: {
         new_project: settings.new_project == "N" ? false : true,
         complet_project: settings.complet_project == "N" ? false : true,
@@ -107,38 +103,6 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-
-
-
-  ngAfterViewInit() {
-    // $( "#dob" ).datepicker();
-    $('#dob').datepicker({
-      uiLibrary: 'bootstrap4',
-      format: 'mm/dd/yyyy'
-    });
-    // });
-    // $( "#format" ).on( "change", function() {
-    //   $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
-    // });
-
-  }
-
-  /**
-* validate wizard and move to either direction. 
-* @param validityStatus boolean(form validation status)
-* @param direction boolean(wizard direction)
-* @return  booleanimport { MovingDirection } from 'angular-archwizard'; // Wizard
-*/
-  moveDirection = (validityStatus, direction) => {
-    if (direction === MovingDirection.Backwards) {
-      return true;
-    }
-    return validityStatus;
-  };
-
-
-
-
 
   /**
    * Initialize Dropzone Library(Image Upload).
@@ -156,7 +120,7 @@ export class ProfileComponent implements OnInit {
       cancelReset: null,
       acceptedFiles: 'image/*',
       maxFilesize: 2, // MB,
-      dictDefaultMessage: '<span class="button red">Attach File</span>',
+      dictDefaultMessage: '<span class="button">Update Profile Image</span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
       //resizeWidth: 125,
@@ -247,10 +211,6 @@ export class ProfileComponent implements OnInit {
     };
   }
 
-
-
-
-
   /**
    * Submit Profile Update
    */
@@ -258,10 +218,9 @@ export class ProfileComponent implements OnInit {
     this.userProfileForm.patchValue({
       dob: $('#dob').val()
     })
-    this.isSubmitted =true;
+    this.isSubmitted = true;
     if (this.userProfileForm.invalid) return
     let body = this.userProfileForm.value;
-    body['hide_profile'] = this.userProfileForm.controls['settings'].value.hide_profile == false ? "N" : "Y";
     body['new_project'] = this.userProfileForm.controls['notification'].value.new_project == false ? "N" : "Y";
     body['complet_project'] = this.userProfileForm.controls['notification'].value.complet_project == false ? "N" : "Y";
     body['imp_update_project'] = this.userProfileForm.controls['notification'].value.imp_update_project == false ? "N" : "Y";
@@ -293,6 +252,9 @@ export class ProfileComponent implements OnInit {
 
   public updateProfilePic(body): void {
     this.userService.updateProfilePic(body.fileLocation).subscribe(response => {
+      this.userProfileForm.patchValue({
+        profile_pic:body.fileLocation
+      })
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
     }, error => {
       this.commonUtilsService.onError(error.response)

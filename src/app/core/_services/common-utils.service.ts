@@ -100,17 +100,29 @@ export class CommonUtilsService {
   }
 
   /**
-  * Remove Image from AWS Bucket
-  * @return boolean
+  * get User Credit Balance
+  * @return array
   */
- public userAccountCredits(params): Observable<any> {
-  return this.httpClient
-    .post('common/getUserCredits', params)
-    .map((response: Response) => {
-      return response;
-    })
-}
+  public userAccountCredits(params): Observable<any> {
+    return this.httpClient
+      .post('common/getUserCredits', params)
+      .map((response: Response) => {
+        return response;
+      })
+  }
 
+
+  /**
+  * get User Credit Balance
+  * @return array
+  */
+  public getDashboardContent(params): Observable<any> {
+    return this.httpClient
+      .post('common/getDashboardContent', params)
+      .map((response: Response) => {
+        return response;
+      })
+  }
 
 
 }

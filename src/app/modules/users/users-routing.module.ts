@@ -15,6 +15,7 @@ import { CreateTicketComponent } from './support/create-ticket/create-ticket.com
 import { ViewTicketComponent } from './support/view-ticket/view-ticket.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
 
 import { FeedBackListingComponent } from './feed-back/feed-back-listing/feed-back-listing.component';
 import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-feed-back.component';
@@ -63,6 +64,12 @@ const routes: Routes = [
   {
     path: 'add-new-project',
     component: AddNewProjectComponent,
+    data: { title: 'Add New Project' },
+    canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'add-new-project-advanced',
+    component: AddNewProjectAdvancedComponent,
     data: { title: 'Add New Project' },
     canActivate: [UserAuthGuardService]
   },

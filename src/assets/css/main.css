@@ -1639,9 +1639,11 @@ border-radius: 3px;
     padding: 10px 20px;
     background-color: #fff;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
+    height: 100%;
     cursor: pointer;
     overflow: hidden;
+    min-height: 190px;
 }
 .sp-msg-title {
     color: #01004a;
@@ -2178,6 +2180,7 @@ textarea {
     line-height: normal;
     color: #002249;
     font-weight: 400;
+    word-break: break-all;
 }
 .paypal-transact-desc-id {
     font-weight: 600;
@@ -2424,7 +2427,7 @@ textarea {
 .display li + li {
     margin-top: 15px;
 }
-.display::before {
+/* .display::before {
 	content: '';
 	position: absolute;
 	top: 7px;
@@ -2432,6 +2435,15 @@ textarea {
 	height: 35px;
 	background-color: #fff;
 	left: 4px;
+} */
+ul.display li + li::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 35px;
+    background-color: #fff;
+    left: 4px;
 }
 .display li.yellow::before {
 	content: '';

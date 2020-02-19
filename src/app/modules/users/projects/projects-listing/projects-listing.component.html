@@ -25,31 +25,44 @@
                                     </div>
                                     <div class="support-all-grid">
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div (click)="navigateToCreateNewProject()" class="col-lg-4">
                                                 <div class="create-project-button-tab">
                                                     <i class="fa fa-plus"></i>
                                                     <p class="pro-btn-tab">Create new project</p>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-lg-4" *ngFor="let project of projects | paginate: { id: 'foo',
+                                            <ng-container *ngIf="projects.length > 0; else elseProjectsBlock">
+                                                <div class="col-lg-4" *ngFor="let project of projects | paginate: { id: 'foo',
                                             itemsPerPage: pageSize,
                                             currentPage: currentPage,
                                             totalItems: totalProjects };let i = index;">
-                                                <div (click)="viewDetails(project.id)" class="support-desc-tabs whole-pattern project-lists-padding">
-                                                    <p class="project-code-title">{{project.code}}</p>
-                                                    <p class="project-code-heading">{{project.project_name}}</p>
-                                                    <p class="project-code-date-title">{{project.project_cdate | date : "MM-dd-yyyy"}}
-                                                    </p>
-                                                    <p class="project-per-words"><span>{{project.quantity}} X
-                                                        {{project.word_count}}</span><span class="words-text">Words</span></p>
-                                                    <p class="project-code-bugs">${{project.project_cost}}</p>
-                                                    <p class="pro-date"><span>Status : </span> <span
-                                                            class="pro-msg-status pro-active">{{project.project_status}}</span>
-                                                    </p>
+                                                    <div (click)="viewDetails(project.id)"
+                                                        class="support-desc-tabs whole-pattern project-lists-padding">
+                                                        <p class="project-code-title">{{project.code}}</p>
+                                                        <p class="project-code-heading">{{project.project_name}}</p>
+                                                        <p class="project-code-date-title">
+                                                            {{project.project_cdate | date}}
+                                                        </p>
+                                                        <p class="project-per-words"><span>{{project.quantity}} X
+                                                                {{project.word_count}}</span><span
+                                                                class="words-text">Words</span></p>
+                                                        <p class="project-code-bugs">${{project.project_cost}}</p>
+                                                        <p class="pro-date"><span>Status : </span> <span
+                                                                class="pro-msg-status pro-active">{{project.project_status}}</span>
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-
+                                            </ng-container>
+                                            <ng-template #elseProjectsBlock>
+                                                    <div class="col-lg-4">
+                                                            <div
+                                                                class="no--ticket-text support-desc-tabs min--height-box align-items-center justify-content-center">
+                                                                <i class="fa fa-plus"></i>
+                                                                <p>No Projects Found</p>
+                                                            </div>
+                                                        </div>
+                                            </ng-template>
+                                            
                                         </div>
                                         <div *ngIf="totalProjects > 0" class="row">
                                             <div class="col-md-12 writer-pagination mt-3">
@@ -59,6 +72,15 @@
                                                     nextLabel="Next" screenReaderPaginationLabel="Pagination"
                                                     screenReaderPageLabel="page">
                                                 </pagination-controls>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="d-flex align-items-end  justify-content-end h-100">
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn-ticket" (click)="navigateToCreateNewProject()">Create New Project</button>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
