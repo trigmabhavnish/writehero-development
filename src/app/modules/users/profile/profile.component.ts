@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { UsersService, CommonUtilsService } from 'src/app/core/_services';
 import { MovingDirection } from 'angular-archwizard'; // Wizard
 import { environment } from 'src/environments/environment';
-import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
 import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 declare var $: any;
 @Component({
@@ -12,10 +11,7 @@ declare var $: any;
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  myOptions: INgxMyDpOptions = {
-    // other options...
-    dateFormat: 'dd.mm.yyyy',
-  };
+
   isSubmitted:boolean =false;
   public profileFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;

@@ -7,8 +7,8 @@ export const environment = {
   API_ENDPOINT: 'http://localhost:3000',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
-  TWO_CEHCKOUT_SELLER_ID:'901420020',
-  TWO_CHECKOUT_PUBLISHKEY:'5D835D77-DFBD-45AE-9D9B-B8E943CB0426',
+  TWO_CEHCKOUT_SELLER_ID:'901420029',
+  TWO_CHECKOUT_PUBLISHKEY:'87AB0DD8-35C2-4CED-87CA-08257D7A277F',
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
@@ -28,7 +28,8 @@ export const environment = {
     CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',
     CANCEL_PROJECT:'Are you sure you want to cancel this project?',
-    PROFILE_UPDATE:'Profile updated successfully.'
+    PROFILE_UPDATE:'Profile updated successfully.',
+    PAYENT_SUCCESS:'Payment has been done successfully.'
   }
 };
 

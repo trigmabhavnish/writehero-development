@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class TicketListingComponent implements OnInit {
   tickets: any = [];
   user: any;
+  loading:boolean =false;
   //pagination initilize
   pageSize: number = 10;
   currentPage: number = 1;
@@ -27,13 +28,15 @@ export class TicketListingComponent implements OnInit {
    * get supports tickets data of user
    */
   private getSuppotsData(): void {
+    this.loading = true;
     this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
       
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
       this.user = response.user;
+      this.loading = false;
     },error=>{
-      
+      this.loading = false;
     })
   }
 

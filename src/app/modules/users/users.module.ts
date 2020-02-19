@@ -6,7 +6,7 @@ import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ArchwizardModule } from 'angular-archwizard';
 import {RatingModule} from "ngx-rating";
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { NgxLoadingModule ,ngxLoadingAnimationTypes} from 'ngx-loading';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { UsersRoutingModule } from './users-routing.module';
 import { SignupComponent } from './signup/signup.component';
@@ -54,7 +54,12 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgxPayPalModule,
     NgxPaginationModule,
     CreditCardDirectivesModule,
-    NgxMyDatePickerModule.forRoot(),
+    NgxLoadingModule.forRoot({ animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#99ffe4', 
+      secondaryColour: '#99ffe4', 
+      tertiaryColour: '#99ffe4'}),
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
