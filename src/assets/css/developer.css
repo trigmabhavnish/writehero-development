@@ -545,6 +545,40 @@ fieldset app-form-validation-errors {
 .border-2 {
     border: 1px solid #bdbdbd !important;
 }
+.twocheckoutgreen {
+    background-color: #11c979;
+    border: 1px solid #11c979;
+    padding: 9px 0px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+}
+.twocheckoutgreen::before {
+    background-color: rgba(0,0,0, 0.2);
+    opacity: 0.4;
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+}
+.twocheckoutgreen:hover::before {
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0
+}
 /*Profile Page*/
 .profile-descircle {
 	width: 85px;

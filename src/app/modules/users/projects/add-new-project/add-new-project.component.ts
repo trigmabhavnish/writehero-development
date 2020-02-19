@@ -49,6 +49,8 @@ export class AddNewProjectComponent implements OnInit {
   userCredits: any;
   userCreditsCheck: boolean = true;
 
+  loading:boolean =false; //Page Loader
+
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -363,6 +365,8 @@ export class AddNewProjectComponent implements OnInit {
 
   onSubmitAddNewProject() {
 
+    this.loading = true; // Show Loader
+
     var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value);
 
     let projectCost = this.projectDetailsForm.controls.project_cost.value;
@@ -377,10 +381,12 @@ export class AddNewProjectComponent implements OnInit {
       this.projectsService.createNewProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
         //case success
         (res) => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onSuccess(res.response);
           this.router.navigate(['/user/projects-listing']);
           //case error 
         }, error => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
     }
@@ -484,10 +490,12 @@ export class AddNewProjectComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          this.loading = true; // Show Loader
+          //componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            componentObj.commonUtilsService.hidePageLoader(); //hide page loader
-          }
+            this.loading = false; // Hide Loader
+            //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
+          } 
         })
 
         this.on("success", function (file, serverResponse) {
@@ -498,13 +506,14 @@ export class AddNewProjectComponent implements OnInit {
           });
 
           this.removeFile(file);
-          componentObj.commonUtilsService.hidePageLoader(); //hide page loader
+          this.loading = false; // Hide Loader
+          //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
         });
 
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-
+          this.loading = false; // Hide Loader
           componentObj.commonUtilsService.onError(error.response);
         });
 
@@ -519,7 +528,7 @@ export class AddNewProjectComponent implements OnInit {
    * @return  boolean
    */
   removeImage(index, file_category, file_key): void {
-
+    
     this.projectFilesArray.removeAt(index);
     this.removeImageFromBucket(file_key);
   }
@@ -530,17 +539,19 @@ export class AddNewProjectComponent implements OnInit {
    * @param bucket s3 bucket name
    */
   removeImageFromBucket(file_key) {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
-
+    //this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true; // Show Loader
     const params = { fileKey: file_key }
 
     this.commonUtilsService.removeImageFromBucket(params)
       .pipe(untilDestroyed(this))
       .subscribe(
         (res) => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onSuccess(res.response);
         },
         error => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
   }
@@ -611,15 +622,17 @@ export class AddNewProjectComponent implements OnInit {
    * return number 
    */
   checkAccountCredits() {
+    this.loading = true; // Show Loader
     this.commonUtilsService.userAccountCredits({}).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        //case error 
+        this.loading = false; // Hide Loader
         this.userCredits = res.available_credits;
 
         if (res.available_credits > 0) { this.userCreditsCheck = false; }
 
       }, error => {
+        this.loading = false; // Hide Loader
         this.commonUtilsService.onError(error.response);
         //this.tokenVerified = false;
         //this.router.navigate(['/user/forgot-password']);

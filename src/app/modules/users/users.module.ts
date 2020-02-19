@@ -56,11 +56,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgxPaginationModule,
     CreditCardDirectivesModule,
     NgxLoadingModule.forRoot({ animationType: ngxLoadingAnimationTypes.wanderingCubes,
-      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBackgroundColour: '#002249', 
       backdropBorderRadius: '4px',
-      primaryColour: '#99ffe4', 
-      secondaryColour: '#99ffe4', 
-      tertiaryColour: '#99ffe4'}),
+      primaryColour: '#002249', 
+      secondaryColour: '#002249', 
+      tertiaryColour: '#002249'}),
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })

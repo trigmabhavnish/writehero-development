@@ -36,6 +36,8 @@ export class ProjectsListingComponent implements OnInit {
   totalProjects: number = 0
   projects: any = [];
 
+  loading:boolean = false; // Page Loader
+
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
   /**
@@ -43,7 +45,9 @@ export class ProjectsListingComponent implements OnInit {
   * @return Listing Array
   */
   private getProjectListings() {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    //this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+
+    this.loading = true; // Show Loader
     this.projectsService.getProjectListings({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
@@ -54,9 +58,10 @@ export class ProjectsListingComponent implements OnInit {
         } else {
           //this.commonUtilsService.onError(environment.MESSAGES.NO_PROJECTS_FOUND);
         }
-
+        this.loading = false; // Hide Loader
         //case error 
       }, error => {
+        this.loading = false; // Hide Loader
         this.commonUtilsService.onError(error.response);
       });
   }

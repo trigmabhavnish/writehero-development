@@ -249,7 +249,7 @@ export class BuyCreditsComponent implements OnInit {
     this.checkoutTokenForm = this.formBuilder.group({
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
       expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
-      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]]
+      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4), <any>Validators.pattern(/^-?(0|[1-9]\d*)?$/)]]
     })
   }
 

@@ -20,7 +20,7 @@
                 </button>
 
             </nav>
-
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -182,8 +182,7 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step
-                                                [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
                                                 stepTitle="Project Details">
                                                 <form [formGroup]="projectDetailsForm">
                                                     <div class="row m-0">

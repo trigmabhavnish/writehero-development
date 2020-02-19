@@ -113,12 +113,12 @@
                                                                                     class="paypal--btn submit-btn-feedback">Paypal</label>
                                                                             </div>
                                                                             <div class="col-lg-3">
-                                                                                <input #skrill type="radio"
+                                                                                <input #checkout type="radio"
                                                                                     formControlName="pay_via"
                                                                                     value="twocheckout"
-                                                                                    id="skrillRadio" />
-                                                                                <label for="skrillRadio"
-                                                                                    class="paypal--btn submit-btn-feedback">Skrill</label>
+                                                                                    id="checkoutRadio" />
+                                                                                <label for="checkoutRadio"
+                                                                                    class="paypal--btn submit-btn-feedback">2Checkout</label>
                                                                             </div>
                                                                         </div>
 
@@ -147,9 +147,14 @@
 
                                                     <div class="buycredit-outer">
                                                         <div class="buycredit-topbar">
-                                                            <p>Payement gateway : <span><img
+                                                            <p>Payement gateway :
+                                                                <span *ngIf="buyCreditsForm.controls.pay_via.value == 'paypal'"><img
                                                                         src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg"
-                                                                        alt="paypal"></span></p>
+                                                                        alt="paypal"></span>
+                                                                <span *ngIf="buyCreditsForm.controls.pay_via.value == 'twocheckout'"><img
+                                                                        src="assets/image/2checkout.png"
+                                                                        alt="2Checkout"></span>
+                                                            </p>
                                                             <div class="separator--bottom"></div>
                                                         </div>
                                                         <div class="buycredit-body">
@@ -218,14 +223,6 @@
                                                                             <div class="col-md-6">
                                                                                 <label
                                                                                     class="step-progress-fields-label">
-                                                                                    <span>Card Name</span>
-                                                                                </label>
-                                                                                <input formControlName="creditCard"
-                                                                                    type="text">
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <label
-                                                                                    class="step-progress-fields-label">
                                                                                     <span>Card Number</span>
                                                                                 </label>
 
@@ -270,7 +267,7 @@
                                                                                     type="tel" autocomplete="off" ccCvc>
                                                                                 <p
                                                                                     *ngIf="checkoutTokenForm.controls.cvc.touched || isSubmitted">
-                                                                                    <app-form-validation-errors
+                                                                                    <app-form-validation-errors patternError="Must enter valid cvc."  minLength=3 maxLength=4
                                                                                         errorPrefix="
                                                                                 CVC number"
                                                                                         [errors]="checkoutTokenForm.controls.cvc.errors">
@@ -296,9 +293,11 @@
                                                                         <input id="token" name="token" type="hidden"
                                                                             value="">
 
-                                                                        <input type="btn"
-                                                                            class="submit-btn-feedback w-100 text-center"
-                                                                            (click)="generateToken()" value="Submit">
+                                                                        <button role="button"
+                                                                            class="twocheckoutgreen w-100 text-center"
+                                                                            (click)="generateToken()">
+                                                                            Pay
+                                                                            </button>
                                                                     </div>
 
                                                                 </div>
