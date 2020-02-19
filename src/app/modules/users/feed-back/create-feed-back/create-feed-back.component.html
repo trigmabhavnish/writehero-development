@@ -28,9 +28,7 @@
 
                                         <div class="col-md-12">
                                             <h4 class="create-project-top-heading">Submit Feedback</h4>
-                                            <aw-wizard [disableNavigationBar]="true">
-                                                <aw-wizard-step
-                                                    [canExit]="moveDirection.bind(this, feedbackForm.valid)">
+                                          
                                                     <form [formGroup]="feedbackForm">
                                                         <div class="row">
                                                             <div class="col-lg-8">
@@ -133,9 +131,7 @@
                                                             </div>
                                                         </div>
                                                     </form>
-                                                </aw-wizard-step>
                                                
-                                            </aw-wizard>
                                         </div>
 
                                     </div>

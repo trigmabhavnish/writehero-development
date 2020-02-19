@@ -10,7 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 import { IPayPalConfig, ICreateOrderRequest, IPurchaseUnit } from 'ngx-paypal';
 import { CustomValidator } from '../../../core/_helpers/custom-validator';
-
+import { CreditCardValidator } from 'angular-cc-library';
 // import environment
 import { environment } from '../../../../environments/environment';
 
@@ -22,7 +22,7 @@ import { PageLoaderService } from '../../../shared/_services'
 
 //import core services
 import { CreditsService, CommonUtilsService } from '../../../core/_services';
-
+declare var TCO: any;
 
 
 @Component({
@@ -31,7 +31,7 @@ import { CreditsService, CommonUtilsService } from '../../../core/_services';
   styleUrls: ['./buy-credits.component.css']
 })
 export class BuyCreditsComponent implements OnInit {
-
+  checkoutTokenForm: FormGroup;
   buyCreditsForm: FormGroup;
   buyCreditsSubmitted = false;
   calAmountToPay: any;
@@ -39,13 +39,14 @@ export class BuyCreditsComponent implements OnInit {
   isCouponApplied: boolean = false;
   couponCodeResponse: string;
   appliedCouponCode: string;
-
+  isSubmitted:boolean =false;
   public payPalConfig?: IPayPalConfig; // Paypal Configuration
 
-  constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private pageLoaderService:PageLoaderService,private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
 
 
   ngOnInit() {
+    this.initcheckoutTokenForm()
     this.buyCredits();
     this.initConfig(); // Paypal Configuration    
   }
@@ -237,28 +238,81 @@ export class BuyCreditsComponent implements OnInit {
   }
 
 
-  public makeSkrillPayment(): void {
-    let paymentObj = {
-      amount: 10,
-      currency: 'USD',
-      subject: 'Project Payment',
-      note: 'Project Payment',
-      frn_trn_id: Math.floor(100000000 + Math.random() * 900000000),
-      mb_transaction_id: Math.floor(100000000 + Math.random() * 900000000),
-      return_url: 'http://localhost:4200/user/buy-credits',
-      cancel_url: 'http://localhost:4200/user/buy-credits',
-      status_url: 'http://localhost:4200/user/buy-credits'
-    }
-    this.creditsService.makeSkrillPayout(paymentObj).subscribe(response => {
-    }, error => {
-
-    })
-  }
-
   // This method must be present, even if empty.
   ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.
   }
 
 
+  private initcheckoutTokenForm(): void {
+
+    this.checkoutTokenForm = this.formBuilder.group({
+      creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
+      expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
+      cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]]
+    })
+  }
+
+  /**
+   * generate token form twoCehckout Gateway
+   */
+  public generateToken(): void {
+  
+    this.isSubmitted = true;
+    if(!this.checkoutTokenForm.valid) return;
+    let args = {
+      sellerId: environment.TWO_CEHCKOUT_SELLER_ID,
+      publishableKey: environment.TWO_CHECKOUT_PUBLISHKEY,
+      ccNo: this.checkoutTokenForm.controls.creditCard.value,
+      cvv: this.checkoutTokenForm.controls.cvc.value,
+      expMonth: this.checkoutTokenForm.controls.expirationDate.value.split('/')[0],
+      expYear: this.checkoutTokenForm.controls.expirationDate.value.split('/')[1]
+    }
+    TCO.loadPubKey('sandbox', () => {
+      TCO.requestToken(this.successFullTokenGeneration.bind(this), this.errorCallback, args);
+    });
+
+  }
+  /**
+   * 
+   * @param data on sucessfull toekn generation
+   */
+  private successFullTokenGeneration(data) {
+    this.isSubmitted = false;
+    this.makePayoutRequest(data.response.token.token)
+
+  }
+  /**
+   * 
+   * @param error on error of invalid details
+   */
+  private errorCallback(error) {
+    this.isSubmitted = false;
+
+  }
+
+/**
+ * 
+ * @param token is generated from twocheckout side
+ */
+  public makePayoutRequest(token): void {
+  
+       let body = {
+            credits : this.buyCreditsForm.controls.credits.value,
+            coupon_code:this.buyCreditsForm.controls.coupon_code.value,
+            amount_to_pay:this.buyCreditsForm.controls.amount_to_pay.value,
+            pay_via:this.buyCreditsForm.controls.pay_via.value,
+            discount:this.discountPercentage ? this.discountPercentage : 0,
+            code:this.makeRandomString(),
+            token :token
+    }
+
+
+    this.creditsService.maketwoCheckoutPayoutRequest(body).subscribe(response => {
+         this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
+         this.router.navigate(['/user/billing'])
+    }, error => {
+      this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
+    })
+  }
 }
