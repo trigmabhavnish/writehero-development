@@ -6,8 +6,7 @@ import { RecaptchaModule } from 'angular-google-recaptcha'; // Google Recaptcha 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { ArchwizardModule } from 'angular-archwizard';
 import {RatingModule} from "ngx-rating";
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
-
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { UsersRoutingModule } from './users-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -54,7 +53,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     RatingModule,
     NgxPayPalModule,
     NgxPaginationModule,
-    NgxMyDatePickerModule.forRoot(),
+    CreditCardDirectivesModule,
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })

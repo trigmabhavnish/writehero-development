@@ -115,7 +115,8 @@
                                                                             <div class="col-lg-3">
                                                                                 <input #skrill type="radio"
                                                                                     formControlName="pay_via"
-                                                                                    value="skrill" id="skrillRadio" />
+                                                                                    value="twocheckout"
+                                                                                    id="skrillRadio" />
                                                                                 <label for="skrillRadio"
                                                                                     class="paypal--btn submit-btn-feedback">Skrill</label>
                                                                             </div>
@@ -139,6 +140,8 @@
                                                         </div>
                                                     </form>
                                                 </aw-wizard-step>
+
+
                                                 <aw-wizard-step>
 
 
@@ -247,12 +250,83 @@
                                                                             class="submit-btn-feedback min-w-130">
                                                                             PREVIOUS
                                                                         </button>
-                                                                        <ngx-paypal [config]="payPalConfig">
-                                                                        </ngx-paypal>
-                                                                        <button type="button" (click)="makeSkrillPayment()"
-                                                                        class="submit-btn-feedback min-w-130">
-                                                                        Skrill
-                                                                    </button>
+                                                                        <ng-container
+                                                                            *ngIf="buyCreditsForm.controls.pay_via.value == 'paypal'">
+                                                                            <ngx-paypal [config]="payPalConfig">
+                                                                            </ngx-paypal>
+                                                                        </ng-container>
+
+                                                                        <ng-container
+                                                                            *ngIf="buyCreditsForm.controls.pay_via.value == 'twocheckout'">
+                                                                            <form [formGroup]="checkoutTokenForm">
+                                                                                <input id="token" name="token"
+                                                                                    type="hidden" value="">
+                                                                                <div>
+                                                                                    <label
+                                                                                        class="step-progress-fields-label">
+                                                                                        <span>Card Number</span>
+                                                                                    </label>
+
+                                                                                    <input id="cc-number"
+                                                                                        formControlName="creditCard"
+                                                                                        type="tel"
+                                                                                        autocomplete="cc-number"
+                                                                                        ccNumber>
+                                                                                    <p
+                                                                                        *ngIf="checkoutTokenForm.controls.creditCard.touched || isSubmitted">
+                                                                                        <app-form-validation-errors
+                                                                                            errorPrefix="
+                                                                                            Valid card number"
+                                                                                            [errors]="checkoutTokenForm.controls.creditCard.errors">
+                                                                                        </app-form-validation-errors>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <label
+                                                                                        class="step-progress-fields-label">
+                                                                                        <span>Expiration Date
+                                                                                            (MM/YYYY)</span>
+                                                                                    </label>
+                                                                                    <input id="cc-exp-date"
+                                                                                        formControlName="expirationDate"
+                                                                                        type="tel" autocomplete="cc-exp"
+                                                                                        ccExp>
+                                                                                    <p
+                                                                                        *ngIf="checkoutTokenForm.controls.expirationDate.touched || isSubmitted">
+                                                                                        <app-form-validation-errors
+                                                                                            errorPrefix="
+                                                                                        Valid card number"
+                                                                                            [errors]="checkoutTokenForm.controls.expirationDate.errors">
+                                                                                        </app-form-validation-errors>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div>
+
+                                                                                    <label
+                                                                                        class="step-progress-fields-label">
+                                                                                        <span>CVC</span>
+                                                                                    </label>
+                                                                                    <input id="cc-cvc"
+                                                                                        formControlName="cvc" type="tel"
+                                                                                        autocomplete="off" ccCvc>
+                                                                                    <p
+                                                                                        *ngIf="checkoutTokenForm.controls.cvc.touched || isSubmitted">
+                                                                                        <app-form-validation-errors
+                                                                                            errorPrefix="
+                                                                                        CVC number"
+                                                                                            [errors]="checkoutTokenForm.controls.cvc.errors">
+                                                                                        </app-form-validation-errors>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <input type="btn"
+                                                                                    class="submit-btn-feedback min-w-130"
+                                                                                    (click)="generateToken()"
+                                                                                    value="Submit">
+                                                                            </form>
+                                                                        </ng-container>
+
+
+
 
                                                                     </div>
                                                                 </div>

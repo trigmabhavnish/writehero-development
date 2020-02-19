@@ -33,18 +33,6 @@ export class CreateFeedBackComponent implements OnInit {
   }
 
 
-  /**
-* validate wizard and move to either direction. 
-* @param validityStatus boolean(form validation status)
-* @param direction boolean(wizard direction)
-* @return  booleanimport { MovingDirection } from 'angular-archwizard'; // Wizard
-*/
-  moveDirection = (validityStatus, direction) => {
-    if (direction === MovingDirection.Backwards) {
-      return true;
-    }
-    return validityStatus;
-  };
 
 
   public getCompletedProject(): void {
