@@ -106,12 +106,12 @@
                                             <aw-wizard-step [canExit]="moveDirection.bind(this, projectSpecsForm.valid)"
                                                 stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <input type="text" class="col-lg-4 field-design" #project_name
+                                                        <input type="text" class="field-design" #project_name
                                                             formControlName="project_name" placeholder=""                             
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
@@ -122,12 +122,12 @@
                                                             </app-form-validation-errors>
                                                         </p>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Topic <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="px-0">
                                                             <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_topic" placeholder=""
@@ -147,12 +147,12 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Type <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="px-0">
                                                             <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_type" placeholder=""
@@ -377,7 +377,7 @@
                                                                 <div class="package-total-cost">
                                                                     <h4>Total Cost : <span>${{calculateCost}}</span>
                                                                     </h4>
-                                                                    <p>Estimated arround: 1-2 weeks</p>
+                                                                    <!--p>Estimated arround: 1-2 weeks</p-->
                                                                 </div>
                                                             </div>
 
@@ -402,15 +402,15 @@
                                             </aw-wizard-step>
                                             <aw-wizard-step stepTitle="Writers Details">
                                                 <form [formGroup]="writersDetailsForm">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-12">
                                                         <div class="row">
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields">
                                                                 <label>Choice of writters</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
 
                                                                     <select #choice_of_writers class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
@@ -426,13 +426,13 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields mt-0">
                                                                 <label>Career</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
                                                                     <select #writers_career class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
                                                                         formControlName="writers_career" placeholder=""
@@ -467,13 +467,13 @@
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields">
                                                                 <label>Location</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
                                                                     <select #writers_location class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
                                                                         formControlName="writers_location"

@@ -31,19 +31,19 @@
 
                                         <div class="col-lg-12">
                                             <div class="row">
-                                                <form [formGroup]="projectSpecsForm">
+                                                <form [formGroup]="projectSpecsForm" class="row mx-0">
                                                     <div class="col-md-12">
                                                         <div class="step-4-summary-all mb-3">
                                                             <h6 class="step-4-summary-all-tags">Project Specs :</h6>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-5 step-progress-fields">
                                                         <label>Project Name</label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                                             Praesent
                                                             diam lorem, fermentum in tempus
                                                             sed, aliquet sed enim</p>
-                                                        <input type="text" class="col-lg-4 field-design" #project_name
+                                                        <input type="text" class="field-design" #project_name
                                                             formControlName="project_name" placeholder=""
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
@@ -54,13 +54,13 @@
                                                             </app-form-validation-errors>
                                                         </p>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-5 step-progress-fields mt-0">
                                                         <label>Project Topic</label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                                             Praesent
                                                             diam lorem, fermentum in tempus
                                                             sed, aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="col-lg-12 px-0">
                                                             <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_topic" placeholder=""
@@ -80,13 +80,13 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-5 step-progress-fields">
                                                         <label>Project Type</label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                                             Praesent
                                                             diam lorem, fermentum in tempus
                                                             sed, aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="col-lg-12 px-0">
                                                             <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_type" placeholder=""
@@ -104,7 +104,7 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-12 mt-3">
                                                         <div class="step-4-summary-all mb-3">
                                                             <h6 class="step-4-summary-all-tags">Project Details :</h6>
                                                         </div>
@@ -256,7 +256,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <!--Upload Images Section-->
-                                                                    <div class="col-md-12 px-0">
+                                                                    <div class="col-md-12 mt-2">
                                                                         <div class="thumbnails"
                                                                             *ngIf="checkObjectLength(projectFilesArray.value) > 0">
                                                                             <div class="thumbnail_list"

@@ -30,8 +30,8 @@ import { ProjectsService, CommonUtilsService } from '../../../core/_services';
 })
 export class DashboardComponent implements OnInit {
 
-  latestProject: any;
-  latestSupport: any;
+  latestProject: any = {};
+  latestSupport: any = {};
   projectCount: any;
   userName: any;
 
@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
 * @param object
 *  @return number
 */
-  public checkObjectLength(object): number {
+  public checkObjectLength(object): number {    
     return Object.keys(object).length;
   }
 

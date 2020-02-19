@@ -260,7 +260,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{(projectDetails.estimated_date_delivery)?(projectDetails.estimated_date_delivery | date):'NA'}}
+                                                                            {{(projectDetails.estimated_date_delivery != '0000-00-00')?(projectDetails.estimated_date_delivery | date):'NA'}}
                                                                         </p>
                                                                     </div>
                                                                 </div>

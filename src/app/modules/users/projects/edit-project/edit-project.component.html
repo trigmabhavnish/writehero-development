@@ -107,9 +107,8 @@
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <input type="text" class="col-lg-4" #project_name
-                                                            formControlName="project_name" placeholder=""
-                                                            class="field-design"
+                                                        <input type="text" class="col-lg-4 field-design" #project_name
+                                                            formControlName="project_name" placeholder=""                             
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
@@ -169,12 +168,12 @@
                                                     </div>
                                                     <div class="col-md-12 mt-4">
 
-                                                        <button [disabled]="projectSpecsForm.invalid"
+                                                        <button
+                                                            [disabled]="projectSpecsForm.invalid || userCreditsCheck"
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
-                                                        </button>
-                                                        <!--a href="#" class="advance-text">( or go advance )</a-->
+                                                        </button>                                                        
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
@@ -279,43 +278,49 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-12">
+                                                        <div class="col-lg-12 mt-3">
                                                             <div class="row step-progress-fields">
-                                                                <label class="col-md-12">Choose your package <span
+                                                                <label class="col-md-12 mb-3">Choose your package <span
                                                                         class="red">*</span></label>
+
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
-                                                                    class="project-package-plans package-design basic-package col-lg-4">
-                                                                    <h6 class="project-package-plans-title">
-                                                                        {{projectPackage.project_type_name}}</h6>
-                                                                    <p class="project-package-plans-amount">
-                                                                        ${{projectPackage.price * 100}}
-                                                                    </p>
-                                                                    <p class="project-package-plans-limit">Per
-                                                                        $100 words</p>
-                                                                    <ul>
-                                                                        <li>Lorem ipsum dolor sit amet,
-                                                                            consectetur </li>
-                                                                        <li>Nunc quis elit non est dictum
-                                                                            elementum</li>
-                                                                        <li>Praesent ullamcorper velit vel eros
-                                                                            posuere</li>
-                                                                    </ul>
-                                                                    <input
-                                                                        (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
-                                                                        type="radio"
-                                                                        [attr.data-packagePrice]="projectPackage.price"
-                                                                        [checked]="projectPackage.id == selectedProjectPackageId"
-                                                                        #project_package
-                                                                        formControlName="project_package"
-                                                                        value="{{projectPackage.id}}"
-                                                                        id="{{projectPackage.id}}" />
-                                                                    <label for="{{projectPackage.id}}"
-                                                                        class="submit-btn-feedback">Select plan</label>
+                                                                    class="col-lg-4 mb-4">
+                                                                    <div
+                                                                        class="project-package-plans package-design basic-package">
+                                                                        <h6 class="project-package-plans-title">
+                                                                            {{projectPackage.project_type_name}}</h6>
+                                                                        <p class="project-package-plans-amount">
+                                                                            ${{projectPackage.price * 100}}
+                                                                        </p>
+                                                                        <p class="project-package-plans-limit">Per
+                                                                            $100 words</p>
+                                                                        <ul>
+                                                                            <li>Lorem ipsum dolor sit amet,
+                                                                                consectetur </li>
+                                                                            <li>Nunc quis elit non est dictum
+                                                                                elementum</li>
+                                                                            <li>Praesent ullamcorper velit vel eros
+                                                                                posuere</li>
+                                                                        </ul>
+                                                                        <input
+                                                                            (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
+                                                                            type="radio"
+                                                                            [attr.data-packagePrice]="projectPackage.price"
+                                                                            [checked]="projectPackage.id == selectedProjectPackageId"
+                                                                            #project_package
+                                                                            formControlName="project_package"
+                                                                            value="{{projectPackage.id}}"
+                                                                            id="{{projectPackage.id}}" />
+                                                                        <label for="{{projectPackage.id}}"
+                                                                            class="submit-btn-feedback clr--size">Select
+                                                                            plan</label>
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-5">
-                                                            <div class="col-lg-12 col-lg-12 step-progress-fields">
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-12 px-0 step-progress-fields">
                                                                 <label>Attach File?</label>
                                                                 <div class="uploadcode">
                                                                     <div class="uploadImages position-relative">
@@ -327,13 +332,12 @@
                                                             </div>
 
                                                             <!--Upload Images Section-->
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-12 px-0">
                                                                 <div class="thumbnails"
                                                                     *ngIf="checkObjectLength(projectFilesArray.value) > 0">
                                                                     <div class="thumbnail_list"
                                                                         *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
 
-                                                                        
 
                                                                         <a class="upload_pdf" data-toggle="tooltip"
                                                                             title="{{projectImage.value.file_name}}"
@@ -363,21 +367,22 @@
                                                             <!--Upload Images Section-->
 
                                                         </div>
-                                                        <div class="col-lg-5">
-                                                            <div class="col-lg-12 mt-4 text-left">
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-12 mt-4 text-right">
                                                                 <div class="package-total-cost">
                                                                     <h4>Total Cost : <span>${{calculateCost}}</span>
                                                                     </h4>
-                                                                    <p>Estimated arround: 1-2 weeks</p>
+                                                                    <!--p>Estimated arround: 1-2 weeks</p-->
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-12 mt-4 text-right">
                                                                 <button type="button" awPreviousStep
-                                                                    class="submit-btn-feedback min-w-130">
+                                                                    class="submit-btn-feedback min-w-130 mr-lg-3">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button [disabled]="projectDetailsForm.invalid"
+                                                                <button
+                                                                    [disabled]="projectDetailsForm.invalid || userCreditsCheck"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130">
@@ -386,6 +391,7 @@
 
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>

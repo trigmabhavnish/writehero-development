@@ -63,7 +63,8 @@
                                                                                     <div class="thumbnail_list"
                                                                                         *ngFor="let profileFile of profileFilesArray | keyvalue; let projectImage = index;">
 
-                                                                                        <img src="{{profileFile.file_path}}">
+                                                                                        <img
+                                                                                            src="{{profileFile.file_path}}">
 
                                                                                         <!--a class="upload_pdf"
                                                                                             data-toggle="tooltip"
@@ -358,6 +359,192 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <!--New Profile HTML-->
+                <div class="dashboard-welcome-note">
+                    <p class="mb-2">Your Profile Details</p>
+                    <span class="prof-detailstext">Details are saved securely</span>
+                </div>
+
+                <div class="profile-desouter">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-circlebox">
+                            <div class="profile-descircle">
+                                <img src="https://images.pexels.com/photos/948873/pexels-photo-948873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                    alt="profile-image">
+                            </div>
+                            <input type="file" id="upload__img" class="d-none">
+                            <label for="upload__img" class="pluscircle--btn">
+                                <img src="image/plus.png" alt="">
+                            </label>
+                        </div>
+                        <div class="profile-genderouter">
+                            <input type="radio" id="male--radio" name="customRadio">
+                            <input type="radio" id="female--radio" name="customRadio" checked>
+                            <div class="genderlabel-outer">
+                                <label for="male--radio" id="male-label">Male</label>
+                                <label for="female--radio" id="female-label">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profileinfo-box">
+
+                        <div class="max-650">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">First name</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Last name</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Email</label>
+                                        <input type="email" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Country</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Birthday</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Profession / Industry</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <label for="">Website</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="max-950 mt-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend class="profile--settings">Notification Settings</legend>
+                                        <div class="row mt-3 mx-0">
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I submit a new project
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I received a completed project
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I received an important update about my project
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I made a new payment
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I rceived a freebie
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I rceived a new message
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            I've updated my profie
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="profileinfo-group">
+                                                    <div class="w-100">
+                                                        <label class="contain">
+                                                            <input type="checkbox" name="checlist-box2">
+                                                            <span class="checkmark"></span>
+                                                            There's news promotion updates and other offers
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--New Profile HTML-->
+
+
             </div>
 
         </div>
