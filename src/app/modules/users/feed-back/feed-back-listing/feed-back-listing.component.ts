@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedBackService } from 'src/app/core/_services';
-
+import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
   selector: 'app-feed-back-listing',
   templateUrl: './feed-back-listing.component.html',
@@ -28,7 +28,7 @@ export class FeedBackListingComponent implements OnInit {
 
   private getFeedBackLsiting(): void {
     this.loading = true;
-    this.feedbckservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
+    this.feedbckservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
       this.feedbacks = response.feedback;
       this.totalItems = response.totalItems;
       this.loading = false;
@@ -45,4 +45,11 @@ export class FeedBackListingComponent implements OnInit {
     this.currentPage = pageNumber;
     this.getFeedBackLsiting();
   }
+
+
+   // This method must be present, even if empty.
+   ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupportService, CommonUtilsService } from 'src/app/core/_services';
 import { Router } from '@angular/router';
-
+import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
   selector: 'app-ticket-listing',
   templateUrl: './ticket-listing.component.html',
@@ -29,7 +29,7 @@ export class TicketListingComponent implements OnInit {
    */
   private getSuppotsData(): void {
     this.loading = true;
-    this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
+    this.supportService.getSupportTickets({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
       
       this.tickets = response.tickets;
       this.totalItems = response.totalItems;
@@ -65,5 +65,10 @@ export class TicketListingComponent implements OnInit {
 
   public navigateToCreateNewTicket():void{
     this.router.navigate(['/user/create-ticket'])
+  }
+
+   // This method must be present, even if empty.
+   ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
   }
 }

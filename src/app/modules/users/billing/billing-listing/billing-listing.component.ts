@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreditsService } from 'src/app/core/_services';
-
+import { untilDestroyed } from 'ngx-take-until-destroy';
+ 
 @Component({
   selector: 'app-billing-listing',
   templateUrl: './billing-listing.component.html',
@@ -21,7 +22,7 @@ export class BillingListingComponent implements OnInit {
 
   public getCreditListing(): void {
     this.loading = true;
-    this.creditService.getTransactionsListing({pageNumber: this.currentPage, pageSize: this.pageSize }).subscribe(response => {
+    this.creditService.getTransactionsListing({pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
     this.billingListing = response.transactions;
     this.totalItems =response.totalItems;
     this.loading = false;
@@ -34,5 +35,10 @@ export class BillingListingComponent implements OnInit {
   public pageChanged(pageNumber:any):void{
     this.currentPage = pageNumber;
     this.getCreditListing();
+  }
+
+   // This method must be present, even if empty.
+   ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
   }
 }

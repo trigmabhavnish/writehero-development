@@ -11,6 +11,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from obse
 import { IPayPalConfig, ICreateOrderRequest, IPurchaseUnit } from 'ngx-paypal';
 import { CustomValidator } from '../../../core/_helpers/custom-validator';
 import { CreditCardValidator } from 'angular-cc-library';
+
 // import environment
 import { environment } from '../../../../environments/environment';
 
@@ -239,10 +240,7 @@ export class BuyCreditsComponent implements OnInit {
   }
 
 
-  // This method must be present, even if empty.
-  ngOnDestroy() {
-    // To protect you, we'll throw an error if it doesn't exist.
-  }
+
 
 
   private initcheckoutTokenForm(): void {
@@ -312,7 +310,7 @@ export class BuyCreditsComponent implements OnInit {
     }
 
 
-    this.creditsService.maketwoCheckoutPayoutRequest(body).subscribe(response => {
+    this.creditsService.maketwoCheckoutPayoutRequest(body).pipe(untilDestroyed(this)).subscribe(response => {
           this.loading = false;
          this.commonUtilsService.onSuccess(environment.MESSAGES.PAYENT_SUCCESS);
          this.router.navigate(['/user/billing']);
@@ -321,4 +319,9 @@ export class BuyCreditsComponent implements OnInit {
       this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
     })
   }
+
+    // This method must be present, even if empty.
+    ngOnDestroy() {
+      // To protect you, we'll throw an error if it doesn't exist.
+    }
 }

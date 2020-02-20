@@ -7,7 +7,6 @@ import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from obse
 import { environment } from '../../../../../environments/environment';
 
 
-
 //import core services
 import { ProjectsService, CommonUtilsService, SupportService } from '../../../../core/_services';
 import { Router } from '@angular/router';
@@ -214,7 +213,7 @@ export class CreateTicketComponent implements OnInit {
     this.isSubmitted = true;
     if (this.createTicketForm.invalid) return;
     this.loading = true;
-    this.supportService.createSupportTicket(this.createTicketForm.value).subscribe(response => {
+    this.supportService.createSupportTicket(this.createTicketForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_CREATED);
       this.isSubmitted = false;
       this.loading = false;

@@ -30,7 +30,8 @@ export const environment = {
     CANCEL_PROJECT:'Are you sure you want to cancel this project?',
     PROFILE_UPDATE:'Profile updated successfully.',
     PAYENT_SUCCESS:'Payment has been done successfully.',
-    CREDIT_CARD_INVALID:'Oops! wrong credit card information provided by you.'
+    CREDIT_CARD_INVALID:'Oops! wrong credit card information provided by you.',
+    PROFILE_IMAGE_UPDATE:'Profile image updated successfully.'
   }
 };
 

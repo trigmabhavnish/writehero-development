@@ -1,8 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService, CommonUtilsService } from 'src/app/core/_services';
-import { MovingDirection } from 'angular-archwizard'; // Wizard
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { environment } from 'src/environments/environment';
+
 import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 declare var $: any;
 @Component({
@@ -12,13 +13,13 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
 
-  isSubmitted:boolean =false;
+  isSubmitted: boolean = false;
   public profileFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   profileFilesArray: any = [];
   disabled: boolean = false;
   userProfileForm: FormGroup;
-  loading:boolean = false;
+  loading: boolean = false;
   constructor(private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
@@ -32,7 +33,11 @@ export class ProfileComponent implements OnInit {
 
     $('#dob').datepicker({
       uiLibrary: 'bootstrap4',
-      format: 'mm/dd/yyyy'
+      format: 'mm/dd/yyyy',
+      disableDates: function (date) {
+        const currentDate = new Date();
+        return date < currentDate ? true : false;
+      }
     });
 
 
@@ -43,14 +48,14 @@ export class ProfileComponent implements OnInit {
       profile_pic: [],
       company_name: [],
       user_name: [],
-      first_name: [null,Validators.required],
-      last_name: [null,Validators.required],
+      first_name: [null, Validators.required],
+      last_name: [null, Validators.required],
       profession: [""],
-      email: [null,[Validators.email,Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
       website: [],
       country: [],
       dob: [],
-    
+
       notification: this.fb.group({
         new_project: [],
         complet_project: [],
@@ -67,7 +72,7 @@ export class ProfileComponent implements OnInit {
 
   private getUserProfileData(): void {
     this.loading = true;
-    this.userService.getUserProfile().subscribe(response => {
+    this.userService.getUserProfile().pipe(untilDestroyed(this)).subscribe(response => {
       this.patchProfile(response);
       this.loading = false;
     }, error => {
@@ -89,8 +94,8 @@ export class ProfileComponent implements OnInit {
       email: profile.email,
       website: profile.website,
       country: profile.country,
-      dob: $('#dob').val(profile.dob ? profile.dob.split('T')[0]:''),
-    
+      dob: $('#dob').val(this.returnFormattedDate(profile.dob)),
+
       notification: {
         new_project: settings.new_project == "N" ? false : true,
         complet_project: settings.complet_project == "N" ? false : true,
@@ -104,6 +109,16 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+
+
+  private returnFormattedDate(dob: any) {
+    let date = new Date(dob)
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return [(month > 9 ? '' : "0") + month, (day > 9 ? '' : '0') + day, year].join('-')
+    // return (month ? 9 '':'0')+month + '-'+day+'-'+year;
+  }
   /**
    * Initialize Dropzone Library(Image Upload).
    */
@@ -230,20 +245,14 @@ export class ProfileComponent implements OnInit {
     body['my_profile'] = this.userProfileForm.controls['notification'].value.my_profile == false ? "N" : "Y";
     body['other_update'] = this.userProfileForm.controls['notification'].value.other_update == false ? "N" : "Y";
 
-
-
-
-
-
-
     this.loading = true;
-    
-    this.userService.updateProfile(body).subscribe(response => {
-      this.isSubmitted =false;
+
+    this.userService.updateProfile(body).pipe(untilDestroyed(this)).subscribe(response => {
+      this.isSubmitted = false;
       this.loading = false;
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
     }, error => {
-      this.isSubmitted =false;
+      this.isSubmitted = false;
       this.loading = false;
       this.commonUtilsService.onError(error.response)
     })
@@ -251,17 +260,20 @@ export class ProfileComponent implements OnInit {
 
 
   public updateProfilePic(body): void {
-    this.userService.updateProfilePic(body.fileLocation).subscribe(response => {
+    this.userService.updateProfilePic(body.fileLocation).pipe(untilDestroyed(this)).subscribe(response => {
       this.userProfileForm.patchValue({
-        profile_pic:body.fileLocation
+        profile_pic: body.fileLocation
       })
-      this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
+      this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_IMAGE_UPDATE);
     }, error => {
       this.commonUtilsService.onError(error.response)
     })
   }
 
-
+  // This method must be present, even if empty.
+  ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
+  }
 
 
 }

@@ -47,7 +47,7 @@ export class ViewTicketComponent implements OnInit {
    */
   private getTicketDetails(): void {
     this.loading = true;
-    this.supportService.getTicketDetails({ supportId: this.supportId }).subscribe(response => {
+    this.supportService.getTicketDetails({ supportId: this.supportId }).pipe(untilDestroyed(this)).subscribe(response => {
       this.supportData = response;
       this.loading = false;
     }, error => {
@@ -218,7 +218,7 @@ export class ViewTicketComponent implements OnInit {
     this.isSubmitted = true;
     if (this.ticketReplyForm.invalid) return
     this.loading = true;
-    this.supportService.submitReply(this.ticketReplyForm.value).subscribe(response => {
+    this.supportService.submitReply(this.ticketReplyForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.MESSAGE_SEND);
       this.ticketReplyForm.reset();
       this.ticketReplyForm.patchValue({
@@ -245,7 +245,7 @@ export class ViewTicketComponent implements OnInit {
       cancelButtonText: 'No, Cancel'
     }).then((result) => {
       if (result.value) {
-        this.supportService.updateSupportTicket({ support_id: this.supportId }).subscribe(response => {
+        this.supportService.updateSupportTicket({ support_id: this.supportId }).pipe(untilDestroyed(this)).subscribe(response => {
           this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_UPDATE);
 
           this.getTicketDetails();

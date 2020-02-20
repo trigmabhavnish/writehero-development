@@ -4,7 +4,7 @@ import { MovingDirection } from 'angular-archwizard'; // Wizard
 import { FeedBackService, CommonUtilsService } from 'src/app/core/_services';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-
+import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
   selector: 'app-create-feed-back',
   templateUrl: './create-feed-back.component.html',
@@ -38,7 +38,7 @@ export class CreateFeedBackComponent implements OnInit {
 
   public getCompletedProject(): void {
     this.loading = true;
-    this.feedbackservice.getCompletedProjects().subscribe(response => {
+    this.feedbackservice.getCompletedProjects().pipe(untilDestroyed(this)).subscribe(response => {
       this.loading = false;
       this.projects = response.projects
     }, error => {
@@ -53,7 +53,7 @@ export class CreateFeedBackComponent implements OnInit {
   public submitFeedBack(): void {
     if (this.feedbackForm.invalid) return;
     this.loading = false;
-    this.feedbackservice.submitFeedBack(this.feedbackForm.value).subscribe(response => {
+    this.feedbackservice.submitFeedBack(this.feedbackForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.FEEDBACK_SUCCESS);
       this.feedbackForm.reset();
       this.loading = false;
@@ -64,4 +64,23 @@ export class CreateFeedBackComponent implements OnInit {
       })
 
   }
+
+    /**
+ * validate wizard and move to either direction. 
+ * @param validityStatus boolean(form validation status)
+ * @param direction boolean(wizard direction)
+ * @return  booleanimport { MovingDirection } from 'angular-archwizard'; // Wizard
+ */
+moveDirection = (validityStatus, direction) => {
+  if (direction === MovingDirection.Backwards) {
+    return true;
+  }
+  return validityStatus;
+};
+
+   // This method must be present, even if empty.
+   ngOnDestroy() {
+    // To protect you, we'll throw an error if it doesn't exist.
+  }
 }
+
