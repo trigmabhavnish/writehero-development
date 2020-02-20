@@ -22,6 +22,8 @@ import { CreateFeedBackComponent } from './feed-back/create-feed-back/create-fee
 import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-details.component';
 import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotificationComponent } from './notification/notification.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 const routes: Routes = [
   {
     path: '',
@@ -145,7 +147,22 @@ const routes: Routes = [
     component: BuyCreditsComponent,
     data: { title: 'Buy Credits' },
     canActivate: [UserAuthGuardService]
+  },
+  {
+    path: 'notifications',
+    component: NotificationComponent,
+    data: { title: 'Notifications' },
+    canActivate: [UserAuthGuardService]
+    
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    data: { title: 'Change Password' },
+    canActivate: [UserAuthGuardService]
+    
   }
+
 ];
 
 @NgModule({

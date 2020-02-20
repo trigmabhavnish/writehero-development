@@ -32,6 +32,7 @@ export class LeftSidebarComponent implements OnInit {
   isProfileUpdated: boolean = false;
   profileSubscription: Subscription;
   profileDetails:any;
+  notificationCount:any;
   defaultPath = environment.DEFAULT_PROFILE_PIC;
 
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
@@ -41,10 +42,12 @@ export class LeftSidebarComponent implements OnInit {
     this.profileSubscription = this.userAuthService.getUpdatedProfileStatus().subscribe((profileStatus) => {
       this.isProfileUpdated = profileStatus.profileUpdatedStatus;
       this.getUserDetails();
+      this.getNotificationCount();
     });
 
     // On Page Refresh
     this.getUserDetails();
+    this.getNotificationCount();
     
   }
 
@@ -84,6 +87,21 @@ export class LeftSidebarComponent implements OnInit {
         this.commonUtilsService.onError(error.response);
       });
   }
+
+
+ private getNotificationCount(){
+  this.userAuthService.getUserNotificationsCount().pipe(untilDestroyed(this)).subscribe(
+    //case success
+    (res) => {
+            this.notificationCount = res.count[0].totalItem
+    }, error => {
+      this.commonUtilsService.onError(error.response);
+    });
+ }
+
+ public viewNotification():void{
+   this.router.navigate(['/user/notifications'])
+ }
 
   // This method must be present, even if empty.
   ngOnDestroy() {

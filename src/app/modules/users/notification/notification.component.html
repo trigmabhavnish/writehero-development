@@ -10,34 +10,27 @@
             <thead>
               <tr>
                 <th>S.No.</th>
-                <th>Date</th>
-                <th>Feedback</th>
-                <th>Rating</th>
-                <th>Rating By</th>
-                <th>Action</th>
+                <th>Notification Message</th>
+             
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let feedback of feedbacks | paginate: { id: 'foo',
+              <tr *ngFor="let notification of notifications | paginate: { id: 'foo',
               itemsPerPage: pageSize,
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
-                <td>{{feedback?.feed_date | date }}</td>
-                <td>{{feedback?.feed_desc}}</td>
-                <td><rating [(ngModel)]="feedback.overall_rate"
-                    >
-               </rating></td>
-                <td>{{feedback?.user_name}}</td>
-                <td><a title="View Feedback" [routerLink]="['/user/feedback-details/', feedback.user_id,feedback.project_id]" ><i class="fa fa-eye"></i> </a></td>
+                <td>{{notification?.message}}</td>
+            
+
               </tr>      
               
             </tbody>
             
           </table>
         </div>
-          
-          <div class="row" *ngIf="feedbacks.length > 0">
+
+          <div class="row" *ngIf="notifications.length > 0">
             <div class="col-md-12 writer-pagination mb-3">
                 <pagination-controls id="foo" (pageChange)="pageChanged($event)"
                     (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
@@ -47,9 +40,7 @@
                 </pagination-controls>
             </div>
         </div>
-        <div class="col-md-12 text-right">
-          <a type="button" routerLink="/user/create-feedback" class="btn-ticket">Submit Feedback</a>
-        </div>
+     
 </div>
   </div>
 </div>

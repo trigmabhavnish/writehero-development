@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedBackService } from 'src/app/core/_services';
+import { UsersService } from 'src/app/core/_services';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
-  selector: 'app-feed-back-listing',
-  templateUrl: './feed-back-listing.component.html',
-  styleUrls: ['./feed-back-listing.component.css']
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.css']
 })
-export class FeedBackListingComponent implements OnInit {
-  rating: number = 1;
-  feedbacks: any = [];
-  user: any;
+export class NotificationComponent implements OnInit {
+  notifications: any = [];
   loading:boolean= false;
   //pagination initilize
   pageSize: number = 10;
   currentPage: number = 1;
   totalItems: number = 0
-  constructor(private feedbackservice: FeedBackService) {
+  constructor(private userService: UsersService) {
 
 
 
@@ -23,13 +21,13 @@ export class FeedBackListingComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getFeedBackLsiting();
+    this.getNotificationListing();
   }
 
-  private getFeedBackLsiting(): void {
+  private getNotificationListing(): void {
     this.loading = true;
-    this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
-      this.feedbacks = response.feedback;
+    this.userService.getUserNotifications({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe((response:any) => {
+      this.notifications = response.notifications;
       this.totalItems = response.totalItems;
       this.loading = false;
     },error=>{
@@ -43,7 +41,7 @@ export class FeedBackListingComponent implements OnInit {
    */
   public pageChanged(pageNumber: any): void {
     this.currentPage = pageNumber;
-    this.getFeedBackLsiting();
+    this.getNotificationListing();
   }
 
 
@@ -51,5 +49,4 @@ export class FeedBackListingComponent implements OnInit {
    ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.
   }
-
 }

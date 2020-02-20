@@ -124,6 +124,9 @@ export class UsersService {
       this.router.navigate(['/user/dashboard']);
   }
 
+  changePassword(body):Observable<any>{
+    return this.httpClient.post('user/changePassword',body);
+  }
   getUserProfile():Observable<any>{
     return this.httpClient.get('user/getProfile');
   }
@@ -134,4 +137,11 @@ export class UsersService {
     return this.httpClient.post('user/updateProfilePic',{profile_pic:body});
   }
   
+
+  getUserNotifications(body:any):Observable<any>{
+    return this.httpClient.post('user/getNotifications',body);
+  }
+  getUserNotificationsCount():Observable<any>{
+    return this.httpClient.post('user/notificationCount',{});
+  }
 }

@@ -22,7 +22,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../shared/_services'
 
 //import core services
-import { CreditsService, CommonUtilsService } from '../../../core/_services';
+import { CreditsService, CommonUtilsService, UsersService } from '../../../core/_services';
 declare var TCO: any;
 
 
@@ -44,7 +44,7 @@ export class BuyCreditsComponent implements OnInit {
   isSubmitted:boolean =false;
   public payPalConfig?: IPayPalConfig; // Paypal Configuration
 
-  constructor(private pageLoaderService:PageLoaderService,private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private userAuthService:UsersService, private pageLoaderService:PageLoaderService,private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
 
 
   ngOnInit() {
@@ -138,6 +138,7 @@ export class BuyCreditsComponent implements OnInit {
         this.creditsService.onTransactionComplete(transactionData).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
+            this.userAuthService.isProfileUpdated(true);
             this.commonUtilsService.onSuccess(res.response);
             //case error 
           }, error => {
@@ -312,6 +313,7 @@ export class BuyCreditsComponent implements OnInit {
 
     this.creditsService.maketwoCheckoutPayoutRequest(body).pipe(untilDestroyed(this)).subscribe(response => {
           this.loading = false;
+          this.userAuthService.isProfileUpdated(true);
          this.commonUtilsService.onSuccess(environment.MESSAGES.PAYENT_SUCCESS);
          this.router.navigate(['/user/billing']);
     }, error => {
