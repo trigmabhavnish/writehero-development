@@ -34,6 +34,8 @@ import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-
 import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
+import { NotificationComponent } from './notification/notification.component';
+
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -42,7 +44,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent],  
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent, NotificationComponent],  
   imports: [
     CommonModule,
     UsersRoutingModule,
