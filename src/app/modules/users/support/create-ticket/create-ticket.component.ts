@@ -7,7 +7,6 @@ import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from obse
 import { environment } from '../../../../../environments/environment';
 
 
-
 //import core services
 import { ProjectsService, CommonUtilsService, SupportService } from '../../../../core/_services';
 import { Router } from '@angular/router';
@@ -19,7 +18,7 @@ import { Router } from '@angular/router';
 export class CreateTicketComponent implements OnInit {
   createTicketForm: FormGroup;
   isSubmitted: boolean = false; // true when submit the form
-
+  loading:boolean = false;
   public supportFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
@@ -212,13 +211,16 @@ export class CreateTicketComponent implements OnInit {
    */
   public submitTicket(): void {
     this.isSubmitted = true;
-    if (this.createTicketForm.invalid) return
-    this.supportService.createSupportTicket(this.createTicketForm.value).subscribe(response => {
+    if (this.createTicketForm.invalid) return;
+    this.loading = true;
+    this.supportService.createSupportTicket(this.createTicketForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_CREATED);
       this.isSubmitted = false;
+      this.loading = false;
       this.router.navigate(['/user/ticket-listing'])
     }, error => {
       this.isSubmitted = false;
+      this.loading = false;
       this.commonUtilsService.onError(error.response)
     })
   }

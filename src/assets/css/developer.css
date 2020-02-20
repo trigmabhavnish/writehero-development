@@ -5,6 +5,7 @@ button.submit-btn-feedback:disabled {opacity: 0.5;}
 span.red{color: #f00}
 aw-wizard-navigation-bar.horizontal.small {display: none;}
 .uploadImages .dz-preview{display:none;}
+.uploadProfileImage .dz-preview{display:none;}
 .notEnoughCredits {
     background-color: #ff4444;
     padding: 8px 16px;
@@ -243,6 +244,50 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
 /*buy credit ends*/
 
 /*BEM for life*/
+.lorem-tooltip--outer {
+    padding: 9px 15px;
+    position: absolute;
+    width: 380px;
+    background-color: #fff;
+    top: 40px;
+    cursor: pointer;
+    z-index: 200;
+    font-size: 13px;
+    display: none;
+    border-radius: 15px;
+    line-height: 22px;
+    color: #03094c;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    left: 15px;
+}
+.about_logo_course_tooltip {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    float: right;
+}
+.about_logo_course_tooltip:hover .lorem-tooltip--outer {
+    display: block;
+}
+.lorem-tooltip--outer::before {
+    content: url(../image/tooltip-before.png);
+    position: absolute;
+    top: -16px;
+    left: 10px;
+}
+.writer-pagination ul li a:focus {
+    outline: none !important;
+}
+.projectlistingtitle--text {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #868686;
+}
+rating.ng-untouched.ng-pristine.ng-valid > span span + span {
+    margin-left: 4px;
+}
 .project-package-plans > input[type="radio"] {
     display: none;
 }
@@ -414,10 +459,6 @@ table.sr__only {
     flex: 1;
     margin-bottom: 0px;
 }
-rating.ng-untouched.ng-pristine.ng-valid {
-    margin-left: 10px;
-    flex:1;
-}
 .no--ticket-text {
     color: #888888;
     font-size: 24px;
@@ -515,6 +556,13 @@ rating.ng-untouched.ng-pristine.ng-valid {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.backdrop{
+    position: fixed !important;
+}
+
+
+
 .tabs + .tabs {
     margin-left: 10px;
 }
@@ -579,6 +627,38 @@ fieldset app-form-validation-errors {
     -moz-transition: all 0.3s ease 0s;
     -webkit-transition: all 0.3s ease 0
 }
+.nolatestreply {
+    margin-top: 15px;
+    display: block;
+    text-align: right;
+    font-weight: 600;
+    font-size: 15px;
+}
+.stat--box {
+    color: #002eaf;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    position: absolute;
+    right: 0;
+    top: 3px;
+}
+.feeddetails--sepbar {
+    vertical-align: middle;
+    margin-top: -3px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.feeddetails--name {
+    display: inline-block;
+}
+.feedall-ratingsouter {
+    margin-top: 25px;
+}
+.color--4a48 {
+    color: #4a4848 !important;
+}
+
 /*Profile Page*/
 .profile-descircle {
 	width: 85px;
@@ -767,6 +847,30 @@ fieldset app-form-validation-errors {
     /* app-billing-listing .support-desc-tabs {
         min-height: 260px;
     } */
+    rating.ng-untouched.ng-pristine.ng-valid {
+        margin-left: 10px;
+        flex:1;
+    }
+    .font-11 rating.ng-untouched.ng-pristine.ng-valid {
+        font-size: 11px;
+    }
+    .rating-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: right;
+    }
+    .font-15 .ov-rate {
+        font-size: 14px;
+    }
+    .font-15 .ov-rate + rating.ng-untouched.ng-pristine.ng-valid {
+        font-size: 11px;
+    }
+  }
+  @media only screen and (max-width: 1200px){ 
+    rating.ng-untouched.ng-pristine.ng-valid {
+        display: block;
+    }
   }
   @media only screen and (max-width: 600px){
     .checkmark {

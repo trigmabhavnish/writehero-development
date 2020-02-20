@@ -25,7 +25,7 @@
                                         [ngClass]="{ 'is-invalid': (signUpForm.controls.first_name.touched || signUpSubmitted) && signUpForm.controls.first_name.errors }">
                                     <p *ngIf="signUpForm.controls.first_name.touched || signUpSubmitted">
                                         <app-form-validation-errors patternError="Must contain only characters."
-                                            minLength=2 maxLength=50 errorPrefix="First Name "
+                                            minLength=2 maxLength=20 errorPrefix="First Name "
                                             [errors]="signUpForm.controls.first_name.errors">
                                         </app-form-validation-errors>
                                     </p>
@@ -36,7 +36,7 @@
                                         [ngClass]="{ 'is-invalid': (signUpForm.controls.last_name.touched || signUpSubmitted) && signUpForm.controls.last_name.errors }">
                                     <p *ngIf="signUpForm.controls.last_name.touched || signUpSubmitted">
                                         <app-form-validation-errors patternError="Must contain only characters."
-                                            minLength=2 maxLength=50 errorPrefix="Last Name "
+                                            minLength=2 maxLength=20 errorPrefix="Last Name "
                                             [errors]="signUpForm.controls.last_name.errors">
                                         </app-form-validation-errors>
                                     </p>

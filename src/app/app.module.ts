@@ -45,6 +45,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     SharedModule,
     PerfectScrollbarModule
+   
 
   ],
   providers: [

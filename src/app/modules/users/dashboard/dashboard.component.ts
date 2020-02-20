@@ -33,8 +33,10 @@ export class DashboardComponent implements OnInit {
   latestProject: any = {};
   latestSupport: any = {};
   projectCount: any;
+  latestFeedbacks: any;
   showName: any;
   loading:boolean =false; //Page Loader
+  defaultPath = environment.DEFAULT_PROFILE_PIC;
 
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
@@ -55,9 +57,10 @@ export class DashboardComponent implements OnInit {
         this.loading = false; // Hide Loader
         this.latestProject = res.latestProject;
         this.latestSupport = res.latestSupport;
+        this.latestFeedbacks = res.latestFeedbacks;
         this.projectCount = res.projectCount; 
         this.showName = res.show_name; 
-        console.log(this.latestSupport);       
+        console.log(this.latestFeedbacks);       
         //case error 
       }, error => {
         this.loading = false; // Hide Loader

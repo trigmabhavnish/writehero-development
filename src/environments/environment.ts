@@ -10,7 +10,7 @@ export const environment = {
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
   TWO_CEHCKOUT_SELLER_ID:'901420029',
   TWO_CHECKOUT_PUBLISHKEY:'87AB0DD8-35C2-4CED-87CA-08257D7A277F',
-  DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',
+  DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
@@ -31,7 +31,9 @@ export const environment = {
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',
     CANCEL_PROJECT:'Are you sure you want to cancel this project?',
     PROFILE_UPDATE:'Profile updated successfully.',
-    PAYENT_SUCCESS:'Payment has been done successfully.'
+    PAYENT_SUCCESS:'Payment has been done successfully.',
+    CREDIT_CARD_INVALID:'Oops! wrong credit card information provided by you.',
+    PROFILE_IMAGE_UPDATE:'Profile image updated successfully.'
   }
 };
 

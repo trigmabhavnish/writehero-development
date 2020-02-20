@@ -17,7 +17,7 @@ export class ViewTicketComponent implements OnInit {
   supportData: any;
   ticketReplyForm: FormGroup;
   isSubmitted: boolean = false;
-
+  loading:boolean = false;
   public supportFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
@@ -46,8 +46,10 @@ export class ViewTicketComponent implements OnInit {
    * GET the details of ticket with message
    */
   private getTicketDetails(): void {
-    this.supportService.getTicketDetails({ supportId: this.supportId }).subscribe(response => {
+    this.loading = true;
+    this.supportService.getTicketDetails({ supportId: this.supportId }).pipe(untilDestroyed(this)).subscribe(response => {
       this.supportData = response;
+      this.loading = false;
     }, error => {
 
     })
@@ -215,7 +217,8 @@ export class ViewTicketComponent implements OnInit {
   public submitReply(): void {
     this.isSubmitted = true;
     if (this.ticketReplyForm.invalid) return
-    this.supportService.submitReply(this.ticketReplyForm.value).subscribe(response => {
+    this.loading = true;
+    this.supportService.submitReply(this.ticketReplyForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.MESSAGE_SEND);
       this.ticketReplyForm.reset();
       this.ticketReplyForm.patchValue({
@@ -223,8 +226,10 @@ export class ViewTicketComponent implements OnInit {
         support_files: []
       });
       this.isSubmitted = false;
+      this.loading = false;
       this.getTicketDetails()
     }, error => {
+      this.loading = false;
       this.commonUtilsService.onError(error.response);
     })
   }
@@ -240,7 +245,7 @@ export class ViewTicketComponent implements OnInit {
       cancelButtonText: 'No, Cancel'
     }).then((result) => {
       if (result.value) {
-        this.supportService.updateSupportTicket({ support_id: this.supportId }).subscribe(response => {
+        this.supportService.updateSupportTicket({ support_id: this.supportId }).pipe(untilDestroyed(this)).subscribe(response => {
           this.commonUtilsService.onSuccess(environment.MESSAGES.TICKET_UPDATE);
 
           this.getTicketDetails();

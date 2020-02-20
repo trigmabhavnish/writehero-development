@@ -13,14 +13,12 @@ export class PageLoaderComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef, private PageLoaderService: PageLoaderService) { }
 
   ngOnInit() {
-    this.PageLoaderService.pageLoaderStatus.subscribe((val: boolean) => {      
+    this.PageLoaderService.pageLoaderStatus.subscribe((val: boolean) => {  
+      console.log('the staus s-asjjjjjjjjjjjjjjjjjjjjjjjjjjjj');    
       this.showLoader = val;      
       this.ref.detectChanges();
     })
-    this.PageLoaderService.getLoaderText().subscribe((text: string) => {      
-      this.loaderText = text;
-      this.ref.detectChanges();
-    })
+   
     
   }
 

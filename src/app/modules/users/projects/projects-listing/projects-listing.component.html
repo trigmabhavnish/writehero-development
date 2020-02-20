@@ -22,6 +22,11 @@
 
                                     <div class="dashboard-welcome-note">
                                         <p>PROJECTS</p>
+                                        <span class="projectlistingtitle--text">
+                                            Here is the projects section where you will see all your eBook orders.
+                                            To create a new project, click this big juicy red button. From here on out
+                                            the wizard will guide you in ordering your very first eBook project.
+                                        </span>
                                     </div>
                                     <div class="support-all-grid">
                                         <div class="row">
@@ -54,15 +59,15 @@
                                                 </div>
                                             </ng-container>
                                             <ng-template #elseProjectsBlock>
-                                                    <div class="col-lg-4">
-                                                            <div
-                                                                class="no--ticket-text support-desc-tabs min--height-box align-items-center justify-content-center">
-                                                                <i class="fa fa-plus"></i>
-                                                                <p>No Projects Found</p>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-lg-4">
+                                                    <div
+                                                        class="no--ticket-text support-desc-tabs min--height-box align-items-center justify-content-center">
+                                                        <i class="fa fa-plus"></i>
+                                                        <p>No Projects Found</p>
+                                                    </div>
+                                                </div>
                                             </ng-template>
-                                            
+
                                         </div>
                                         <div *ngIf="totalProjects > 0" class="row">
                                             <div class="col-md-12 writer-pagination mt-3">
@@ -78,7 +83,9 @@
                                             <div class="col-lg-12">
                                                 <div class="d-flex align-items-end  justify-content-end h-100">
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn-ticket" (click)="navigateToCreateNewProject()">Create New Project</button>
+                                                    <button type="button" class="btn-ticket"
+                                                        (click)="navigateToCreateNewProject()">Create New
+                                                        Project</button>
 
                                                 </div>
                                             </div>

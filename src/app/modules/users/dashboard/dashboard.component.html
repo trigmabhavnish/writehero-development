@@ -36,6 +36,7 @@
                                                 <div class="dashboard-welcome-note">
                                                     <p>Welcome Back, <span>{{showName}}</span></p>
                                                 </div>
+                                                <!-- Latest Project -->
                                                 <ng-container
                                                     *ngIf="(checkObjectLength(latestProject) > 0); else elseNoLatestProject;">
                                                     <div *ngFor="let latest of latestProject; let i = index;"
@@ -139,7 +140,7 @@
                                                         <p class="noproject-foundtext">No Latest Project Found</p>
                                                     </div>
                                                 </ng-template>
-
+                                                <!-- Project Count Block -->
 
                                                 <div class="dashboard-projects-counting-outer">
 
@@ -171,6 +172,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- Latest Support -->
+
                                                 <ng-container
                                                     *ngIf="(checkObjectLength(latestSupport) > 0); else elseNoLatestProject;">
                                                     <div *ngFor="let latest of latestSupport; let i = index;"
@@ -178,58 +181,56 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="dashboard-latest-support">
-                                                                    <h4 class="dashboard-latest-project-title">
-                                                                        Latest Support</h4>
+                                                                    <h4
+                                                                        class="dashboard-latest-project-title position-relative">
+                                                                        Latest Support <span
+                                                                            class="stat--box">{{latest?.support_status == 'unsolved' ? 'PENDING' : 'SOLVED'}}</span>
+                                                                    </h4>
                                                                 </div>
-                                                                <div class="dashborad-project-estimation">
+                                                                <div class="dashborad-project-estimation row mx-0 mt-2">
                                                                     <span
-                                                                        class="dashboard-latest-project-subject">Project</span>
+                                                                        class="dashboard-latest-project-subject col-md-2">Project</span>
                                                                     <span
-                                                                        class="dashboard-latest-project-result font-weight-bold">Health
-                                                                        - KBL0931</span>
+                                                                        class="dashboard-latest-project-result font-weight-bold col-md-10">{{latest?.subject}}</span>
                                                                 </div>
-                                                                <div class="dashborad-project-estimation pt-2">
+                                                                <div class="dashborad-project-estimation pt-2 row mx-0">
                                                                     <span
-                                                                        class="dashboard-latest-project-subject">Details</span>
+                                                                        class="dashboard-latest-project-subject col-md-2">Details</span>
                                                                     <span
-                                                                        class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0">Lorem
-                                                                        ipsum dolor sit amet, consectetur
-                                                                        adipiscing elit, sed do eiusmod
-                                                                        tempor incididunt ut labore et
-                                                                        dolore magna aliqua. Quis ipsum
-                                                                        suspendisse ultrices gravida. Risus
-                                                                        commodo viverra</span>
+                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0">{{latest.messages[latest.messages.length -1]?.message | slice:0:100}}</span>
                                                                 </div>
-                                                                <div class="admin-comment-dashboard">
-                                                                    <div class="admin-comment-outer">
-                                                                        <div class="row flex-row-reverse">
-                                                                            <div class="col-md-12 mb-3">
+                                                                <ng-container
+                                                                    *ngIf="latest.messages[latest.messages.length -1].instanciate_id == 0; else elseNoLatestReply">
+                                                                    <div class="admin-comment-dashboard">
+                                                                        <div class="admin-comment-outer">
+                                                                            <div class="row flex-row-reverse">
+                                                                                <div class="col-md-12 mb-3">
 
-                                                                                <div class="admin-pic-outer">
-                                                                                    <img
-                                                                                        src="assets/image/dashborad-feedback-users4.png">
-                                                                                </div>
-                                                                                <div class="admin-comment-list">
-                                                                                    <p class="reply-text">
-                                                                                        Last Reply</p>
-                                                                                    <p class="admin-text">
-                                                                                        Admin</p>
-                                                                                    <p class="cmnt-admin-text">
-                                                                                        Consectetur
-                                                                                        adipisicing elit,
-                                                                                        sed do eiusmod
-                                                                                        tempor incididunt ut
-                                                                                        labore et dolore
-                                                                                        magna aliqua. Ut
-                                                                                        enim ad minim
-                                                                                        veniam, quis</p>
-                                                                                    <p class="cmnt-admin-date">
-                                                                                        Nov 3, 2019</p>
+                                                                                    <div class="admin-pic-outer">
+                                                                                        <img
+                                                                                            [src]="'assets/image/dummyuser.png'">
+                                                                                    </div>
+                                                                                    <div class="admin-comment-list">
+                                                                                        <p class="reply-text">
+                                                                                            Last Reply</p>
+                                                                                        <p class="admin-text">
+                                                                                            Admin</p>
+                                                                                        <p class="cmnt-admin-text">
+                                                                                            {{latest.messages[latest.messages.length -1]?.message | slice:0:100}}
+                                                                                        </p>
+                                                                                        <p class="cmnt-admin-date">
+                                                                                            Nov 3, 2019</p>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </ng-container>
+                                                                <ng-template #elseNoLatestReply>
+                                                                    <div class="admin-comment-dashboard nolatestreply">
+                                                                        No Last Reply
+                                                                    </div>
+                                                                </ng-template>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,96 +281,32 @@
                                                                 <p class="dashboard-rightside-updates-header-title">
                                                                     Feedbacks</p>
                                                             </div>
+                                                            <!-- Feedback Block -->
                                                             <div class="dashboard-rightside-feedback-content-outer">
-                                                                <div class="latest-feedback-value">
+                                                                <div *ngFor="let feedback of latestFeedbacks; let i = index;"
+                                                                    class="latest-feedback-value">
                                                                     <div class="">
                                                                         <div class="user-feedback-user-photo">
                                                                             <img
-                                                                                src="assets/image/dashborad-feedback-users1.png">
+                                                                            [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="">
                                                                         <div class="user-feedback-user-desc">
                                                                             <p class="feedback-text-title">
-                                                                                Lorem ipsum, dolor
-                                                                                consectetur adipisicing
-                                                                                elit.</p>
-                                                                            <div class="feedback-star">
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-disable.png"></a>
+                                                                                {{feedback?.feed_desc}}</p>
+                                                                            <div *ngIf="feedback?.overall_rate"
+                                                                                class="feedback-star">
+                                                                                <rating [readonly]="true"
+                                                                                    [(ngModel)]="feedback.overall_rate">
+                                                                                </rating>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="latest-feedback-value">
-                                                                    <div class="">
-                                                                        <div class="user-feedback-user-photo">
-                                                                            <img
-                                                                                src="assets/image/dashborad-feedback-users2.png">
-                                                                        </div>
-                                                                    </div>
 
-                                                                    <div class="">
-                                                                        <div class="user-feedback-user-desc">
-                                                                            <p class="feedback-text-title">
-                                                                                Lorem ipsum, dolor
-                                                                                consectetur adipisicing
-                                                                                elit.</p>
-                                                                            <div class="feedback-star">
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-disable.png"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="latest-feedback-value">
-                                                                    <div class="">
-                                                                        <div class="user-feedback-user-photo">
-                                                                            <img
-                                                                                src="assets/image/dashborad-feedback-users3.png">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="">
-                                                                        <div class="user-feedback-user-desc">
-                                                                            <p class="feedback-text-title">
-                                                                                Lorem ipsum, dolor
-                                                                                consectetur adipisicing
-                                                                                elit.</p>
-                                                                            <div class="feedback-star">
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-enable.png"></a>
-                                                                                <a href="#"><img
-                                                                                        src="assets/image/dashborad-feedback-user-star-disable.png"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
 
                                                             </div>
                                                         </div>

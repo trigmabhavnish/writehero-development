@@ -328,6 +328,7 @@ export class EditProjectComponent implements OnInit {
           this.projectDetailsForm.controls.project_details.patchValue(res.project_details.project_dtl);
           this.projectDetailsForm.controls.additional_resources.patchValue(res.project_details.additional_resources);
           this.projectDetailsForm.controls.project_package.patchValue(res.project_details.project_type_id);
+          this.selectedProjectPackageId = res.project_details.project_type_id;
           // Update Project Cost
           this.projectDetailsForm.controls.project_cost.patchValue(res.project_details.project_cost);
           this.calculateCost = res.project_details.project_cost;

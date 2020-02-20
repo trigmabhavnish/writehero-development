@@ -1,554 +1,248 @@
 <!--Dashboard HTML Starts-->
 <div class="dashboard-gutter">
-    <div class="container-fluid px-lg-0" data-layout="container-fluid">
+<div class="container-fluid px-lg-0" data-layout="container-fluid">
 
 
-        <div class="dashboard-content">
+<div class="dashboard-content">
 
-            <nav class="navbar-top scrolling-on">
-                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
-                <p class="mobile-dashboard-heading">Dashboard</p>
-                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<nav class="navbar-top scrolling-on">
+    <a href="#" class="mobile-dashboard-logo"><img src="assets/image/wh-mobile-logo.png"></a>
+    <p class="mobile-dashboard-heading">Dashboard</p>
+    <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            </nav>
-
-            <div class="Dashboard-inner-contents">
-                <div class="row ipad-margin-gutter">
-                    <div class="col-md-12">
-                        <div class="Dashboard-inner-contents-outer">
-                            <div class="row">
-                                <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
-                                    <!--Project HTML starts-->
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-                                            <h4 class="dashboard-latest-project-title ">Profile</h4>
-
-                                            <form [formGroup]="userProfileForm">
-                                                <div class="row">
-                                                    <div class="col-lg-8 profile_section">
-                                                        <div class="row">
-                                                            <div class="profile_box">
-                                                                <div class="col-lg-12 pl-0">
-
-                                                                    <div class="col-lg-12 mt-4">
-                                                                        <div class="row align-items-center">
-                                                                            <div class="col-lg-4">
-                                                                                <label class="attach--label">Attach
-                                                                                    File?</label>
-                                                                            </div>
-                                                                            <div class="col-lg-8">
-                                                                                <div class="uploadcode">
-                                                                                    <div
-                                                                                        class="uploadImages position-relative">
-                                                                                        <div class="dropzone dropzone-container"
-                                                                                            [dropzone]="profileFileConfiguration"
-                                                                                            [disabled]="disabled">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <!--Upload Images Section-->
-                                                                        <div class="row mt-3">
-                                                                            <div class="col-md-8">
-                                                                                <div class="thumbnails"
-                                                                                    *ngIf="profileFilesArray.length > 0">
-                                                                                    <div class="thumbnail_list"
-                                                                                        *ngFor="let profileFile of profileFilesArray | keyvalue; let projectImage = index;">
-
-                                                                                        <img
-                                                                                            src="{{profileFile.file_path}}">
-
-                                                                                        <!--a class="upload_pdf"
-                                                                                            data-toggle="tooltip"
-                                                                                            title="{{profileFile.file_name}}"
-                                                                                            *ngIf="profileFile.file_mimetype == 'application/pdf'"
-                                                                                            href="{{profileFile.file_path}}"
-                                                                                            target="_blank"><img
-                                                                                                src="assets/image/pdf_icon.png"></a>
-
-                                                                                        <i (click)="removeFile(supportFile.key, 'project',supportFile.value.file_key)"
-                                                                                            class="fa fa-times"
-                                                                                            aria-hidden="true"></i -->
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <!--Upload Images Section-->
-
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <label>First Name: </label>
-
-                                                                            <input type="text"
-                                                                                formControlName="first_name"
-                                                                                placeholder="" class="field-design"
-                                                                                [ngClass]="{ 'is-invalid': (userProfileForm.controls.first_name.touched || isSubmitted) && userProfileForm.controls.first_name.errors }">
-                                                                            <p
-                                                                                *ngIf="userProfileForm.controls.first_name.touched || isSubmitted">
-                                                                                <app-form-validation-errors errorPrefix="
-                                                                                        Name "
-                                                                                    [errors]="userProfileForm.controls.first_name.errors">
-                                                                                </app-form-validation-errors>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <label>Last Name: </label>
-
-                                                                            <input type="text"
-                                                                                formControlName="last_name"
-                                                                                placeholder="" class="field-design"
-                                                                                [ngClass]="{ 'is-invalid': (userProfileForm.controls.last_name.touched || isSubmitted) && userProfileForm.controls.last_name.errors }">
-                                                                            <p
-                                                                                *ngIf="userProfileForm.controls.last_name.touched || isSubmitted">
-                                                                                <app-form-validation-errors errorPrefix="
-                                                                                Name "
-                                                                                    [errors]="userProfileForm.controls.last_name.errors">
-                                                                                </app-form-validation-errors>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
+</nav>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<div class="Dashboard-inner-contents">
+  
 
 
 
+    <!--New Profile HTML-->
+    <div class="dashboard-welcome-note">
+        <p class="mb-2">Your Profile Details</p>
+        <span class="prof-detailstext">Details are saved securely</span>
+    </div>
 
-                                                                </div>
-                                                                <div class="col-lg-12 pl-0  mt-3">
-                                                                    <label>Profession / Industry:</label>
+    <div class="profile-desouter">
+        <form [formGroup]="userProfileForm">
+        <div class="d-flex align-items-center">
+            <div class="profile-circlebox uploadProfileImage">
+                <div class="dropzone dropzone-container"
+                [dropzone]="profileFileConfiguration"
+                [disabled]="disabled">
+                <div class="profile-descircle">
+                    <img [src]="userProfileForm.controls.profile_pic.value ? userProfileForm.controls.profile_pic.value : 'assets/image/default-user.png' "
+                        alt="profile-image">
+                </div>
+            </div>
+            
+            </div>
+          
+        </div>
+        <div class="profileinfo-box">
 
-                                                                    <input type="text" class="col-lg-4"
-                                                                        formControlName="profession" placeholder=""
-                                                                        class="field-design"
-                                                                        [ngClass]="{ 'is-invalid': (userProfileForm.controls.profession.touched || isSubmitted) && userProfileForm.controls.profession.errors }">
-                                                                    <p
-                                                                        *ngIf="userProfileForm.controls.profession.touched || isSubmitted">
-                                                                        <app-form-validation-errors
-                                                                            errorPrefix="Profession "
-                                                                            [errors]="userProfileForm.controls.profession.errors">
-                                                                        </app-form-validation-errors>
-                                                                    </p>
+            <div class="max-650">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label>First Name: </label>
 
-                                                                </div>
-                                                                <div class="col-lg-12 pl-0  mt-3">
-                                                                    <label>Country:</label>
+                            <input type="text"
+                                formControlName="first_name"
+                                placeholder=""
+                            >
+                            <p
+                                *ngIf="userProfileForm.controls.first_name.touched || isSubmitted">
+                                <app-form-validation-errors errorPrefix="First Name " [errors]="userProfileForm.controls.first_name.errors">
+                                </app-form-validation-errors>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label>Last Name: </label>
 
-                                                                    <input type="text" class="col-lg-4"
-                                                                        formControlName="country" placeholder=""
-                                                                        class="field-design"
-                                                                        [ngClass]="{ 'is-invalid': (userProfileForm.controls.country.touched || isSubmitted) && userProfileForm.controls.country.errors }">
-                                                                    <p
-                                                                        *ngIf="userProfileForm.controls.country.touched || isSubmitted">
-                                                                        <app-form-validation-errors
-                                                                            errorPrefix="Country "
-                                                                            [errors]="userProfileForm.controls.country.errors">
-                                                                        </app-form-validation-errors>
-                                                                    </p>
+                            <input type="text"
+                                formControlName="last_name"
+                                placeholder=""
+                            >
+                            <p
+                                *ngIf="userProfileForm.controls.last_name.touched || isSubmitted">
+                                <app-form-validation-errors errorPrefix="Last Name " [errors]="userProfileForm.controls.last_name.errors">
+                                </app-form-validation-errors>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label>Email: </label>
 
-                                                                </div>
-                                                                <div class="col-lg-12 pl-0  mt-3">
-                                                                    <label>Birthday:</label>
-
-                                                                    <input type="text" id="dob" class="col-lg-4"
-                                                                        placeholder="MM/DD/YY" class="field-design">
-
-
-                                                                </div>
-                                                                <div class="col-lg-12 pl-0  mt-3">
-                                                                    <label>E-mail:</label>
-
-                                                                    <input type="text" class="col-lg-4"
-                                                                        formControlName="email" placeholder=""
-                                                                        class="field-design"
-                                                                        [ngClass]="{ 'is-invalid': (userProfileForm.controls.email.touched || isSubmitted) && userProfileForm.controls.email.errors }">
-                                                                    <p
-                                                                        *ngIf="userProfileForm.controls.email.touched || isSubmitted">
-                                                                        <app-form-validation-errors errorPrefix="Email "
-                                                                            [errors]="userProfileForm.controls.email.errors">
-                                                                        </app-form-validation-errors>
-                                                                    </p>
-
-                                                                </div>
-                                                                <div class="col-lg-12 pl-0  mt-3">
-                                                                    <label>Website:</label>
-
-                                                                    <input type="text" class="col-lg-4"
-                                                                        formControlName="website" placeholder=""
-                                                                        class="field-design">
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row" formGroupName="settings">
-                                                            <div class="col-md-12">
-                                                                <h3 class="dashboard-latest-project-title ">Settings
-                                                                </h3>
-                                                                <div class="setting_section">
-                                                                    <div class="col-lg-12 pl-0">
-                                                                        <label>Prefered Writers gender: </label>
-
-                                                                        <input type="text" class="col-lg-4"
-                                                                            formControlName="gender_winter"
-                                                                            placeholder="" class="field-design">
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label>Prefered country of writers: </label>
-
-                                                                        <input type="text" class="col-lg-4"
-                                                                            formControlName="country_winter"
-                                                                            placeholder="" class="field-design">
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label>Prefered age bracket of writers: </label>
-
-                                                                        <input type="text" class="col-lg-4"
-                                                                            formControlName="age_brack_writers"
-                                                                            placeholder="" class="field-design">
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label>Prefered writer's specialization:
-                                                                        </label>
-
-                                                                        <input type="text" class="col-lg-4"
-                                                                            formControlName="specialization"
-                                                                            placeholder="" class="field-design">
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">Hide My
-                                                                            Profile From user:
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="hide_profile"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                            <input type="text"
+                                formControlName="email"
+                                placeholder=""
+                            >
+                            <p
+                                *ngIf="userProfileForm.controls.email.touched || isSubmitted">
+                                <app-form-validation-errors errorPrefix="Last Name " [errors]="userProfileForm.controls.email.errors">
+                                </app-form-validation-errors>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label for="">Country</label>
+                            <input type="text" formControlName="country" placeholder="Enter Country Name">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label for="">Birthday</label>
+                            <input type="text" id="dob" placeholder="MM/DD/YYYY">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label for="">Profession / Industry</label>
+                            <input type="text"  formControlName="profession" placeholder="Enter Profession">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="profileinfo-group">
+                            <label for="">Website</label>
+                            <input type="text" formControlName="website" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-                                                        <div class="row" formGroupName="notification">
-                                                            <div class="col-md-12">
 
-                                                                <h3 class=" mt-4 dashboard-latest-project-title">
-                                                                    Notifications: <span>Email me when</span></h3>
-                                                                <div class="notify_sec">
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I submit a new
-                                                                            project.
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="new_project"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I received a
-                                                                            completed project.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="complet_project"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I received an
-                                                                            important update about my project.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="imp_update_project"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I made a new
-                                                                            payment.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="new_payment"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I received a
-                                                                            freebie.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="freebie" placeholder=""
-                                                                                class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I received a
-                                                                            new message.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="new_message"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">I've updated
-                                                                            my profile.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="my_profile"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <div class="col-lg-12 pl-0  mt-3">
-                                                                        <label class="container_checkbox">There's news,
-                                                                            promotions, updates and other offers.
-
-                                                                            <input type="checkbox" class="col-lg-4"
-                                                                                formControlName="other_update"
-                                                                                placeholder="" class="field-design">
-                                                                            <span class="checkmark"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12 mt-4">
-
-                                                            <button (click)="submitProfile()" type="button"
-                                                                class="submit-btn-feedback min-w-130">
-                                                                Submit
-                                                            </button>
-                                                            <!--a href="#" class="advance-text">( or skip )</a-->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-
+            <div class="max-950 mt-5">
+                <div class="row">
+                    <div class="col-md-12" formGroupName="notification">
+                        <fieldset>
+                            <legend class="profile--settings">Notification Settings</legend>
+                            <div class="row mt-3 mx-0">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="new_project" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I submit a new project
+                                            </label>
                                         </div>
-
                                     </div>
-                                    <!--Project HTML ends-->
-
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!--New Profile HTML-->
-                <div class="dashboard-welcome-note">
-                    <p class="mb-2">Your Profile Details</p>
-                    <span class="prof-detailstext">Details are saved securely</span>
-                </div>
-
-                <div class="profile-desouter">
-                    <div class="d-flex align-items-center">
-                        <div class="profile-circlebox">
-                            <div class="profile-descircle">
-                                <img src="https://images.pexels.com/photos/948873/pexels-photo-948873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                    alt="profile-image">
-                            </div>
-                            <input type="file" id="upload__img" class="d-none">
-                            <label for="upload__img" class="pluscircle--btn">
-                                <img src="image/plus.png" alt="">
-                            </label>
-                        </div>
-                        <div class="profile-genderouter">
-                            <input type="radio" id="male--radio" name="customRadio">
-                            <input type="radio" id="female--radio" name="customRadio" checked>
-                            <div class="genderlabel-outer">
-                                <label for="male--radio" id="male-label">Male</label>
-                                <label for="female--radio" id="female-label">Female</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profileinfo-box">
-
-                        <div class="max-650">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <div class="profileinfo-group">
-                                        <label for="">First name</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Last name</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Email</label>
-                                        <input type="email" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Country</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Birthday</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Profession / Industry</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="profileinfo-group">
-                                        <label for="">Website</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
-                        <div class="max-950 mt-5">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <legend class="profile--settings">Notification Settings</legend>
-                                        <div class="row mt-3 mx-0">
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I submit a new project
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I received a completed project
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I received an important update about my project
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I made a new payment
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I rceived a freebie
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I rceived a new message
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            I've updated my profie
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="profileinfo-group">
-                                                    <div class="w-100">
-                                                        <label class="contain">
-                                                            <input type="checkbox" name="checlist-box2">
-                                                            <span class="checkmark"></span>
-                                                            There's news promotion updates and other offers
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="complet_project" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I received a completed project
+                                            </label>
                                         </div>
-                                    </fieldset>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="imp_update_project" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I received an important update about my project
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="new_payment" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I made a new payment
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="freebie" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I rceived a freebie
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="new_message" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I rceived a new message
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="my_profile" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                I've updated my profie
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <label class="contain">
+                                                <input formControlName="other_update" type="checkbox" name="checlist-box2">
+                                                <span class="checkmark"></span>
+                                                There's news promotion updates and other offers
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="profileinfo-group">
+                                        <div class="w-100">
+                                            <button (click)="submitProfile()" type="button"
+                                            class="submit-btn-feedback min-w-130">
+                                            Submit
+                                        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
-                <!--New Profile HTML-->
-
-
             </div>
 
         </div>
+    </form>
     </div>
+    <!--New Profile HTML-->
 
-    <!--Dashboard HTML Ends-->
+
+</div>
+
+</div>
+</div>
+
+<!--Dashboard HTML Ends-->
 </div>

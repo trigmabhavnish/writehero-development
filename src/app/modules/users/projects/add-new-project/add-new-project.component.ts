@@ -43,6 +43,7 @@ export class AddNewProjectComponent implements OnInit {
   public projectImageConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
+ 
   calculateCost: any = 0;
   selectedProjectPackageId: number;
   packagePrice: any;

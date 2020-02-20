@@ -1460,6 +1460,7 @@ h6.dashboard-latest-project-subject {
     width: 50px;
     border-radius: 50%;
     overflow: hidden;
+    background: #f4f6fa;
 }
 .user-feedback-user-photo img {
     width: 100%;

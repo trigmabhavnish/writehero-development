@@ -106,13 +106,12 @@
                                             <aw-wizard-step [canExit]="moveDirection.bind(this, projectSpecsForm.valid)"
                                                 stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit. Praesent diam lorem, fermentum in tempus sed,
-                                                            aliquet sed enim</p>
+                                                        <p>Think of a personal label for your project, not necessarily
+                                                            the eBook title.</p>
                                                         <input type="text" class="field-design" #project_name
-                                                            formControlName="project_name" placeholder=""                             
+                                                            formControlName="project_name" placeholder=""
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
@@ -122,11 +121,10 @@
                                                             </app-form-validation-errors>
                                                         </p>
                                                     </div>
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Topic <span class="red">*</span></label>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit. Praesent diam lorem, fermentum in tempus sed,
-                                                            aliquet sed enim</p>
+                                                        <p>Where would your main topic fall in with the following
+                                                            industries?</p>
                                                         <div class="px-0">
                                                             <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
@@ -147,11 +145,10 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Type <span class="red">*</span></label>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit. Praesent diam lorem, fermentum in tempus sed,
-                                                            aliquet sed enim</p>
+                                                        <p>Now – we want to know what type of content you will be
+                                                            needing.</p>
                                                         <div class="px-0">
                                                             <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
@@ -178,11 +175,13 @@
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
                                                         </button>
-                                                        <a routerLink="/user/add-new-project-advanced" class="advance-text">( or go advance )</a>
+                                                        <a routerLink="/user/add-new-project-advanced"
+                                                            class="advance-text">( or go advance )</a>
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
+                                            <aw-wizard-step
+                                                [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
                                                 stepTitle="Project Details">
                                                 <form [formGroup]="projectDetailsForm">
                                                     <div class="row m-0">
@@ -190,9 +189,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Quantity <span class="red">*</span></label>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipiscing elit. Praesent diam lorem,
-                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    <p>How many pieces do you need?
                                                                     </p>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
@@ -211,9 +208,21 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Project Details <span
                                                                             class="red">*</span></label>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipiscing elit. Praesent diam lorem,
-                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    <p>Here is the meat of your project. We would be
+                                                                        needing your complete project specs or
+                                                                        instructions for
+                                                                        your order. You can add keywords, titles,
+                                                                        instructions, writing styles, tone, etc. The key
+                                                                        strategy to a
+                                                                        good product is to be VERY, VERY SPECIFIC on
+                                                                        your needs - so we can better meet your
+                                                                        expectations.
+
+                                                                        For those who need special formatting for their
+                                                                        eBooks (e.g. photos, color, style), please chat
+                                                                        with us or
+                                                                        create a support ticket after you submit this
+                                                                        project.
                                                                     </p>
 
 
@@ -240,9 +249,8 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Word for each space <span
                                                                             class="red">*</span></label>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipiscing elit. Praesent diam lorem,
-                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    <p>How many words do you need per piece?
+                                                                        For eBooks, it usually starts at 10,000 words
                                                                     </p>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
@@ -262,9 +270,10 @@
 
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Additional Resources</label>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipiscing elit. Praesent diam lorem,
-                                                                        fermentum in tempus sed, aliquet sed enim
+                                                                    <p>Do you have any online references that you would
+                                                                        like us to pattern your content style/tone? Not
+                                                                        required but would be really, really helpful for
+                                                                        your writers.
                                                                     </p>
                                                                     <textarea #additional_resources cols="5" rows="3"
                                                                         minLength=10 maxLength=200
@@ -286,7 +295,9 @@
                                                             <div class="row step-progress-fields">
                                                                 <label class="col-md-12 mb-3">Choose your package <span
                                                                         class="red">*</span></label>
-
+                                                                <p>Choose the pricing plan that best fits your needs.
+                                                                    All plans come with a 200% Workback Guarantee – so
+                                                                    you don’t have to worry about quality.</p>
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
                                                                     class="col-lg-4 mb-4">
                                                                     <div
@@ -326,6 +337,8 @@
                                                         <div class="col-lg-6">
                                                             <div class="col-lg-12 px-0 step-progress-fields">
                                                                 <label>Attach File?</label>
+                                                                <p>Do you need to attach files? (e.g. templates, sheets, sample docs, etc.) We accept zip, rar, pdf, doc,
+                                                                    docx, txt, xls, xlsx, csv</p>
                                                                 <div class="uploadcode">
                                                                     <div class="uploadImages position-relative">
                                                                         <div class="dropzone dropzone-container"
@@ -389,8 +402,13 @@
                                                                     [disabled]="projectDetailsForm.invalid || userCreditsCheck"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
-                                                                    class="submit-btn-feedback min-w-130">
+                                                                    class="submit-btn-feedback min-w-130 mr-lg-3">
                                                                     NEXT
+                                                                </button>
+
+                                                                <button type="button" [awGoToStep]="{stepIndex: 3}"
+                                                                    class="submit-btn-feedback min-w-130">
+                                                                    SKIP
                                                                 </button>
 
                                                             </div>
@@ -427,9 +445,8 @@
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields mt-0">
                                                                 <label>Career</label>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur
-                                                                    adipiscing elit. Praesent diam lorem,
-                                                                    fermentum in tempus sed, aliquet sed enim
+                                                                <p>Choose your writer’s niche expertise – It is strongly recommended to choose the same industry to get
+                                                                    the best results.
                                                                 </p>
                                                                 <div class="pl-0">
                                                                     <select #writers_career class="custom-select"
@@ -448,9 +465,8 @@
                                                             </div>
                                                             <div class="col-lg-12 step-progress-fields">
                                                                 <label>Age Bracket</label>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur
-                                                                    adipiscing elit. Praesent diam lorem,
-                                                                    fermentum in tempus sed, aliquet sed enim
+                                                                <p>Who’s your target audience? Is your content attractive for yuppies or seniors? Probably middle-aged?
+                                                                    Choose your writer’s age bracket who can relate with your market.
                                                                 </p>
 
                                                                 <div class="warpper">
@@ -468,9 +484,8 @@
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields">
                                                                 <label>Location</label>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur
-                                                                    adipiscing elit. Praesent diam lorem,
-                                                                    fermentum in tempus sed, aliquet sed enim
+                                                                <p>Which country do you prefer your writers to be? Subject to availability, but we’ll try to find a good
+                                                                    match.
                                                                 </p>
                                                                 <div class="pl-0">
                                                                     <select #writers_location class="custom-select"
@@ -506,9 +521,9 @@
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-8 step-progress-fields mb-4">
-                                                            <p>Lorem ipsum dolor sit amet, consectetur
-                                                                adipiscing elit. Praesent diam lorem,
-                                                                fermentum in tempus sed, aliquet sed enim
+                                                            <p>Carefully review the following details buddy!
+                                                                Attention to detail is important for both parties to avoid misunderstanding. If you’re done, submit your
+                                                                project and your account manager will be the one to assemble your research and writing team.
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12">
@@ -547,11 +562,11 @@
                                                                     <label>Package : </label>
                                                                     <p class="color-primary-wr">Premium</p>
                                                                 </div>
-                                                                <div class="step-4-summary-all-sections">
+                                                                <!-- <div class="step-4-summary-all-sections">
                                                                     <label>Estimated turnarround :</label>
                                                                     <p class="color-primary-wr">1 - 2 weeks
                                                                     </p>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="step-4-summary-all-sections-result">
                                                                     <p class="color-primary-wr">Total Cost
                                                                     </p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FeedBackService } from 'src/app/core/_services';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 @Component({
   selector: 'app-feedback-details',
   templateUrl: './feedback-details.component.html',
@@ -11,6 +12,7 @@ export class FeedbackDetailsComponent implements OnInit {
   projectId:any;
   feedBackData:any;
   allRateData:any;
+  loading:boolean =false;
   constructor(private route:ActivatedRoute,private feedbckservice: FeedBackService) { }
 
   ngOnInit() {
@@ -23,13 +25,18 @@ export class FeedbackDetailsComponent implements OnInit {
      * GET FEEDBACK DETAILS
    */
   public getFeedbackDetails():void{
-    this.feedbckservice.getFeedBackDetails({userId:this.userId,projectId:this.projectId}).subscribe(response=>{
+    this.loading = true;
+    this.feedbckservice.getFeedBackDetails({userId:this.userId,projectId:this.projectId}).pipe(untilDestroyed(this)).subscribe(response=>{
       this.feedBackData = response.feedback.feedback[0];
       this.allRateData = response.feedback.allrate;
+      this.loading = false;
     },error=>{
     })
   }
 
-
+ // This method must be present, even if empty.
+ ngOnDestroy() {
+  // To protect you, we'll throw an error if it doesn't exist.
+}
 
 }

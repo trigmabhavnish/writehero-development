@@ -15,7 +15,7 @@
                 </button>
 
             </nav>
-
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -27,20 +27,22 @@
 
                                         <div class="col-md-12 ">
                                             <h4 class="create-project-top-heading">Ticket Details</h4>
-                                            <div class="dashboard-latest-project-outer">
+                                            <div class="dashboard-latest-project-outer mt-4">
                                                 <div class="row">
-                                                    <div class="col-lg-9 px-lg-3 p-0">
+                                                    <div class="col-lg-12 px-lg-3 p-0">
                                                         <div class="my-dashboard-project-main">
                                                             <h6 class="dashboard-latest-project-title">
-                                                                Project Name: {{feedBackData?.project_name}}</h6>
+                                                                Project Name : {{feedBackData?.project_name}}</h6>
 
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                Feedback By: {{feedBackData?.user_name}}</h6>
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                Date:
+                                                            <p class="dashboard-latest-project-subject feeddetails--name">
+                                                                <span class="text-dark">Feedback By :</span> {{feedBackData?.user_name}}</p>
+                                                            <p class="dashboard-latest-project-subject feeddetails--name ml-lg-3">
+                                                               <span class="feeddetails--sepbar">|</span> <span class="text-dark">Date :</span>
                                                                 {{feedBackData?.feed_date | date}}
-                                                            </h6>
-                                                            <h6 *ngFor="let rate of allRateData;let i = index;" class="dashboard-latest-project-subject">
+                                                            </p>
+
+                                                            <div class="feedall-ratingsouter">
+                                                            <h6 *ngFor="let rate of allRateData;let i = index;" class="dashboard-latest-project-subject color--4a48 rating-right font-11">
                                                                 <ng-container *ngIf="rate.type == 'O'">
                                                                     Originality and Creativity : <rating [readonly]="true"
                                                                     [(ngModel)]="rate.rate_value"
@@ -85,17 +87,14 @@
                                                                      
                                                                      
                                                                      
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                OverAll Rating: <rating [readonly]="true"
-                                                                [(ngModel)]="feedBackData.overall_rate">
+                                                            <h6 *ngIf="feedBackData?.overall_rate" class="dashboard-latest-project-subject mt-3 font-15">
+                                                               <span class="ov-rate font-weight-bold"> OverAll Rating :</span> <rating [readonly]="true" [(ngModel)]="feedBackData.overall_rate">
                                                                    </rating></h6>    
                                                                 
-                                                                <h6 class="dashboard-latest-project-subject">
-                                                                    Over All Feedback: {{feedBackData?.feed_desc}}</h6>  
-                                                           
-
-
+                                                            <h6 class="dashboard-latest-project-subject">
+                                                                  <span class="text-dark mr-1">  Over All Feedback : </span> {{feedBackData?.feed_desc}}</h6>  
                                                         </div>
+                                                    </div>
                                                     </div>
 
                                                 </div>
