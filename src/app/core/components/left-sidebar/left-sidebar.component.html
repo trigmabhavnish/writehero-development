@@ -1,59 +1,74 @@
 <nav id="navbarVerticalCollapse" class="navbar-vertical navbar-expand-xl navbar-glass collapse navbar-collapse">
-   
+
     <perfect-scrollbar>
-    <div class="h-100">
-        <div class="navbar-vertical-outer">
-            <div class="dashboard-profile-outer">
-                <div class="dashboard-profile-status">
-                    <div class="dashboard-profile-manual">
-                        <img src="assets/image/dashboard-user-pic.png">
+        <div class="h-100">
+            <div class="navbar-vertical-outer">
+                <div class="dashboard-profile-outer">
+                    <div class="dashboard-profile-status">
+                        <div class="dashboard-profile-manual">
+                            <img [src]="(profileDetails?.profile_pic) ? (profileDetails?.profile_pic)  : defaultPath">
+                        </div>
+                        <div class="notification-bell-outer" (click)="viewNotification()">
+                            <button class="notification-bell" >
+                                <span  class="badge-profile">{{notificationCount ? notificationCount : 0}}</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="notification-bell-outer">
-                        <button class="notification-bell">
-                            <span class="badge-profile">2</span>
-                        </button>
+                    <div class="dashboard-profile-content">
+                        <p class="dashboard-profile-name">
+                            {{(profileDetails?.first_name) ? (profileDetails?.first_name + ' ' +profileDetails?.last_name)  : profileDetails?.user_name}}
+                        </p>
+                        <p class="dashboard-inc">{{(profileDetails?.company_name)}}</p>
+                        <p class="profile-credit">Credit : <span
+                                class="credit-amount">${{(profileDetails?.account_balance) ? (profileDetails?.account_balance) : '0' }}</span>
+                        </p>
                     </div>
                 </div>
-                <div class="dashboard-profile-content">
-                    <p class="dashboard-profile-name">Sunil Chadha</p>
-                    <p class="dashboard-inc">Trigma Inc</p>
-                    <p class="profile-credit">Credit : <span class="credit-amount">$500</span></p>
+
+                <div class="dahboard-links-outer">
+
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action" routerLinkActive="active"
+                            id="list-dashboard-list" data-toggle="list" routerLink="/user/dashboard">dashboard</a>
+                        <a class="list-group-item list-group-item-action" id="list-setting-list" data-toggle="list"
+                            routerLinkActive="active" routerLink="/user/profile" role="tab"
+                            aria-controls="setting">Profile</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-project-list" data-toggle="list"
+                            routerLinkActive="active" routerLink="/user/projects-listing" role="tab"
+                            aria-controls="profile">projects</a>
+
+                        <a class="list-group-item list-group-item-action" routerLinkActive="active"
+                            id="list-writters-list" routerLink="/user/buy-credits">Buy Credits</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-billing-list" data-toggle="list"
+                            routerLink="/user/billing" routerLinkActive='active' role="tab"
+                            aria-controls="billing">billing</a>
+
+                        <a class="list-group-item list-group-item-action" id="list-support-list" data-toggle="list"
+                            routerLink="/user/ticket-listing" routerLinkActive="active" role="tab"
+                            aria-controls="support">support</a>
+
+
+
+                       
+
+                        <a class="list-group-item list-group-item-action" id="list-feedback-list" data-toggle="list"
+                             routerLink="/user/feedback-listing" routerLinkActive="active"
+                            role="tab" aria-controls="feedback">feedbacks</a>
+                            <a class="list-group-item list-group-item-action" id="list-support-list" data-toggle="list"
+                            routerLink="/user/change-password" routerLinkActive="active" role="tab"
+                            aria-controls="change-password">Change Password</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="dahboard-links-outer">
-
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action" routerLinkActive="active" id="list-dashboard-list" data-toggle="list" routerLink="/user/dashboard">dashboard</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-project-list" data-toggle="list" routerLinkActive="active"
-                    routerLink="/user/projects-listing" role="tab" aria-controls="profile">projects</a>
-
-                    <a class="list-group-item list-group-item-action" routerLinkActive="active" id="list-writters-list" routerLink="/user/buy-credits">Buy Credits</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-billing-list" data-toggle="list"
-                        routerLink="/user/billing" routerLinkActive='active' role="tab" aria-controls="billing">billing</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-support-list" data-toggle="list"
-                        routerLink="/user/ticket-listing" routerLinkActive="active" role="tab" aria-controls="support">support</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-setting-list" data-toggle="list"
-                    routerLinkActive="active"  routerLink="/user/profile" role="tab" aria-controls="setting">Profile</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-blog-list" data-toggle="list"
-                        href="#list-blog" role="tab" aria-controls="blog">blog</a>
-
-                    <a class="list-group-item list-group-item-action" id="list-feedback-list" data-toggle="list"
-                        href="#list-feedback" routerLink="/user/feedback-listing" routerLinkActive="active"  role="tab" aria-controls="feedback">feedbacks</a>
+                <div class="logout-dashboard">
+                    <a href="javascript:void(0)" (click)="logout()" class="logout-link"><i
+                            class="fa fa-sign-out"></i>Logout</a>
                 </div>
-            </div>
 
-            <div class="logout-dashboard">
-                <a href="javascript:void(0)" (click)="logout()" class="logout-link"><i class="fa fa-sign-out"></i>Logout</a>
             </div>
 
         </div>
-
-    </div>
     </perfect-scrollbar>
 </nav>

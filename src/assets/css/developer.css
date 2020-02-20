@@ -244,6 +244,63 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
 /*buy credit ends*/
 
 /*BEM for life*/
+.chngpsw--button:disabled {
+    opacity: .5;
+}
+.chngpsw--button {
+    background: rgba(254,80,50,1);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(254,80,50,1)), color-stop(100%, rgba(224,39,113,1)));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(254,80,50,1)), to(rgba(224,39,113,1)));
+    background: linear-gradient(to right, rgba(254,80,50,1) 0%, rgba(224,39,113,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5032', endColorstr='#e02771', GradientType=1 );
+    position: relative;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 0px;
+    border: none;
+    width: 100%;
+}
+.btn-ticket:hover {
+    text-decoration: none;
+    color:#fff;
+}
+.container-custom .navbar-brand img {
+    max-width: 100%;
+}
+.container-custom .navbar-brand {
+    width: 130px;
+}
+.profile-circlebox .dz-default.dz-message {
+    position: absolute;
+    right: 2px;
+    bottom: 0px;
+    font-size: 25px;
+    color: #1f0b50;
+    background: #fff;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.gj-datepicker .input-group-append button.btn {
+    border: 0px;
+    background-color: transparent;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#4ca02d), to(#4ca02d)), -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#eaeaec));
+    background-image: linear-gradient(#4ca02d, #4ca02d), linear-gradient(#d0d0d0, #eaeaec);
+    background-position: center bottom, center calc(100% - 1px);
+    background-repeat: no-repeat;
+    background-size: 0 3px, 100% 1px;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 500;
+    -webkit-transition: background 0s ease-out 0s;
+    transition: background 0s ease-out 0s;
+    padding: 0px 0px 7px 0px;
+    color: #6d6d6d;
+    font-size: 15px;
+    width: 100%;
+}
 .project-package-plans > input[type="radio"] {
     display: none;
 }
@@ -552,6 +609,40 @@ fieldset app-form-validation-errors {
 }
 .border-2 {
     border: 1px solid #bdbdbd !important;
+}
+.twocheckoutgreen {
+    background-color: #11c979;
+    border: 1px solid #11c979;
+    padding: 9px 0px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+}
+.twocheckoutgreen::before {
+    background-color: rgba(0,0,0, 0.2);
+    opacity: 0.4;
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+}
+.twocheckoutgreen:hover::before {
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0
 }
 /*Profile Page*/
 .profile-descircle {

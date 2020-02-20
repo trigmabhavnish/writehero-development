@@ -15,18 +15,13 @@
                 </button>
 
             </nav>
-            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
-
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
                         <div class="Dashboard-inner-contents-outer">
                             <div class="row">
                                 <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
-
-
-
-
 
 
                                     <div class="dashboard-welcome-note">
@@ -58,7 +53,7 @@
                                                         <p class="sp-msg-desc">
                                                             {{ticket?.messages[0]?.message | slice:0:100}} </p>
                                                         <p class="sp-date"><span>Date : </span> <span
-                                                                class="sp-msg-dt">{{ticket?.created_on | date :'M/d/yy'}}</span>
+                                                                class="sp-msg-dt">{{ticket?.created_on | date}}</span>
                                                         </p>
                                                         <p class="sp-date"><span>Status : </span> <span
                                                                 class="sp-msg-status  "

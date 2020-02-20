@@ -2,7 +2,11 @@
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
         <div class="dashboard-content">
           <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
-        <table class="table table-responsive sr__only">
+
+          <div class="table-responsive">
+
+          
+        <table class="table sr__only">
             <thead>
               <tr>
                 <th>S.No.</th>
@@ -19,7 +23,7 @@
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
-                <td>{{feedback?.feed_date | date:'M/d/yy'}}</td>
+                <td>{{feedback?.feed_date | date }}</td>
                 <td>{{feedback?.feed_desc}}</td>
                 <td><rating [(ngModel)]="feedback.overall_rate"
                     >
@@ -31,6 +35,8 @@
             </tbody>
             
           </table>
+        </div>
+          
           <div class="row" *ngIf="feedbacks.length > 0">
             <div class="col-md-12 writer-pagination mb-3">
                 <pagination-controls id="foo" (pageChange)="pageChanged($event)"

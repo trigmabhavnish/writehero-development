@@ -13,6 +13,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class UsersService {
 
   public loggedIn: Subject<any> = new Subject<any>();
+  public profileUpdatedStatus: Subject<any> = new Subject<any>();
+
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   isLoggedIn(value: boolean, accountType: String) {
@@ -20,6 +22,14 @@ export class UsersService {
   }
   checkLoggedinStatus(): Observable<any> {
     return this.loggedIn.asObservable();
+  }
+
+  isProfileUpdated(value: boolean) {
+    this.profileUpdatedStatus.next(value);
+  }
+  
+  getUpdatedProfileStatus(): Observable<any> {
+    return this.profileUpdatedStatus.asObservable();
   }
 
   /**
@@ -114,6 +124,9 @@ export class UsersService {
       this.router.navigate(['/user/dashboard']);
   }
 
+  changePassword(body):Observable<any>{
+    return this.httpClient.post('user/changePassword',body);
+  }
   getUserProfile():Observable<any>{
     return this.httpClient.get('user/getProfile');
   }
@@ -124,4 +137,11 @@ export class UsersService {
     return this.httpClient.post('user/updateProfilePic',{profile_pic:body});
   }
   
+
+  getUserNotifications(body:any):Observable<any>{
+    return this.httpClient.post('user/getNotifications',body);
+  }
+  getUserNotificationsCount():Observable<any>{
+    return this.httpClient.post('user/notificationCount',{});
+  }
 }

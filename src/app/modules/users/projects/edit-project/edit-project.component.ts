@@ -53,6 +53,7 @@ export class EditProjectComponent implements OnInit {
   projectId: any;
   projectDetailsArray: any = {};
 
+  loading:boolean =false; //Page Loader
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -307,11 +308,12 @@ export class EditProjectComponent implements OnInit {
    * GET the details of project
    */
   private getSavedProjectDetails(): void {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    
+    this.loading = true; // Show Loader
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        this.commonUtilsService.hidePageLoader();
+        this.loading = false; // Hide Loader
         if(res.project_details){
           // Project Specs Form
           this.projectSpecsForm.controls.project_id.patchValue(res.project_details.id);
@@ -342,6 +344,7 @@ export class EditProjectComponent implements OnInit {
           this.writersDetailsForm.controls.writers_age.patchValue(res.project_details.writers_age);
           this.writersDetailsForm.controls.writers_location.patchValue(res.project_details.writers_location);          
         }else{
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onError(environment.MESSAGES.UNABLE_TO_FIND_DETAILS);
           this.router.navigate(['/user/add-new-project']);
         }
@@ -349,6 +352,7 @@ export class EditProjectComponent implements OnInit {
         
         
       }, error => {
+        this.loading = false; // Hide Loader
         this.commonUtilsService.onError(error.response);
       });
   }
@@ -417,6 +421,7 @@ export class EditProjectComponent implements OnInit {
 
   onSubmitEditProject() {
 
+    
     let userAccountBalanceCheck = '';
     let projectCost = this.projectDetailsForm.controls.project_cost.value;
     let updatedProjectCost = this.lastProjectCost - projectCost;
@@ -430,7 +435,7 @@ export class EditProjectComponent implements OnInit {
     //console.log('this.userCredits', this.userCredits);
     var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, {userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost:this.lastProjectCost});
 
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true; // Show Loader
     //check if Project Cost is greater than available credits.
     if (Math.abs(updatedProjectCost) > Math.abs(this.userCredits)) {
       this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
@@ -440,10 +445,12 @@ export class EditProjectComponent implements OnInit {
       this.projectsService.updateProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
         //case success
         (res) => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onSuccess(res.response);
           this.router.navigate(['/user/projects-listing']);
           //case error 
         }, error => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
     }
@@ -547,9 +554,11 @@ export class EditProjectComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          this.loading = true; // Show Loader
+          //componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            componentObj.commonUtilsService.hidePageLoader(); //hide page loader
+            this.loading = false; // Hide Loader
+            //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
 
@@ -559,7 +568,7 @@ export class EditProjectComponent implements OnInit {
           componentObj.zone.run(() => {
             componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
           });
-
+          this.loading = false; // Hide Loader
           this.removeFile(file);
           componentObj.commonUtilsService.hidePageLoader(); //hide page loader
         });
@@ -568,7 +577,7 @@ export class EditProjectComponent implements OnInit {
           //console.log('error', error);
 
           this.removeFile(file);
-
+          this.loading = false; // Hide Loader
           componentObj.commonUtilsService.onError(error);
         });
 
@@ -594,7 +603,7 @@ export class EditProjectComponent implements OnInit {
    * @param bucket s3 bucket name
    */
   removeImageFromBucket(file_key) {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true; // Show Loader
 
     const params = { fileKey: file_key }
 
@@ -602,9 +611,11 @@ export class EditProjectComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(
         (res) => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onSuccess(res.response);
         },
         error => {
+          this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
   }

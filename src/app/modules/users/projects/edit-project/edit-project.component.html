@@ -14,9 +14,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                
-            </nav>
 
+            </nav>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -102,13 +102,13 @@
                                             <aw-wizard-step [canExit]="moveDirection.bind(this, projectSpecsForm.valid)"
                                                 stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <input type="text" class="col-lg-4 field-design" #project_name
-                                                            formControlName="project_name" placeholder=""                             
+                                                        <input type="text" class="field-design" #project_name
+                                                            formControlName="project_name" placeholder=""
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
@@ -118,12 +118,12 @@
                                                             </app-form-validation-errors>
                                                         </p>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Topic <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="px-0">
                                                             <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_topic" placeholder=""
@@ -143,12 +143,12 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8 step-progress-fields">
+                                                    <div class="col-lg-6 step-progress-fields">
                                                         <label>Project Type <span class="red">*</span></label>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                                             elit. Praesent diam lorem, fermentum in tempus sed,
                                                             aliquet sed enim</p>
-                                                        <div class="col-lg-4 px-0">
+                                                        <div class="px-0">
                                                             <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
                                                                 formControlName="project_type" placeholder=""
@@ -173,7 +173,9 @@
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
-                                                        </button>                                                        
+                                                        </button>
+                                                        <a routerLink="/user/add-new-project-advanced"
+                                                            class="advance-text">( or go advance )</a>
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
@@ -397,15 +399,15 @@
                                             </aw-wizard-step>
                                             <aw-wizard-step stepTitle="Writers Details">
                                                 <form [formGroup]="writersDetailsForm">
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-12">
                                                         <div class="row">
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields">
                                                                 <label>Choice of writters</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
 
                                                                     <select #choice_of_writers class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
@@ -421,13 +423,13 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields mt-0">
                                                                 <label>Career</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
                                                                     <select #writers_career class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
                                                                         formControlName="writers_career" placeholder=""
@@ -454,20 +456,21 @@
                                                                     <div *ngFor="let writerAge of writterAgeArray; let i=index"
                                                                         class="tabs">
                                                                         <input formControlName="writers_age"
-                                                                            class="radio" id="{{i}}" type="radio">
+                                                                            class="radio" id="{{i}}" type="radio"
+                                                                            value="{{writerAge}}">
                                                                         <label class="tab"
                                                                             for="{{i}}">{{writerAge}}</label>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-lg-12 step-progress-fields">
+                                                            <div class="col-lg-5 step-progress-fields">
                                                                 <label>Location</label>
                                                                 <p>Lorem ipsum dolor sit amet, consectetur
                                                                     adipiscing elit. Praesent diam lorem,
                                                                     fermentum in tempus sed, aliquet sed enim
                                                                 </p>
-                                                                <div class="col-lg-4 pl-0">
+                                                                <div class="pl-0">
                                                                     <select #writers_location class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
                                                                         formControlName="writers_location"
@@ -483,7 +486,7 @@
                                                             </div>
                                                             <div class="col-lg-12 mt-4">
                                                                 <button type="button" awPreviousStep
-                                                                    class="submit-btn-feedback min-w-130">
+                                                                    class="submit-btn-feedback min-w-130 mr-lg-3">
                                                                     PREVIOUS
                                                                 </button>
                                                                 <button (click)="validateProjectDetailsWizard()"
@@ -595,11 +598,46 @@
                                                             <p class="step-progress-fields-content">
                                                                 {{writers_location?.value}}</p>
                                                         </div>
+                                                        <!--Upload Images Section-->
+                                                        <div class="col-md-12">
+                                                            <div class="thumbnails"
+                                                                *ngIf="checkObjectLength(projectFilesArray.value) > 0">
+                                                                <div class="thumbnail_list"
+                                                                    *ngFor="let projectImage of projectFilesArray.value | keyvalue; let projectImage = index;">
+
+
+                                                                    <a class="upload_pdf" data-toggle="tooltip"
+                                                                        title="{{projectImage.value.file_name}}"
+                                                                        href="{{projectImage.value.file_path}}"
+                                                                        target="_blank">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
+                                                                            src="assets/image/pdf.png">
+
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                            src="assets/image/csv.png">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                                            src="assets/image/word.png">
+
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
+                                                                            src="assets/image/zip.png">
+
+                                                                    </a>
+
+
+                                                                    <i (click)="removeImage(projectImage.key, 'project',projectImage.value.file_key)"
+                                                                        class="fa fa-times" aria-hidden="true"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Upload Images Section-->
                                                         <div class="col-lg-10 mt-4 step4-submit-fields">
                                                             <div class="row">
-                                                                <div class="col-lg-3">
+                                                                <div class="col-lg-12">
                                                                     <button type="button" awPreviousStep
-                                                                        class="submit-btn-feedback min-w-130">
+                                                                        class="submit-btn-feedback min-w-130 mr-lg-3">
                                                                         PREVIOUS
                                                                     </button>
 
@@ -611,17 +649,17 @@
 
                                                                 </div>
                                                                 <!--div class="col-lg-3">
-                                                                    <input type="submit" value="SAVE AS DRAFT"
-                                                                        class="submit-btn-feedback min-w-130 editing-btn">
-                                                                </div>
-                                                                <div class="col-lg-3">
-                                                                    <input type="submit" value="CANCEL PROJECT"
-                                                                        class="submit-btn-feedback min-w-130 editing-btn">
-                                                                </div>
-                                                                <div class="col-lg-3">
-                                                                    <input type="submit" value="EDIT PROJECT"
-                                                                        class="submit-btn-feedback min-w-130 editing-btn">
-                                                                </div-->
+                                                                        <input type="submit" value="SAVE AS DRAFT"
+                                                                            class="submit-btn-feedback min-w-130 editing-btn">
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <input type="submit" value="CANCEL PROJECT"
+                                                                            class="submit-btn-feedback min-w-130 editing-btn">
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <input type="submit" value="EDIT PROJECT"
+                                                                            class="submit-btn-feedback min-w-130 editing-btn">
+                                                                    </div-->
                                                             </div>
                                                         </div>
                                                     </div>

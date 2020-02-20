@@ -2,13 +2,16 @@
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
         <div class="dashboard-content">
           <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
-        <table class="table table-responsive sr__only">
+
+          <div class="table-responsive">
+
+          
+        <table class="table sr__only">
             <thead>
               <tr>
                 <th>S.No.</th>
-                <th>Project Name</th>
-                <th>Project Status</th>
-                <th>Description</th>
+                <th>Notification Message</th>
+             
               </tr>
             </thead>
             <tbody>
@@ -17,16 +20,17 @@
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
-                <td>{{notification?.feed_date | date:'M/d/yy'}}</td>
-                <td>{{notification?.feed_desc}}</td>
-                <td>{{notification?.user_name}}</td>
+                <td>{{notification?.message}}</td>
+            
 
               </tr>      
               
             </tbody>
             
           </table>
-          <div class="row" *ngIf="feedbacks.length > 0">
+        </div>
+
+          <div class="row" *ngIf="notifications.length > 0">
             <div class="col-md-12 writer-pagination mb-3">
                 <pagination-controls id="foo" (pageChange)="pageChanged($event)"
                     (pageBoundsCorrection)="pageChanged($event)" maxSize="9"

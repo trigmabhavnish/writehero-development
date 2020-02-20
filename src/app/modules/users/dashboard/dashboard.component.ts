@@ -33,7 +33,8 @@ export class DashboardComponent implements OnInit {
   latestProject: any = {};
   latestSupport: any = {};
   projectCount: any;
-  userName: any;
+  showName: any;
+  loading:boolean =false; //Page Loader
 
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
@@ -46,18 +47,20 @@ export class DashboardComponent implements OnInit {
   * @return Listing Array
   */
   public getDashboardContent() {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true; // Show Loader
     this.commonUtilsService.getDashboardContent({}).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        console.log(res);
+        //console.log(res);
+        this.loading = false; // Hide Loader
         this.latestProject = res.latestProject;
         this.latestSupport = res.latestSupport;
         this.projectCount = res.projectCount; 
-        this.userName = res.user_name; 
-        //console.log(this.projectCount);       
+        this.showName = res.show_name; 
+        console.log(this.latestSupport);       
         //case error 
       }, error => {
+        this.loading = false; // Hide Loader
         this.commonUtilsService.onError(error.response);
       });
   }

@@ -23,6 +23,7 @@ import { FeedbackDetailsComponent } from './feed-back/feedback-details/feedback-
 import { BillingListingComponent } from './billing/billing-listing/billing-listing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 const routes: Routes = [
   {
     path: '',
@@ -153,7 +154,15 @@ const routes: Routes = [
     data: { title: 'Notifications' },
     canActivate: [UserAuthGuardService]
     
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    data: { title: 'Change Password' },
+    canActivate: [UserAuthGuardService]
+    
   }
+
 ];
 
 @NgModule({

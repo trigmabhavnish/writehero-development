@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   disabled: boolean = false;
   userProfileForm: FormGroup;
   loading: boolean = false;
-  constructor(private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
+  constructor(private userAuthService : UsersService,private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
 
@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit {
       cancelReset: null,
       acceptedFiles: 'image/*',
       maxFilesize: 2, // MB,
-      dictDefaultMessage: '<span class="button">Update Profile Image</span>',
+      dictDefaultMessage: '<span class="button"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
       //resizeWidth: 125,
@@ -250,6 +250,7 @@ export class ProfileComponent implements OnInit {
     this.userService.updateProfile(body).pipe(untilDestroyed(this)).subscribe(response => {
       this.isSubmitted = false;
       this.loading = false;
+      this.userAuthService.isProfileUpdated(true);
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_UPDATE);
     }, error => {
       this.isSubmitted = false;
@@ -265,6 +266,7 @@ export class ProfileComponent implements OnInit {
         profile_pic: body.fileLocation
       })
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_IMAGE_UPDATE);
+      this.userAuthService.isProfileUpdated(true);
     }, error => {
       this.commonUtilsService.onError(error.response)
     })

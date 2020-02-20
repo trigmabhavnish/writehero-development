@@ -5,10 +5,13 @@
 export const environment = {
   production: false,
   API_ENDPOINT: 'http://localhost:3000',
+  WEB_ENDPOINT: 'http://localhost:4200',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
   TWO_CEHCKOUT_SELLER_ID:'901419990',
   TWO_CHECKOUT_PUBLISHKEY:'E2998212-081C-4D18-8318-37FD811576B2',
+
+  DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
@@ -31,7 +34,8 @@ export const environment = {
     PROFILE_UPDATE:'Profile updated successfully.',
     PAYENT_SUCCESS:'Payment has been done successfully.',
     CREDIT_CARD_INVALID:'Oops! wrong credit card information provided by you.',
-    PROFILE_IMAGE_UPDATE:'Profile image updated successfully.'
+    PROFILE_IMAGE_UPDATE:'Profile image updated successfully.',
+    PASSWORD_CHANGE:'Password has been changed successfully.'
   }
 };
 

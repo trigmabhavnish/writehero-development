@@ -15,7 +15,7 @@ export class FeedBackListingComponent implements OnInit {
   pageSize: number = 10;
   currentPage: number = 1;
   totalItems: number = 0
-  constructor(private feedbckservice: FeedBackService) {
+  constructor(private feedbackservice: FeedBackService) {
 
 
 
@@ -28,7 +28,7 @@ export class FeedBackListingComponent implements OnInit {
 
   private getFeedBackLsiting(): void {
     this.loading = true;
-    this.feedbckservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
+    this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
       this.feedbacks = response.feedback;
       this.totalItems = response.totalItems;
       this.loading = false;

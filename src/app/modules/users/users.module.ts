@@ -35,6 +35,7 @@ import { BillingListingComponent } from './billing/billing-listing/billing-listi
 import { ProfileComponent } from './profile/profile.component';
 import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -44,7 +45,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 };
 
 @NgModule({
-  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent, NotificationComponent],  
+  declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent, NotificationComponent, ChangePasswordComponent],  
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -58,11 +59,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgxPaginationModule,
     CreditCardDirectivesModule,
     NgxLoadingModule.forRoot({ animationType: ngxLoadingAnimationTypes.wanderingCubes,
-      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBackgroundColour: '#002249', 
       backdropBorderRadius: '4px',
-      primaryColour: '#01004a', 
-      secondaryColour: '#01004a', 
-      tertiaryColour: '#01004a'}),
+      primaryColour: '#002249', 
+      secondaryColour: '#002249', 
+      tertiaryColour: '#002249'}),
     RecaptchaModule.forRoot({
         siteKey: environment.GOOGLE_RECAPTCHA_SITE_KEY,
     })
