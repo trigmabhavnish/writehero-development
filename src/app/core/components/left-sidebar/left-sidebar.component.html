@@ -6,7 +6,7 @@
             <div class="dashboard-profile-outer">
                 <div class="dashboard-profile-status">
                     <div class="dashboard-profile-manual">
-                        <img src="assets/image/dashboard-user-pic.png">
+                        <img [src]="(profileDetails?.profile_pic) ? (profileDetails?.profile_pic)  : defaultPath">
                     </div>
                     <div class="notification-bell-outer">
                         <button class="notification-bell">
@@ -15,9 +15,9 @@
                     </div>
                 </div>
                 <div class="dashboard-profile-content">
-                    <p class="dashboard-profile-name">Sunil Chadha</p>
-                    <p class="dashboard-inc">Trigma Inc</p>
-                    <p class="profile-credit">Credit : <span class="credit-amount">$500</span></p>
+                    <p class="dashboard-profile-name">{{(profileDetails?.first_name) ? (profileDetails?.first_name + ' ' +profileDetails?.last_name)  : profileDetails?.user_name}}</p>
+                    <p class="dashboard-inc">{{(profileDetails?.company_name)}}</p>
+                    <p class="profile-credit">Credit : <span class="credit-amount">${{(profileDetails?.account_balance) ? (profileDetails?.account_balance) : '0' }}</span></p>
                 </div>
             </div>
 

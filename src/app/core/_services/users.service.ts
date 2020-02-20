@@ -13,6 +13,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class UsersService {
 
   public loggedIn: Subject<any> = new Subject<any>();
+  public profileUpdatedStatus: Subject<any> = new Subject<any>();
+
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   isLoggedIn(value: boolean, accountType: String) {
@@ -20,6 +22,14 @@ export class UsersService {
   }
   checkLoggedinStatus(): Observable<any> {
     return this.loggedIn.asObservable();
+  }
+
+  isProfileUpdated(value: boolean) {
+    this.profileUpdatedStatus.next(value);
+  }
+  
+  getUpdatedProfileStatus(): Observable<any> {
+    return this.profileUpdatedStatus.asObservable();
   }
 
   /**

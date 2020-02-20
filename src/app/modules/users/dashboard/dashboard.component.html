@@ -30,10 +30,11 @@
                                         <!--Dashboard HTML starts-->
 
 
+
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="dashboard-welcome-note">
-                                                    <p>Welcome Back, <span>{{userName}}</span></p>
+                                                    <p>Welcome Back, <span>{{showName}}</span></p>
                                                 </div>
                                                 <ng-container
                                                     *ngIf="(checkObjectLength(latestProject) > 0); else elseNoLatestProject;">
@@ -170,59 +171,61 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <ng-container
+                                                    *ngIf="(checkObjectLength(latestSupport) > 0); else elseNoLatestProject;">
+                                                    <div *ngFor="let latest of latestSupport; let i = index;"
+                                                        class="dashboard-latest-project-outer">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="dashboard-latest-support">
+                                                                    <h4 class="dashboard-latest-project-title">
+                                                                        Latest Support</h4>
+                                                                </div>
+                                                                <div class="dashborad-project-estimation">
+                                                                    <span
+                                                                        class="dashboard-latest-project-subject">Project</span>
+                                                                    <span
+                                                                        class="dashboard-latest-project-result font-weight-bold">Health
+                                                                        - KBL0931</span>
+                                                                </div>
+                                                                <div class="dashborad-project-estimation pt-2">
+                                                                    <span
+                                                                        class="dashboard-latest-project-subject">Details</span>
+                                                                    <span
+                                                                        class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0">Lorem
+                                                                        ipsum dolor sit amet, consectetur
+                                                                        adipiscing elit, sed do eiusmod
+                                                                        tempor incididunt ut labore et
+                                                                        dolore magna aliqua. Quis ipsum
+                                                                        suspendisse ultrices gravida. Risus
+                                                                        commodo viverra</span>
+                                                                </div>
+                                                                <div class="admin-comment-dashboard">
+                                                                    <div class="admin-comment-outer">
+                                                                        <div class="row flex-row-reverse">
+                                                                            <div class="col-md-12 mb-3">
 
-                                                <div *ngIf="latestSupport?.length > 0; else elseNoLatestSupport;"
-                                                    class="dashboard-latest-project-outer">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="dashboard-latest-support">
-                                                                <h4 class="dashboard-latest-project-title">
-                                                                    Latest Support</h4>
-                                                            </div>
-                                                            <div class="dashborad-project-estimation">
-                                                                <span
-                                                                    class="dashboard-latest-project-subject">Project</span>
-                                                                <span
-                                                                    class="dashboard-latest-project-result font-weight-bold">Health
-                                                                    - KBL0931</span>
-                                                            </div>
-                                                            <div class="dashborad-project-estimation pt-2">
-                                                                <span
-                                                                    class="dashboard-latest-project-subject">Details</span>
-                                                                <span
-                                                                    class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0">Lorem
-                                                                    ipsum dolor sit amet, consectetur
-                                                                    adipiscing elit, sed do eiusmod
-                                                                    tempor incididunt ut labore et
-                                                                    dolore magna aliqua. Quis ipsum
-                                                                    suspendisse ultrices gravida. Risus
-                                                                    commodo viverra</span>
-                                                            </div>
-                                                            <div class="admin-comment-dashboard">
-                                                                <div class="admin-comment-outer">
-                                                                    <div class="row flex-row-reverse">
-                                                                        <div class="col-md-12 mb-3">
-
-                                                                            <div class="admin-pic-outer">
-                                                                                <img
-                                                                                    src="assets/image/dashborad-feedback-users4.png">
-                                                                            </div>
-                                                                            <div class="admin-comment-list">
-                                                                                <p class="reply-text">
-                                                                                    Last Reply</p>
-                                                                                <p class="admin-text">
-                                                                                    Admin</p>
-                                                                                <p class="cmnt-admin-text">
-                                                                                    Consectetur
-                                                                                    adipisicing elit,
-                                                                                    sed do eiusmod
-                                                                                    tempor incididunt ut
-                                                                                    labore et dolore
-                                                                                    magna aliqua. Ut
-                                                                                    enim ad minim
-                                                                                    veniam, quis</p>
-                                                                                <p class="cmnt-admin-date">
-                                                                                    Nov 3, 2019</p>
+                                                                                <div class="admin-pic-outer">
+                                                                                    <img
+                                                                                        src="assets/image/dashborad-feedback-users4.png">
+                                                                                </div>
+                                                                                <div class="admin-comment-list">
+                                                                                    <p class="reply-text">
+                                                                                        Last Reply</p>
+                                                                                    <p class="admin-text">
+                                                                                        Admin</p>
+                                                                                    <p class="cmnt-admin-text">
+                                                                                        Consectetur
+                                                                                        adipisicing elit,
+                                                                                        sed do eiusmod
+                                                                                        tempor incididunt ut
+                                                                                        labore et dolore
+                                                                                        magna aliqua. Ut
+                                                                                        enim ad minim
+                                                                                        veniam, quis</p>
+                                                                                    <p class="cmnt-admin-date">
+                                                                                        Nov 3, 2019</p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -230,7 +233,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </ng-container>
                                                 <ng-template #elseNoLatestSupport>
                                                     <div class="dashboard-latest-project-outer">
                                                         <p class="noproject-foundtext">No Latest Support Found</p>

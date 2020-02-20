@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Router } from "@angular/router";
 import { of, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
 
@@ -28,9 +29,23 @@ import { UsersService, CommonUtilsService } from '../../../core/_services';
 })
 export class LeftSidebarComponent implements OnInit {
 
+  isProfileUpdated: boolean = false;
+  profileSubscription: Subscription;
+  profileDetails:any;
+  defaultPath = environment.DEFAULT_PROFILE_PIC;
+
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
 
   ngOnInit() {
+
+    this.profileSubscription = this.userAuthService.getUpdatedProfileStatus().subscribe((profileStatus) => {
+      this.isProfileUpdated = profileStatus.profileUpdatedStatus;
+      this.getUserDetails();
+    });
+
+    // On Page Refresh
+    this.getUserDetails();
+    
   }
 
   /*
@@ -49,6 +64,21 @@ export class LeftSidebarComponent implements OnInit {
         localStorage.clear();
         this.userAuthService.isLoggedIn(false, ''); //trigger loggedin observable 
         this.router.navigate(['/user/login']);
+        //case error 
+      }, error => {
+        this.commonUtilsService.onError(error.response);
+      });
+  }
+
+  /*
+    get Logged In User Details
+  */
+  public getUserDetails() {
+    this.userAuthService.getUserProfile().pipe(untilDestroyed(this)).subscribe(
+      //case success
+      (res) => {
+        this.profileDetails = res.profile[0];       
+        //console.log(this.profileDetails);
         //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);

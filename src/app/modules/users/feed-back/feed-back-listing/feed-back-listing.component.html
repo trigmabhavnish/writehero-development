@@ -18,7 +18,7 @@
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
-                <td>{{feedback?.feed_date | date:'M/d/yy'}}</td>
+                <td>{{feedback?.feed_date | date }}</td>
                 <td>{{feedback?.feed_desc}}</td>
                 <td><rating [(ngModel)]="feedback.overall_rate"
                     >

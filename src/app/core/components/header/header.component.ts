@@ -25,9 +25,10 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
 
   isLoggedin: boolean = false;
+  
   loginSubscription: Subscription;
-  isHomeUrl:boolean =false;
-  constructor( private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) { }
+  isHomeUrl: boolean = false;
+  constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
 
@@ -35,15 +36,16 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('isLoggedIn')) {
       this.isLoggedin = true;
     }
-    this.router.events
-    .subscribe(() => {
-     this.isHomeUrl = this.router.routerState.snapshot.url.includes('web');
+
+    this.router.events.subscribe(() => {
+        this.isHomeUrl = this.router.routerState.snapshot.url.includes('web');
     })
+
     this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
       this.isLoggedin = loginStatus.isLoggedIn;
     });
 
-    
+
   }
 
 }

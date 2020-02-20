@@ -5,10 +5,12 @@
 export const environment = {
   production: false,
   API_ENDPOINT: 'http://localhost:3000',
+  WEB_ENDPOINT: 'http://localhost:4200',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
   TWO_CEHCKOUT_SELLER_ID:'901420029',
   TWO_CHECKOUT_PUBLISHKEY:'87AB0DD8-35C2-4CED-87CA-08257D7A277F',
+  DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
