@@ -69,18 +69,18 @@ export class SignupComponent implements OnInit {
       confirm_password: ['', Validators.required],
       status: ['Y'],
       myRecaptcha: [false],
-      accept_terms: [false, Validators.required]
+      accept_terms: [false, Validators.requiredTrue]
     }, {
       validator: CustomValidator.MustMatch('password', 'confirm_password')
     });
   }
 
   validateSignUpForm():void{
-
     this.signUpSubmitted = true;
     if(this.signUpForm.invalid) {
       return;
     }
+  
     this.commonUtilsService.showPageLoader(environment.MESSAGES.SIGNING_UP);
 
     //set username  before signup

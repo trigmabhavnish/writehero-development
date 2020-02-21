@@ -111,7 +111,8 @@ export class ProfileComponent implements OnInit {
 
 
 
-  private returnFormattedDate(dob: any) {
+  private returnFormattedDate(dateOfBirth: any) {
+    let dob = dateOfBirth ? dateOfBirth : new Date()
     let date = new Date(dob)
     let day = date.getDate();
     let month = date.getMonth() + 1;

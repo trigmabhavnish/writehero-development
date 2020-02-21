@@ -31,7 +31,7 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class ProjectsListingComponent implements OnInit {
 
   //pagination initialize
-  pageSize: number = 1;
+  pageSize: number = 10;
   currentPage: number = 1;
   totalProjects: number = 0
   projects: any = [];
