@@ -2,7 +2,11 @@ export const environment = {
   production: true,
   API_ENDPOINT: 'http://13.235.163.1:3000',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
-  PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi',
+  PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi', 
+  DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  
+  TWO_CEHCKOUT_SELLER_ID:'901419990',
+  TWO_CHECKOUT_PUBLISHKEY:'E2998212-081C-4D18-8318-37FD811576B2',
+
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
@@ -17,10 +21,15 @@ export const environment = {
     TICKET_CREATED:'The ticket has been created successfully.',
     NOT_ENOUGH_CREDITS: "You dont have enough credits.",
     NO_PROJECTS_FOUND: "No Projects Found.",    
-    MESSAGE_SEND:'Message has been sent successfully.',
+    MESSAGE_SEND:'Message send successfully.',
     TICKET_UPDATE:'Ticket updated successfully.',
     CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',
-    CANCEL_PROJECT:'Are you sure you want to cancel this project?'
+    CANCEL_PROJECT:'Are you sure you want to cancel this project?',
+    PROFILE_UPDATE:'Profile updated successfully.',
+    PAYENT_SUCCESS:'Payment has been done successfully.',
+    CREDIT_CARD_INVALID:'Oops! wrong credit card information provided by you.',
+    PROFILE_IMAGE_UPDATE:'Profile image updated successfully.',
+    PASSWORD_CHANGE:'Password has been changed successfully.'
   }
 };

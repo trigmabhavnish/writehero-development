@@ -21,7 +21,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
+import { ProjectsService, CommonUtilsService, UsersService } from '../../../../core/_services';
 
 @Component({
   selector: 'app-add-new-project-advanced',
@@ -31,7 +31,7 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class AddNewProjectAdvancedComponent implements OnInit {
 
 
-  constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private zone: NgZone, private formBuilder: FormBuilder, private userAuthService:UsersService, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
   projectSpecsForm: FormGroup;
   projectSpecsSubmitted = false;
@@ -350,6 +350,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
         //case success
         (res) => {
           this.loading = false; // Hide Loader
+          this.userAuthService.isProfileUpdated(true);  // Update Profile Data
           this.commonUtilsService.onSuccess(res.response);
           this.router.navigate(['/user/projects-listing']);
           //case error 

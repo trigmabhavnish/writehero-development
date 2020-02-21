@@ -21,7 +21,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
+import { ProjectsService, CommonUtilsService, UsersService } from '../../../../core/_services';
 
 @Component({
   selector: 'app-add-new-project',
@@ -30,7 +30,7 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 })
 export class AddNewProjectComponent implements OnInit {
 
-  constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private zone: NgZone, private formBuilder: FormBuilder, private userAuthService:UsersService, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
   projectSpecsForm: FormGroup;
   projectDetailsForm: FormGroup;
@@ -50,7 +50,7 @@ export class AddNewProjectComponent implements OnInit {
   userCredits: any;
   userCreditsCheck: boolean = true;
 
-
+  loading: boolean = false;
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -382,6 +382,7 @@ export class AddNewProjectComponent implements OnInit {
         //case success
         (res) => {
           this.loading = false; // Hide Loader
+          this.userAuthService.isProfileUpdated(true);  // Update Profile Data
           this.commonUtilsService.onSuccess(res.response);
           this.router.navigate(['/user/projects-listing']);
           //case error 
