@@ -238,7 +238,7 @@ export class ViewTicketComponent implements OnInit {
   public solveTicket(): void {
 
     Swal.fire({
-      title: 'Are you sure you issue has been solved?',
+      title: 'Are you sure your issue has been solved?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes',

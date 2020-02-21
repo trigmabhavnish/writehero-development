@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_ENDPOINT: 'http://13.235.163.1:3000',
+  API_ENDPOINT: 'http://localhost:3000',
   WEB_ENDPOINT: 'http://localhost:4200',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi', 
@@ -26,7 +26,7 @@ export const environment = {
     TICKET_CREATED:'The ticket has been created successfully.',
     NOT_ENOUGH_CREDITS: "You dont have enough credits.",
     NO_PROJECTS_FOUND: "No Projects Found.",    
-    MESSAGE_SEND:'Message send successfully.',
+    MESSAGE_SEND:'Message has been sent successfully.',
     TICKET_UPDATE:'Ticket updated successfully.',
     CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',

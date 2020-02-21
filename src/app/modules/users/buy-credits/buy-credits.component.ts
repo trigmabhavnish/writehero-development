@@ -140,6 +140,7 @@ export class BuyCreditsComponent implements OnInit {
           (res) => {
             this.userAuthService.isProfileUpdated(true);
             this.commonUtilsService.onSuccess(res.response);
+            this.router.navigate(['/user/billing']);
             //case error 
           }, error => {
             this.commonUtilsService.onError(error.response);
