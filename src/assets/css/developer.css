@@ -244,6 +244,35 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
 /*buy credit ends*/
 
 /*BEM for life*/
+.bill--logoeach {
+    width: 80px;
+}
+.bill--logoeach img {
+    max-width: 100%;
+}
+.lorem-tooltip--outer.lor-right::before {
+    left: auto;
+    right: 0;
+    transform: rotate(270deg);
+}
+.lorem-tooltip--outer.lor-right {
+    left: auto;
+    right: 10px;
+    top: 35px;
+}
+.bg-142 {
+    background: #1429b3 !important;
+}
+.dashboard-rightside-updates.latest-feedback .feedback-star {
+    font-size: 8px;
+}
+.dashboard-rightside-updates.latest-feedback .feedback-star rating.ng-untouched.ng-pristine.ng-valid {
+    margin-left: 0px;
+}
+.dashboard-rightside-updates.latest-feedback .feedback-star rating.ng-untouched.ng-pristine.ng-valid .star-icon:before, .dashboard-rightside-updates.latest-feedback .feedback-star rating.ng-untouched.ng-pristine.ng-valid  .star-icon {
+    color: #ee3a54;
+}
+
 .lorem-tooltip--outer {
     padding: 9px 15px;
     position: absolute;

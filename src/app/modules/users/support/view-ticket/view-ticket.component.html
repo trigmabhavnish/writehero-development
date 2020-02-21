@@ -163,16 +163,19 @@
                                                                                                         target="_blank">
 
                                                                                                         <img *ngIf="supportFile.value.file_mimetype == 'application/pdf'"
-                                                                                                            src="assets/image/pdf.png">
-
-                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'text/csv') || (supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                                                            src="assets/image/csv.png">
-
-                                                                                                        <img *ngIf="supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                                                                                            src="assets/image/word.png">
-
-                                                                                                        <img *ngIf="supportFile.value.file_mimetype == 'application/zip'"
-                                                                                                            src="assets/image/zip.png">
+                                                                                                src="assets/image/pdf.png">
+                
+                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'text/csv')
+                                                                                            ||
+                                                                                            (supportFile.value.file_mimetype == 'application/vnd.ms-excel')
+                                                                                            || (supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                                                src="assets/image/csv.png">
+                
+                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (supportFile.value.file_mimetype == 'application/msword')"
+                                                                                                src="assets/image/word.png">
+                
+                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                                                src="assets/image/zip.png"> 
 
                                                                                                     </a>
 

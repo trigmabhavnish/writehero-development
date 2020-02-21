@@ -208,22 +208,41 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Project Details <span
                                                                             class="red">*</span></label>
-                                                                    <p>Here is the meat of your project. We would be
-                                                                        needing your complete project specs or
-                                                                        instructions for
-                                                                        your order. You can add keywords, titles,
-                                                                        instructions, writing styles, tone, etc. The key
-                                                                        strategy to a
-                                                                        good product is to be VERY, VERY SPECIFIC on
-                                                                        your needs - so we can better meet your
-                                                                        expectations.
-
-                                                                        For those who need special formatting for their
-                                                                        eBooks (e.g. photos, color, style), please chat
-                                                                        with us or
-                                                                        create a support ticket after you submit this
-                                                                        project.
-                                                                    </p>
+                                                                            <p class="d-inline-block">Here is the meat of
+                                                                                your project. We would be
+                                                                                needi...
+                                                                            </p>
+                                                                            <div class="about_logo_course_tooltip">
+                                                                                <img src="assets/image/test_logo_icon.png">
+                                                                                <div class="lorem-tooltip--outer">
+                                                                                    <div class="lorem-tooltip">
+                                                                                        Here is the meat of
+                                                                                        your project. We would be
+                                                                                        needing your complete project specs
+                                                                                        or
+                                                                                        instructions for
+                                                                                        your order. You can add keywords,
+                                                                                        titles,
+                                                                                        instructions, writing styles, tone,
+                                                                                        etc. The key
+                                                                                        strategy to a
+                                                                                        good product is to be VERY, VERY
+                                                                                        SPECIFIC on
+                                                                                        your needs - so we can better meet
+                                                                                        your
+                                                                                        expectations.
+    
+                                                                                        For those who need special
+                                                                                        formatting for their
+                                                                                        eBooks (e.g. photos, color, style),
+                                                                                        please chat
+                                                                                        with us or
+                                                                                        create a support ticket after you
+                                                                                        submit this
+                                                                                        project.
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
 
                                                                     <textarea #project_details cols="5" rows="3"
@@ -249,9 +268,18 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Word for each space <span
                                                                             class="red">*</span></label>
-                                                                    <p>How many words do you need per piece?
-                                                                        For eBooks, it usually starts at 10,000 words
-                                                                    </p>
+                                                                            <p class="d-inline-block">How many words do you need per piece?</p>
+                                                                            <div class="about_logo_course_tooltip">
+                                                                                <img src="assets/image/test_logo_icon.png">
+                                                                                <div class="lorem-tooltip--outer lor-right">
+                                                                                    <div class="lorem-tooltip">
+                                                                                        How many words do you need per piece?
+        
+                                                                                        For eBooks, it usually starts at 10,000
+                                                                                        words
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
                                                                         #word_count class="col-lg-4"
@@ -270,11 +298,23 @@
 
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Additional Resources</label>
-                                                                    <p>Do you have any online references that you would
-                                                                        like us to pattern your content style/tone? Not
-                                                                        required but would be really, really helpful for
-                                                                        your writers.
+                                                                    <p class="d-inline-block">Do you have any online
+                                                                        references that...
                                                                     </p>
+                                                                    <div class="about_logo_course_tooltip">
+                                                                        <img src="assets/image/test_logo_icon.png">
+                                                                        <div class="lorem-tooltip--outer lor-right">
+                                                                            <div class="lorem-tooltip">
+                                                                                Do you have any online references that
+                                                                                you would
+                                                                                like us to pattern your content
+                                                                                style/tone? Not
+                                                                                required but would be really, really
+                                                                                helpful for
+                                                                                your writers.
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <textarea #additional_resources cols="5" rows="3"
                                                                         minLength=10 maxLength=200
                                                                         formControlName="additional_resources"
@@ -295,7 +335,7 @@
                                                             <div class="row step-progress-fields">
                                                                 <label class="col-md-12 mb-3">Choose your package <span
                                                                         class="red">*</span></label>
-                                                                <p>Choose the pricing plan that best fits your needs.
+                                                                <p class="px-3">Choose the pricing plan that best fits your needs.
                                                                     All plans come with a 200% Workback Guarantee – so
                                                                     you don’t have to worry about quality.</p>
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
@@ -364,13 +404,16 @@
                                                                             <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                                 src="assets/image/pdf.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
+                                                                            ||
+                                                                            (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
+                                                                            || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
                                                                                 src="assets/image/csv.png">
 
-                                                                            <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                                 src="assets/image/word.png">
 
-                                                                            <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
                                                                                 src="assets/image/zip.png">
 
                                                                         </a>
@@ -473,7 +516,7 @@
 
                                                                     <div *ngFor="let writerAge of writterAgeArray; let i=index"
                                                                         class="tabs">
-                                                                        <input formControlName="writers_age"
+                                                                        <input #writers_age formControlName="writers_age"
                                                                             class="radio" id="{{i}}" type="radio"
                                                                             value="{{writerAge}}">
                                                                         <label class="tab"
@@ -629,16 +672,19 @@
                                                                         target="_blank">
 
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                            src="assets/image/pdf.png">
+                                                                                src="assets/image/pdf.png">
 
-                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                            src="assets/image/csv.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
+                                                                            ||
+                                                                            (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
+                                                                            || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                                src="assets/image/csv.png">
 
-                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                                                            src="assets/image/word.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
+                                                                                src="assets/image/word.png">
 
-                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
-                                                                            src="assets/image/zip.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                                src="assets/image/zip.png">
 
                                                                     </a>
 

@@ -272,10 +272,10 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Word for each space <span
                                                                             class="red">*</span></label>
-                                                                    <p>How many words do you need per piece?</p>
+                                                                    <p class="d-inline-block">How many words do you need per piece?</p>
                                                                     <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
-                                                                        <div class="lorem-tooltip--outer">
+                                                                        <div class="lorem-tooltip--outer lor-right">
                                                                             <div class="lorem-tooltip">
                                                                                 How many words do you need per piece?
 
@@ -307,7 +307,7 @@
                                                                     </p>
                                                                     <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
-                                                                        <div class="lorem-tooltip--outer">
+                                                                        <div class="lorem-tooltip--outer lor-right">
                                                                             <div class="lorem-tooltip">
                                                                                 Do you have any online references that
                                                                                 you would
@@ -687,16 +687,19 @@
                                                                         target="_blank">
 
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                            src="assets/image/pdf.png">
+                                                                                src="assets/image/pdf.png">
 
-                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv') || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                            src="assets/image/csv.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
+                                                                            ||
+                                                                            (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
+                                                                            || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
+                                                                                src="assets/image/csv.png">
 
-                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-                                                                            src="assets/image/word.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
+                                                                                src="assets/image/word.png">
 
-                                                                        <img *ngIf="projectImage.value.file_mimetype == 'application/zip'"
-                                                                            src="assets/image/zip.png">
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                                src="assets/image/zip.png">
 
                                                                     </a>
 
