@@ -909,9 +909,10 @@ footer p span {
     background-color: #f4f6fa;
 }
 .dashboard-topbar {
-    padding: 20px 30px 15px;
+    padding: 15px 30px 15px;
     position: fixed;
     width: 100%;
+    
     background-color: #f4f6fa;
     z-index: 9;
 }
@@ -922,7 +923,7 @@ footer p span {
     margin-bottom: 0px;
 }
 .dashboard-logo {
-    width: 170px;
+    width: 125px;
     display: inline-block;
 }
 .dashboard-logo img {
