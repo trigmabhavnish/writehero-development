@@ -76,13 +76,14 @@
                                             </div>
                                                 </div>
                                             </ng-container>
-                                            <div class="col-lg-4" *ngIf="!billingListing?.length">
-                                                <div class="support-desc-tabs">
+                                           
+                                            <div class="col-lg-4" *ngIf="!billingListing?.length && !loading">
+                                                <div
+                                                    class="no--ticket-text support-desc-tabs min--height-box align-items-center justify-content-center">
                                                     <i class="fa fa-plus"></i>
                                                     <p>No Credit Found</p>
                                                 </div>
                                             </div>
-
 
                                         </div>
                                     </div>
