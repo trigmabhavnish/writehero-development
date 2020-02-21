@@ -220,19 +220,27 @@ export class ViewTicketComponent implements OnInit {
     this.loading = true;
     this.supportService.submitReply(this.ticketReplyForm.value).pipe(untilDestroyed(this)).subscribe(response => {
       this.commonUtilsService.onSuccess(environment.MESSAGES.MESSAGE_SEND);
+      this.loading = false;
       this.ticketReplyForm.reset();
       this.ticketReplyForm.patchValue({
         support_id: this.supportId,
-        support_files: []
+       
       });
+      this.clearFormArray(this.supportFilesArray)
       this.isSubmitted = false;
-      this.loading = false;
       this.getTicketDetails()
     }, error => {
       this.loading = false;
       this.commonUtilsService.onError(error.response);
     })
   }
+
+
+ private clearFormArray = (formArray: FormArray) => {
+  while (formArray.length !== 0) {
+    formArray.removeAt(0)
+  }
+}
 
 
   public solveTicket(): void {

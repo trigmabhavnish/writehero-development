@@ -244,6 +244,9 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
 /*buy credit ends*/
 
 /*BEM for life*/
+.max-750 {
+    max-width: 750px;
+}
 .bill--logoeach {
     width: 80px;
 }

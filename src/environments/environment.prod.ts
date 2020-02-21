@@ -21,7 +21,7 @@ export const environment = {
     TICKET_CREATED:'The ticket has been created successfully.',
     NOT_ENOUGH_CREDITS: "You dont have enough credits.",
     NO_PROJECTS_FOUND: "No Projects Found.",    
-    MESSAGE_SEND:'Message send successfully.',
+    MESSAGE_SEND:'Message has been sent successfully.',
     TICKET_UPDATE:'Ticket updated successfully.',
     CREDITS_NOT_EMPTY:'Credits or Coupon Code is required.',
     FEEDBACK_SUCCESS:'Feedback has been submitted successfully.',

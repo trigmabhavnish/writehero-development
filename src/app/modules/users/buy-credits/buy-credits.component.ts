@@ -58,7 +58,7 @@ export class BuyCreditsComponent implements OnInit {
   */
   private buyCredits() {
     this.buyCreditsForm = this.formBuilder.group({
-      credits: [0, Validators.compose([Validators.required, Validators.min(1)])],
+      credits: [0, Validators.compose([Validators.required, Validators.max(9999),Validators.min(1)])],
       coupon_code: [''],
       amount_to_pay: [''],
       pay_via: ['paypal', [Validators.required]]
