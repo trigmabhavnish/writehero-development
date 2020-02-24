@@ -2275,6 +2275,7 @@ textarea {
     padding: 0px 15px;
     box-shadow: 8px 4px 14px 0px rgba(0, 0, 0, 0.25);
     min-height: 190px;
+    cursor: pointer;
 }
 .create-project-button-tab .fa {
     font-size: 35px;

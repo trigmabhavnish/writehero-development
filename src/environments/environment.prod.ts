@@ -14,7 +14,7 @@ export const environment = {
     UNABLE_TO_FIND_DETAILS: 'Unable to find details.',
     COUPON_CODE_APPLIED: 'Coupon Code Applied.',
     COUPON_CODE_INVALID: 'Invalid Coupon Code.',
-    COUPON_CODE_REMOVED: 'Coupon removed successfully..',
+    COUPON_CODE_REMOVED: 'Coupon removed successfully.',
     PAYMENT_FAILED:'Sorry, the transaction has failed due to unknown reason. Please try again in some time.',
     FAILED_TO_VERIFY: "Token expired or Failed to verify your account. Please try again.",
     CANNOT_UPLOAD_MORE: "You cannot upload any more files.",

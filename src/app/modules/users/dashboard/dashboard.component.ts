@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
         this.latestFeedbacks = res.latestFeedbacks;
         this.projectCount = res.projectCount; 
         this.showName = res.show_name; 
-        console.log(this.latestFeedbacks);       
+        //console.log(this.latestFeedbacks);       
         //case error 
       }, error => {
         this.loading = false; // Hide Loader

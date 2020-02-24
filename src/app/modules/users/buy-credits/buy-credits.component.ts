@@ -44,6 +44,7 @@ export class BuyCreditsComponent implements OnInit {
   isSubmitted:boolean =false;
   public payPalConfig?: IPayPalConfig; // Paypal Configuration
 
+
   constructor(private userAuthService:UsersService, private pageLoaderService:PageLoaderService,private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private creditsService: CreditsService, private toastr: ToastrManager, private router: Router) { }
 
 
@@ -129,33 +130,38 @@ export class BuyCreditsComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
 
+        this.loading = true; // Show Page Loader
         let credits = this.buyCreditsForm.controls.credits.value;
         let payVia = this.buyCreditsForm.controls.pay_via.value;
         let couponCode = this.buyCreditsForm.controls.coupon_code.value;
 
-        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage) ? this.discountPercentage : 0, transaction_code: data.id, admin_note: "" };
+        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage) ? this.discountPercentage : 0, transaction_code: data.id, admin_note: "", amount_charged:this.calAmountToPay };
 
         this.creditsService.onTransactionComplete(transactionData).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
+            this.loading = false; //Hide Page Loader
             this.userAuthService.isProfileUpdated(true);
             this.commonUtilsService.onSuccess(res.response);
             this.router.navigate(['/user/billing']);
             //case error 
           }, error => {
+            this.loading = false; //Hide Page Loader
             this.commonUtilsService.onError(error.response);
           });
 
       },
       onCancel: (data, actions) => {
-
+        this.loading = false; //Hide Page Loader
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onError: err => {
-
+        this.loading = false; //Hide Page Loader
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onClick: (data, actions) => {
+        this.loading = false; //Hide Page Loader
+        this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
     };
   }
