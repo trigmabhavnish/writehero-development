@@ -20,12 +20,12 @@ export class ProfileComponent implements OnInit {
   disabled: boolean = false;
   userProfileForm: FormGroup;
   loading: boolean = false;
-  constructor(private userAuthService : UsersService,private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
+  constructor(private userAuthService: UsersService, private zone: NgZone, private fb: FormBuilder, private userService: UsersService, private commonUtilsService: CommonUtilsService) { }
 
   ngOnInit() {
 
     this.initUserProfileForm();//initilize user profile form
-    this.supportFileDropzoneInit();
+    this.uploadImageDropzoneInit();
     this.getUserProfileData();
   }
 
@@ -112,8 +112,8 @@ export class ProfileComponent implements OnInit {
 
 
   private returnFormattedDate(dateOfBirth: any) {
-  
-    let dob = dateOfBirth == '0000-00-00'? new Date()  : dateOfBirth;
+
+    let dob = dateOfBirth == '0000-00-00' ? new Date() : dateOfBirth;
     let date = new Date(dob)
     let day = date.getDate();
     let month = date.getMonth() + 1;
@@ -121,10 +121,11 @@ export class ProfileComponent implements OnInit {
     return [(month > 9 ? '' : "0") + month, (day > 9 ? '' : '0') + day, year].join('-')
     // return (month ? 9 '':'0')+month + '-'+day+'-'+year;
   }
+
   /**
    * Initialize Dropzone Library(Image Upload).
    */
-  private supportFileDropzoneInit() {
+  private uploadImageDropzoneInit() {
     const self = this;
     this.profileFileConfiguration = {
       clickable: true,
@@ -143,7 +144,7 @@ export class ProfileComponent implements OnInit {
       //resizeWidth: 125,
       //resizeHeight: 125,
       //createImageThumbnails:false,
-      dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
+      dictInvalidFileType: 'Only valid png, jpeg, jpg, gif images are accepted.',
       dictFileTooBig: 'Maximum upload file size limit is 2MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
@@ -200,9 +201,10 @@ export class ProfileComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          this.loading = true;         
           if (progress >= 100) {
-            self.commonUtilsService.hidePageLoader(); //hide page loader
+            this.loading = false;
+            
           }
         })
 
@@ -218,10 +220,8 @@ export class ProfileComponent implements OnInit {
         });
 
         this.on("error", function (file, error) {
-
           this.removeFile(file);
-
-          self.commonUtilsService.onError(error.response);
+          self.commonUtilsService.onError(error);
         });
 
       }
@@ -263,13 +263,17 @@ export class ProfileComponent implements OnInit {
 
 
   public updateProfilePic(body): void {
+
+    this.loading = true; // show Page Loader
     this.userService.updateProfilePic(body.fileLocation).pipe(untilDestroyed(this)).subscribe(response => {
       this.userProfileForm.patchValue({
         profile_pic: body.fileLocation
       })
       this.commonUtilsService.onSuccess(environment.MESSAGES.PROFILE_IMAGE_UPDATE);
       this.userAuthService.isProfileUpdated(true);
+      this.loading = false; // hide Page Loader
     }, error => {
+      this.loading = false; // hide Page Loader
       this.commonUtilsService.onError(error.response)
     })
   }

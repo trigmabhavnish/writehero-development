@@ -126,6 +126,7 @@ export class BuyCreditsComponent implements OnInit {
       onApprove: (data, actions) => {
         //this.commonUtilsService.showPageLoader(environment.MESSAGES.PAYMENT_SUCCESS);
         actions.order.get().then(details => {
+          console.log('details', details);
         });
       },
       onClientAuthorization: (data) => {
@@ -160,8 +161,8 @@ export class BuyCreditsComponent implements OnInit {
         this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
       onClick: (data, actions) => {
-        this.loading = false; //Hide Page Loader
-        this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
+        this.loading = true; //Show Page Loader
+        //this.commonUtilsService.onError(environment.MESSAGES.PAYMENT_FAILED);
       },
     };
   }

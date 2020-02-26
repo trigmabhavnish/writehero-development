@@ -37,7 +37,7 @@
 #customnavbar {
 	position: fixed;
 	width: 100%;
-	z-index: 9;
+	z-index: 9999999999;
 	left: 0;
 	right: 0;
     top: 0;
@@ -1114,7 +1114,7 @@ footer p span {
 }
 .mobile-dashboard-logo {
     display: inline-block;
-    width: 45px;
+    width: 35px;
 }
 .mobile-dashboard-logo img {
     width: 100%;

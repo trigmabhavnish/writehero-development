@@ -85,7 +85,7 @@ $(".uploadcode").on("change", ".file-upload-field", function(){
 		  loop: true,
 	   responsive: {
 			0: {
-			  items: 1
+			  items: 1,
 			},
 			600: {
 			  items: 2,
