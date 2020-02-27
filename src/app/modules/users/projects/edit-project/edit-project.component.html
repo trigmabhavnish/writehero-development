@@ -109,11 +109,9 @@
                                             <aw-wizard-step [canExit]="moveDirection.bind(this, projectSpecsForm.valid)"
                                                 stepTitle="Project Specs">
                                                 <form [formGroup]="projectSpecsForm">
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit. Praesent diam lorem, fermentum in tempus sed,
-                                                            aliquet sed enim</p>
+                                                        <p>Think of a personal label for your project, not necessarily the eBook title.</p>
                                                         <input type="text" class="field-design" #project_name
                                                             formControlName="project_name" placeholder=""
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
@@ -125,7 +123,7 @@
                                                             </app-form-validation-errors>
                                                         </p>
                                                     </div>
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Topic <span class="red">*</span></label>
                                                         <p>Think of a personal label for your project, not necessarily
                                                             the eBook title.</p>
@@ -149,7 +147,7 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 step-progress-fields">
+                                                    <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Type <span class="red">*</span></label>
                                                         <p>Now – we want to know what type of content you will be
                                                             needing.</p>
@@ -347,7 +345,7 @@
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
                                                                     class="col-lg-4 mb-4">
                                                                     <div
-                                                                        class="project-package-plans package-design basic-package">
+                                                                        class="project-package-plans package-design basic-package fix_height">
                                                                         <h6 class="project-package-plans-title">
                                                                             {{projectPackage.project_type_name}}</h6>
                                                                         <p class="project-package-plans-amount">
@@ -355,14 +353,7 @@
                                                                         </p>
                                                                         <p class="project-package-plans-limit">Per
                                                                             100 words</p>
-                                                                        <ul>
-                                                                            <li>Lorem ipsum dolor sit amet,
-                                                                                consectetur </li>
-                                                                            <li>Nunc quis elit non est dictum
-                                                                                elementum</li>
-                                                                            <li>Praesent ullamcorper velit vel eros
-                                                                                posuere</li>
-                                                                        </ul>
+                                                                            <div [innerHTML]="projectPackage.project_description"></div>
                                                                         <input
                                                                             (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
                                                                             type="radio"
@@ -373,7 +364,7 @@
                                                                             value="{{projectPackage.id}}"
                                                                             id="{{projectPackage.id}}" />
                                                                         <label for="{{projectPackage.id}}"
-                                                                            class="submit-btn-feedback clr--size">Select
+                                                                            class="submit-btn-feedback clr--size fix_margin">Select
                                                                             plan</label>
                                                                     </div>
                                                                 </div>
@@ -455,10 +446,10 @@
                                                                     NEXT
                                                                 </button>
 
-                                                                <button type="button" [awGoToStep]="{stepIndex: 3}"
+                                                                <!-- <button type="button" [awGoToStep]="{stepIndex: 3}"
                                                                     class="submit-btn-feedback min-w-130">
                                                                     SKIP
-                                                                </button>
+                                                                </button> -->
 
                                                             </div>
                                                         </div>
@@ -526,7 +517,7 @@
 
                                                                     <div *ngFor="let writerAge of writterAgeArray; let i=index"
                                                                         class="tabs">
-                                                                        <input formControlName="writers_age"
+                                                                        <input (change)="getWritersAgeBracket(writerAge)" formControlName="writers_age"
                                                                             class="radio" id="{{i}}" type="radio"
                                                                             value="{{writerAge}}">
                                                                         <label class="tab"
@@ -576,13 +567,12 @@
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-8 step-progress-fields mb-4">
-                                                            <p>Carefully review the following details buddy! <br />
+                                                            <p>Carefully review the following details buddy!
                                                                 Attention to detail is important for both parties to
                                                                 avoid misunderstanding. If you’re done, submit your
                                                                 project and your account manager will be the one to
                                                                 assemble your research and writing team.
                                                             </p>
-
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div>
@@ -620,11 +610,11 @@
                                                                     <label>Package : </label>
                                                                     <p class="color-primary-wr">Premium</p>
                                                                 </div>
-                                                                <div class="step-4-summary-all-sections">
-                                                                    <label>Estimated turnaround :</label>
+                                                                <!-- <div class="step-4-summary-all-sections">
+                                                                    <label>Estimated turnarround :</label>
                                                                     <p class="color-primary-wr">1 - 2 weeks
                                                                     </p>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="step-4-summary-all-sections-result">
                                                                     <p class="color-primary-wr">Total Cost
                                                                     </p>
@@ -646,32 +636,32 @@
                                                                 <label class="step-progress-fields-label">Additional
                                                                     Resources :</label>
                                                                 <p class="step-progress-fields-content">
-                                                                    {{additional_resources?.value}}</p>
+                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Choice
                                                                 Of Writers :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{choice_of_writers?.value}}</p>
+                                                                {{(choice_of_writers?.value)?(choice_of_writers?.value):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Career
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_career?.value}}</p>
+                                                                {{(writers_career?.value)?(writers_career?.value):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Age
                                                                 Bracket :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_location?.value}}</p>
+                                                                {{(writersAgeBracket)?(writersAgeBracket):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Location
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_location?.value}}</p>
+                                                                {{(writers_location?.value)?(writers_location?.value):'NA'}}</p>
                                                         </div>
                                                         <!--Upload Images Section-->
                                                         <div class="col-md-12">
@@ -687,19 +677,19 @@
                                                                         target="_blank">
 
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                                src="assets/image/pdf.png">
+                                                                            src="assets/image/pdf.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
                                                                             (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
                                                                             || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                                src="assets/image/csv.png">
+                                                                            src="assets/image/csv.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
-                                                                                src="assets/image/word.png">
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
+                                                                            src="assets/image/word.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
-                                                                                src="assets/image/zip.png">
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                            src="assets/image/zip.png">
 
                                                                     </a>
 
@@ -715,29 +705,18 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <button type="button" awPreviousStep
-                                                                        class="submit-btn-feedback min-w-130 mr-lg-3">
+                                                                        class="submit-btn-feedback min-w-130 mr-lg-3 mr-3">
                                                                         PREVIOUS
                                                                     </button>
 
-                                                                    <button type="button"
+                                                                    <button type="button" [disabled]="userCreditsCheck"
                                                                         (click)="onSubmitEditProject()"
                                                                         class="submit-btn-feedback min-w-130">
                                                                         UPDATE PROJECT
                                                                     </button>
 
                                                                 </div>
-                                                                <!--div class="col-lg-3">
-                                                                        <input type="submit" value="SAVE AS DRAFT"
-                                                                            class="submit-btn-feedback min-w-130 editing-btn">
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <input type="submit" value="CANCEL PROJECT"
-                                                                            class="submit-btn-feedback min-w-130 editing-btn">
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <input type="submit" value="EDIT PROJECT"
-                                                                            class="submit-btn-feedback min-w-130 editing-btn">
-                                                                    </div-->
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>

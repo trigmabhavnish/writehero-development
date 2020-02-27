@@ -21,7 +21,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
+import { ProjectsService, CommonUtilsService, UsersService } from '../../../../core/_services';
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
@@ -30,7 +30,7 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class EditProjectComponent implements OnInit {
 
 
-  constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
+  constructor(private zone: NgZone, private formBuilder: FormBuilder, private userAuthService: UsersService, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   projectSpecsForm: FormGroup;
   projectDetailsForm: FormGroup;
@@ -45,6 +45,7 @@ export class EditProjectComponent implements OnInit {
   disabled: boolean = false;
   calculateCost: any = 0;
   lastProjectCost:any;
+  writersAgeBracket: any;
   selectedProjectPackageId: number;
   packagePrice: any;
   userCredits: any;
@@ -59,7 +60,9 @@ export class EditProjectComponent implements OnInit {
 
   projectTypeArray = ['Article Writing', 'Biography Writing', 'Blog Writing (1st POV)', 'Blog Writing (3rd POV)', 'Blurb Writing (Social Media Posts/ Blog Comments / Forum Posts)', 'Business Writing (Product/Services)', 'Column Writing (Commentary)', 'Copywriting (For Advertising Campaigns)', 'Copywriting (Light Tone)', 'Copywriting (Persuasive Tone)', 'Creative Writing', 'E-Book Writing (Ghostwriting)', 'Editing & Proofreading', 'Educational Writing', 'Erotica Writing', 'FAQ Writing', 'Feature Writing (Magazine Style)', 'Fiction Writing (Stories)', 'Grant Writing', 'Guide/Description Writing', 'How To Writing', 'Humor Writing', 'Letter Writing', 'News Writing', 'Newsletter Writing', 'Poetry Writing', 'Press Release Writing', 'Research Writing (Business)', 'Research Writing (Non-Business)', 'Review Writing', 'Rewriting', 'Script Writing', 'SEO Writing (Web Content / Keyword Focused)', 'Slang-style/Informal-tone', 'Song Writing', 'Speech Writing', 'Summary Writing', 'Technical Writing'];
 
-  choiceOfWriterArray = ['Native US Speaker', 'Other English-speaking country', 'English as second language', 'No Specific Reference'];
+  choiceOfWriterArray = ["I want to customize my writers (Advanced)", 'Let’s skip and go straight to Project Review'];
+  // choiceOfWriterArray = ['Native US Speaker', 'Other English-speaking country', 'English as second language', 'No Specific Reference'];
+  // dbEnum="'Native US Speaker','Other English-speaking country','English as second language','No Specific Reference'";
 
   writterLocationArray = [
     {
@@ -447,6 +450,7 @@ export class EditProjectComponent implements OnInit {
         //case success
         (res) => {
           this.loading = false; // Hide Loader
+          this.userAuthService.isProfileUpdated(true);  // Update Profile Data
           this.commonUtilsService.onSuccess(res.response);
           this.router.navigate(['/user/projects-listing']);
           //case error 
@@ -667,6 +671,10 @@ export class EditProjectComponent implements OnInit {
   getProjectPackagePrice(event, quantity, word_count) {
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
+  }
+
+  getWritersAgeBracket(ageValue){    
+    this.writersAgeBracket = ageValue;
   }
 
   /**

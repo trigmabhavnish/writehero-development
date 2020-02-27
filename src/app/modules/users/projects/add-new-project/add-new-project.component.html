@@ -189,7 +189,7 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Quantity <span class="red">*</span></label>
-                                                                    <p >How many pieces do you need?
+                                                                    <p>How many pieces do you need?
                                                                     </p>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
@@ -208,41 +208,42 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Project Details <span
                                                                             class="red">*</span></label>
-                                                                            <p class="d-inline-block ml-ipad-3">Here is the meat of
+                                                                    <p class="d-inline-block ml-ipad-3">Here is the meat
+                                                                        of
+                                                                        your project. We would be
+                                                                        needi...
+                                                                    </p>
+                                                                    <div class="about_logo_course_tooltip">
+                                                                        <img src="assets/image/test_logo_icon.png">
+                                                                        <div class="lorem-tooltip--outer">
+                                                                            <div class="lorem-tooltip">
+                                                                                Here is the meat of
                                                                                 your project. We would be
-                                                                                needi...
-                                                                            </p>
-                                                                            <div class="about_logo_course_tooltip">
-                                                                                <img src="assets/image/test_logo_icon.png">
-                                                                                <div class="lorem-tooltip--outer">
-                                                                                    <div class="lorem-tooltip">
-                                                                                        Here is the meat of
-                                                                                        your project. We would be
-                                                                                        needing your complete project specs
-                                                                                        or
-                                                                                        instructions for
-                                                                                        your order. You can add keywords,
-                                                                                        titles,
-                                                                                        instructions, writing styles, tone,
-                                                                                        etc. The key
-                                                                                        strategy to a
-                                                                                        good product is to be VERY, VERY
-                                                                                        SPECIFIC on
-                                                                                        your needs - so we can better meet
-                                                                                        your
-                                                                                        expectations.
-    
-                                                                                        For those who need special
-                                                                                        formatting for their
-                                                                                        eBooks (e.g. photos, color, style),
-                                                                                        please chat
-                                                                                        with us or
-                                                                                        create a support ticket after you
-                                                                                        submit this
-                                                                                        project.
-                                                                                    </div>
-                                                                                </div>
+                                                                                needing your complete project specs
+                                                                                or
+                                                                                instructions for
+                                                                                your order. You can add keywords,
+                                                                                titles,
+                                                                                instructions, writing styles, tone,
+                                                                                etc. The key
+                                                                                strategy to a
+                                                                                good product is to be VERY, VERY
+                                                                                SPECIFIC on
+                                                                                your needs - so we can better meet
+                                                                                your
+                                                                                expectations.
+
+                                                                                For those who need special
+                                                                                formatting for their
+                                                                                eBooks (e.g. photos, color, style),
+                                                                                please chat
+                                                                                with us or
+                                                                                create a support ticket after you
+                                                                                submit this
+                                                                                project.
                                                                             </div>
+                                                                        </div>
+                                                                    </div>
 
 
                                                                     <textarea #project_details cols="5" rows="3"
@@ -268,18 +269,19 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Word for each space <span
                                                                             class="red">*</span></label>
-                                                                            <p class="d-inline-block ml-ipad-3">How many words do you need per piece?</p>
-                                                                            <div class="about_logo_course_tooltip">
-                                                                                <img src="assets/image/test_logo_icon.png">
-                                                                                <div class="lorem-tooltip--outer lor-right">
-                                                                                    <div class="lorem-tooltip">
-                                                                                        How many words do you need per piece?
-        
-                                                                                        For eBooks, it usually starts at 10,000
-                                                                                        words
-                                                                                    </div>
-                                                                                </div>
+                                                                    <p class="d-inline-block ml-ipad-3">How many words
+                                                                        do you need per piece?</p>
+                                                                    <div class="about_logo_course_tooltip">
+                                                                        <img src="assets/image/test_logo_icon.png">
+                                                                        <div class="lorem-tooltip--outer lor-right">
+                                                                            <div class="lorem-tooltip">
+                                                                                How many words do you need per piece?
+
+                                                                                For eBooks, it usually starts at 10,000
+                                                                                words
                                                                             </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
                                                                         #word_count class="col-lg-4"
@@ -298,7 +300,8 @@
 
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Additional Resources</label>
-                                                                    <p class="d-inline-block ml-ipad-3">Do you have any online
+                                                                    <p class="d-inline-block ml-ipad-3">Do you have any
+                                                                        online
                                                                         references that...
                                                                     </p>
                                                                     <div class="about_logo_course_tooltip">
@@ -335,13 +338,14 @@
                                                             <div class="row step-progress-fields">
                                                                 <label class="col-md-12 mb-3">Choose your package <span
                                                                         class="red">*</span></label>
-                                                                <p class="px-3">Choose the pricing plan that best fits your needs.
+                                                                <p class="px-3">Choose the pricing plan that best fits
+                                                                    your needs.
                                                                     All plans come with a 200% Workback Guarantee – so
                                                                     you don’t have to worry about quality.</p>
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
                                                                     class="col-lg-4 mb-4">
                                                                     <div
-                                                                        class="project-package-plans package-design basic-package">
+                                                                        class="project-package-plans package-design basic-package fix_height">
                                                                         <h6 class="project-package-plans-title">
                                                                             {{projectPackage.project_type_name}}</h6>
                                                                         <p class="project-package-plans-amount">
@@ -349,14 +353,7 @@
                                                                         </p>
                                                                         <p class="project-package-plans-limit">Per
                                                                             100 words</p>
-                                                                        <ul>
-                                                                            <li>Lorem ipsum dolor sit amet,
-                                                                                consectetur </li>
-                                                                            <li>Nunc quis elit non est dictum
-                                                                                elementum</li>
-                                                                            <li>Praesent ullamcorper velit vel eros
-                                                                                posuere</li>
-                                                                        </ul>
+                                                                        <div [innerHTML]="projectPackage.project_description"></div>
                                                                         <input
                                                                             (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
                                                                             type="radio"
@@ -367,7 +364,7 @@
                                                                             value="{{projectPackage.id}}"
                                                                             id="{{projectPackage.id}}" />
                                                                         <label for="{{projectPackage.id}}"
-                                                                            class="submit-btn-feedback clr--size">Select
+                                                                            class="submit-btn-feedback clr--size fix_margin">Select
                                                                             plan</label>
                                                                     </div>
                                                                 </div>
@@ -377,7 +374,8 @@
                                                         <div class="col-lg-6">
                                                             <div class="col-lg-12 px-0 step-progress-fields">
                                                                 <label>Attach File?</label>
-                                                                <p>Do you need to attach files? (e.g. templates, sheets, sample docs, etc.) We accept zip, rar, pdf, doc,
+                                                                <p>Do you need to attach files? (e.g. templates, sheets,
+                                                                    sample docs, etc.) We accept zip, rar, pdf, doc,
                                                                     docx, txt, xls, xlsx, csv</p>
                                                                 <div class="uploadcode">
                                                                     <div class="uploadImages position-relative">
@@ -449,10 +447,12 @@
                                                                     NEXT
                                                                 </button>
 
-                                                                <button type="button" [awGoToStep]="{stepIndex: 3}"
-                                                                    class="submit-btn-feedback min-w-130">
-                                                                    SKIP
-                                                                </button>
+                                                                <!-- <button
+                                                                    [disabled]="projectDetailsForm.invalid || userCreditsCheck"
+                                                                    (click)="validateProjectDetailsWizard()"
+                                                                    type="button" class="submit-btn-feedback min-w-130">
+                                                                    Skip to Review Project
+                                                                </button> -->
 
                                                             </div>
                                                         </div>
@@ -466,7 +466,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-5 step-progress-fields">
                                                                 <label>Choice of writers</label>
-                                                                
+                                                                <p>We will try our best to find the writers that you need</p>
                                                                 <div class="pl-0">
 
                                                                     <select #choice_of_writers class="custom-select"
@@ -485,7 +485,8 @@
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields mt-0">
                                                                 <label>Career</label>
-                                                                <p>Choose your writer’s niche expertise – It is strongly recommended to choose the same industry to get
+                                                                <p>Choose your writer’s niche expertise – It is strongly
+                                                                    recommended to choose the same industry to get
                                                                     the best results.
                                                                 </p>
                                                                 <div class="pl-0">
@@ -505,16 +506,20 @@
                                                             </div>
                                                             <div class="col-lg-12 step-progress-fields">
                                                                 <label>Age Bracket</label>
-                                                                <p>Who’s your target audience? Is your content attractive for yuppies or seniors? Probably middle-aged?
-                                                                    Choose your writer’s age bracket who can relate with your market.
+                                                                <p>Who’s your target audience? Is your content
+                                                                    attractive for yuppies or seniors? Probably
+                                                                    middle-aged?
+                                                                    Choose your writer’s age bracket who can relate with
+                                                                    your market.
                                                                 </p>
 
                                                                 <div class="warpper">
 
                                                                     <div *ngFor="let writerAge of writterAgeArray; let i=index"
                                                                         class="tabs">
-                                                                        <input #writers_age formControlName="writers_age"
-                                                                            class="radio" id="{{i}}" type="radio"
+                                                                        <input (change)="getWritersAgeBracket(writerAge)"
+                                                                            formControlName="writers_age" class="radio"
+                                                                            id="{{i}}" type="radio"
                                                                             value="{{writerAge}}">
                                                                         <label class="tab"
                                                                             for="{{i}}">{{writerAge}}</label>
@@ -524,7 +529,9 @@
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields">
                                                                 <label>Location</label>
-                                                                <p>Which country do you prefer your writers to be? Subject to availability, but we’ll try to find a good
+                                                                <p>Which country do you prefer your writers to be?
+                                                                    Subject to availability, but we’ll try to find a
+                                                                    good
                                                                     match.
                                                                 </p>
                                                                 <div class="pl-0">
@@ -562,8 +569,10 @@
                                                     <div class="row">
                                                         <div class="col-lg-8 step-progress-fields mb-4">
                                                             <p>Carefully review the following details buddy!
-                                                                Attention to detail is important for both parties to avoid misunderstanding. If you’re done, submit your
-                                                                project and your account manager will be the one to assemble your research and writing team.
+                                                                Attention to detail is important for both parties to
+                                                                avoid misunderstanding. If you’re done, submit your
+                                                                project and your account manager will be the one to
+                                                                assemble your research and writing team.
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12">
@@ -628,32 +637,32 @@
                                                                 <label class="step-progress-fields-label">Additional
                                                                     Resources :</label>
                                                                 <p class="step-progress-fields-content">
-                                                                    {{additional_resources?.value}}</p>
+                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Choice
                                                                 Of Writers :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{choice_of_writers?.value}}</p>
+                                                                {{(choice_of_writers?.value)?(choice_of_writers?.value):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Career
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_career?.value}}</p>
+                                                                {{(writers_career?.value)?(writers_career?.value):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Age
                                                                 Bracket :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_location?.value}}</p>
+                                                                {{(writersAgeBracket)?(writersAgeBracket):'NA'}}</p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Location
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{writers_location?.value}}</p>
+                                                                {{(writers_location?.value)?(writers_location?.value):'NA'}}</p>
                                                         </div>
                                                         <!--Upload Images Section-->
                                                         <div class="col-md-12">
@@ -669,19 +678,19 @@
                                                                         target="_blank">
 
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
-                                                                                src="assets/image/pdf.png">
+                                                                            src="assets/image/pdf.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
                                                                             (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
                                                                             || (projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                                src="assets/image/csv.png">
+                                                                            src="assets/image/csv.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
-                                                                                src="assets/image/word.png">
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
+                                                                            src="assets/image/word.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
-                                                                                src="assets/image/zip.png">
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                            src="assets/image/zip.png">
 
                                                                     </a>
 

@@ -28,6 +28,10 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class ProjectDetailsComponent implements OnInit {
   projectId: any;
   projectCost: any;
+
+  completedFilePath = environment.S3_BUCKET_URL;
+  completedFilePathLocal = 'assets/';
+
   projectDetails: any = {};
   projectStatus: any = [];
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
@@ -45,7 +49,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.commonUtilsService.hidePageLoader();
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;
@@ -102,6 +106,23 @@ export class ProjectDetailsComponent implements OnInit {
       }, error => {
         this.commonUtilsService.onError(error.response);
       });
+  }
+
+  public validFileUrl(str) {
+
+
+    let thisURL = this.completedFilePath + str;
+    
+    console.log(thisURL);
+
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      
+    return !!pattern.test(thisURL);
   }
 
 

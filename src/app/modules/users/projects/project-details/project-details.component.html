@@ -186,9 +186,14 @@
                                                                 *ngIf="projectDetails.project_status == 'Complete'"
                                                                 class="btn-cmn-pro mr-2">Revision Request</a>
 
-                                                            <a href="{{projectDetails?.completed_project_file}}"
+                                                            
+                                                            <a href="{{ validFileUrl(projectDetails?.completed_project_file) ? completedFilePath + (projectDetails?.completed_project_file): completedFilePathLocal + (projectDetails?.completed_project_file) }}"
                                                                 *ngIf="projectDetails.project_status == 'Complete'"
-                                                                class="btn-cmn-pro mr-2">Download</a>
+                                                                class="btn-cmn-pro mr-2">
+
+                                                                Download
+
+                                                            </a>
 
                                                             <!--Complete Status-->
                                                             <!--Pause Status-->

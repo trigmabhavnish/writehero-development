@@ -592,7 +592,18 @@ table.sr__only {
 }
 
 
+.fix_height{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
+.fix_margin{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    width: 70%;
+}
 
 
 .container_checkbox{

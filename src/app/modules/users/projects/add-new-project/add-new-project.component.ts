@@ -7,7 +7,7 @@ import { of, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';//toaster class
 import { untilDestroyed } from 'ngx-take-until-destroy';// unsubscribe from observables when the  component destroyed
-import { MovingDirection } from 'angular-archwizard'; // Wizard
+import { MovingDirection, WizardComponent } from 'angular-archwizard'; // Wizard
 import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { CustomValidator } from '../../../../core/_helpers/custom-validator';
 
@@ -30,7 +30,12 @@ import { ProjectsService, CommonUtilsService, UsersService } from '../../../../c
 })
 export class AddNewProjectComponent implements OnInit {
 
-  constructor(private zone: NgZone, private formBuilder: FormBuilder, private userAuthService:UsersService, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private zone: NgZone, private formBuilder: FormBuilder, private userAuthService: UsersService, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
+
+
+  @ViewChild(WizardComponent, {static:false})
+  public wizard: WizardComponent;
+
 
   projectSpecsForm: FormGroup;
   projectDetailsForm: FormGroup;
@@ -43,10 +48,11 @@ export class AddNewProjectComponent implements OnInit {
   public projectImageConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
- 
+
   calculateCost: any = 0;
   selectedProjectPackageId: number;
   packagePrice: any;
+  writersAgeBracket: any;
   userCredits: any;
   userCreditsCheck: boolean = true;
 
@@ -56,7 +62,10 @@ export class AddNewProjectComponent implements OnInit {
 
   projectTypeArray = ['Article Writing', 'Biography Writing', 'Blog Writing (1st POV)', 'Blog Writing (3rd POV)', 'Blurb Writing (Social Media Posts/ Blog Comments / Forum Posts)', 'Business Writing (Product/Services)', 'Column Writing (Commentary)', 'Copywriting (For Advertising Campaigns)', 'Copywriting (Light Tone)', 'Copywriting (Persuasive Tone)', 'Creative Writing', 'E-Book Writing (Ghostwriting)', 'Editing & Proofreading', 'Educational Writing', 'Erotica Writing', 'FAQ Writing', 'Feature Writing (Magazine Style)', 'Fiction Writing (Stories)', 'Grant Writing', 'Guide/Description Writing', 'How To Writing', 'Humor Writing', 'Letter Writing', 'News Writing', 'Newsletter Writing', 'Poetry Writing', 'Press Release Writing', 'Research Writing (Business)', 'Research Writing (Non-Business)', 'Review Writing', 'Rewriting', 'Script Writing', 'SEO Writing (Web Content / Keyword Focused)', 'Slang-style/Informal-tone', 'Song Writing', 'Speech Writing', 'Summary Writing', 'Technical Writing'];
 
-  choiceOfWriterArray = ['Native US Speaker', 'Other English-speaking country', 'English as second language', 'No Specific Reference'];
+  choiceOfWriterArray = ["I want to customize my writers (Advanced)", 'Let’s skip and go straight to Project Review'];
+  // choiceOfWriterArray = ['Native US Speaker', 'Other English-speaking country', 'English as second language', 'No Specific Reference'];
+  // dbEnum="'Native US Speaker','Other English-speaking country','English as second language','No Specific Reference'";
+  
 
   writterLocationArray = [
     {
@@ -361,6 +370,7 @@ export class AddNewProjectComponent implements OnInit {
       this.projectDetailsSubmitted = false;
       return;
     }
+    //this.wizard.goToStep(3);
   }
 
   onSubmitAddNewProject() {
@@ -376,8 +386,8 @@ export class AddNewProjectComponent implements OnInit {
     if (projectCost > this.userCredits) {
       this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
       this.userCreditsCheck = true;
-    } else { 
-      this.userCreditsCheck = false;     
+    } else {
+      this.userCreditsCheck = false;
       this.projectsService.createNewProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
         //case success
         (res) => {
@@ -496,7 +506,7 @@ export class AddNewProjectComponent implements OnInit {
           if (progress >= 100) {
             this.loading = false; // Hide Loader
             //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
-          } 
+          }
         })
 
         this.on("success", function (file, serverResponse) {
@@ -515,7 +525,7 @@ export class AddNewProjectComponent implements OnInit {
 
           this.removeFile(file);
           this.loading = false; // Hide Loader
-          componentObj.commonUtilsService.onError(error.response);
+          componentObj.commonUtilsService.onError(error);
         });
 
       }
@@ -529,7 +539,7 @@ export class AddNewProjectComponent implements OnInit {
    * @return  boolean
    */
   removeImage(index, file_category, file_key): void {
-    
+
     this.projectFilesArray.removeAt(index);
     this.removeImageFromBucket(file_key);
   }
@@ -585,9 +595,9 @@ export class AddNewProjectComponent implements OnInit {
       this.calculateCost = (quantity * word_count * this.packagePrice).toFixed(2);
       this.projectDetailsForm.controls.project_cost.patchValue(this.calculateCost);
       //if cost is greater than user credits.
-      if(this.calculateCost > this.userCredits){
+      if (this.calculateCost > this.userCredits) {
         this.userCreditsCheck = true;
-      }else{
+      } else {
         this.userCreditsCheck = false;
       }
     }
@@ -603,6 +613,10 @@ export class AddNewProjectComponent implements OnInit {
   getProjectPackagePrice(event, quantity, word_count) {
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
+  }
+
+  getWritersAgeBracket(ageValue){    
+    this.writersAgeBracket = ageValue;
   }
 
   /**
