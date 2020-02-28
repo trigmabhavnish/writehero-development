@@ -452,7 +452,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Project');
+          formData.append('folder', 'project_reference_files');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', componentObj.base64StringFile);
         });
@@ -471,7 +471,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
 
 
           componentObj.zone.run(() => {
-            componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
+            componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project_reference_files' }));
           });
 
           this.removeFile(file);

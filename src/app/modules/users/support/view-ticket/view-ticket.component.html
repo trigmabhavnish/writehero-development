@@ -66,15 +66,16 @@
                                                                                     class="dispute_media">
 
                                                                                     <div
-                                                                                        class="card-body dispute_left dispute_right-content">
+                                                                                        class="card-body dispute_left dispute_right-content mw-100">
                                                                                         <h6 class="card-subtitle">
                                                                                             {{supportData?.director[0]?.director_name}}
                                                                                         </h6>
 
                                                                                         <span
-                                                                                            class="card-text float-left">{{message?.cur_date | date:'M/d/yy'}}</span>
-                                                                                        <p>{{message?.message}}</p>
-                                                                                        <a class="float-left"
+                                                                                            class="card-text float-left ticket--span-date">{{message?.cur_date | date}}</span>
+                                                                                        <p class="ticket--span-p">
+                                                                                            {{message?.message}}</p>
+                                                                                        <a class=" ticket--download float-left"
                                                                                             *ngIf="message?.support_file"
                                                                                             href="{{ message?.support_file }}"
                                                                                             target="_blank">Download
@@ -92,7 +93,7 @@
                                                                                             {{supportData?.user?.last_name}}
                                                                                         </h6>
                                                                                         <span
-                                                                                            class="card-text float-right ticket--span-date">{{message?.cur_date | date:'M/d/yy'}}</span>
+                                                                                            class="card-text float-right ticket--span-date">{{message?.cur_date | date}}</span>
                                                                                         <p class="ticket--span-p">
                                                                                             {{message?.message}}</p>
                                                                                         <a class="ticket--download"
@@ -163,19 +164,20 @@
                                                                                                         target="_blank">
 
                                                                                                         <img *ngIf="supportFile.value.file_mimetype == 'application/pdf'"
-                                                                                                src="assets/image/pdf.png">
-                
-                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'text/csv')
+                                                                                                            src="assets/image/pdf.png">
+                                                                                                        <img *ngIf="supportFile.value.file_mimetype == 'text/plain'"
+                                                                                                            src="assets/image/txt.png">
+                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'text/csv')
                                                                                             ||
                                                                                             (supportFile.value.file_mimetype == 'application/vnd.ms-excel')
                                                                                             || (supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')"
-                                                                                                src="assets/image/csv.png">
-                
-                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (supportFile.value.file_mimetype == 'application/msword')"
-                                                                                                src="assets/image/word.png">
-                
-                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed')"
-                                                                                                src="assets/image/zip.png"> 
+                                                                                                            src="assets/image/csv.png">
+
+                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (supportFile.value.file_mimetype == 'application/msword')"
+                                                                                                            src="assets/image/word.png">
+
+                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed') || (supportFile.value.file_mimetype == 'application/vnd.rar') || (supportFile.value.file_mimetype == 'application/octet-stream')"
+                                                                                                            src="assets/image/zip.png">
 
                                                                                                     </a>
 

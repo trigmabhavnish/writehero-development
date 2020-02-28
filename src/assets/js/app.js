@@ -31,7 +31,8 @@ $(document).ready(function() {
 
 //adding class to body
   var removeClass = true;
-$(".overflow-toggler").click(function () {
+jQuery(".overflow-toggler").click(function () {
+	console.log('hello');
     $("body").toggleClass('overflow-hiding');
     removeClass = false;
 });
@@ -78,17 +79,17 @@ $(".uploadcode").on("change", ".file-upload-field", function(){
   //Owl initialization
 	var owl = $('.abc');
 	var owl1 = $('.abc1');
-	owl1.owlCarousel({
-   
+	owl1.owlCarousel({		
 		margin:20,
 		  nav: true,
 		  loop: true,
+		  responsiveClass:true,
 	   responsive: {
 			0: {
-			  items: 1,
+			  items: 1
 			},
 			600: {
-			  items: 2,
+			  items: 2
 	   
 			},
 			1000: {

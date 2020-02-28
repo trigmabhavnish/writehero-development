@@ -177,8 +177,8 @@
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
                                                         </button>
-                                                        <a routerLink="/user/add-new-project-advanced"
-                                                            class="advance-text">( or go advance )</a>
+                                                        <!-- <a routerLink="/user/add-new-project-advanced"
+                                                            class="advance-text">( or go advance )</a> -->
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
@@ -433,7 +433,7 @@
 
                                                             <div class="col-lg-12 mt-4 text-right">
                                                                 <button type="button" awPreviousStep
-                                                                    class="submit-btn-feedback min-w-130 mr-lg-3">
+                                                                    class="submit-btn-feedback min-w-130 mr-3 mr-lg-3">
                                                                     PREVIOUS
                                                                 </button>
 
@@ -549,7 +549,7 @@
                                                             </div>
                                                             <div class="col-lg-12 mt-4">
                                                                 <button type="button" awPreviousStep
-                                                                    class="submit-btn-feedback min-w-130 mr-lg-3">
+                                                                    class="submit-btn-feedback min-w-130 mr-3 mr-lg-3">
                                                                     PREVIOUS
                                                                 </button>
                                                                 <button (click)="validateProjectDetailsWizard()"
@@ -679,6 +679,8 @@
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                             src="assets/image/pdf.png">
 
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
+                                                                            src="assets/image/txt.png">     
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
                                                                             (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
@@ -688,7 +690,7 @@
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                             src="assets/image/word.png">
 
-                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream')"
                                                                             src="assets/image/zip.png">
 
                                                                     </a>

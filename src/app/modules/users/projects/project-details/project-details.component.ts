@@ -28,12 +28,12 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class ProjectDetailsComponent implements OnInit {
   projectId: any;
   projectCost: any;
-
   completedFilePath = environment.S3_BUCKET_URL;
   completedFilePathLocal = 'assets/';
-
   projectDetails: any = {};
   projectStatus: any = [];
+  loading:boolean = false;
+
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -45,16 +45,17 @@ export class ProjectDetailsComponent implements OnInit {
    * GET the details of project
    */
   private getProjectDetails(): void {
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true;
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
         //console.log(res);
-        this.commonUtilsService.hidePageLoader();
+        this.loading = false;
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;
         this.projectCost = res.project_details.project_cost;
       }, error => {
+        this.loading = false;
         this.commonUtilsService.onError(error.response);
       });
   }

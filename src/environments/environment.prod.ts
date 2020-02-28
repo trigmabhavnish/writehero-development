@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   API_ENDPOINT: 'http://13.235.163.1:3000',
+  S3_BUCKET_URL: 'http://bookwy.s3.amazonaws.com/',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
   PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi', 
   DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  

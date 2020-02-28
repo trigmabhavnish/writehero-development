@@ -145,6 +145,9 @@
                                                                                             
                                                                                                 <img *ngIf="supportFile.value.file_mimetype == 'application/pdf'"
                                                                                                 src="assets/image/pdf.png">
+
+                                                                                                <img *ngIf="supportFile.value.file_mimetype == 'text/plain'"
+                                                                                        src="assets/image/txt.png"> 
                 
                                                                                             <img *ngIf="(supportFile.value.file_mimetype == 'text/csv')
                                                                                             ||
@@ -155,8 +158,7 @@
                                                                                             <img *ngIf="(supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (supportFile.value.file_mimetype == 'application/msword')"
                                                                                                 src="assets/image/word.png">
                 
-                                                                                            <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed')"
-                                                                                                src="assets/image/zip.png">    
+    <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed') || (supportFile.value.file_mimetype == 'application/vnd.rar') || (supportFile.value.file_mimetype == 'application/octet-stream')" src="assets/image/zip.png">    
 
                                                                                         </a>
 

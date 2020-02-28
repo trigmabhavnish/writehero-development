@@ -175,7 +175,7 @@
                                                 <!-- Latest Support -->
 
                                                 <ng-container
-                                                    *ngIf="(checkObjectLength(latestSupport) > 0); else elseNoLatestProject;">
+                                                    *ngIf="(checkObjectLength(latestSupport) > 0); else elseNoLatestSupport;">
                                                     <div *ngFor="let latest of latestSupport; let i = index;"
                                                         class="dashboard-latest-project-outer">
                                                         <div class="row">
@@ -214,12 +214,12 @@
                                                                                         <p class="reply-text">
                                                                                             Last Reply</p>
                                                                                         <p class="admin-text">
-                                                                                            Admin</p>
+                                                                                            James T</p>
                                                                                         <p class="cmnt-admin-text">
                                                                                             {{latest.messages[latest.messages.length -1]?.message | slice:0:100}}
                                                                                         </p>
                                                                                         <p class="cmnt-admin-date">
-                                                                                            Nov 3, 2019</p>
+                                                                                                {{latest.messages[latest.messages.length -1]?.cur_date | date}}</p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -237,7 +237,7 @@
                                                 </ng-container>
                                                 <ng-template #elseNoLatestSupport>
                                                     <div class="dashboard-latest-project-outer">
-                                                        <p class="noproject-foundtext">No Latest Support Found</p>
+                                                        <p class="noproject-foundtext">No Ticket Found</p>
                                                     </div>
                                                 </ng-template>
                                             </div>

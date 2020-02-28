@@ -46,11 +46,11 @@
                                             itemsPerPage: pageSize,
                                             currentPage: currentPage,
                                             totalItems: totalItems };let i = index;">
-                                                    <div class="support-desc-tabs min--height-box">
-                                                        <p (click)="viewDetails(ticket)" class="sp-msg-title">
+                                                    <div (click)="viewDetails(ticket)" class="support-desc-tabs min--height-box">
+                                                        <p class="sp-msg-title">
                                                             {{ticket?.subject}}</p>
                                                         <p class="sp-msg-desc">
-                                                            {{ticket?.messages[0]?.message | slice:0:100}} </p>
+                                                            {{ticket?.messages[0]?.message + '...' | slice:0:40}} </p>
                                                         <p class="sp-date"><span>Date : </span> <span
                                                                 class="sp-msg-dt">{{ticket?.created_on | date}}</span>
                                                         </p>
@@ -75,7 +75,7 @@
                                                                 <p class="sp-profile-cmnt-reply">Last
                                                                     Reply</p>
                                                                 <p class="sp-profile-cmnt-content">
-                                                                    {{ticket.messages[ticket.messages.length -1]?.message | slice:0:100}}
+                                                                    {{ticket.messages[ticket.messages.length -1]?.message + '...' | slice:0:40}}
                                                                 </p>
                                                             </div>
                                                         </div>

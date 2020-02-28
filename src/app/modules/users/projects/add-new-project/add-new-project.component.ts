@@ -436,7 +436,7 @@ export class AddNewProjectComponent implements OnInit {
       autoReset: null,
       errorReset: null,
       cancelReset: null,
-      acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv',
+      acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv, .xls',
       maxFilesize: 5, // MB,
       dictDefaultMessage: '<span class="button red">Attach File</span>',
       //previewsContainer: "#offerInHandsPreview",
@@ -444,7 +444,7 @@ export class AddNewProjectComponent implements OnInit {
       //resizeWidth: 125,
       //resizeHeight: 125,
       //createImageThumbnails:false,
-      dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
+      dictInvalidFileType: 'Only valid txt, pdf, doc, docx, txt, zip, rar, xlsx, xls and csv files are accepted.',
       dictFileTooBig: 'Maximum upload file size limit is 5MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
@@ -494,7 +494,7 @@ export class AddNewProjectComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Project');
+          formData.append('folder', 'project_reference_files');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', componentObj.base64StringFile);
         });
@@ -513,7 +513,7 @@ export class AddNewProjectComponent implements OnInit {
 
 
           componentObj.zone.run(() => {
-            componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project' }));
+            componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project_reference_files' }));
           });
 
           this.removeFile(file);

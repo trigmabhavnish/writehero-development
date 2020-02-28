@@ -401,6 +401,8 @@
 
                                                                             <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                                 src="assets/image/pdf.png">
+                                                                                <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
+                                                                                src="assets/image/txt.png">     
 
                                                                             <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
@@ -411,7 +413,7 @@
                                                                             <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                                 src="assets/image/word.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream')"
                                                                                 src="assets/image/zip.png">
 
                                                                         </a>
@@ -679,7 +681,8 @@
 
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                             src="assets/image/pdf.png">
-
+                                                                        <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
+                                                                            src="assets/image/txt.png"> 
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
                                                                             (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
@@ -689,7 +692,7 @@
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                             src="assets/image/word.png">
 
-                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed')"
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream')"
                                                                             src="assets/image/zip.png">
 
                                                                     </a>

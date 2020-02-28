@@ -16,7 +16,7 @@
                 </button>
 
             </nav>
-
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -25,7 +25,7 @@
                                 <div class="col-lg-12 col-xl-12 mx-auto mb-4 mb-lg-0">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <div class="wr-hero-project-details-outer">
+                                            <div class="wr-hero-project-details-outer centered">
                                                 <div class="row">
                                                     <div class="col-lg-8">
                                                         <div class="dashboard-project-cum-header">
@@ -37,7 +37,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <div class="wr-hero-project-history whole-pattern">
+                                                        <div class="wr-hero-project-history whole-pattern mt-xs-3">
                                                             <h6 class="wr-hero-project-history-title"><span
                                                                     class="fnt-18-0">{{projectDetails?.project_type_name}}</span><span
                                                                     class="fnt-30-0">${{projectDetails?.project_cost}}</span>
@@ -127,13 +127,13 @@
                                                                 <div *ngIf="projectDetails?.writers_age"
                                                                     class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
-                                                                        Writers age bracker :
+                                                                        Writers age bracket :
                                                                     </p>
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.writers_age"
                                                                     class="col-lg-12 mb-3">
                                                                     <p class="dashboard-project-cum-body-contens">
-                                                                        {{projectDetails?.writers_age}}</p>
+                                                                        {{(projectDetails?.writers_age)?(projectDetails?.writers_age)+' years':'NA'}}</p>
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.writers_location"
                                                                     class="col-lg-12">
@@ -150,12 +150,12 @@
                                                         </div>
                                                         <div class="col-md-12 text-lg-right">
                                                             <!--Penidng / Revised Status-->
-                                                            <a routerLink="/user/dashboard"
-                                                                *ngIf="projectDetails.project_status == 'Pending'"
+                                                            <a routerLink="/user/create-ticket"
+                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Resume')"
                                                                 class="btn-cmn-pro mr-2">Ask update</a>
 
                                                             <a routerLink="/user/create-ticket"
-                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised')"
+                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised') || (projectDetails.project_status == 'Resume')"
                                                                 class="btn-cmn-pro mr-2">Contact Support</a>
 
                                                             <!--NEW / Pause Status-->
@@ -179,7 +179,7 @@
 
 
                                                             <a routerLink="/user/create-feedback"
-                                                                *ngIf="(projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Cancel')"
+                                                                *ngIf="(projectDetails.project_status == 'Complete')"
                                                                 class="btn-cmn-pro mr-2">Submit Feedback</a>
 
                                                             <a routerLink="/user/create-ticket"
@@ -187,8 +187,8 @@
                                                                 class="btn-cmn-pro mr-2">Revision Request</a>
 
                                                             
-                                                            <a href="{{ validFileUrl(projectDetails?.completed_project_file) ? completedFilePath + (projectDetails?.completed_project_file): completedFilePathLocal + (projectDetails?.completed_project_file) }}"
-                                                                *ngIf="projectDetails.project_status == 'Complete'"
+                                                            <a href="{{ projectDetails?.completed_project_file }}"
+                                                                *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
                                                                 class="btn-cmn-pro mr-2">
 
                                                                 Download
@@ -211,7 +211,7 @@
                                         </div>
                                         <div class="col-lg-4 pr-lg-0">
                                             <div class="right-thumb-feeds-outer">
-                                                <div class="updates-vertical-outer min-100vh">
+                                                <div class="updates-vertical-outer min-100vh min-xs-100vh">
                                                     <div class="dashboard-rightside-updates">
                                                         <div class="dashboard-rightside-updates-haeder">
                                                             <p class="dashboard-rightside-updates-header-title">Progress
@@ -304,16 +304,16 @@
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                                <div *ngIf="projectDetails.project_status == 'Complete'"
+                                                                <div *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
                                                                     class="table-row">
                                                                     <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-date">Download
+                                                                        <p class="wr-hero-project-history-date">Download File
                                                                         </p>
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
                                                                             <a href="{{projectDetails?.completed_project_file}}"
-                                                                                class="btn-cmn-pro mr-2">Download</a>
+                                                                                class="btn-cmn-pro mr-2 margin--custom">Download</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>

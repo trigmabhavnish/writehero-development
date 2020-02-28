@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit {
   
   loginSubscription: Subscription;
   isHomeUrl: boolean = false;
-  constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) { }
+  constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) {
+    this.loadScripts();
+   }
 
   ngOnInit() {
 
@@ -46,6 +48,20 @@ export class HeaderComponent implements OnInit {
     });
 
 
+  }
+
+  loadScripts() {
+    const dynamicScripts = [     
+     'assets/js/app.js'
+    ];
+    for (let i = 0; i < dynamicScripts.length; i++) {
+      const node = document.createElement('script');
+      node.src = dynamicScripts[i];
+      node.type = 'text/javascript';
+      node.async = false;
+      node.charset = 'utf-8';
+      document.getElementsByTagName('head')[0].appendChild(node);
+    }
   }
 
 }

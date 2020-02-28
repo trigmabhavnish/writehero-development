@@ -37,7 +37,7 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     font-size: 15px !important;
 }
 .ticket--span-p {
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
 .ticket--download {
     color: #fff !important;
@@ -87,7 +87,20 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     margin-top: 25px;
 }
 .sr__only tr td:nth-child(3) {
-    width: 45%;
+    width: 40%;
+}
+.sr--0 rating.ng-untouched.ng-pristine.ng-valid {
+    margin-left:0px;
+}
+.font-15 {
+    font-size: 15px;
+}
+.font-13 {
+    font-size: 13px;
+}
+.font-13 p {
+    font-size: 13px;
+    font-weight: 400;
 }
 .ht--130 {
     height: 130px;
@@ -317,7 +330,7 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
     font-weight: 500;
     color: #868686;
 }
-rating.ng-untouched.ng-pristine.ng-valid > span span + span {
+rating > span span + span {
     margin-left: 4px;
 }    
 .chngpsw--button:disabled {
@@ -492,6 +505,10 @@ a.remove_coupon_code {
 .flex-row-reverse.dispute_media .dispute_right-contents h6, .flex-row-reverse.dispute_media .card-text.float-right.ticket--span-date, .flex-row-reverse.dispute_media .card-body.dispute_left.dispute_right-contents, .flex-row-reverse.dispute_media .ticket--span-p {
     text-align: right !important;
 }
+.margin--custom{
+    margin-top:15px;
+    display: inline-block;
+}
 .dispute_media .ticket--span-p {
     display: inline-block;
     width: 100%;
@@ -530,6 +547,18 @@ table.sr__only {
 .sr__only tr td {
     font-size: 14px;
     font-weight: 500;
+}
+.form-row-outer .field-design {
+    box-shadow: none;
+}
+.top-none {
+    top:0 !important;
+ }
+.sr__only tr td:nth-child(2) {
+    width: 15%;
+}
+#toastr-node-24 {
+    z-index: 9999999999;
 }
 .sr__only .star-icon {
     font-size: 1.8em !important;
@@ -947,7 +976,7 @@ fieldset app-form-validation-errors {
     /* app-billing-listing .support-desc-tabs {
         min-height: 260px;
     } */
-    rating.ng-untouched.ng-pristine.ng-valid {
+    rating {
         margin-left: 10px;
         flex:1;
     }
@@ -972,9 +1001,37 @@ fieldset app-form-validation-errors {
         display: block;
     }
   }
+  @media only screen and (max-width: 767px){ 
+    .justify-xs-center {
+        justify-content: center;
+    }
+    .buycredit-body, .buycredit-outer {
+        width: 100%;
+    }
+    .wr-hero-project-details-outer {
+        padding: 15px;
+    }
+    .centered .btn-cmn-pro {
+        width: 100%;
+        margin-bottom: 15px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .mt-xs-3 {
+        margin-top: 15px;
+    }
+    .min-xs-100vh {
+        min-height: auto;
+    }
+  }
   @media only screen and (max-width: 600px){
     .checkmark {
         right:-13px;
+      }
+      .pb-xs-0 {
+          padding-bottom: 0px;
       }
   }  
 /*BEM Ends here*/

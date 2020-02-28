@@ -155,7 +155,7 @@ export class CreateTicketComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Support');
+          formData.append('folder', 'support_file');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', self.base64StringFile);
         });
@@ -172,7 +172,7 @@ export class CreateTicketComponent implements OnInit {
 
 
           self.zone.run(() => {
-            self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Support' }));
+            self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'support_file' }));
           });
 
           this.removeFile(file);
@@ -183,7 +183,7 @@ export class CreateTicketComponent implements OnInit {
 
           this.removeFile(file);
 
-          self.commonUtilsService.onError(error.response);
+          self.commonUtilsService.onError(error);
         });
 
       }
