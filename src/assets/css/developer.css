@@ -788,6 +788,103 @@ fieldset app-form-validation-errors {
     color: #4a4848 !important;
 }
 
+.animated.infinite {
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+        
+        
+.jello {
+	-webkit-animation-name: jello;
+	animation-name: jello;
+	-webkit-transform-origin: center;
+	transform-origin: center;
+}
+        
+@-webkit-keyframes jello {
+ 0%,
+ 11.1%,
+ to {
+  -webkit-transform:none;
+  transform:none
+ }
+ 22.2% {
+  -webkit-transform:skewX(-12.5deg) skewY(-12.5deg);
+  transform:skewX(-12.5deg) skewY(-12.5deg)
+ }
+ 33.3% {
+  -webkit-transform:skewX(6.25deg) skewY(6.25deg);
+  transform:skewX(6.25deg) skewY(6.25deg)
+ }
+ 44.4% {
+  -webkit-transform:skewX(-3.125deg) skewY(-3.125deg);
+  transform:skewX(-3.125deg) skewY(-3.125deg)
+ }
+ 55.5% {
+  -webkit-transform:skewX(1.5625deg) skewY(1.5625deg);
+  transform:skewX(1.5625deg) skewY(1.5625deg)
+ }
+ 66.6% {
+  -webkit-transform:skewX(-.78125deg) skewY(-.78125deg);
+  transform:skewX(-.78125deg) skewY(-.78125deg)
+ }
+ 77.7% {
+  -webkit-transform:skewX(.390625deg) skewY(.390625deg);
+  transform:skewX(.390625deg) skewY(.390625deg)
+ }
+ 88.8% {
+  -webkit-transform:skewX(-.1953125deg) skewY(-.1953125deg);
+  transform:skewX(-.1953125deg) skewY(-.1953125deg)
+ }
+}
+@keyframes jello {
+ 0%,
+ 11.1%,
+ to {
+  -webkit-transform:none;
+  transform:none
+ }
+ 22.2% {
+  -webkit-transform:skewX(-12.5deg) skewY(-12.5deg);
+  transform:skewX(-12.5deg) skewY(-12.5deg)
+ }
+ 33.3% {
+  -webkit-transform:skewX(6.25deg) skewY(6.25deg);
+  transform:skewX(6.25deg) skewY(6.25deg)
+ }
+ 44.4% {
+  -webkit-transform:skewX(-3.125deg) skewY(-3.125deg);
+  transform:skewX(-3.125deg) skewY(-3.125deg)
+ }
+ 55.5% {
+  -webkit-transform:skewX(1.5625deg) skewY(1.5625deg);
+  transform:skewX(1.5625deg) skewY(1.5625deg)
+ }
+ 66.6% {
+  -webkit-transform:skewX(-.78125deg) skewY(-.78125deg);
+  transform:skewX(-.78125deg) skewY(-.78125deg)
+ }
+ 77.7% {
+  -webkit-transform:skewX(.390625deg) skewY(.390625deg);
+  transform:skewX(.390625deg) skewY(.390625deg)
+ }
+ 88.8% {
+  -webkit-transform:skewX(-.1953125deg) skewY(-.1953125deg);
+  transform:skewX(-.1953125deg) skewY(-.1953125deg)
+ }
+}
+.display-table {
+    display: table;
+    padding: 5px 0;
+}
+
+
 /*Profile Page*/
 .profile-descircle {
 	width: 85px;
@@ -968,6 +1065,37 @@ fieldset app-form-validation-errors {
     margin-bottom: 0px;
 }
 /*Profile Page*/
+
+.pricingstar {
+    position: absolute;
+    right: 0px;
+    top: 20%;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.air_baloon {
+    position: absolute;
+    top: 8%;
+    left: 3%;
+    animation: baloon 4s infinite;
+}
+
+@keyframes baloon {
+    0%   {top: 8%;}
+    50%  {top: 15%;}
+    100% {top: 8%;}
+}
 
 @media only screen and (min-width: 1200px) {
     /* .min--height-box, .create-project-button-tab {

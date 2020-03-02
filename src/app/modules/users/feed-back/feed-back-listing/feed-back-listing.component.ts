@@ -15,14 +15,9 @@ export class FeedBackListingComponent implements OnInit {
   pageSize: number = 10;
   currentPage: number = 1;
   totalItems: number = 0
-  constructor(private feedbackservice: FeedBackService) {
-
-
-
-  }
+  constructor(private feedbackservice: FeedBackService) {}
 
   ngOnInit() {
-
     this.getFeedBackLsiting();
   }
 
@@ -37,6 +32,7 @@ export class FeedBackListingComponent implements OnInit {
       
     })
   }
+  
 
   /**
    * ON PAGE CHANGE

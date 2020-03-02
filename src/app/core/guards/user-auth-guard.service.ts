@@ -21,6 +21,6 @@ export class UserAuthGuardService {
     localStorage.clear();
     this.userAuthService.isLoggedIn(false, '');
     this.router.navigate(['/user/login']);
-    return false;
+    //return false;
   }
 }

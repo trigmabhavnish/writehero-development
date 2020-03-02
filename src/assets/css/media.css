@@ -254,22 +254,22 @@
         font-size: 14px;
     }
     .dashboard-logo {
-        width: 220px;
+        width: 155px;
     }
     .navbar-vertical.navbar-expand-xl {
         top: 80px;
         max-width: 18.625rem;
     }
     .right-thumb-feeds-outer {
-        top: 80px;
+        top: 15px;
         max-width: 18.625rem;
     }
     .dashboard-gutter {
         padding-top: 80px;
     }
-    .navbar-vertical.navbar-expand-xl + .dashboard-content {
+    .dashboard-content {
         padding-left: 19.625rem;
-        padding-right: 18.625rem;
+        /* padding-right: 18.625rem; */
     }
     /*Dashboard css ends*/
     

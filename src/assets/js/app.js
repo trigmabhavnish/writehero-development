@@ -79,7 +79,7 @@ $(".uploadcode").on("change", ".file-upload-field", function(){
   //Owl initialization
 	var owl = $('.abc');
 	var owl1 = $('.abc1');
-	owl1.owlCarousel({		
+	/* owl1.owlCarousel({		
 		margin:20,
 		  nav: true,
 		  loop: true,
@@ -96,5 +96,5 @@ $(".uploadcode").on("change", ".file-upload-field", function(){
 			  items: 3
 			}
 		  }
-    })
+    }) */
 });

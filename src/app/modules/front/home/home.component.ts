@@ -20,8 +20,13 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../shared/_services'
 
 //import core services
-import { UsersService, CommonUtilsService } from '../../../core/_services';
-declare var $:any;
+import { UsersService, CommonUtilsService, FeedBackService } from '../../../core/_services';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
+
+declare var $: any;
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,20 +34,81 @@ declare var $:any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private feedbackservice: FeedBackService, private toastr: ToastrManager, private router: Router) { }
 
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
+
+  feedbacks: any = [];
+  pageSize: number = 6;
+  currentPage: number = 1;
+  totalItems: number = 0
+  defaultPath = environment.DEFAULT_PROFILE_PIC;
   ngOnInit() {
     // if User Logged In then redirect to Dashboard Page
     this.userAuthService.checkLoginAndRedirect();
+    this.getFeedBackLsiting();
   }
 
   // This method must be present, even if empty.
   ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.
   }
-  
-  ngAfterViewInit(){
-    $('.owl-carousel').owlCarousel();
+
+  private getFeedBackLsiting(): void {
+    
+    this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => { 
+      this.feedbacks = response.feedback;      
+      //this.totalItems = response.totalItems;
+      
+    },error=>{
+      
+    })
+  }
+
+  ngAfterViewInit() {
+    /* $('.owl-carousel').owlCarousel({
+      margin: 20,
+      nav: true,
+      loop: false,
+      rewind:true,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+
+        },
+        1000: {
+          items: 3
+        }
+      }
+    }); */
     $(".counter").countimator();
   }
 
