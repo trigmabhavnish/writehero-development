@@ -37,13 +37,9 @@ export class HomeComponent implements OnInit {
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private feedbackservice: FeedBackService, private toastr: ToastrManager, private router: Router) { }
 
   customOptions: OwlOptions = {
+    margin: 20,    
+    nav: true,
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -55,10 +51,9 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 3
       }
-    },
-    nav: true
+    }
   }
 
 
@@ -67,6 +62,7 @@ export class HomeComponent implements OnInit {
   currentPage: number = 1;
   totalItems: number = 0
   defaultPath = environment.DEFAULT_PROFILE_PIC;
+
   ngOnInit() {
     // if User Logged In then redirect to Dashboard Page
     this.userAuthService.checkLoginAndRedirect();
@@ -81,7 +77,8 @@ export class HomeComponent implements OnInit {
   private getFeedBackLsiting(): void {
     
     this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => { 
-      this.feedbacks = response.feedback;      
+      this.feedbacks = response.feedback;    
+      console.log(response.feedback);  
       //this.totalItems = response.totalItems;
       
     },error=>{
@@ -89,26 +86,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  ngAfterViewInit() {
-    /* $('.owl-carousel').owlCarousel({
-      margin: 20,
-      nav: true,
-      loop: false,
-      rewind:true,
-      responsiveClass: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 2
-
-        },
-        1000: {
-          items: 3
-        }
-      }
-    }); */
+  ngAfterViewInit() {    
     $(".counter").countimator();
   }
 

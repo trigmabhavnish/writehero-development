@@ -22,16 +22,18 @@ import { PageLoaderService } from './shared/_services'
 //import shared module
 import { SharedModule } from './core/shared/shared.module';
 
-import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation:false
 };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    CarouselModule,
     PerfectScrollbarModule
   ],
   providers: [

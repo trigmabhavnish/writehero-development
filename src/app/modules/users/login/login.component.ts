@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   loginSubmitted = false;
+  hide = true;
 
   constructor(private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
 
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
   private buildLoginForm() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
-      password: [null, [Validators.required,Validators.minLength(10)]]
+      password: ['', [Validators.required]]
     });
   }
 

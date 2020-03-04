@@ -141,35 +141,31 @@
                 </div>
                 <div class="col-md-12">
                     <owl-carousel-o [options]="customOptions">
-                        <ng-container *ngFor="let slide of slidesStore">
+                        <ng-container *ngFor="let feedback of feedbacks; let i = index;">
+                            <ng-template carouselSlide [id]="i">
+                                <div class="testimonial_thumb ">
+                                    <div class="testimonial_icon">
+                                        <div class="thumb">
+                                            <img [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath"
+                                                alt="">
+                                        </div>
+                                        <div class="thumb_info">
+                                            <span class="thumb_name">Alen Shuvro</span>
+                                            <!-- <span class="thumb_tag">JMC Int.</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="testimonial_info">
+                                        <p>{{feedback?.feed_desc}}</p>
+                                        <div class="testimonial_star">
+                                            <rating [readonly]="true"
+                                                [(ngModel)]="feedback.overall_rate">
+                                            </rating>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
                         </ng-container>
                     </owl-carousel-o>
-                    <!-- <div class="owl-carousel abc1 owl-theme">
-                        <div *ngFor="let feedback of feedbacks; let i = index;" class="item">
-                            <div class="testimonial_thumb ">
-                                <div class="testimonial_icon">
-                                    <div class="thumb"><img [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath" alt=""></div>
-                                    <div class="thumb_info">
-                                        <span class="thumb_name">Alen Shuvro</span>
-                                        <span class="thumb_tag">JMC Int.</span>
-                                    </div>
-                                </div>
-                                <div class="testimonial_info">
-                                    <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor
-                                        aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat
-                                        ipsum, nec sagittis sem </p>
-                                    <div class="testimonial_star">
-                                        <a href="#"><img src="assets/image/star_enable.png" alt=""></a>
-                                        <a href="#"><img src="assets/image/star_enable.png" alt=""></a>
-                                        <a href="#"><img src="assets/image/star_enable.png" alt=""></a>
-                                        <a href="#"><img src="assets/image/star_enable.png" alt=""></a>
-                                        <a href="#"><img src="assets/image/star_enable.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div> -->
                 </div>
             </div>
         </div>
