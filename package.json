@@ -22,6 +22,7 @@
     "angular-archwizard": "^5.0.0",
     "angular-cc-library": "^1.2.5",
     "angular-google-recaptcha": "^1.0.3",
+    "angularx-social-login": "^2.2.1",
     "aos": "^2.3.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",

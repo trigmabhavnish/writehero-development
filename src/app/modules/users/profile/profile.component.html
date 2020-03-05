@@ -44,6 +44,7 @@
                         </div>
                         <div class="profileinfo-box">
 
+                            <!-- Profile Section -->
                             <div class="max-750">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6">
@@ -85,15 +86,28 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="profileinfo-group">
                                             <label for="">Country</label>
-                                            <input type="text" formControlName="country"
-                                                placeholder="Enter Country Name">
+                                            <select formControlName="country">
+                                                    <option value="">Select Country</option>
+                                                    <option
+                                                        *ngFor="let country of countryListAllIsoData; let i= index;"
+                                                        value="{{country.code3}}">
+                                                        {{country.name}}
+                                                    </option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="profileinfo-group">
-                                            <label for="">Profession / Industry</label>
+                                            <label for="">Company Name</label>
                                             <input type="text" formControlName="profession"
-                                                placeholder="Enter Profession">
+                                                placeholder="Enter Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="profileinfo-group">
+                                            <label for="">Company Description</label>
+                                            <input type="text" formControlName="company_description"
+                                                placeholder="Enter Company Description">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6">
@@ -104,15 +118,28 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="profileinfo-group">
-                                            <label for="">Birthday</label>
-                                            <input type="text" id="dob" placeholder="MM/DD/YYYY">
+                                            <label for="">Skype</label>
+                                            <input type="text" formControlName="skype" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="profileinfo-group">
+                                            <label for="">Mobile</label>
+                                            <input type="tel" formControlName="mobile"
+                                                [ngClass]="{ 'is-invalid': (userProfileForm.controls.mobile.touched || isSubmitted) && userProfileForm.controls.mobile.errors }">
+                                            <p *ngIf="userProfileForm.controls.mobile.touched || isSubmitted">
+                                                <app-form-validation-errors 
+                                                    errorPrefix="Mobile "
+                                                    [errors]="userProfileForm.controls.mobile.errors">
+                                                </app-form-validation-errors>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-
+                            <!-- Notification Section -->
                             <div class="max-950 mt-5">
                                 <div class="row">
                                     <div class="col-md-12" formGroupName="notification">
@@ -216,12 +243,66 @@
                                                     </div>
                                                 </div>
 
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Change Password -->
+                            <div class="max-950 mt-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <fieldset>
+                                            <legend class="profile--settings">Change Password</legend>
+                                            <div class="row mt-3 mx-0">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="profileinfo-group">
+                                                        <div class="w-100">
+
+                                                            <label>New Password: </label>
+
+                                                            <input type="password" formControlName="password"
+                                                                [ngClass]="{ 'is-invalid': (userProfileForm.controls.password.touched || isSubmitted) && userProfileForm.controls.password.errors }"
+                                                                placeholder="">
+
+                                                            <p
+                                                                *ngIf="userProfileForm.controls.password.touched || isSubmitted">
+                                                                <app-form-validation-errors minLength=10 maxLength=50
+                                                                    errorPrefix="Password "
+                                                                    [errors]="userProfileForm.controls.password.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="profileinfo-group">
+                                                        <div class="w-100">
+
+                                                            <label>Confirm Password: </label>
+
+                                                            <input type="password" formControlName="confirm_password"
+                                                                placeholder="" class="field-design"
+                                                                [ngClass]="{ 'is-invalid': (userProfileForm.controls.confirm_password.touched || isSubmitted) && userProfileForm.controls.confirm_password.errors }">
+                                                            <p
+                                                                *ngIf="userProfileForm.controls.confirm_password.touched || isSubmitted">
+                                                                <app-form-validation-errors minLength=10 maxLength=50
+                                                                    errorPrefix="Confirm password "
+                                                                    [errors]="userProfileForm.controls.confirm_password.errors">
+                                                                </app-form-validation-errors>
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="profileinfo-group">
                                                         <div class="w-100">
                                                             <button (click)="submitProfile()" type="button"
                                                                 class="submit-btn-feedback min-w-130">
-                                                                Submit
+                                                                Update
                                                             </button>
                                                         </div>
                                                     </div>

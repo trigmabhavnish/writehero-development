@@ -1059,6 +1059,19 @@ fieldset app-form-validation-errors {
     top: -5px;
     left: -5px;
 }
+
+.fa-faslash {
+    position: relative;
+}
+
+.fa-faslash i{
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    cursor: pointer;
+    color: #3977eb; 
+}
+
 .noproject-foundtext {
     font-weight: 600;
     font-size: 17px;

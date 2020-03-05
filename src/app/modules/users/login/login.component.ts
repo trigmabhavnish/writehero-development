@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/user/dashboard']);
         //case error 
       }, error => {
-        this.commonUtilsService.onError(error.response);
+        this.commonUtilsService.onError((error.response)?error.response:environment.MESSAGES.VALIDATION_ERROR);
     });
   }
 

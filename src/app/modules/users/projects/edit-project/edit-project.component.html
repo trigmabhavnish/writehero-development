@@ -248,14 +248,14 @@
                                                                         </div>
                                                                     </div>
                                                                     <textarea #project_details cols="5" rows="3"
-                                                                        minLength=10 maxLength=200
+                                                                        minLength=10 maxLength=100000
                                                                         formControlName="project_details" placeholder=""
                                                                         class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted) && projectDetailsForm.controls.project_details.errors }"></textarea>
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
-                                                                            maxLength=200 errorPrefix="Project Details "
+                                                                            maxLength=100000 errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -319,14 +319,14 @@
                                                                     </div>
 
                                                                     <textarea #additional_resources cols="5" rows="3"
-                                                                        minLength=10 maxLength=200
+                                                                        minLength=10 maxLength=100000
                                                                         formControlName="additional_resources"
                                                                         placeholder="" class="field-design"
                                                                         [ngClass]="{ 'is-invalid': (projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted) && projectDetailsForm.controls.additional_resources.errors }"></textarea>
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
-                                                                            maxLength=200 errorPrefix="Project Details "
+                                                                            maxLength=100000 errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.additional_resources.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
