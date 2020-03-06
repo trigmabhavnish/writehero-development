@@ -37,7 +37,7 @@
 #customnavbar {
 	position: fixed;
 	width: 100%;
-	z-index: 9999999999;
+	z-index: 2;
 	left: 0;
 	right: 0;
     top: 0;
@@ -349,13 +349,14 @@ left: 0;
 right: 0;
 bottom: 0;
 background-size: 100%;
+background-position: bottom;
 }
 .testimonial-title {
     width: 73%;
     padding: 40px 0px;
 }
 .testimonial-title h2 {
-    font-size: 42px;
+    font-size: 38px;
     color: #fff;
     text-align: left;
     font-weight: 800;
@@ -544,6 +545,7 @@ border-bottom-right-radius: 0px !important;
     bottom: 0;
     background: url("../image/writehero-pricingbg.png") no-repeat;
     mix-blend-mode: multiply;
+    background-size: cover;
 }
 .elite-content .plan-price-content-elite ul li {
 	color: #fff;
@@ -621,6 +623,7 @@ position: absolute;
 left: 50%;
 transform: translateX(-50%);
 bottom: -18px;
+white-space: nowrap;
 }
 .btn-signup:hover {
     text-decoration: none;
@@ -957,6 +960,7 @@ footer p span {
     bottom: 0;
     background: url("../image/navbar-vertical-pattern.png") no-repeat;
     mix-blend-mode: multiply;
+    background-size: cover;
 }
 .dashboard-profile-status {
     position: relative;
@@ -2636,6 +2640,9 @@ background: -ms-linear-gradient(left, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100
 background: linear-gradient(to right, rgba(49,58,238,1) 0%, rgba(4,71,164,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#313aee', endColorstr='#0447a4', GradientType=1 );
 color: #fff;
+}
+.right-thumb-feeds-outer .min-100vh { 
+    height:auto;
 }
 /*tabing age design ends*/
 

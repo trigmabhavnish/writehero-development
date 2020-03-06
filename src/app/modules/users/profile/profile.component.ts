@@ -305,8 +305,7 @@ export class ProfileComponent implements OnInit {
       company_description: [''],
       user_name: [],
       first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      profession: [''],
+      last_name: ['', Validators.required],      
       email: ['', [Validators.email, Validators.required]],
       website: [''],
       country: [''],
@@ -383,6 +382,7 @@ export class ProfileComponent implements OnInit {
     this.userProfileForm.patchValue({
       profile_pic: profile.profile_pic,
       company_name: profile.company_name,
+      company_description: profile.company_description,
       first_name: profile.first_name,
       last_name: profile.last_name,
       user_name: profile.user_name,

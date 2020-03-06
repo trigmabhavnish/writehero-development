@@ -12,6 +12,7 @@ export const environment = {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
     WAIT_TEXT: 'Please wait...',
+    VALIDATION_ERROR: 'We have got some validation error. Please check your details.',
     UNABLE_TO_FIND_DETAILS: 'Unable to find details.',
     COUPON_CODE_APPLIED: 'Coupon Code Applied.',
     COUPON_CODE_INVALID: 'Invalid Coupon Code.',

@@ -55,6 +55,8 @@ export class AddNewProjectComponent implements OnInit {
   writersAgeBracket: any;
   userCredits: any;
   userCreditsCheck: boolean = true;
+  stepActive:boolean = true;
+  stepIndex:number = 1;
 
   loading: boolean = false;
 
@@ -359,6 +361,7 @@ export class AddNewProjectComponent implements OnInit {
       this.projectSpecsSubmitted = false;
       return;
     }
+    this.stepIndex = 2; //wizard Active 
   }
 
   /**
@@ -370,7 +373,16 @@ export class AddNewProjectComponent implements OnInit {
       this.projectDetailsSubmitted = false;
       return;
     }
+    this.stepIndex = 3; // Wizard Active
     //this.wizard.goToStep(3);
+  }
+
+  /**
+ * Validate Writer Details Wizard Fields.
+ */
+  validateWritersDetailsWizard(){
+    this.writersDetailsSubmitted = true;
+    this.stepIndex = 4; // Wizard Active
   }
 
   onSubmitAddNewProject() {
@@ -383,10 +395,10 @@ export class AddNewProjectComponent implements OnInit {
 
     this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
     //check if Project Cost is greater than available credits.
-    if (projectCost > this.userCredits) {
+   /* if (projectCost > this.userCredits) {
       this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
       this.userCreditsCheck = true;
-    } else {
+    } else { */
       this.userCreditsCheck = false;
       this.projectsService.createNewProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
         //case success
@@ -400,7 +412,7 @@ export class AddNewProjectComponent implements OnInit {
           this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
-    }
+    /* } */
   }
 
   /**
@@ -532,7 +544,6 @@ export class AddNewProjectComponent implements OnInit {
     };
   }
 
-
   /**
    * remove Vehicle Image
    * @param index index of the image array
@@ -625,10 +636,14 @@ export class AddNewProjectComponent implements OnInit {
    * @param direction boolean(wizard direction)
    * @return  boolean
    */
-  moveDirection = (validityStatus, direction) => {
+  moveDirection = (validityStatus, direction) => {    
+    
     if (direction === MovingDirection.Backwards) {
+      this.stepIndex = this.stepIndex - 1;      
       return true;
     }
+    
+    this.stepActive = validityStatus;
     return validityStatus;
   };
 

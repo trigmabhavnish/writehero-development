@@ -5,11 +5,11 @@
 
 
         <div class="dashboard-content">
-            <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
+            <!-- <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
                 <span>You have {{userCredits}} credits in your account. Please buy credits to create your
                     project.</span>
                 <a routerLink="/user/buy-credits">Buy Credits</a>
-            </div>
+            </div> -->
             <nav class="navbar-top scrolling-on">
                 <a href="#" class="mobile-dashboard-logo"><img src="assets/image/writehero-fav.png"></a>
                 <p class="mobile-dashboard-heading">Dashboard</p>
@@ -39,7 +39,8 @@
                                                         <div class="ful_circle step_first">
                                                             <div class="overlay-wizard-count">1
                                                             </div>
-                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 1) || (stepIndex == 2) || (stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-bottom-right wizard-goals">
                                                             </div>
                                                             <div class="quarter-circle-bottom-left wizard-goals">
                                                             </div>
@@ -55,9 +56,11 @@
                                                         <div class="ful_circle">
                                                             <div class="overlay-wizard-count">2
                                                             </div>
-                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 2) || (stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-bottom-right wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 2) || (stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-bottom-left wizard-goals">
                                                             </div>
                                                             <div class="quarter-circle-top-left wizard-goals">
                                                             </div>
@@ -71,11 +74,14 @@
                                                         <div class="ful_circle">
                                                             <div class="overlay-wizard-count">3
                                                             </div>
-                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-bottom-right wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-bottom-left wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) && ((stepIndex == 3) || (stepIndex == 4)))}"
+                                                                class="quarter-circle-top-left wizard-goals">
                                                             </div>
                                                             <div class="quarter-circle-top-right wizard-goals">
                                                             </div>
@@ -87,13 +93,17 @@
                                                         <div class="ful_circle_last_step">
                                                             <div class="overlay-wizard-count">4
                                                             </div>
-                                                            <div class="quarter-circle-bottom-right wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) &&  (stepIndex == 4))}"
+                                                                class="quarter-circle-bottom-right wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-bottom-left wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) &&  (stepIndex == 4))}"
+                                                                class="quarter-circle-bottom-left wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-top-left wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) &&  (stepIndex == 4))}"
+                                                                class="quarter-circle-top-left wizard-goals">
                                                             </div>
-                                                            <div class="quarter-circle-top-right wizard-goals">
+                                                            <div [ngClass]="{'wiz-active' : ((stepActive) &&  (stepIndex == 4))}"
+                                                                class="quarter-circle-top-right wizard-goals">
                                                             </div>
                                                             <p class="wizard-specs-info">Review
                                                                 Project</p>
@@ -170,7 +180,7 @@
                                                     <div class="col-md-12 mt-4">
 
                                                         <button
-                                                            [disabled]="projectSpecsForm.invalid || userCreditsCheck"
+                                                            [disabled]="projectSpecsForm.invalid"
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
@@ -180,8 +190,7 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step
-                                                [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
                                                 stepTitle="Project Details">
                                                 <form [formGroup]="projectDetailsForm">
                                                     <div class="row m-0">
@@ -254,7 +263,8 @@
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
-                                                                            maxLength=100000 errorPrefix="Project Details "
+                                                                            maxLength=100000
+                                                                            errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -326,7 +336,8 @@
                                                                     <p
                                                                         *ngIf="projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
-                                                                            maxLength=100000 errorPrefix="Project Details "
+                                                                            maxLength=100000
+                                                                            errorPrefix="Project Details "
                                                                             [errors]="projectDetailsForm.controls.additional_resources.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -353,7 +364,9 @@
                                                                         </p>
                                                                         <p class="project-package-plans-limit">Per
                                                                             100 words</p>
-                                                                        <div [innerHTML]="projectPackage.project_description"></div>
+                                                                        <div
+                                                                            [innerHTML]="projectPackage.project_description">
+                                                                        </div>
                                                                         <input
                                                                             (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
                                                                             type="radio"
@@ -401,8 +414,8 @@
 
                                                                             <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                                 src="assets/image/pdf.png">
-                                                                                <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
-                                                                                src="assets/image/txt.png">     
+                                                                            <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
+                                                                                src="assets/image/txt.png">
 
                                                                             <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
@@ -442,7 +455,7 @@
                                                                     PREVIOUS
                                                                 </button>
                                                                 <button
-                                                                    [disabled]="projectDetailsForm.invalid || userCreditsCheck"
+                                                                    [disabled]="projectDetailsForm.invalid"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130 mr-lg-3">
@@ -462,13 +475,14 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step stepTitle="Writers Details">
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, writersDetailsForm.valid)">
                                                 <form [formGroup]="writersDetailsForm">
                                                     <div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-lg-5 step-progress-fields">
                                                                 <label>Choice of writers</label>
-                                                                <p>We will try our best to find the writers that you need</p>
+                                                                <p>We will try our best to find the writers that you
+                                                                    need</p>
                                                                 <div class="pl-0">
 
                                                                     <select #choice_of_writers class="custom-select"
@@ -519,7 +533,8 @@
 
                                                                     <div *ngFor="let writerAge of writterAgeArray; let i=index"
                                                                         class="tabs">
-                                                                        <input (change)="getWritersAgeBracket(writerAge)"
+                                                                        <input
+                                                                            (change)="getWritersAgeBracket(writerAge)"
                                                                             formControlName="writers_age" class="radio"
                                                                             id="{{i}}" type="radio"
                                                                             value="{{writerAge}}">
@@ -555,7 +570,7 @@
                                                                     class="submit-btn-feedback min-w-130 mr-lg-3 mr-3">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button (click)="validateProjectDetailsWizard()"
+                                                                <button (click)="validateWritersDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130">
                                                                     NEXT
@@ -566,7 +581,7 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step stepTitle="Review Project">
+                                            <aw-wizard-step [canExit]="moveDirection.bind(this, true)">
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-8 step-progress-fields mb-4">
@@ -639,20 +654,23 @@
                                                                 <label class="step-progress-fields-label">Additional
                                                                     Resources :</label>
                                                                 <p class="step-progress-fields-content">
-                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}</p>
+                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}
+                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Choice
                                                                 Of Writers :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{(choice_of_writers?.value)?(choice_of_writers?.value):'NA'}}</p>
+                                                                {{(choice_of_writers?.value)?(choice_of_writers?.value):'NA'}}
+                                                            </p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Career
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{(writers_career?.value)?(writers_career?.value):'NA'}}</p>
+                                                                {{(writers_career?.value)?(writers_career?.value):'NA'}}
+                                                            </p>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="step-progress-fields-label">Age
@@ -664,7 +682,8 @@
                                                             <label class="step-progress-fields-label">Location
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
-                                                                {{(writers_location?.value)?(writers_location?.value):'NA'}}</p>
+                                                                {{(writers_location?.value)?(writers_location?.value):'NA'}}
+                                                            </p>
                                                         </div>
                                                         <!--Upload Images Section-->
                                                         <div class="col-md-12">
@@ -682,7 +701,7 @@
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                             src="assets/image/pdf.png">
                                                                         <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
-                                                                            src="assets/image/txt.png"> 
+                                                                            src="assets/image/txt.png">
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
                                                                             (projectImage.value.file_mimetype == 'application/vnd.ms-excel')
@@ -713,11 +732,17 @@
                                                                         PREVIOUS
                                                                     </button>
 
-                                                                    <button type="button" [disabled]="userCreditsCheck"
+                                                                    <button type="button" 
                                                                         (click)="onSubmitAddNewProject()"
                                                                         class="submit-btn-feedback min-w-130">
                                                                         CREATE PROJECT
                                                                     </button>
+
+                                                                    <!-- <button type="button" [disabled]="userCreditsCheck"
+                                                                        (click)="onSubmitAddNewProject()"
+                                                                        class="submit-btn-feedback min-w-130">
+                                                                        CREATE PROJECT
+                                                                    </button> -->
 
                                                                 </div>
                                                                 <!--div class="col-lg-3">

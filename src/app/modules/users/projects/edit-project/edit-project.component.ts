@@ -44,17 +44,19 @@ export class EditProjectComponent implements OnInit {
   base64StringFile: any;
   disabled: boolean = false;
   calculateCost: any = 0;
-  lastProjectCost:any;
+  lastProjectCost: any;
   writersAgeBracket: any;
   selectedProjectPackageId: number;
   packagePrice: any;
   userCredits: any;
   userCreditsCheck: boolean = true;
+  stepActive: boolean = true;
+  stepIndex: number = 1;
 
   projectId: any;
   projectDetailsArray: any = {};
 
-  loading:boolean =false; //Page Loader
+  loading: boolean = false; //Page Loader
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -311,13 +313,13 @@ export class EditProjectComponent implements OnInit {
    * GET the details of project
    */
   private getSavedProjectDetails(): void {
-    
+
     this.loading = true; // Show Loader
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
         this.loading = false; // Hide Loader
-        if(res.project_details){
+        if (res.project_details) {
           // Project Specs Form
           this.projectSpecsForm.controls.project_id.patchValue(res.project_details.id);
           this.projectSpecsForm.controls.project_code.patchValue(res.project_details.code);
@@ -338,23 +340,23 @@ export class EditProjectComponent implements OnInit {
           this.lastProjectCost = res.project_details.project_cost;
 
           // Update Project Files Array
-          if(res.project_details.file_path){
-            this.projectFilesArray.push(new FormControl({file_path : res.project_details.file_path, file_key : res.project_details.file_key, file_name : res.project_details.file_name, file_category : res.project_details.file_category, file_mimetype : res.project_details.file_mimetype}));
+          if (res.project_details.file_path) {
+            this.projectFilesArray.push(new FormControl({ file_path: res.project_details.file_path, file_key: res.project_details.file_key, file_name: res.project_details.file_name, file_category: res.project_details.file_category, file_mimetype: res.project_details.file_mimetype }));
           }
 
           //Update Writers Details Form
           this.writersDetailsForm.controls.choice_of_writers.patchValue(res.project_details.choice_of_writers);
           this.writersDetailsForm.controls.writers_career.patchValue(res.project_details.writers_career);
           this.writersDetailsForm.controls.writers_age.patchValue(res.project_details.writers_age);
-          this.writersDetailsForm.controls.writers_location.patchValue(res.project_details.writers_location);          
-        }else{
+          this.writersDetailsForm.controls.writers_location.patchValue(res.project_details.writers_location);
+        } else {
           this.loading = false; // Hide Loader
           this.commonUtilsService.onError(environment.MESSAGES.UNABLE_TO_FIND_DETAILS);
           this.router.navigate(['/user/add-new-project']);
         }
-                
-        
-        
+
+
+
       }, error => {
         this.loading = false; // Hide Loader
         this.commonUtilsService.onError(error.response);
@@ -367,7 +369,7 @@ export class EditProjectComponent implements OnInit {
   private projectSpecs() {
     this.projectSpecsForm = this.formBuilder.group({
       project_id: [''],
-      project_code: [''],      
+      project_code: [''],
       project_name: ['', [Validators.required]],
       project_topic: ['', [Validators.required]],
       project_type: ['', [Validators.required]]
@@ -410,6 +412,7 @@ export class EditProjectComponent implements OnInit {
       this.projectSpecsSubmitted = false;
       return;
     }
+    this.stepIndex = 2; //wizard Active
   }
 
   /**
@@ -421,23 +424,32 @@ export class EditProjectComponent implements OnInit {
       this.projectDetailsSubmitted = false;
       return;
     }
+    this.stepIndex = 3; // Wizard Active
+  }
+
+  /**
+ * Validate Writer Details Wizard Fields.
+ */
+  validateWritersDetailsWizard() {
+    this.writersDetailsSubmitted = true;
+    this.stepIndex = 4; // Wizard Active
   }
 
   onSubmitEditProject() {
 
-    
+
     let userAccountBalanceCheck = '';
     let projectCost = this.projectDetailsForm.controls.project_cost.value;
     let updatedProjectCost = this.lastProjectCost - projectCost;
 
-    if(this.lastProjectCost > projectCost){
+    if (this.lastProjectCost > projectCost) {
       userAccountBalanceCheck = "A";
-    }else{
+    } else {
       userAccountBalanceCheck = "S";
     }
     //console.log('updatedProjectCost', updatedProjectCost);
     //console.log('this.userCredits', this.userCredits);
-    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, {userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost:this.lastProjectCost});
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, { userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost: this.lastProjectCost });
 
     this.loading = true; // Show Loader
     //check if Project Cost is greater than available credits.
@@ -673,7 +685,7 @@ export class EditProjectComponent implements OnInit {
     this.calculateProjectCost(quantity, word_count);
   }
 
-  getWritersAgeBracket(ageValue){    
+  getWritersAgeBracket(ageValue) {
     this.writersAgeBracket = ageValue;
   }
 
@@ -685,8 +697,10 @@ export class EditProjectComponent implements OnInit {
    */
   moveDirection = (validityStatus, direction) => {
     if (direction === MovingDirection.Backwards) {
+      this.stepIndex = this.stepIndex - 1;
       return true;
     }
+    this.stepActive = validityStatus;
     return validityStatus;
   };
 
@@ -722,7 +736,7 @@ export class EditProjectComponent implements OnInit {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
-  }  
+  }
 
   ngOnInit() {
 

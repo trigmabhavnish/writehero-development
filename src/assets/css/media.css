@@ -491,9 +491,6 @@
     .rounded-right-none, .rounded-left-none {
         border-radius: 8px !important;
     }
-    .testimonial-banner::before {
-        background: #024a9b !important;
-    }
     .testimonial-title {
         width: 100%;
         text-align: center;
