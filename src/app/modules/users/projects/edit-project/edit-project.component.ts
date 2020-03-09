@@ -470,7 +470,7 @@ export class EditProjectComponent implements OnInit {
           this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
-    }
+     } 
   }
 
   /**
@@ -571,10 +571,10 @@ export class EditProjectComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          this.loading = true; // Show Loader
+          componentObj.loading = true; // Show Loader
           //componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            this.loading = false; // Hide Loader
+            componentObj.loading = false; // Hide Loader
             //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
@@ -585,7 +585,7 @@ export class EditProjectComponent implements OnInit {
           componentObj.zone.run(() => {
             componentObj.projectFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'project_reference_files' }));
           });
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           this.removeFile(file);
           componentObj.commonUtilsService.hidePageLoader(); //hide page loader
         });
@@ -594,7 +594,7 @@ export class EditProjectComponent implements OnInit {
           //console.log('error', error);
 
           this.removeFile(file);
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           componentObj.commonUtilsService.onError(error);
         });
 

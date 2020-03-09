@@ -28,11 +28,12 @@ import { ProjectsService, CommonUtilsService } from '../../../../core/_services'
 export class ProjectDetailsComponent implements OnInit {
   projectId: any;
   projectCost: any;
+  userAccountBalance: any;
   completedFilePath = environment.S3_BUCKET_URL;
   completedFilePathLocal = 'assets/';
   projectDetails: any = {};
   projectStatus: any = [];
-  loading:boolean = false;
+  loading: boolean = false;
 
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
@@ -49,11 +50,12 @@ export class ProjectDetailsComponent implements OnInit {
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        //console.log(res);
+        console.log(res);
         this.loading = false;
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;
         this.projectCost = res.project_details.project_cost;
+        this.userAccountBalance = res.user_account_balance;
       }, error => {
         this.loading = false;
         this.commonUtilsService.onError(error.response);
@@ -91,20 +93,49 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   /**
+   * Launch the Project
+   */
+  onLaunchProject(event): void {
+    this.loading = true;
+    //console.log(this.projectCost);
+    //console.log(this.userAccountBalance);
+    if (this.projectCost > this.userAccountBalance) {
+      this.loading = false;
+      this.commonUtilsService.onError(environment.MESSAGES.ADD_CREDITS_TO_LAUNCH);
+    } else {
+
+      let projectStatus = event.target.getAttribute('data-projectStatus');
+      this.projectsService.updateProjectStatus({ project_id: this.projectId, project_status: projectStatus, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
+        //case success
+        (res) => {
+          this.loading = false;
+          this.getProjectDetails();
+          this.commonUtilsService.onSuccess(res.response);
+        }, error => {
+          this.loading = false;
+          this.commonUtilsService.onError(error.response);
+        });
+    }
+
+  }
+
+  /**
    * Update the Status of Project
    */
   onUpdateStatus(event): void {
 
     let projectStatus = event.target.getAttribute('data-projectStatus');
     //console.log(projectStatus); return;
-    this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
+    this.loading = true;
     this.projectsService.updateProjectStatus({ project_id: this.projectId, project_status: projectStatus }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
+        this.loading = false;
         this.getProjectDetails();
         this.commonUtilsService.onSuccess(res.response);
 
       }, error => {
+        this.loading = false;
         this.commonUtilsService.onError(error.response);
       });
   }
@@ -113,16 +144,16 @@ export class ProjectDetailsComponent implements OnInit {
 
 
     let thisURL = this.completedFilePath + str;
-    
+
     console.log(thisURL);
 
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-      
+    var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+
     return !!pattern.test(thisURL);
   }
 

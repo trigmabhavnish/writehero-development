@@ -98,7 +98,7 @@ export class CreateTicketComponent implements OnInit {
       errorReset: null,
       cancelReset: null,
       acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv',
-      maxFilesize: 2, // MB,
+      maxFilesize: 50, // MB,
       dictDefaultMessage: '<span class="button red">Attach File</span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,

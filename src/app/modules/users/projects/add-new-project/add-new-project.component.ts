@@ -513,10 +513,10 @@ export class AddNewProjectComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          this.loading = true; // Show Loader
+          componentObj.loading = true; // Show Loader
           //componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            this.loading = false; // Hide Loader
+            componentObj.loading = false; // Hide Loader
             //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
@@ -529,14 +529,14 @@ export class AddNewProjectComponent implements OnInit {
           });
 
           this.removeFile(file);
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
         });
 
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           componentObj.commonUtilsService.onError(error);
         });
 

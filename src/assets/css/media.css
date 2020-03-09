@@ -361,6 +361,18 @@
 
 
 @media (max-width:991px) { 
+    .blob--logo {
+        display: none;
+    }
+    .counting-stepbar-wizard .col-3 {
+        background : #fff;
+    }
+    .ful_circle::before {
+        width:100%;
+    }
+    .counting-stepbar-wizard .col-3:not(:first-child) {
+        padding-left: 0px;
+    }
     .testimonial-banner {
         height: auto;
     }
@@ -406,9 +418,9 @@
     .wizard-specs-info {
         left: 0;
     }
-    .ful_circle::before {
+    /* .ful_circle::before {
         width: 73%;
-    }
+    } */
     .ful_circle_last_step::after {
         display: none;
     }
@@ -544,7 +556,9 @@
         bottom: -20%;
     }
     .testimonial_thumb  {
-        margin: 0px;
+        height: auto;
+        margin: 10px 20px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.18);
     }
 
     /*dashboard css starts*/
@@ -602,7 +616,7 @@
 	height: 65px;
 }
 .testimonial_thumb {
-	padding:10px 0px;
+	padding:15px;
 }
 
 .section-stats {

@@ -149,6 +149,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 text-lg-right">
+
+
+                                                            
+
                                                             <!--Penidng / Revised Status-->
                                                             <a routerLink="/user/create-ticket"
                                                                 *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Resume')"
@@ -158,7 +162,7 @@
                                                                 *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised') || (projectDetails.project_status == 'Resume')"
                                                                 class="btn-cmn-pro mr-2">Contact Support</a>
 
-                                                            <!--NEW / Pause Status-->
+                                                            <!--NEW / Pause / Draft Status-->
                                                             <a routerLink="/user/edit-project/{{projectDetails.id}}"
                                                                 *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause')"
                                                                 class="btn-cmn-pro mr-2">Edit project</a>
@@ -174,6 +178,13 @@
 
 
                                                             <!--NEW Status-->
+
+                                                            <!--Draft Status-->
+                                                            <a [attr.data-projectStatus]="'New'"
+                                                                (click)="onLaunchProject($event)"
+                                                                href="javascript:void(0)"
+                                                                *ngIf="(projectDetails.project_status == 'Draft')"
+                                                                class="btn-cmn-pro mr-2">Launch Project</a>
 
                                                             <!--Complete/Revised Status-->
 
