@@ -199,7 +199,7 @@
 
                                                             
                                                             <a href="{{ projectDetails?.completed_project_file }}"
-                                                                *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
+                                                                *ngIf="((projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Revised')) && (projectDetails.completed_project_file != '')"
                                                                 class="btn-cmn-pro mr-2">
 
                                                                 Download
@@ -317,7 +317,7 @@
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                                <div *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
+                                                                <div *ngIf="((projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Revised')) && (projectDetails.completed_project_file != '')"
                                                                     class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">Download File

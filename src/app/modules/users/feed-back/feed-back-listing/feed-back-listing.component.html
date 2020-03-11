@@ -42,7 +42,7 @@
               totalItems: totalItems };let i = index;">
                 <td>{{i+1}}</td>
                 <td>{{feedback?.feed_date | date }}</td>
-                <td>{{feedback?.feed_desc}}</td>
+                <td><span class="line--clamp">{{feedback?.feed_desc}}</span></td>
                 <td><rating [(ngModel)]="feedback.overall_rate" [readonly]="true">
                </rating></td>
                 <td>{{feedback?.user_name}}</td>

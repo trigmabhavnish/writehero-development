@@ -175,9 +175,9 @@ export class CreateTicketComponent implements OnInit {
 
           self.zone.run(() => {
             self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'support_file' }));
-          });
-          self.loading = false; 
+          });          
           this.removeFile(file);
+          self.loading = false; 
           self.commonUtilsService.hidePageLoader(); //hide page loader
         });
 

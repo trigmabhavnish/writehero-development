@@ -323,9 +323,9 @@ export class ProfileComponent implements OnInit {
       //dob: [''],
 
       password: ['', Validators.compose([        
-        Validators.minLength(10),
+        Validators.minLength(8),
         Validators.maxLength(50),
-        // check whether the entered password has a number
+        /*// check whether the entered password has a number
         CustomValidator.patternValidator(/\d/, {
           hasNumber: true
         }),
@@ -343,7 +343,7 @@ export class ProfileComponent implements OnInit {
           {
             hasSpecialCharacters: true
           }
-        )
+        ) */
       ])
       ],
       confirm_password: [''],

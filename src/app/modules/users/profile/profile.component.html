@@ -268,7 +268,7 @@
 
                                                             <p
                                                                 *ngIf="userProfileForm.controls.password.touched || isSubmitted">
-                                                                <app-form-validation-errors minLength=10 maxLength=50
+                                                                <app-form-validation-errors minLength=8 maxLength=50
                                                                     errorPrefix="Password "
                                                                     [errors]="userProfileForm.controls.password.errors">
                                                                 </app-form-validation-errors>
@@ -288,7 +288,7 @@
                                                                 [ngClass]="{ 'is-invalid': (userProfileForm.controls.confirm_password.touched || isSubmitted) && userProfileForm.controls.confirm_password.errors }">
                                                             <p
                                                                 *ngIf="userProfileForm.controls.confirm_password.touched || isSubmitted">
-                                                                <app-form-validation-errors minLength=10 maxLength=50
+                                                                <app-form-validation-errors minLength=8 maxLength=50
                                                                     errorPrefix="Confirm password "
                                                                     [errors]="userProfileForm.controls.confirm_password.errors">
                                                                 </app-form-validation-errors>

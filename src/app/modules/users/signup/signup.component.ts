@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
       first_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       last_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       user_name: [''],
+      company_name: [''],
       director_id: [3],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([
