@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
+import { ProjectsService, CommonUtilsService, UsersService } from '../../../../core/_services';
 
 @Component({
   selector: 'app-project-details',
@@ -35,7 +35,7 @@ export class ProjectDetailsComponent implements OnInit {
   projectStatus: any = [];
   loading: boolean = false;
 
-  constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
+  constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private userAuthService: UsersService,  private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('_id');
@@ -80,6 +80,7 @@ export class ProjectDetailsComponent implements OnInit {
           //case success
           (res) => {
             this.getProjectDetails();
+            this.userAuthService.isProfileUpdated(true);  // Update Profile Data
             this.commonUtilsService.onSuccess(res.response);
 
           }, error => {
@@ -110,6 +111,7 @@ export class ProjectDetailsComponent implements OnInit {
         (res) => {
           this.loading = false;
           this.getProjectDetails();
+          this.userAuthService.isProfileUpdated(true);  // Update Profile Data
           this.commonUtilsService.onSuccess(res.response);
         }, error => {
           this.loading = false;
@@ -132,6 +134,7 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.loading = false;
         this.getProjectDetails();
+        this.userAuthService.isProfileUpdated(true);  // Update Profile Data
         this.commonUtilsService.onSuccess(res.response);
 
       }, error => {

@@ -36,11 +36,11 @@
 
                                                             <h6 class="dashboard-latest-project-subject">
                                                                 Ticket: {{supportData?.support[0]?.code}}</h6>
-                                                            <h6 class="dashboard-latest-project-subject">
+                                                            <h6 class="dashboard-latest-project-subject mt-3">
                                                                 Submitted On:
                                                                 {{supportData?.support[0]?.created_on | date}}
                                                             </h6>
-                                                            <h6 class="dashboard-latest-project-subject">
+                                                            <h6 class="dashboard-latest-project-subject mt-3">
                                                                 Satus :
                                                                 <span
                                                                     [ngClass]="supportData?.support[0]?.support_status == 'solved' ? 'solved':'unsolved'"
@@ -176,7 +176,7 @@
                                                                                                         <img *ngIf="(supportFile.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (supportFile.value.file_mimetype == 'application/msword')"
                                                                                                             src="assets/image/word.png">
 
-                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed') || (supportFile.value.file_mimetype == 'application/vnd.rar') || (supportFile.value.file_mimetype == 'application/octet-stream')"
+                                                                                                        <img *ngIf="(supportFile.value.file_mimetype == 'application/zip') || (supportFile.value.file_mimetype == 'application/x-rar-compressed') || (supportFile.value.file_mimetype == 'application/vnd.rar') || (supportFile.value.file_mimetype == 'application/octet-stream') || (supportFile.value.file_mimetype == 'application/x-zip-compressed')"
                                                                                                             src="assets/image/zip.png">
 
                                                                                                     </a>
@@ -201,14 +201,15 @@
                                                                                 </div>
 
                                                                                 <div
-                                                                                    class="col-lg-12 solving--btn-outer">
+                                                                                    class="col-lg-12 px-0 solving--btn-outer text-right">
 
-                                                                                    <a> Click the solved button if the
-                                                                                        ticket is solved » <a
+                                                                                    <p class="close--ticketpoint"> Click the close ticket button if the
+                                                                                        ticket is solved »</p>
+                                                                                        <a
                                                                                             type="button"
                                                                                             (click)="solveTicket()"
-                                                                                            class="btn btn-danger">Solved
-                                                                                        </a> </a>
+                                                                                            class="btn btn-danger">Close Ticket
+                                                                                        </a>
                                                                                 </div>
                                                                             </form>
                                                                         </div>

@@ -494,7 +494,7 @@ export class AddNewProjectComponent implements OnInit {
             return false;
           } */
 
-
+          componentObj.loading = true; // show page loader
           componentObj.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
           done();
 

@@ -361,6 +361,16 @@
 
 
 @media (max-width:991px) { 
+    .tabs + .tabs {
+        margin-left: 0px;
+    }
+    .tabs {
+        margin-right: 15px;
+    }
+    .tab {
+        padding: 6px 24px;
+        margin-bottom: 20px !important;
+    }
     .blob--logo {
         display: none;
     }
@@ -590,7 +600,7 @@
     }
     .xs-minus {
         position: relative;
-        z-index: 9999999;
+        z-index: 1;
         top: -110px;
     }
     /*register css ends*/
@@ -606,6 +616,21 @@
 }
 
 @media (max-width:640px) { 
+    
+.flex-mobile-column  {
+    flex-direction: column;
+}
+.flex-mobile-column ngx-paypal {
+    width: 100%;
+}
+.fontpad--xs {
+    padding: 10px;
+    font-size: 11px;
+}
+.min-w100 {
+    min-width: 100%;
+    margin-bottom: 15px;
+}
 .btn-done {
 	padding: 12px 24px;
 }

@@ -43,9 +43,9 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(8),
           Validators.maxLength(50),
-          // check whether the entered password has a number
+          /*// check whether the entered password has a number
           CustomValidator.patternValidator(/\d/, {
             hasNumber: true
           }),
@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
             {
               hasSpecialCharacters: true
             }
-          )
+          ) */
         ])
       ],
       confirm_password: ['', Validators.required],

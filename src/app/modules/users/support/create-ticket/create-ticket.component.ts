@@ -143,7 +143,7 @@ export class CreateTicketComponent implements OnInit {
             return false;
           } */
 
-
+          self.loading = true; // show page loader
           self.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
           done();
 
@@ -162,9 +162,11 @@ export class CreateTicketComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          self.loading = true; // Show Loader
+          //self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            self.commonUtilsService.hidePageLoader(); //hide page loader
+            self.loading = false; 
+            //self.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
 
@@ -174,7 +176,7 @@ export class CreateTicketComponent implements OnInit {
           self.zone.run(() => {
             self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'support_file' }));
           });
-
+          self.loading = false; 
           this.removeFile(file);
           self.commonUtilsService.hidePageLoader(); //hide page loader
         });
@@ -182,7 +184,7 @@ export class CreateTicketComponent implements OnInit {
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-
+          self.loading = false; 
           self.commonUtilsService.onError(error);
         });
 

@@ -2921,7 +2921,29 @@ color: #fff;
       background: #D6D6D6 !important;
     }
 /*Wizard css ends*/
-
+app-form-validation-errors {
+    position: relative !important;
+}
+.brdr-box {
+    border: 1px solid rgba(59,56,255,0.2);
+}
+.wtool-80 {
+    width: 80%;
+}
+.close--ticketpoint {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0a004a;
+    text-align: right;
+}
+.close--ticketpoint + a {
+    margin-left: 10px;
+    padding: 8px 21px !important;
+    border: 0px !important;
+}
+.dispute_media {
+    margin: 20px 0px !important;
+}
 /*New design css ends*/
 /*project detail css ends*/
 /*Project css ends*/

@@ -341,10 +341,10 @@ export class AddNewProjectAdvancedComponent implements OnInit {
 
     this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
     //check if Project Cost is greater than available credits.
-    if (projectCost > this.userCredits) {
+    /* if (projectCost > this.userCredits) {
       this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
       this.userCreditsCheck = true;
-    } else {
+    } else { */
       this.userCreditsCheck = false;
       this.projectsService.createNewProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
         //case success
@@ -358,7 +358,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
           this.loading = false; // Hide Loader
           this.commonUtilsService.onError(error.response);
         });
-    }
+    /* } */
   }
 
   /**
@@ -440,7 +440,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
             return false;
           } */
 
-
+          componentObj.loading = true; // show page loader
           componentObj.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
           done();
 
@@ -459,10 +459,10 @@ export class AddNewProjectAdvancedComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          this.loading = true; // Show Loader
+          componentObj.loading = true; // Show Loader
           //componentObj.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            this.loading = false; // Hide Loader
+            componentObj.loading = false; // Hide Loader
             //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
@@ -475,14 +475,14 @@ export class AddNewProjectAdvancedComponent implements OnInit {
           });
 
           this.removeFile(file);
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           //componentObj.commonUtilsService.hidePageLoader(); //hide page loader
         });
 
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-          this.loading = false; // Hide Loader
+          componentObj.loading = false; // Hide Loader
           //componentObj.commonUtilsService.onError(error.response);
         });
 

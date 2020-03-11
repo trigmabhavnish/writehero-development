@@ -1,11 +1,11 @@
 <div class="dashboard-gutter">
     <div class="container-fluid px-lg-0" data-layout="container-fluid">
         <div class="dashboard-content">
-            <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
+            <!-- <div [hidden]="!userCreditsCheck" class="notEnoughCredits">
                 <span>You have {{userCredits}} credits in your account. Please buy credits to create your
                     project.</span>
                 <a routerLink="/user/buy-credits">Buy Credits</a>
-            </div>
+            </div> -->
             <nav class="navbar-top scrolling-on">
                 <a href="#" class="mobile-dashboard-logo"><img src="assets/image/writehero-fav.png"></a>
                 <p class="mobile-dashboard-heading">Dashboard</p>
@@ -127,84 +127,12 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="col-lg-12 step-progress-fields">
-                                                                        <label>Word for each space</label>
-                                                                        <p>How many words do you need per piece?
-                                                                            For eBooks, it usually starts at 10,000
-                                                                            words
-                                                                        </p>
-                                                                        <input type="number"
-                                                                            (change)="calculateProjectCost(quantity.value, word_count.value)"
-                                                                            #word_count class="col-lg-4"
-                                                                            formControlName="word_count" placeholder=""
-                                                                            class="field-design"
-                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted) && projectSpecsForm.controls.word_count.errors }">
-                                                                        <p
-                                                                            *ngIf="projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted">
-                                                                            <app-form-validation-errors [isInteger]=true
-                                                                                minIntegerValue="1"
-                                                                                errorPrefix="Word for each space "
-                                                                                [errors]="projectSpecsForm.controls.word_count.errors">
-                                                                            </app-form-validation-errors>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="col-lg-12 step-progress-fields">
-                                                                        <label>Choose your package</label>
-                                                                        <p>Choose the pricing plan that best fits your
-                                                                            needs. All plans come with a 200% Workback
-                                                                            Guarantee – so
-                                                                            you don’t have to worry about quality.</p>
-                                                                        <div *ngFor="let projectPackage of getProjectPackageArray"
-                                                                            class="project-package-plans package-design basic-package">
-                                                                            <h6 class="project-package-plans-title">
-                                                                                {{projectPackage.project_type_name}}
-                                                                            </h6>
-                                                                            <p class="project-package-plans-amount">
-                                                                                ${{projectPackage.price * 100}}
-                                                                            </p>
-                                                                            <p class="project-package-plans-limit">Per
-                                                                                100
-                                                                                words</p>
-                                                                            <ul>
-                                                                                <li>Lorem ipsum dolor sit amet,
-                                                                                    consectetur
-                                                                                </li>
-                                                                                <li>Nunc quis elit non est dictum
-                                                                                    elementum
-                                                                                </li>
-                                                                                <li>Praesent ullamcorper velit vel eros
-                                                                                    posuere</li>
-                                                                            </ul>
-                                                                            <input
-                                                                                (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
-                                                                                type="radio"
-                                                                                [attr.data-packagePrice]="projectPackage.price"
-                                                                                [checked]="projectPackage.id == selectedProjectPackageId"
-                                                                                #project_package
-                                                                                formControlName="project_package"
-                                                                                value="{{projectPackage.id}}"
-                                                                                id="{{projectPackage.id}}" />
-                                                                            <label for="{{projectPackage.id}}"
-                                                                                class="submit-btn-feedback clr--size">Select
-                                                                                plan</label>
-                                                                        </div>
-
-
-
-                                                                        <div class="package-total-cost">
-                                                                            <h4>Total Cost :
-                                                                                <span>${{calculateCost}}</span></h4>
-                                                                            <p>Estimated around: 1-2 weeks</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-5">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12 step-progress-fields">
                                                                         <label>Project Details</label>
-                                                                        <p class="d-inline-block ml-ipad-3">Here is the meat of
+                                                                        <p class="d-inline-block ml-ipad-3 wtool-80">Here is the
+                                                                            meat of
                                                                             your project. We would be
-                                                                            needi...
+                                                                            needing your complete project specs
+                                                                            or...
                                                                         </p>
                                                                         <div class="about_logo_course_tooltip">
                                                                             <img src="assets/image/test_logo_icon.png">
@@ -237,7 +165,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <textarea #project_details cols="5" rows="3"
+                                                                        <textarea #project_details cols="7" rows="7"
                                                                             minLength=10 maxLength=100000
                                                                             formControlName="project_details"
                                                                             placeholder="" class="field-design"
@@ -248,28 +176,6 @@
                                                                                 maxLength=100000
                                                                                 errorPrefix="Project Details "
                                                                                 [errors]="projectSpecsForm.controls.project_details.errors">
-                                                                            </app-form-validation-errors>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="col-lg-12 step-progress-fields">
-                                                                        <label>Additional Resources</label>
-                                                                        <p>Do you have any online references that you
-                                                                            would like us to pattern your content
-                                                                            style/tone? Not
-                                                                            required but would be really, really helpful
-                                                                            for your writers.
-                                                                        </p>
-                                                                        <textarea #additional_resources cols="5"
-                                                                            rows="3" minLength=10 maxLength=100000
-                                                                            formControlName="additional_resources"
-                                                                            placeholder="" class="field-design"
-                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted) && projectSpecsForm.controls.additional_resources.errors }"></textarea>
-                                                                        <p
-                                                                            *ngIf="projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted">
-                                                                            <app-form-validation-errors minLength=10
-                                                                                maxLength=100000
-                                                                                errorPrefix="Project Details "
-                                                                                [errors]="projectSpecsForm.controls.additional_resources.errors">
                                                                             </app-form-validation-errors>
                                                                         </p>
                                                                     </div>
@@ -305,8 +211,8 @@
                                                                                     <img *ngIf="projectImage.value.file_mimetype == 'application/pdf'"
                                                                                         src="assets/image/pdf.png">
 
-                                                                                        <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
-                                                                                        src="assets/image/txt.png">    
+                                                                                    <img *ngIf="projectImage.value.file_mimetype == 'text/plain'"
+                                                                                        src="assets/image/txt.png">
 
                                                                                     <img *ngIf="(projectImage.value.file_mimetype == 'text/csv')
                                                                             ||
@@ -317,7 +223,7 @@
                                                                                     <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                                         src="assets/image/word.png">
 
-                                                                                    <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar')  || (projectImage.value.file_mimetype == 'application/octet-stream')"
+                                                                                    <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar')  || (projectImage.value.file_mimetype == 'application/octet-stream') || (projectImage.value.file_mimetype == 'application/x-zip-compressed')"
                                                                                         src="assets/image/zip.png">
 
                                                                                 </a>
@@ -330,6 +236,134 @@
                                                                     </div>
 
                                                                     <!--Upload Images Section-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Word for each space</label>
+                                                                        <p class="d-inline-block ml-ipad-3 wtool-80">How many words do you need..
+                                                                        </p>
+
+                                                                        <!--lor1-->
+                                                                        <div class=" about_logo_course_tooltip">
+                                                                            <img src="assets/image/test_logo_icon.png">
+                                                                            <div class="lor-right lorem-tooltip--outer">
+                                                                                <div class="lorem-tooltip">
+                                                                                    How many words do you need per piece?
+                                                                            For eBooks, it usually starts at 10,000
+                                                                            words.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <input type="number"
+                                                                            (change)="calculateProjectCost(quantity.value, word_count.value)"
+                                                                            #word_count class="col-lg-4"
+                                                                            formControlName="word_count" placeholder=""
+                                                                            class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted) && projectSpecsForm.controls.word_count.errors }">
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.word_count.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors [isInteger]=true
+                                                                                minIntegerValue="1"
+                                                                                errorPrefix="Word for each space "
+                                                                                [errors]="projectSpecsForm.controls.word_count.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-lg-12 step-progress-fields">
+                                                                        <label>Additional Resources</label>
+                                                                        <p class="d-inline-block ml-ipad-3 wtool-80">Do you have any online references that you would like us to pattern your content
+                                                                            style/tone?
+                                                                        </p>
+
+                                                                        <div class=" about_logo_course_tooltip">
+                                                                            <img src="assets/image/test_logo_icon.png">
+                                                                            <div class="lor-right lorem-tooltip--outer">
+                                                                                <div class="lorem-tooltip">
+                                                                                    Do you have any online references that you
+                                                                            would like us to pattern your content
+                                                                            style/tone? Not
+                                                                            required but would be really, really helpful
+                                                                            for your writers.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <textarea #additional_resources cols="7"
+                                                                            rows="7" minLength=10 maxLength=100000
+                                                                            formControlName="additional_resources"
+                                                                            placeholder="" class="field-design"
+                                                                            [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted) && projectSpecsForm.controls.additional_resources.errors }"></textarea>
+                                                                        <p
+                                                                            *ngIf="projectSpecsForm.controls.additional_resources.touched || projectSpecsSubmitted">
+                                                                            <app-form-validation-errors minLength=10
+                                                                                maxLength=100000
+                                                                                errorPrefix="Project Details "
+                                                                                [errors]="projectSpecsForm.controls.additional_resources.errors">
+                                                                            </app-form-validation-errors>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12 px-0 mt-3">
+                                                                <div class="col-lg-12 step-progress-fields">
+                                                                    <label>Choose your package</label>
+                                                                    <p>Choose the pricing plan that best fits your
+                                                                        needs. All plans come with a 200% Workback
+                                                                        Guarantee – so
+                                                                        you don’t have to worry about quality.</p>
+                                                                    <div class="row">
+                                                                        <div *ngFor="let projectPackage of getProjectPackageArray"
+                                                                        class="col-lg-4 mb-4">
+
+                                                                        <div class="project-package-plans package-design basic-package fix_height">
+                                                                        <h6 class="project-package-plans-title">
+                                                                            {{projectPackage.project_type_name}}
+                                                                        </h6>
+                                                                        <p class="project-package-plans-amount">
+                                                                            ${{projectPackage.price * 100}}
+                                                                        </p>
+                                                                        <p class="project-package-plans-limit">Per
+                                                                            100
+                                                                            words</p>
+                                                                        <ul>
+                                                                            <li>Lorem ipsum dolor sit amet,
+                                                                                consectetur
+                                                                            </li>
+                                                                            <li>Nunc quis elit non est dictum
+                                                                                elementum
+                                                                            </li>
+                                                                            <li>Praesent ullamcorper velit vel eros
+                                                                                posuere</li>
+                                                                        </ul>
+                                                                        <input
+                                                                            (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
+                                                                            type="radio"
+                                                                            [attr.data-packagePrice]="projectPackage.price"
+                                                                            [checked]="projectPackage.id == selectedProjectPackageId"
+                                                                            #project_package
+                                                                            formControlName="project_package"
+                                                                            value="{{projectPackage.id}}"
+                                                                            id="{{projectPackage.id}}" />
+                                                                        <label for="{{projectPackage.id}}"
+                                                                            class="submit-btn-feedback clr--size">Select
+                                                                            plan</label>
+
+                                                                            </div>
+                                                                    </div>
+                                                                    </div>
+
+
+                                                                    <div class="package-total-cost step-4-summary-all mb-3 d-inline-block brdr-box">
+                                                                        <h4>Total Cost :
+                                                                            <span>${{calculateCost}}</span></h4>
+                                                                        <p>Estimated around: 1-2 weeks</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -421,7 +455,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-3">
                                                                 <button type="button"
-                                                                    [disabled]="projectSpecsForm.invalid ||userCreditsCheck"
+                                                                    [disabled]="projectSpecsForm.invalid"
                                                                     (click)="onSubmitAddNewProject()"
                                                                     class="submit-btn-feedback min-w-130">
                                                                     CREATE PROJECT
