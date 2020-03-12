@@ -8,7 +8,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class NotificationComponent implements OnInit {
   notifications: any = [];
-  loading:boolean= false;
+  loading: boolean = false;
   //pagination initilize
   pageSize: number = 10;
   currentPage: number = 1;
@@ -26,12 +26,13 @@ export class NotificationComponent implements OnInit {
 
   private getNotificationListing(): void {
     this.loading = true;
-    this.userService.getUserNotifications({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe((response:any) => {
+    this.userService.getUserNotifications({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe((response: any) => {
       this.notifications = response.notifications;
       this.totalItems = response.totalItems;
+      this.userService.isProfileUpdated(true);  // Update Profile Data
       this.loading = false;
-    },error=>{
-      
+    }, error => {
+
     })
   }
 
@@ -45,8 +46,8 @@ export class NotificationComponent implements OnInit {
   }
 
 
-   // This method must be present, even if empty.
-   ngOnDestroy() {
+  // This method must be present, even if empty.
+  ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.
   }
 }

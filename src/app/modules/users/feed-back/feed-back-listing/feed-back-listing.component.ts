@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedBackService } from 'src/app/core/_services';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+// import environment
+import { environment } from '../../../../../environments/environment';
+
 @Component({
   selector: 'app-feed-back-listing',
   templateUrl: './feed-back-listing.component.html',
@@ -15,6 +18,7 @@ export class FeedBackListingComponent implements OnInit {
   pageSize: number = 10;
   currentPage: number = 1;
   totalItems: number = 0
+  defaultPath = environment.DEFAULT_PROFILE_PIC;
   constructor(private feedbackservice: FeedBackService) {}
 
   ngOnInit() {

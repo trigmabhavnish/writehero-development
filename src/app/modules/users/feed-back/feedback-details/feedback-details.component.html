@@ -15,7 +15,7 @@
                 </button>
 
             </nav>
-            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">
                     <div class="col-md-12">
@@ -34,67 +34,83 @@
                                                             <h6 class="dashboard-latest-project-title">
                                                                 Project Name : {{feedBackData?.project_name}}</h6>
 
-                                                            <p class="dashboard-latest-project-subject feeddetails--name">
-                                                                <span class="text-dark">Feedback By :</span> {{feedBackData?.user_name}}</p>
-                                                            <p class="dashboard-latest-project-subject feeddetails--name ml-lg-3">
-                                                               <span class="feeddetails--sepbar">|</span> <span class="text-dark">Date :</span>
-                                                                {{feedBackData?.feed_date | date}}
-                                                            </p>
+                                                            <div class="profilerating--status">
+                                                                <div class="statusratinfg---pic">
+                                                                    <img
+                                                                        [src]="(feedBackData?.profile_pic) ? (feedBackData?.profile_pic)  : defaultPath">
+                                                                </div>
+                                                                <div class="statusrating--by">
+                                                                    <p
+                                                                        class="dashboard-latest-project-subject feeddetails--name d-block my-1">
+                                                                        {{(feedBackData?.first_name)?(feedBackData?.first_name):(feedBackData?.user_name)}}
+                                                                    </p>
+                                                                    <p
+                                                                        class="dashboard-latest-project-subject feeddetails--name d-block">
+                                                                        {{feedBackData?.feed_date | date}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+
+
 
                                                             <div class="feedall-ratingsouter">
-                                                            <h6 *ngFor="let rate of allRateData;let i = index;" class="dashboard-latest-project-subject color--4a48 rating-right font-11">
-                                                                <ng-container *ngIf="rate.type == 'O'">
-                                                                    Originality and Creativity : <rating [readonly]="true"
-                                                                    [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                               <ng-container *ngIf="rate.type == 'R'">
-                                                                Reliability and Credibility: <rating [readonly]="true"
-                                                                 [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                               <ng-container *ngIf="rate.type == 'G'">
-                                                                Grammar and Language:<rating [readonly]="true"
-                                                                 [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                               <ng-container *ngIf="rate.type == 'F'">
-                                                                Format and structure:<rating [readonly]="true"
-                                                                 [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                               <ng-container *ngIf="rate.type == 'S'">
-                                                                SEO and Keywords:<rating  [readonly]="true"
-                                                                 [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                               <ng-container *ngIf="rate.type == 'T'">
-                                                                Turnaround time:<rating  [readonly]="true"
-                                                                 [(ngModel)]="rate.rate_value"
-                                                                >
-                                                                   </rating>
-                                                               </ng-container>
-                                                                
-                                                            </h6>
+                                                                <h6 *ngFor="let rate of allRateData;let i = index;"
+                                                                    class="dashboard-latest-project-subject color--4a48 rating-right font-11">
+                                                                    <ng-container *ngIf="rate.type == 'O'">
+                                                                        Originality and Creativity : <rating
+                                                                            [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="rate.type == 'R'">
+                                                                        Reliability and Credibility: <rating
+                                                                            [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="rate.type == 'G'">
+                                                                        Grammar and Language:<rating [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="rate.type == 'F'">
+                                                                        Format and structure:<rating [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="rate.type == 'S'">
+                                                                        SEO and Keywords:<rating [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="rate.type == 'T'">
+                                                                        Turnaround time:<rating [readonly]="true"
+                                                                            [(ngModel)]="rate.rate_value">
+                                                                        </rating>
+                                                                    </ng-container>
 
-                                                         
-                                                                     
-                                                                     
-                                                                     
-                                                                     
-                                                            <h6 *ngIf="feedBackData?.overall_rate" class="dashboard-latest-project-subject mt-3 font-15">
-                                                               <span class="ov-rate font-weight-bold"> OverAll Rating :</span> <rating [readonly]="true" [(ngModel)]="feedBackData.overall_rate">
-                                                                   </rating></h6>    
-                                                                
-                                                            <h6 class="dashboard-latest-project-subject">
-                                                                  <span class="text-dark mr-1">  Over All Feedback : </span> {{feedBackData?.feed_desc}}</h6>  
+                                                                </h6>
+
+
+
+
+
+
+                                                                <h6 *ngIf="feedBackData?.overall_rate"
+                                                                    class="dashboard-latest-project-subject mt-3 font-15">
+                                                                    <span class="ov-rate font-weight-bold"> OverAll
+                                                                        Rating :</span>
+                                                                    <rating [readonly]="true"
+                                                                        [(ngModel)]="feedBackData.overall_rate">
+                                                                    </rating>
+                                                                </h6>
+
+                                                                <h6 class="mt-2 dashboard-latest-project-subject">
+                                                                    <span class="text-dark mr-1 ln-24"> Over All Feedback :
+                                                                    </span> {{feedBackData?.feed_desc}}</h6>
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     </div>
 
                                                 </div>

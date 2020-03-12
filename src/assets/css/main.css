@@ -810,6 +810,12 @@ position: relative;
 .client-logo {
     text-align: center;
     height: 124px;
+    margin-bottom: 25px;
+}
+.client-logo > img {
+    max-width: 100%;
+    object-fit: contain;
+    height: 100%;
 }
 .section-clients {
     background: url(../image/writehero-client-map-background.jpg)  no-repeat center center/contain;
@@ -1288,6 +1294,34 @@ footer p span {
 .completed-project-detail::before {
     background-color: #e8325f;
 }
+
+/*status__class*/
+.new__status::before {
+    background-color: #0068dd;
+}
+.pause__status::before {
+    background-color: #f0d021;
+}
+.complete__status::before {
+    background-color: #e8325f;
+}
+.pending__status::before {
+    background-color: #e0601a;
+}
+.cancel__status::before {
+    background-color: #f00;
+}
+.revised__status::before {
+    background-color: #701396;
+}
+.resume__status::before {
+    background-color: #00ce10;
+}
+.draft__status::before {
+    background-color: #8c8c8c;
+}
+
+
 .est-date p {
     font-weight: 600;
     font-size: 12px;

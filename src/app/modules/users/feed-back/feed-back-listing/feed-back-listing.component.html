@@ -1,72 +1,81 @@
 <div class="dashboard-gutter">
-    <div class="container-fluid px-lg-0" data-layout="container-fluid">
-        <div class="dashboard-content">
-            <nav class="navbar-top scrolling-on">
-                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/writehero-fav.png"></a>
-                <p class="mobile-dashboard-heading">Dashboard</p>
-                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <div class="container-fluid px-lg-0" data-layout="container-fluid">
+    <div class="dashboard-content">
+      <nav class="navbar-top scrolling-on">
+        <a href="#" class="mobile-dashboard-logo"><img src="assets/image/writehero-fav.png"></a>
+        <p class="mobile-dashboard-heading">Dashboard</p>
+        <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            </nav>
-          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+      </nav>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 
-         
-          <div class="dashboard-welcome-note">
-              <p>Feedbacks</p>
-          </div>
-          <p class="support-content-desc">Hi transparency is key. Here you can see most of our REAL feedbacks from happy, delighted,
-              disappointed, raging or meh customers! To add a feedback from a recent completed project, click the
-              red button below.</p>
-         
-          <div class="table-responsive">
 
-          
+      <div class="dashboard-welcome-note">
+        <p>Feedbacks</p>
+      </div>
+      <p class="support-content-desc">Hi transparency is key. Here you can see most of our REAL feedbacks from happy,
+        delighted,
+        disappointed, raging or meh customers! To add a feedback from a recent completed project, click the
+        red button below.</p>
+
+      <div class="table-responsive">
+
+
         <table class="table sr__only sr--0">
-            <thead>
-              <tr>
-                <th>S.No.</th>
-                <th>Date</th>
-                <th>Feedback</th>
-                <th>Rating</th>
-                <th>Rating By</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let feedback of feedbacks | paginate: { id: 'foo',
+          <thead>
+            <tr>
+              <th>S.No.</th>
+              <th>Date</th>
+              <th>Feedback</th>
+              <th>Rating</th>
+              <th>Rating By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let feedback of feedbacks | paginate: { id: 'foo',
               itemsPerPage: pageSize,
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
-                <td>{{i+1}}</td>
-                <td>{{feedback?.feed_date | date }}</td>
-                <td><span class="line--clamp">{{feedback?.feed_desc}}</span></td>
-                <td><rating [(ngModel)]="feedback.overall_rate" [readonly]="true">
-               </rating></td>
-                <td>{{feedback?.user_name}}</td>
-                <td><a title="View Feedback" [routerLink]="['/user/feedback-details/', feedback.user_id,feedback.project_id]" ><i class="fa fa-eye"></i> </a></td>
-              </tr>      
-              
-            </tbody>
-            
-          </table>
+              <td>{{i+1}}</td>
+              <td>{{feedback?.feed_date | date }}</td>
+              <td><span class="line--clamp">{{feedback?.feed_desc}}</span></td>
+              <td>
+                <rating [(ngModel)]="feedback.overall_rate" [readonly]="true">
+                </rating>
+              </td>
+              <td>
+                <div class="pc-wrap">
+                  <div class="feedback_profile_pic"><img 
+                      [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath"></div>
+                  {{(feedback?.first_name)?(feedback?.first_name):(feedback?.user_name)}}
+                </div>
+              </td>
+              <td><a title="View Feedback"
+                  [routerLink]="['/user/feedback-details/', feedback.user_id,feedback.project_id]"><i
+                    class="fa fa-eye"></i> </a></td>
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+
+      <div class="row" *ngIf="feedbacks.length > 0">
+        <div class="col-md-12 writer-pagination mb-3">
+          <pagination-controls id="foo" (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)"
+            maxSize="9" directionLinks="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+            screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page">
+          </pagination-controls>
         </div>
-          
-          <div class="row" *ngIf="feedbacks.length > 0">
-            <div class="col-md-12 writer-pagination mb-3">
-                <pagination-controls id="foo" (pageChange)="pageChanged($event)"
-                    (pageBoundsCorrection)="pageChanged($event)" maxSize="9"
-                    directionLinks="true" responsive="true" previousLabel="Previous"
-                    nextLabel="Next" screenReaderPaginationLabel="Pagination"
-                    screenReaderPageLabel="page">
-                </pagination-controls>
-            </div>
-        </div>
-        <div class="col-md-12 text-right">
-          <a type="button" routerLink="/user/create-feedback" class="btn-ticket bg-142">Submit Feedback</a>
-        </div>
-</div>
+      </div>
+      <div class="col-md-12 text-right">
+        <a type="button" routerLink="/user/create-feedback" class="btn-ticket bg-142">Submit Feedback</a>
+      </div>
+    </div>
   </div>
 </div>

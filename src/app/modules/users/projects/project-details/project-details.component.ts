@@ -34,6 +34,8 @@ export class ProjectDetailsComponent implements OnInit {
   projectDetails: any = {};
   projectStatus: any = [];
   loading: boolean = false;
+  expandProjectDetails: boolean = false;
+  expandAdditionalResources: boolean = false;
 
   constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private userAuthService: UsersService,  private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
@@ -65,7 +67,7 @@ export class ProjectDetailsComponent implements OnInit {
   /**
    * Cancel the Project
    */
-  onCancelProject(): void {
+  onCancelProject(project_status): void {
 
     Swal.fire({
       title: environment.MESSAGES.CANCEL_PROJECT,
@@ -76,7 +78,7 @@ export class ProjectDetailsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
-        this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
+        this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost, project_status: project_status }).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
             this.getProjectDetails();
@@ -160,7 +162,7 @@ export class ProjectDetailsComponent implements OnInit {
     return !!pattern.test(thisURL);
   }
 
-
+  
 
   // This method must be present, even if empty.
   ngOnDestroy() {

@@ -485,7 +485,7 @@ export class ProfileComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Profile');
+          formData.append('folder', 'profile_pics');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', self.base64StringFile);
         });
@@ -503,7 +503,7 @@ export class ProfileComponent implements OnInit {
 
 
           self.zone.run(() => {
-            self.profileFilesArray.push({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Profile' });
+            self.profileFilesArray.push({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'profile_pics' });
           });
           self.updateProfilePic(serverResponse);
           this.removeFile(file);
