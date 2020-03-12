@@ -50,6 +50,11 @@ export class HeaderComponent implements OnInit {
 
   }
 
+
+  public setScroll(value):void{
+    this.userAuthService.setScroll(value);
+  }
+
   loadScripts() {
     const dynamicScripts = [     
      'assets/js/app.js'

@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private feedbackservice: FeedBackService, private toastr: ToastrManager, private router: Router) { }
 
   customOptions: OwlOptions = {
-    margin: 20,    
+    margin: 20,
     nav: true,
     loop: true,
     responsive: {
@@ -67,6 +67,12 @@ export class HomeComponent implements OnInit {
     // if User Logged In then redirect to Dashboard Page
     this.userAuthService.checkLoginAndRedirect();
     this.getFeedBackLsiting();
+    this.userAuthService.scrollId.subscribe(response => {
+
+      $('html, body').animate({
+        scrollTop: $(`#${response.scrollId}`).offset().top
+      }, 1000);
+    })
   }
 
   // This method must be present, even if empty.
@@ -75,18 +81,18 @@ export class HomeComponent implements OnInit {
   }
 
   private getFeedBackLsiting(): void {
-    
-    this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => { 
-      this.feedbacks = response.feedback;    
-      console.log(response.feedback);  
+
+    this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
+      this.feedbacks = response.feedback;
+      console.log(response.feedback);
       //this.totalItems = response.totalItems;
-      
-    },error=>{
-      
+
+    }, error => {
+
     })
   }
 
-  ngAfterViewInit() {    
+  ngAfterViewInit() {
     $(".counter").countimator();
   }
 
