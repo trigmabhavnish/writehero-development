@@ -25,12 +25,12 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
 
   isLoggedin: boolean = false;
-  
+
   loginSubscription: Subscription;
   isHomeUrl: boolean = false;
   constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) {
     this.loadScripts();
-   }
+  }
 
   ngOnInit() {
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     }
 
     this.router.events.subscribe(() => {
-        this.isHomeUrl = !this.router.routerState.snapshot.url.includes('user');
+      this.isHomeUrl = !(this.router.routerState.snapshot.url.includes('user') || this.router.routerState.snapshot.url.includes('terms') || this.router.routerState.snapshot.url.includes('privacy'));
     })
 
     this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
@@ -51,13 +51,13 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  public setScroll(value):void{
+  public setScroll(value): void {
     this.userAuthService.setScroll(value);
   }
 
   loadScripts() {
-    const dynamicScripts = [     
-     'assets/js/app.js'
+    const dynamicScripts = [
+      'assets/js/app.js'
     ];
     for (let i = 0; i < dynamicScripts.length; i++) {
       const node = document.createElement('script');
@@ -69,4 +69,15 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+  public toggleClass(): void {
+    $("body").toggleClass("overflow-hidinghome");
+    $(".nav-link").click(function () {
+      $("nav").removeClass("show");
+    });
+  }
+  public showRemove(): void {
+
+    $(".navbar-collapse").removeClass("show");
+  }
 }

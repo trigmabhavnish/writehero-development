@@ -10,16 +10,7 @@
                     project.</span>
                 <a routerLink="/user/buy-credits">Buy Credits</a>
             </div> -->
-            <nav class="navbar-top scrolling-on">
-                <a href="#" class="mobile-dashboard-logo"><img src="assets/image/writehero-fav.png"></a>
-                <p class="mobile-dashboard-heading">Dashboard</p>
-                <button class="navbar-toggler overflow-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="true"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-            </nav>
+            <app-inner-header></app-inner-header>
             <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
             <div class="Dashboard-inner-contents">
                 <div class="row ipad-margin-gutter">

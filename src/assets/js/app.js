@@ -30,8 +30,8 @@ $(document).ready(function() {
 
 
 //adding class to body
-  var removeClass = true;
-jQuery(".overflow-toggler").click(function () {
+var removeClass = true;
+$(".overflow-toggler").click(function () {
 	console.log('hello');
     $("body").toggleClass('overflow-hiding');
     removeClass = false;
@@ -50,13 +50,8 @@ $("html").click(function () {
 
 //remove class from nav
 $(".list-group-item").click(function(){
-	$("nav").removeClass("show");
+	$(".navbar-collapse").removeClass("show");
   });
-  
-//upload btn js starts
-$(".uploadcode").on("change", ".file-upload-field", function(){ 
-    $(this).parent(".file-upload-wrapper").attr("data-text",$(this).val().replace(/.*(\/|\\)/, ''));
-});
 
 
 //addtional ends
