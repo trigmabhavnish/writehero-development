@@ -317,6 +317,11 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
     cursor: pointer;
     float: right;
 }
+.target--text {
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+}
 .about_logo_course_tooltip:hover .lorem-tooltip--outer {
     display: block;
 }

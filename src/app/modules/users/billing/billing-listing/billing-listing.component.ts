@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CreditsService } from 'src/app/core/_services';
+import { Router } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import * as jsPDF from 'jspdf';
 
@@ -20,7 +21,7 @@ export class BillingListingComponent implements OnInit {
   invoiceDetails: any;
   calculateDiscount: any;
   @ViewChild('invoiceDiv', { static: false }) content: ElementRef;
-  constructor(private creditService: CreditsService) { }
+  constructor(private creditService: CreditsService,private router: Router) { }
 
   ngOnInit() {
     this.getCreditListing();
@@ -82,7 +83,9 @@ export class BillingListingComponent implements OnInit {
     this.getCreditListing();
   }
 
-
+  public navigateToBuyCredits():void{
+    this.router.navigate(['/user/buy-credits'])
+  }
 
 
   // This method must be present, even if empty.

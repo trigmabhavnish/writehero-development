@@ -84,7 +84,7 @@
                                                                             <div
                                                                                 class="dashborad-project-estimation xs">
                                                                                 <span
-                                                                                    class="total-costtitle col-lg-12">Cost</span>
+                                                                                    class="total-costtitle col-lg-12">{{latest?.project_type_name}}</span>
                                                                                 <span
                                                                                     class="dashboard-latest-project-result font-weight-bold">${{latest?.project_cost}}</span>
                                                                             </div>
@@ -96,7 +96,7 @@
                                                                             class="dashboard-latest-project-subject">Details</span>
                                                                         <span 
                                                                             class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0 line--clamp wb-all">{{latest?.project_dtl}}</span>
-                                                                            <a routerLink="/user/project-detail/{{latest.id}}" *ngIf="latest.project_dtl && latest.project_dtl.length >= 240 && expandProjectData == false" class="expand_data" >+more</a>    
+                                                                            <a routerLink="/user/project-detail/{{latest.id}}" *ngIf="latest.project_dtl && latest.project_dtl.length >= 240 && expandProjectData == false" class="target--text expand_data" >+more</a>    
 
                                                                     </div>
                                                                 </div>
@@ -193,7 +193,7 @@
                                                                 </div>
                                                                 <div class="dashborad-project-estimation row mx-0 mt-2">
                                                                     <span
-                                                                        class="dashboard-latest-project-subject col-md-2">Project</span>
+                                                                        class="dashboard-latest-project-subject col-md-2">Subject</span>
                                                                     <span
                                                                         class="dashboard-latest-project-result font-weight-bold col-md-10">{{latest?.subject}}</span>
                                                                 </div>

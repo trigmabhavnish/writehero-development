@@ -361,6 +361,9 @@
 
 
 @media (max-width:991px) { 
+    .ovf--hide {
+        overflow: hidden;
+    }
     .tabs + .tabs {
         margin-left: 0px;
     }

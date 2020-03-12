@@ -7,7 +7,11 @@ export const environment = {
   DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  
   TWO_CEHCKOUT_SELLER_ID:'901419990',
   TWO_CHECKOUT_PUBLISHKEY:'E2998212-081C-4D18-8318-37FD811576B2',
-
+  SOCIAL_LOGINS: {   
+    FACEBOOK: {
+      FACEBOOK_APP_ID: '229276431530893',
+    }
+  },
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
