@@ -23,7 +23,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
                     // window.alert(errorMessage);                    
                     let redirectUrl = '';
-                    if (errorMessage == 'Invalid token' || errorMessage  == 'Access denied. No token provided.') {
+                    if (errorMessage == 'Token Expired' || errorMessage  == 'Access denied. No token provided.') {
                         
 
                         //localStorage.removeItem('loggedinUser');

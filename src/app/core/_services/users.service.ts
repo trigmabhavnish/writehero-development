@@ -13,12 +13,16 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class UsersService {
 
   public loggedIn: Subject<any> = new Subject<any>();
+  public scrollId: Subject<any> = new Subject<any>();
   public profileUpdatedStatus: Subject<any> = new Subject<any>();
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   isLoggedIn(value: boolean, accountType: String) {
     this.loggedIn.next({ isLoggedIn: value, accountType: accountType });
+  }
+  setScroll(value: boolean) {
+    this.scrollId.next({ scrollId: value });
   }
   checkLoggedinStatus(): Observable<any> {
     return this.loggedIn.asObservable();
@@ -82,6 +86,17 @@ export class UsersService {
       });
   }
 
+   /**
+  * User Login
+  * @return string
+  */
+ loginWithFb(postedData): Observable<any> {
+  return this.httpClient
+    .post('user/loginWithFb', postedData, { observe: 'response' })
+    .map((response: any) => {
+      return response;
+    });
+}
   /**
   * User Logout
   * @return object

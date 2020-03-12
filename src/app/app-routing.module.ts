@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'web', pathMatch: 'full' },
+ 
   {
-    path: 'web',
+    path: '',
     loadChildren: './modules/front/front.module#FrontModule'
   },
   {
