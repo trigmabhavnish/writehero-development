@@ -1881,7 +1881,8 @@ textarea {
     background-color: rgba(0,0,0,0.5);
 }
 .modal-dialog {
-    margin: 0 auto !important;
+    margin: 20px auto !important;
+    max-width: 800px !important;
 }
 .bt-modal-centered {
     display: flex;
@@ -2921,7 +2922,17 @@ color: #fff;
       background: #D6D6D6 !important;
     }
 /*Wizard css ends*/
-
+.btn-bookwy {
+    background: #404ae3;
+    border: 0;
+    border-radius: 0px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    line-height: normal;
+    padding: 11px 13px;
+}
 /*New design css ends*/
 /*project detail css ends*/
 /*Project css ends*/

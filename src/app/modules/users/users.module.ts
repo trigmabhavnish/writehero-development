@@ -36,7 +36,27 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddNewProjectAdvancedComponent } from './projects/add-new-project-advanced/add-new-project-advanced.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
 
+
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider(environment.SOCIAL_LOGINS.FACEBOOK.FACEBOOK_APP_ID)
+        }
+     
+      ]
+  );
+  return config;
+}
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -47,6 +67,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 @NgModule({
   declarations: [ProjectsListingComponent,SignupComponent, LoginComponent, DashboardComponent, AddNewProjectComponent, CustomWizardComponent, BuyCreditsComponent, ForgotPasswordComponent, ResetPasswordComponent, TicketListingComponent, CreateTicketComponent, ViewTicketComponent, ProjectDetailsComponent, EditProjectComponent, FeedBackListingComponent, CreateFeedBackComponent, FeedbackDetailsComponent,BillingListingComponent, ProfileComponent, AddNewProjectAdvancedComponent, NotificationComponent, ChangePasswordComponent],  
   imports: [
+    SocialLoginModule,
     CommonModule,
     UsersRoutingModule,
     FormsModule,
@@ -72,7 +93,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
-    }
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    },
   ]
 })
 export class UsersModule { }

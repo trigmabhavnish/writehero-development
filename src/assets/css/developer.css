@@ -86,6 +86,12 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
 .solving--btn-outer {
     margin-top: 25px;
 }
+.termscondition--template {
+    padding: 110px;
+}
+.sr__only.td--auto tr td:nth-child(3) {
+    width: auto;
+}
 .sr__only tr td:nth-child(3) {
     width: 40%;
 }

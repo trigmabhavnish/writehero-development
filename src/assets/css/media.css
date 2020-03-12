@@ -606,6 +606,10 @@
 }
 
 @media (max-width:640px) { 
+.modal-dialog {
+    margin: 30px 5px !important;
+    width: 85%;
+}
 .btn-done {
 	padding: 12px 24px;
 }

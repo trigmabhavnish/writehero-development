@@ -82,6 +82,17 @@ export class UsersService {
       });
   }
 
+   /**
+  * User Login
+  * @return string
+  */
+ loginWithFb(postedData): Observable<any> {
+  return this.httpClient
+    .post('user/loginWithFb', postedData, { observe: 'response' })
+    .map((response: any) => {
+      return response;
+    });
+}
   /**
   * User Logout
   * @return object

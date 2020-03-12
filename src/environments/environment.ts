@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //API_ENDPOINT: 'http://13.235.163.1:3000',
-  API_ENDPOINT: 'http://localhost:3000',
+  API_ENDPOINT: 'http://13.235.163.1:3000',
+  // API_ENDPOINT: 'http://localhost:3000',
   WEB_ENDPOINT: 'http://localhost:4200',
   S3_BUCKET_URL: 'http://bookwy.s3.amazonaws.com/',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
@@ -13,7 +13,13 @@ export const environment = {
   DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  
   TWO_CEHCKOUT_SELLER_ID:'901419990',
   TWO_CHECKOUT_PUBLISHKEY:'E2998212-081C-4D18-8318-37FD811576B2',
-
+  //social logins
+  SOCIAL_LOGINS: {
+   
+    FACEBOOK: {
+      FACEBOOK_APP_ID: '229276431530893',
+    }
+  },
   MESSAGES: {
     ERROR_TEXT_LOADER: 'Oops!',
     SIGNING_UP: 'Signing up.. please wait',
@@ -43,11 +49,3 @@ export const environment = {
   }
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
