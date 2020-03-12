@@ -35,7 +35,9 @@ export class LeftSidebarComponent implements OnInit {
   notificationCount:any;
   defaultPath = environment.DEFAULT_PROFILE_PIC;
 
-  constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
+  constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { 
+    this.loadScripts()
+  }
 
   ngOnInit() {
 
@@ -103,6 +105,20 @@ export class LeftSidebarComponent implements OnInit {
    this.router.navigate(['/user/notifications'])
  }
 
+
+ loadScripts() {
+  const dynamicScripts = [     
+   'assets/js/app.js'
+  ];
+  for (let i = 0; i < dynamicScripts.length; i++) {
+    const node = document.createElement('script');
+    node.src = dynamicScripts[i];
+    node.type = 'text/javascript';
+    node.async = false;
+    node.charset = 'utf-8';
+    document.getElementsByTagName('head')[0].appendChild(node);
+  }
+}
   // This method must be present, even if empty.
   ngOnDestroy() {
     // To protect you, we'll throw an error if it doesn't exist.

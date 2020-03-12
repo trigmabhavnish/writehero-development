@@ -60,7 +60,7 @@
         <nav class="navbar navbar-expand-lg" id=customnavbar>
             <div class="container-custom">
                 <a class="navbar-brand" routerLink="/"><img src="assets/image/logo.png"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                <button class="navbar-toggler overflow-togglerhome" (click)="toggleClass()" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -75,10 +75,10 @@
                             <a class="nav-link" href="#">Pricing</a>
                         </li>
                         <li class="nav-item" routerLinkActive="active">
-                            <a class="nav-link" routerLink="/user/signup">Register</a>
+                            <a class="nav-link" (click)="showRemove()" routerLink="/user/signup">Register</a>
                         </li>
                         <li class="nav-item" routerLinkActive="active">
-                            <a class="nav-link" routerLink="/user/login">Login</a>
+                            <a class="nav-link" (click)="showRemove()" routerLink="/user/login">Login</a>
                         </li>
                     </ul>
                 </div>

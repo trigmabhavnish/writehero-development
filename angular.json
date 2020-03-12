@@ -43,6 +43,7 @@
               "src/assets/js/popper.min.js",              
               "src/assets/js/counter.js",
               "src/assets/js/aos.js",
+              "src/assets/js/app.js",
               "./node_modules/aos/dist/aos.js"
             ]
           },

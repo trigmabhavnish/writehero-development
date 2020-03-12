@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     }
 
     this.router.events.subscribe(() => {
-        this.isHomeUrl = !this.router.routerState.snapshot.url.includes('user');
+        this.isHomeUrl = !(this.router.routerState.snapshot.url.includes('user') || this.router.routerState.snapshot.url.includes('terms') || this.router.routerState.snapshot.url.includes('privacy'));
     })
 
     this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
@@ -69,4 +69,15 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+  public toggleClass():void{
+    $("body").toggleClass("overflow-hidinghome");
+    $(".nav-link").click(function(){
+      $("nav").removeClass("show");
+      });
+  }
+  public showRemove():void{
+ 
+      $(".navbar-collapse").removeClass("show");
+  }
 }
