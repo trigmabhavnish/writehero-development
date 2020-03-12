@@ -21,10 +21,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         // server-side error
                         errorMessage = error.error
                     }
-                    // window.alert(errorMessage);                    
+                    // window.alert(errorMessage); 
+                    console.log('errorMessage',errorMessage)                   
                     let redirectUrl = '';
-                    if (errorMessage == 'Token Expired' || errorMessage  == 'Access denied. No token provided.') {
-                        
+                    if (errorMessage['response'] == 'Token Expired' || errorMessage  == 'Access denied. No token provided.') {
+                         console.log('errorMessage',errorMessage)
 
                         //localStorage.removeItem('loggedinUser');
                         localStorage.clear();
