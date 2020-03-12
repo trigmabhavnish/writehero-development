@@ -323,9 +323,9 @@ export class ProfileComponent implements OnInit {
       //dob: [''],
 
       password: ['', Validators.compose([        
-        Validators.minLength(10),
+        Validators.minLength(8),
         Validators.maxLength(50),
-        // check whether the entered password has a number
+        /*// check whether the entered password has a number
         CustomValidator.patternValidator(/\d/, {
           hasNumber: true
         }),
@@ -343,7 +343,7 @@ export class ProfileComponent implements OnInit {
           {
             hasSpecialCharacters: true
           }
-        )
+        ) */
       ])
       ],
       confirm_password: [''],
@@ -435,7 +435,7 @@ export class ProfileComponent implements OnInit {
       errorReset: null,
       cancelReset: null,
       acceptedFiles: 'image/*',
-      maxFilesize: 2, // MB,
+      maxFilesize: 5, // MB,
       dictDefaultMessage: '<span class="button"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
@@ -443,7 +443,7 @@ export class ProfileComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid png, jpeg, jpg, gif images are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictFileTooBig: 'Maximum upload file size limit is 5MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {
@@ -485,7 +485,7 @@ export class ProfileComponent implements OnInit {
 
         this.on('sending', function (file, xhr, formData) {
 
-          formData.append('folder', 'Profile');
+          formData.append('folder', 'profile_pics');
           formData.append('fileType', file.type);
           formData.append('base64StringFile', self.base64StringFile);
         });
@@ -503,7 +503,7 @@ export class ProfileComponent implements OnInit {
 
 
           self.zone.run(() => {
-            self.profileFilesArray.push({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'Profile' });
+            self.profileFilesArray.push({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'profile_pics' });
           });
           self.updateProfilePic(serverResponse);
           this.removeFile(file);

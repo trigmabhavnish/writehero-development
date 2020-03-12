@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FeedBackService } from 'src/app/core/_services';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+// import environment
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-feedback-details',
   templateUrl: './feedback-details.component.html',
@@ -13,6 +15,7 @@ export class FeedbackDetailsComponent implements OnInit {
   feedBackData:any;
   allRateData:any;
   loading:boolean =false;
+  defaultPath = environment.DEFAULT_PROFILE_PIC;
   constructor(private route:ActivatedRoute,private feedbckservice: FeedBackService) { }
 
   ngOnInit() {

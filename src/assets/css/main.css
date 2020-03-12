@@ -810,6 +810,12 @@ position: relative;
 .client-logo {
     text-align: center;
     height: 124px;
+    margin-bottom: 25px;
+}
+.client-logo > img {
+    max-width: 100%;
+    object-fit: contain;
+    height: 100%;
 }
 .section-clients {
     background: url(../image/writehero-client-map-background.jpg)  no-repeat center center/contain;
@@ -1288,6 +1294,60 @@ footer p span {
 .completed-project-detail::before {
     background-color: #e8325f;
 }
+
+/*status__class*/
+.new__status::before {
+    background-color: #0068dd;
+}
+.pause__status::before {
+    background-color: #f0d021;
+}
+.complete__status::before {
+    background-color: #e8325f;
+}
+.pending__status::before {
+    background-color: #e0601a;
+}
+.cancel__status::before {
+    background-color: #f00;
+}
+.revised__status::before {
+    background-color: #701396;
+}
+.resume__status::before {
+    background-color: #00ce10;
+}
+.draft__status::before {
+    background-color: #8c8c8c;
+}
+
+
+.blibker.new__status {
+    background-color: #0068dd;
+}
+.blibker.pause__status {
+    background-color: #f0d021;
+}
+.blibker.complete__status {
+    background-color: #e8325f;
+}
+.blibker.pending__status {
+    background-color: #e0601a;
+}
+.blibker.cancel__status {
+    background-color: #f00;
+}
+.blibker.revised__status {
+    background-color: #701396;
+}
+.blibker.resume__status {
+    background-color: #00ce10;
+}
+.blibker.draft__status {
+    background-color: #8c8c8c;
+}
+
+
 .est-date p {
     font-weight: 600;
     font-size: 12px;
@@ -2922,6 +2982,29 @@ color: #fff;
       background: #D6D6D6 !important;
     }
 /*Wizard css ends*/
+app-form-validation-errors {
+    position: relative !important;
+}
+.brdr-box {
+    border: 1px solid rgba(59,56,255,0.2);
+}
+.wtool-80 {
+    width: 80%;
+}
+.close--ticketpoint {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0a004a;
+    text-align: right;
+}
+.close--ticketpoint + a {
+    margin-left: 10px;
+    padding: 8px 21px !important;
+    border: 0px !important;
+}
+.dispute_media {
+    margin: 20px 0px !important;
+}    
 .btn-bookwy {
     background: #404ae3;
     border: 0;

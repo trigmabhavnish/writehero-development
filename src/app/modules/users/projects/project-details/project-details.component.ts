@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 import { PageLoaderService } from '../../../../shared/_services'
 
 //import core services
-import { ProjectsService, CommonUtilsService } from '../../../../core/_services';
+import { ProjectsService, CommonUtilsService, UsersService } from '../../../../core/_services';
 
 @Component({
   selector: 'app-project-details',
@@ -34,8 +34,10 @@ export class ProjectDetailsComponent implements OnInit {
   projectDetails: any = {};
   projectStatus: any = [];
   loading: boolean = false;
+  expandProjectDetails: boolean = false;
+  expandAdditionalResources: boolean = false;
 
-  constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
+  constructor(private zone: NgZone, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private userAuthService: UsersService,  private toastr: ToastrManager, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('_id');
@@ -65,7 +67,7 @@ export class ProjectDetailsComponent implements OnInit {
   /**
    * Cancel the Project
    */
-  onCancelProject(): void {
+  onCancelProject(project_status): void {
 
     Swal.fire({
       title: environment.MESSAGES.CANCEL_PROJECT,
@@ -76,10 +78,11 @@ export class ProjectDetailsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
-        this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost }).pipe(untilDestroyed(this)).subscribe(
+        this.projectsService.cancelProject({ project_id: this.projectId, project_cost: this.projectCost, project_status: project_status }).pipe(untilDestroyed(this)).subscribe(
           //case success
           (res) => {
             this.getProjectDetails();
+            this.userAuthService.isProfileUpdated(true);  // Update Profile Data
             this.commonUtilsService.onSuccess(res.response);
 
           }, error => {
@@ -110,6 +113,7 @@ export class ProjectDetailsComponent implements OnInit {
         (res) => {
           this.loading = false;
           this.getProjectDetails();
+          this.userAuthService.isProfileUpdated(true);  // Update Profile Data
           this.commonUtilsService.onSuccess(res.response);
         }, error => {
           this.loading = false;
@@ -132,6 +136,7 @@ export class ProjectDetailsComponent implements OnInit {
       (res) => {
         this.loading = false;
         this.getProjectDetails();
+        this.userAuthService.isProfileUpdated(true);  // Update Profile Data
         this.commonUtilsService.onSuccess(res.response);
 
       }, error => {
@@ -157,7 +162,7 @@ export class ProjectDetailsComponent implements OnInit {
     return !!pattern.test(thisURL);
   }
 
-
+  
 
   // This method must be present, even if empty.
   ngOnDestroy() {

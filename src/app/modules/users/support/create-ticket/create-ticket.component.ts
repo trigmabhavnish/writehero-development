@@ -106,7 +106,7 @@ export class CreateTicketComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictFileTooBig: 'Maximum upload file size limit is 50MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {
@@ -143,7 +143,7 @@ export class CreateTicketComponent implements OnInit {
             return false;
           } */
 
-
+          self.loading = true; // show page loader
           self.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
           done();
 
@@ -162,9 +162,11 @@ export class CreateTicketComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          self.loading = true; // Show Loader
+          //self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            self.commonUtilsService.hidePageLoader(); //hide page loader
+            self.loading = false; 
+            //self.commonUtilsService.hidePageLoader(); //hide page loader
           }
         })
 
@@ -173,16 +175,16 @@ export class CreateTicketComponent implements OnInit {
 
           self.zone.run(() => {
             self.supportFilesArray.push(new FormControl({ file_path: serverResponse.fileLocation, file_name: serverResponse.fileName, file_key: serverResponse.fileKey, file_mimetype: serverResponse.fileMimeType, file_category: 'support_file' }));
-          });
-
+          });          
           this.removeFile(file);
+          self.loading = false; 
           self.commonUtilsService.hidePageLoader(); //hide page loader
         });
 
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-
+          self.loading = false; 
           self.commonUtilsService.onError(error);
         });
 

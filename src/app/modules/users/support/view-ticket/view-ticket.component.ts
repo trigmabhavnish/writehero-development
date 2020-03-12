@@ -21,6 +21,9 @@ export class ViewTicketComponent implements OnInit {
   public supportFileConfiguration: DropzoneConfigInterface;
   base64StringFile: any;
   disabled: boolean = false;
+  expandUserTicketData:boolean = false;
+  expandAdminTicketData:boolean = false;
+
   constructor(private fb: FormBuilder, private zone: NgZone, private commonUtilsService: CommonUtilsService, private route: ActivatedRoute, private supportService: SupportService) { }
 
   ngOnInit() {
@@ -99,7 +102,7 @@ export class ViewTicketComponent implements OnInit {
       errorReset: null,
       cancelReset: null,
       acceptedFiles: '.pdf, .doc, .docx, .txt, .zip, .rar, .xlsx, .csv',
-      maxFilesize: 2, // MB,
+      maxFilesize: 50, // MB,
       dictDefaultMessage: '<span class="button red">Attach File</span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
@@ -107,7 +110,7 @@ export class ViewTicketComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictFileTooBig: 'Maximum upload file size limit is 50MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {
@@ -144,7 +147,7 @@ export class ViewTicketComponent implements OnInit {
             return false;
           } */
 
-
+          self.loading = true; // show page loader
           self.commonUtilsService.showPageLoader(environment.MESSAGES.WAIT_TEXT);
           done();
 
@@ -163,9 +166,11 @@ export class ViewTicketComponent implements OnInit {
 
 
         this.on("totaluploadprogress", function (progress) {
-          self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
+          self.loading = true; // Show Loader
+          //self.commonUtilsService.showPageLoader('Uploading file ' + parseInt(progress) + '%');//setting loader text
           if (progress >= 100) {
-            self.commonUtilsService.hidePageLoader(); //hide page loader
+            //self.commonUtilsService.hidePageLoader(); //hide page loader
+            self.loading = false; // Hide Loader
           }
         })
 
@@ -177,13 +182,14 @@ export class ViewTicketComponent implements OnInit {
           });
 
           this.removeFile(file);
-          self.commonUtilsService.hidePageLoader(); //hide page loader
+          self.loading = false; // Hide Loader
+          //self.commonUtilsService.hidePageLoader(); //hide page loader
         });
 
         this.on("error", function (file, error) {
 
           this.removeFile(file);
-
+          self.loading = false; // Hide Loader
           self.commonUtilsService.onError(error);
         });
 

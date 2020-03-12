@@ -76,9 +76,15 @@
                                                                         project details :
                                                                     </p>
                                                                 </div>
-                                                                <div class="col-lg-12 mb-3">
+                                                                <div *ngIf="projectDetails.project_dtl && projectDetails.project_dtl.length >= 10 && expandProjectDetails == false" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens line--clamp">
+                                                                        {{projectDetails?.project_dtl}}</p>
+                                                                        <span *ngIf="projectDetails.project_dtl && projectDetails.project_dtl.length >= 240 && expandProjectDetails == false" class="expand_data" (click)="expandProjectDetails = true">read more</span>
+                                                                </div>
+                                                                <div *ngIf="expandProjectDetails == true" class="col-lg-12 mb-3">
                                                                     <p class="dashboard-project-cum-body-contens">
                                                                         {{projectDetails?.project_dtl}}</p>
+                                                                        <span class="expand_data" (click)="expandProjectDetails = false">read less</span>
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.additional_resources"
                                                                     class="col-lg-12">
@@ -86,11 +92,18 @@
                                                                         Additional Resources :
                                                                     </p>
                                                                 </div>
-                                                                <div *ngIf="projectDetails?.additional_resources"
-                                                                    class="col-lg-12 mb-3">
+
+                                                                <div *ngIf="projectDetails.additional_resources && projectDetails.additional_resources.length >= 10 && expandAdditionalResources == false" class="col-lg-12 mb-3">
+                                                                    <p class="dashboard-project-cum-body-contens line--clamp">
+                                                                        {{projectDetails?.additional_resources}}</p>
+                                                                        <span *ngIf="projectDetails.additional_resources && projectDetails.additional_resources.length >= 240 && expandProjectDetails == false" class="expand_data" (click)="expandAdditionalResources = true">read more</span>
+                                                                </div>
+                                                                <div *ngIf="expandAdditionalResources == true" class="col-lg-12 mb-3">
                                                                     <p class="dashboard-project-cum-body-contens">
                                                                         {{projectDetails?.additional_resources}}</p>
+                                                                        <span class="expand_data" (click)="expandAdditionalResources = false">read less</span>
                                                                 </div>
+                                                                
                                                                 <div *ngIf="projectDetails?.project_file"
                                                                     class="col-lg-12">
                                                                     <p class="dashboard-project-cum-body-labels">
@@ -133,7 +146,8 @@
                                                                 <div *ngIf="projectDetails?.writers_age"
                                                                     class="col-lg-12 mb-3">
                                                                     <p class="dashboard-project-cum-body-contens">
-                                                                        {{(projectDetails?.writers_age)?(projectDetails?.writers_age)+' years':'NA'}}</p>
+                                                                        {{(projectDetails?.writers_age)?(projectDetails?.writers_age)+' years':'NA'}}
+                                                                    </p>
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.writers_location"
                                                                     class="col-lg-12">
@@ -151,7 +165,7 @@
                                                         <div class="col-md-12 text-lg-right">
 
 
-                                                            
+
 
                                                             <!--Penidng / Revised Status-->
                                                             <a routerLink="/user/create-ticket"
@@ -159,12 +173,12 @@
                                                                 class="btn-cmn-pro mr-2">Ask update</a>
 
                                                             <a routerLink="/user/create-ticket"
-                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised') || (projectDetails.project_status == 'Resume')"
+                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised')"
                                                                 class="btn-cmn-pro mr-2">Contact Support</a>
 
                                                             <!--NEW / Pause / Draft Status-->
                                                             <a routerLink="/user/edit-project/{{projectDetails.id}}"
-                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause')"
+                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause') || (projectDetails.project_status == 'Draft')"
                                                                 class="btn-cmn-pro mr-2">Edit project</a>
                                                             <a [attr.data-projectStatus]="'Pause'"
                                                                 (click)="onUpdateStatus($event)"
@@ -172,8 +186,8 @@
                                                                 *ngIf="(projectDetails.project_status == 'New')"
                                                                 class="btn-cmn-pro mr-2">Pause project</a>
 
-                                                            <a (click)="onCancelProject()" href="javascript:void(0)"
-                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause')"
+                                                            <a (click)="onCancelProject(projectDetails.project_status)" href="javascript:void(0)"
+                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause') || (projectDetails.project_status == 'Draft') || (projectDetails.project_status == 'Resume')"
                                                                 class="btn-cmn-pro mr-2">Cancel project</a>
 
 
@@ -197,9 +211,9 @@
                                                                 *ngIf="projectDetails.project_status == 'Complete'"
                                                                 class="btn-cmn-pro mr-2">Revision Request</a>
 
-                                                            
+
                                                             <a href="{{ projectDetails?.completed_project_file }}"
-                                                                *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
+                                                                *ngIf="((projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Revised')) && (projectDetails.completed_project_file != '')"
                                                                 class="btn-cmn-pro mr-2">
 
                                                                 Download
@@ -233,8 +247,8 @@
                                                             <ul *ngIf="projectStatus.length > 0; else elseProjectStatusBlock"
                                                                 class="list-unstyled display">
                                                                 <li *ngFor="let status of projectStatus;let i = index;">
-                                                                    <span
-                                                                        class="blibker blinker-yellow blinker-yellow"></span>
+                                                                    <span [ngClass]="status.status_class"
+                                                                        class="blibker"></span>
                                                                     <p class="mb-0"><span
                                                                             class="wr-hero-project-history-date">{{status.status_date | date}}
                                                                             - </span><span
@@ -281,7 +295,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                
+
                                                                 <div class="table-row">
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-date">
@@ -317,16 +331,17 @@
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                                <div *ngIf="(projectDetails.project_status == 'Complete') && (projectDetails.completed_project_file != '')"
+                                                                <div *ngIf="((projectDetails.project_status == 'Complete') || (projectDetails.project_status == 'Revised')) && (projectDetails.completed_project_file != '')"
                                                                     class="table-row">
                                                                     <div class="table-cell">
-                                                                        <p class="wr-hero-project-history-date">Download File
+                                                                        <p class="wr-hero-project-history-date">Download
+                                                                            File
                                                                         </p>
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
                                                                             <a href="{{projectDetails?.completed_project_file}}"
-                                                                                class="btn-cmn-pro mr-2 margin--custom">Download</a>
+                                                                                class="fontpad--xs btn-cmn-pro mr-2 margin--custom ">Download</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>

@@ -217,10 +217,9 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Project Details <span
                                                                             class="red">*</span></label>
-                                                                    <p class="d-inline-block ml-ipad-3">Here is the meat
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">Here is the meat
                                                                         of
-                                                                        your project. We would be
-                                                                        needi...
+                                                                        your project...
                                                                     </p>
                                                                     <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
@@ -255,7 +254,7 @@
                                                                     </div>
 
 
-                                                                    <textarea #project_details cols="5" rows="3"
+                                                                    <textarea #project_details cols="7" rows="7"
                                                                         minLength=10 maxLength=100000
                                                                         formControlName="project_details" placeholder=""
                                                                         class="field-design"
@@ -279,7 +278,7 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Word for each space <span
                                                                             class="red">*</span></label>
-                                                                    <p class="d-inline-block ml-ipad-3">How many words
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">How many words
                                                                         do you need per piece?</p>
                                                                     <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
@@ -310,7 +309,7 @@
 
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Additional Resources</label>
-                                                                    <p class="d-inline-block ml-ipad-3">Do you have any
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">Do you have any
                                                                         online
                                                                         references that...
                                                                     </p>
@@ -328,7 +327,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <textarea #additional_resources cols="5" rows="3"
+                                                                    <textarea #additional_resources cols="7" rows="7"
                                                                         minLength=10 maxLength=100000
                                                                         formControlName="additional_resources"
                                                                         placeholder="" class="field-design"
@@ -426,7 +425,7 @@
                                                                             <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                                 src="assets/image/word.png">
 
-                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream')"
+                                                                            <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream') || (projectImage.value.file_mimetype == 'application/x-zip-compressed')"
                                                                                 src="assets/image/zip.png">
 
                                                                         </a>
@@ -500,11 +499,22 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields mt-0">
-                                                                <label>Career</label>
-                                                                <p>Choose your writer’s niche expertise – It is strongly
+                                                                <label class="d-block mt-3 mt-lg-0">Career</label>
+                                                                <p class="d-inline-block ml-ipad-3 wtool-80"> Choose your writer’s niche expertise...
+                                                                </p>
+
+                                                                <!--lor1-->
+                                                                <div class="about_logo_course_tooltip">
+                                                                    <img src="assets/image/test_logo_icon.png">
+                                                                    <div class="lorem-tooltip--outer lor-right">
+                                                                        <div class="lorem-tooltip">
+                                                                            Choose your writer’s niche expertise – It is strongly
                                                                     recommended to choose the same industry to get
                                                                     the best results.
-                                                                </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="pl-0">
                                                                     <select #writers_career class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
@@ -567,12 +577,12 @@
                                                             </div>
                                                             <div class="col-lg-12 mt-4">
                                                                 <button type="button" awPreviousStep
-                                                                    class="submit-btn-feedback min-w-130 mr-lg-3 mr-3">
+                                                                    class="submit-btn-feedback min-w100 min-w-130 mr-lg-3 mr-3">
                                                                     PREVIOUS
                                                                 </button>
                                                                 <button (click)="validateWritersDetailsWizard()"
                                                                     type="button" awNextStep
-                                                                    class="submit-btn-feedback min-w-130">
+                                                                    class="submit-btn-feedback min-w100 min-w-130">
                                                                     NEXT
                                                                 </button>
                                                                 <!--a href="#" class="advance-text">( or skip )</a-->
@@ -711,7 +721,7 @@
                                                                         <img *ngIf="(projectImage.value.file_mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') || (projectImage.value.file_mimetype == 'application/msword')"
                                                                             src="assets/image/word.png">
 
-                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream')"
+                                                                        <img *ngIf="(projectImage.value.file_mimetype == 'application/zip') || (projectImage.value.file_mimetype == 'application/x-rar-compressed') || (projectImage.value.file_mimetype == 'application/vnd.rar') || (projectImage.value.file_mimetype == 'application/octet-stream') || (projectImage.value.file_mimetype == 'application/x-zip-compressed')"
                                                                             src="assets/image/zip.png">
 
                                                                     </a>
@@ -728,13 +738,13 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <button type="button" awPreviousStep
-                                                                        class="submit-btn-feedback min-w-130 mr-lg-3 mr-3">
+                                                                        class="submit-btn-feedback min-w100 min-w-130 mr-lg-3 mr-3">
                                                                         PREVIOUS
                                                                     </button>
 
                                                                     <button type="button" 
                                                                         (click)="onSubmitAddNewProject()"
-                                                                        class="submit-btn-feedback min-w-130">
+                                                                        class="submit-btn-feedback min-w100 min-w-130">
                                                                         CREATE PROJECT
                                                                     </button>
 

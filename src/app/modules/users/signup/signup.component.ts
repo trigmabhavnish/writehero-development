@@ -39,13 +39,14 @@ export class SignupComponent implements OnInit {
       first_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       last_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       user_name: [''],
+      company_name: [''],
       director_id: [3],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(8),
           Validators.maxLength(50),
-          // check whether the entered password has a number
+          /*// check whether the entered password has a number
           CustomValidator.patternValidator(/\d/, {
             hasNumber: true
           }),
@@ -63,7 +64,7 @@ export class SignupComponent implements OnInit {
             {
               hasSpecialCharacters: true
             }
-          )
+          ) */
         ])
       ],
       confirm_password: ['', Validators.required],
