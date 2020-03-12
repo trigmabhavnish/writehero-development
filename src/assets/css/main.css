@@ -1322,6 +1322,32 @@ footer p span {
 }
 
 
+.blibker.new__status {
+    background-color: #0068dd;
+}
+.blibker.pause__status {
+    background-color: #f0d021;
+}
+.blibker.complete__status {
+    background-color: #e8325f;
+}
+.blibker.pending__status {
+    background-color: #e0601a;
+}
+.blibker.cancel__status {
+    background-color: #f00;
+}
+.blibker.revised__status {
+    background-color: #701396;
+}
+.blibker.resume__status {
+    background-color: #00ce10;
+}
+.blibker.draft__status {
+    background-color: #8c8c8c;
+}
+
+
 .est-date p {
     font-weight: 600;
     font-size: 12px;

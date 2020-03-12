@@ -94,8 +94,10 @@
                                                                     <div class="dashborad-project-estimation pt-2 mb-3 mb-lg-0">
                                                                         <span
                                                                             class="dashboard-latest-project-subject">Details</span>
-                                                                        <span
+                                                                        <span 
                                                                             class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0 line--clamp wb-all">{{latest?.project_dtl}}</span>
+                                                                            <a routerLink="/user/project-detail/{{latest.id}}" *ngIf="latest.project_dtl && latest.project_dtl.length >= 240 && expandProjectData == false" class="expand_data" >+more</a>    
+
                                                                     </div>
                                                                 </div>
                                                             </div>

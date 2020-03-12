@@ -435,7 +435,7 @@ export class ProfileComponent implements OnInit {
       errorReset: null,
       cancelReset: null,
       acceptedFiles: 'image/*',
-      maxFilesize: 2, // MB,
+      maxFilesize: 5, // MB,
       dictDefaultMessage: '<span class="button"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>',
       //previewsContainer: "#offerInHandsPreview",
       addRemoveLinks: true,
@@ -443,7 +443,7 @@ export class ProfileComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid png, jpeg, jpg, gif images are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 2MB',
+      dictFileTooBig: 'Maximum upload file size limit is 5MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {

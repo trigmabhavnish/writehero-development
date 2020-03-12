@@ -403,7 +403,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
       //resizeHeight: 125,
       //createImageThumbnails:false,
       dictInvalidFileType: 'Only valid pdf, doc, docx, txt, zip, rar, xlsx and csv file are accepted.',
-      dictFileTooBig: 'Maximum upload file size limit is 5MB',
+      dictFileTooBig: 'Maximum upload file size limit is 50MB',
       dictCancelUpload: '<i class="fa fa-times" aria-hidden="true"></i>',
       dictRemoveFile: '<i class="fa fa-times" aria-hidden="true"></i>',
       headers: {

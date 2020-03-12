@@ -173,7 +173,7 @@
                                                                 class="btn-cmn-pro mr-2">Ask update</a>
 
                                                             <a routerLink="/user/create-ticket"
-                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised') || (projectDetails.project_status == 'Resume')"
+                                                                *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised')"
                                                                 class="btn-cmn-pro mr-2">Contact Support</a>
 
                                                             <!--NEW / Pause / Draft Status-->
@@ -187,7 +187,7 @@
                                                                 class="btn-cmn-pro mr-2">Pause project</a>
 
                                                             <a (click)="onCancelProject(projectDetails.project_status)" href="javascript:void(0)"
-                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause') || (projectDetails.project_status == 'Draft')"
+                                                                *ngIf="(projectDetails.project_status == 'New') ||  (projectDetails.project_status == 'Pause') || (projectDetails.project_status == 'Draft') || (projectDetails.project_status == 'Resume')"
                                                                 class="btn-cmn-pro mr-2">Cancel project</a>
 
 
@@ -247,8 +247,8 @@
                                                             <ul *ngIf="projectStatus.length > 0; else elseProjectStatusBlock"
                                                                 class="list-unstyled display">
                                                                 <li *ngFor="let status of projectStatus;let i = index;">
-                                                                    <span
-                                                                        class="blibker blinker-yellow blinker-yellow"></span>
+                                                                    <span [ngClass]="status.status_class"
+                                                                        class="blibker"></span>
                                                                     <p class="mb-0"><span
                                                                             class="wr-hero-project-history-date">{{status.status_date | date}}
                                                                             - </span><span

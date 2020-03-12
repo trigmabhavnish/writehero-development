@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   showName: any;
   loading:boolean =false; //Page Loader
   defaultPath = environment.DEFAULT_PROFILE_PIC;
+  expandProjectData:boolean = false;
 
   constructor(private zone: NgZone, private formBuilder: FormBuilder, private commonUtilsService: CommonUtilsService, private projectsService: ProjectsService, private toastr: ToastrManager, private router: Router) { }
 
