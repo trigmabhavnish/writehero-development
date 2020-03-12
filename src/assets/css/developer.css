@@ -1257,6 +1257,8 @@ fieldset app-form-validation-errors {
   @media only screen and (max-width: 600px){
     .checkmark {
         right:-13px;
+        top: 10px;
+        transform: translateY(0px) !important;
       }
       .pb-xs-0 {
           padding-bottom: 0px;

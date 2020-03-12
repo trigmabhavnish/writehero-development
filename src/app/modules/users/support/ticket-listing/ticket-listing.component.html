@@ -47,7 +47,7 @@
                                             currentPage: currentPage,
                                             totalItems: totalItems };let i = index;">
                                                     <div (click)="viewDetails(ticket)" class="support-desc-tabs min--height-box">
-                                                        <p class="sp-msg-title">
+                                                        <p class="sp-msg-title line--clamp">
                                                             {{ticket?.subject}}</p>
                                                         <p class="sp-msg-desc">
                                                             {{ticket?.messages[0]?.message + '...' | slice:0:40}} </p>
