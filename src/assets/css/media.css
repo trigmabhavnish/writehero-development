@@ -38,6 +38,9 @@
     }
 }
 @media (min-width:1200px) { 
+    /* table.sr__only.sr--0.respon--date {
+        word-break: break-all;
+    } */
     .font-18 {
         font-size: 18px;
     }
@@ -362,8 +365,28 @@
     }
 }
 
+/*iPhone 5, 5C, 5S, iPod Touch 5g */
+@media screen and (device-aspect-ratio: 40/71) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
 
-@media (max-width:991px) { 
+/*iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape */
+@media screen and (device-aspect-ratio: 9/16) {
+    select, textarea, input[type="text"], input[type="password"],
+    input[type="datetime"], input[type="datetime-local"],
+    input[type="date"], input[type="month"], input[type="time"],
+    input[type="week"], input[type="number"], input[type="email"],
+    input[type="url"]{ font-size: 16px; }
+}
+
+@media (max-width:991px) {
+    .register-form-outer {
+        padding: 20px 10px;
+    } 
     .ovf--hide {
         overflow: hidden;
     }
@@ -622,6 +645,18 @@
 }
 
 @media (max-width:640px) { 
+    .paypal-transact-desc {
+        font-size: 14px;
+    }
+    .min-100-auto {
+        width: 100% !important;
+    }
+    .swal2-show {
+        width: 90% !important;
+    }
+    .swal2-title {
+        font-size: 16px !important;
+    }
     .font-18 {
         font-size: 14px;
     }
@@ -704,6 +739,7 @@ header {
 /*dashboard css ends*/
 
 }
+
 
 
 

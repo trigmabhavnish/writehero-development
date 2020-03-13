@@ -8,7 +8,7 @@
                         <div class="dashboard-profile-manual">
                             <img [src]="(profileDetails?.profile_pic) ? (profileDetails?.profile_pic)  : defaultPath">
                         </div>
-                        <div class="notification-bell-outer" (click)="viewNotification()">
+                        <div class="notification-bell-outer list-group-item" (click)="viewNotification()">
                             <button [ngClass]="notificationCount > 0 ? 'red-bell': 'blue-bell'" class="notification-bell">
                                 <span class="badge-profile">{{notificationCount ? notificationCount : 0}}</span>
                             </button>

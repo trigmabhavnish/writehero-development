@@ -1209,10 +1209,18 @@ footer p span {
     padding-left: 0px;
 }
 .total-costtitle {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     text-align: left;
     padding-left: 0;
+}
+.notification-bell-outer.list-group-item {
+    margin: 0;
+    border-radius: 0px !important;
+    display: inherit !important;
+    padding: 0px !important;
+    background-color: transparent !important;
+    border: 0px !important;
 }
 .dashboard-latest-project-result {
     font-weight: 500;
@@ -1243,9 +1251,6 @@ footer p span {
 .dashborad-project-estimation {
     display: flex;
     flex-wrap: wrap;
-    word-break: break-all;
-}
-table.sr__only.sr--0.respon--date {
     word-break: break-all;
 }
 .dashboard-project-estimation-outer {
@@ -1467,6 +1472,7 @@ h6.dashboard-latest-project-subject {
     color: #000;
     margin-bottom: 5px;
     line-height: normal;
+    word-break: break-all;
 }
 .cmnt-admin-date {
     font-size: 11px;
@@ -1632,8 +1638,11 @@ h6.dashboard-latest-project-subject {
 }
 .image-behind-register {
     position: relative;
-    top: -50px;
+    /* top: -50px; */
     z-index: -1;
+}
+.dashboard-rightside-updates.latest-feedback .feedback-star rating.ng-untouched.ng-pristine.ng-valid .star-icon, .dashboard-rightside-updates.latest-feedback .feedback-star rating.ng-untouched.ng-pristine.ng-valid .star-icon::before{
+    display: inline-block;
 }
 .register-form-outer {
     box-shadow: 2px 3px 25px 0px rgba(0, 0, 0, 0.22);
@@ -2288,7 +2297,7 @@ textarea {
     text-align: center;
 }
 .paypal-transact-desc {
-    font-size: 16px;
+    font-size: 15px;
     line-height: normal;
     color: #002249;
     font-weight: 400;

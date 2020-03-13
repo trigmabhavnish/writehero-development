@@ -32,7 +32,7 @@
                                                                 {{supportData?.support[0]?.created_on | date}}
                                                             </h6>
                                                             <h6 class="dashboard-latest-project-subject mt-3">
-                                                                Satus :
+                                                                Status :
                                                                 <span
                                                                     [ngClass]="supportData?.support[0]?.support_status == 'solved' ? 'solved':'unsolved'"
                                                                     class="text ">{{supportData?.support[0]?.support_status}}</span>
@@ -64,8 +64,13 @@
 
                                                                                         <span
                                                                                             class="card-text float-left ticket--span-date">{{message?.cur_date | date}}</span>
-                                                                                        <p class="ticket--span-p">
-                                                                                            {{message?.message}}</p>
+                                                
+                                                <p *ngIf="(message?.message) && (message?.message.length >= 1) && expandAdminTicketData == false" class="ticket--span-p line--clamp">{{message?.message}}</p>
+                    <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandAdminTicketData == false" class="expand_data" (click)="expandAdminTicketData = true">read more</span> 
+                    <p *ngIf="expandAdminTicketData == true" class="ticket--span-p">{{message?.message}}</p>
+                    <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandAdminTicketData == true" class="expand_data" (click)="expandAdminTicketData = false">read less</span>
+                                                                                        
+
                                                                                         <a class=" ticket--download float-left"
                                                                                             *ngIf="message?.support_file"
                                                                                             href="{{ message?.support_file }}"
@@ -85,8 +90,10 @@
                                                                                         </h6>
                                                                                         <span
                                                                                             class="card-text float-right ticket--span-date">{{message?.cur_date | date}}</span>
-                                                                                        <p class="ticket--span-p">
-                                                                                            {{message?.message}}</p>
+                    <p *ngIf="(message?.message) && (message?.message.length >= 1) && expandUserTicketData == false" class="ticket--span-p line--clamp">{{message?.message}}</p>
+                    <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandUserTicketData == false" class="expand_data" (click)="expandUserTicketData = true">read more</span> 
+                    <p *ngIf="expandUserTicketData == true" class="ticket--span-p">{{message?.message}}</p>
+                    <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandUserTicketData == true" class="expand_data" (click)="expandUserTicketData = false">read less</span>
                                                                                         <a class="ticket--download"
                                                                                             *ngIf="message?.support_file"
                                                                                             href="{{ message?.support_file }}"
@@ -197,11 +204,11 @@
                                                                                     <p class="close--ticketpoint"> Click
                                                                                         the close ticket button if the
                                                                                         ticket is solved »</p>
-                                                                                    <a type="button"
+                                                                                    <button type="button"
                                                                                         (click)="solveTicket()"
                                                                                         class="btn btn-danger">Close
                                                                                         Ticket
-                                                                                    </a>
+                                                                                    </button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>

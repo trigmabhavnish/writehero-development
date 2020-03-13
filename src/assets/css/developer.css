@@ -94,6 +94,10 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
 }
 .sr__only tr td:nth-child(3) {
     width: 40%;
+    word-break: break-all;
+}
+.invoice--billbox {
+    overflow-x: auto;
 }
 .sr--0 rating.ng-untouched.ng-pristine.ng-valid {
     margin-left:0px;
@@ -285,6 +289,12 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
 .bg-142 {
     background: #1429b3 !important;
 }
+.zpp {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .dashboard-rightside-updates.latest-feedback .feedback-star {
     font-size: 8px;
 }
@@ -718,10 +728,11 @@ table.sr__only {
 .backdrop{
     position: fixed !important;
 }
+.star-icon {line-height:normal;}
 
 .expand_data{
     cursor: pointer;
-    color: #3975ea;
+    color: #3975ea !important;
     font-weight: 600;
     font-size: 13px;
 }
