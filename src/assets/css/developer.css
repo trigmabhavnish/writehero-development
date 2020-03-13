@@ -536,6 +536,7 @@ a.remove_coupon_code {
 .dispute_media .ticket--span-p {
     display: inline-block;
     width: 100%;
+    word-break: break-all;
 }
 .pro-btn-tab {
     color: #fff;
@@ -558,6 +559,10 @@ a.remove_coupon_code {
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
+}
+.owl-carousel .owl-item img {    
+    height: 100%;
+    object-fit: cover;
 }
 table.sr__only {
     border: 1px solid #e0e0e0;
@@ -1154,7 +1159,7 @@ fieldset app-form-validation-errors {
     font-weight: 600;
     font-size: 17px;
     margin-bottom: 0px;
-}
+} 
 /*Profile Page*/
 
 .pricingstar {
@@ -1229,7 +1234,13 @@ fieldset app-form-validation-errors {
         background: #024a9b !important;
     }
   }
-  @media only screen and (max-width: 767px){ 
+  @media only screen and (max-width: 767px) { 
+    .respon--date.sr__only tr td:nth-child(4) {
+        min-width: 155px;
+    }
+    .respon--date.sr__only tr td:nth-child(2){
+        min-width: 135px;
+    }
     .justify-xs-center {
         justify-content: center;
     }

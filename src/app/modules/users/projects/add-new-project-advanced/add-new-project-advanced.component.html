@@ -37,7 +37,7 @@
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
-                                                            <app-form-validation-errors minLength=2 maxLength=50
+                                                            <app-form-validation-errors minLength=2 maxLength=100
                                                                 errorPrefix="Project Name "
                                                                 [errors]="projectSpecsForm.controls.project_name.errors">
                                                             </app-form-validation-errors>

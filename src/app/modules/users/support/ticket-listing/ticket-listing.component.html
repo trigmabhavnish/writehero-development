@@ -49,8 +49,8 @@
                                                     <div (click)="viewDetails(ticket)" class="support-desc-tabs min--height-box">
                                                         <p class="sp-msg-title line--clamp">
                                                             {{ticket?.subject}}</p>
-                                                        <p class="sp-msg-desc">
-                                                            {{ticket?.messages[0]?.message + '...' | slice:0:40}} </p>
+                                                        <!-- <p class="sp-msg-desc">
+                                                            {{ticket?.messages[0]?.message + '...' | slice:0:40}} </p> -->
                                                         <p class="sp-date"><span>Date : </span> <span
                                                                 class="sp-msg-dt">{{ticket?.created_on | date}}</span>
                                                         </p>

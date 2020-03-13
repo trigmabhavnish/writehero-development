@@ -118,7 +118,7 @@
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
                                                         <p
                                                             *ngIf="projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted">
-                                                            <app-form-validation-errors minLength=2 maxLength=50
+                                                            <app-form-validation-errors minLength=2 maxLength=100
                                                                 errorPrefix="Project Name "
                                                                 [errors]="projectSpecsForm.controls.project_name.errors">
                                                             </app-form-validation-errors>
@@ -365,6 +365,7 @@
                                                                             (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
                                                                             type="radio"
                                                                             [attr.data-packagePrice]="projectPackage.price"
+                                                                            [attr.data-packageName]="projectPackage.project_type_name"
                                                                             [checked]="projectPackage.id == selectedProjectPackageId"
                                                                             #project_package
                                                                             formControlName="project_package"
@@ -623,7 +624,7 @@
                                                                 </div>
                                                                 <div class="step-4-summary-all-sections">
                                                                     <label>Package : </label>
-                                                                    <p class="color-primary-wr">Premium</p>
+                                                                    <p class="color-primary-wr">{{selectedProjectPackageName}}</p>
                                                                 </div>
                                                                 <!-- <div class="step-4-summary-all-sections">
                                                                     <label>Estimated turnarround :</label>
@@ -639,11 +640,32 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <div>
+                                                            <div *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
                                                                 <label class="step-progress-fields-label">Project
                                                                     Details :</label>
-                                                                <p class="step-progress-fields-content">
+                                                                <p class="step-progress-fields-content line--clamp">
                                                                     {{project_details?.value}}</p>
+                                                                    <span *ngIf="(project_details?.value) && (project_details?.value.length >= 420) && expandProjectDetails == false" class="expand_data" (click)="expandProjectDetails = true">read more</span>    
+                                                            </div>
+                                                            <div *ngIf="expandProjectDetails == true">
+                                                                <p class="dashboard-project-cum-body-contens">
+                                                                    {{project_details?.value}}</p>
+                                                                    <span class="expand_data" (click)="expandProjectDetails = false">read less</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 10) && expandAdditionalResources == false">
+                                                                <label class="step-progress-fields-label">Additional
+                                                                    Resources :</label>
+                                                                <p class="step-progress-fields-content line--clamp">
+                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}
+                                                                </p>
+                                                                <span *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 420) && expandAdditionalResources == false" class="expand_data" (click)="expandAdditionalResources = true">read more</span>
+                                                            </div>
+                                                            <div *ngIf="expandAdditionalResources == true">
+                                                                <p class="dashboard-project-cum-body-contens">
+                                                                    {{additional_resources?.value}}</p>
+                                                                    <span class="expand_data" (click)="expandAdditionalResources = false">read less</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">

@@ -304,7 +304,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
   private projectSpecs() {
     this.projectSpecsForm = this.formBuilder.group({
       project_code: [this.makeRandomString()],
-      project_name: ['', [Validators.required]],
+      project_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       project_topic: ['', [Validators.required]],
       project_type: ['', [Validators.required]],
       quantity: [0, Validators.compose([Validators.required, Validators.min(1)])],

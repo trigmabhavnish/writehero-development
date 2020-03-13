@@ -231,6 +231,8 @@ export class BuyCreditsComponent implements OnInit {
     calculateDiscount = this.buyCreditsForm.controls.credits.value;
     this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount);
     this.isCouponApplied = false;
+    this.discountPercentage = 0;
+    this.appliedCouponCode = '';
     this.couponCodeResponse = '<span class="green">' + environment.MESSAGES.COUPON_CODE_REMOVED + '</span>';
     this.calAmountToPay = calculateDiscount;
   }

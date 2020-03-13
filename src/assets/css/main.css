@@ -1198,6 +1198,7 @@ footer p span {
     color: #000;
     margin-bottom: 0px;
     padding-bottom: 10px;
+    word-break: break-all;
 }
 .dashboard-latest-project-subject {
     font-size: 12px;
@@ -1221,11 +1222,14 @@ footer p span {
     text-transform: uppercase;
 }
 .line--clamp {
-    display: -webkit-box;
+    display: -webkit-box !important;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-transform: capitalize;
+}
+.navbar-vertical .ps-content {
+    height: 100%;
 }
 .wb-all {
     word-break: break-all;
@@ -1239,6 +1243,10 @@ footer p span {
 .dashborad-project-estimation {
     display: flex;
     flex-wrap: wrap;
+    word-break: break-all;
+}
+table.sr__only.sr--0.respon--date {
+    word-break: break-all;
 }
 .dashboard-project-estimation-outer {
     border-right: 1px solid rgba(38,53,118,0.4);
@@ -1425,6 +1433,7 @@ footer p span {
 h6.dashboard-latest-project-subject {
     font-weight: 700;
     font-size: 14px;
+    word-break: break-all;
 }
 .admin-pic-outer {
     width: 60px;
@@ -1581,6 +1590,7 @@ h6.dashboard-latest-project-subject {
 }
 .dashboard-rightside-feedback-content-outer {
     padding: 15px 0px;
+    word-break: break-all;
 }
 .latest-feedback-value {
     display: flex;
@@ -1780,6 +1790,7 @@ border-radius: 3px;
 }
 .sp-reply-outer {
     margin: 10px 0px 15px;
+    word-break: break-all;
 }
 .sp-profile-outer {
     width: 55px;
@@ -2349,6 +2360,7 @@ textarea {
 }
 .project-lists-padding {
     padding: 25px 25px;
+    word-break: break-all;
 }
 .pro-danger {
     color: #ee3a51;
@@ -2423,6 +2435,7 @@ textarea {
     font-weight: 400;
     font-size: 14px;
     line-height: 25px;
+    word-break: break-all;
 }
 .dashboard-project-cum-body {
 	padding: 10px 0px;
@@ -2871,6 +2884,7 @@ color: #fff;
     margin-bottom: 15px;
     display: inline-block;
     padding-left: 5px;
+    word-break: break-all;
 }
 .step-4-summary-all {
     background-color: rgba(178,177,255,0.1);

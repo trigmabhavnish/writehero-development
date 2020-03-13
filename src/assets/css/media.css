@@ -38,6 +38,9 @@
     }
 }
 @media (min-width:1200px) { 
+    .font-18 {
+        font-size: 18px;
+    }
     .container-custom {
         max-width: 1140px;
     }
@@ -619,6 +622,9 @@
 }
 
 @media (max-width:640px) { 
+    .font-18 {
+        font-size: 14px;
+    }
     
 .flex-mobile-column  {
     flex-direction: column;

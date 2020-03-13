@@ -77,7 +77,7 @@
                                                                                 <span
                                                                                     class="total-costtitle col-lg-12">{{latest?.project_type_name}}</span>
                                                                                 <span
-                                                                                    class="dashboard-latest-project-result font-weight-bold">${{latest?.project_cost}}</span>
+                                                                                    class="dashboard-latest-project-result font-weight-bold font-18">${{latest?.project_cost}}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -117,7 +117,7 @@
                                                                     <div class="pgrss">
                                                                         <p class="pgrss-title">Progress</p>
                                                                         <p class="pgrss-subtitle">
-                                                                            {{(latest?.progress)?(latest?.progress + 'articles completed.'):'NA'}}</p>
+                                                                            {{(latest?.progress)?(latest?.progress + ' articles completed.'):'NA'}}</p>
                                                                     </div>
                                                                     <div class="est-date">
                                                                         <p><span>EDD : </span> <span
@@ -191,8 +191,10 @@
                                                                 <div class="dashborad-project-estimation pt-2 row mx-0">
                                                                     <span
                                                                         class="dashboard-latest-project-subject col-md-2">Details</span>
-                                                                    <span
-                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0">{{latest.messages[latest.messages.length -1]?.message | slice:0:100}}</span>
+                                                                        <span
+                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0 line--clamp">{{latest.messages[0]?.message}}</span> 
+                                                                    <!-- <span
+                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0">{{latest.messages[latest.messages.length -1]?.message | slice:0:100}}</span> -->
                                                                 </div>
                                                                 <ng-container
                                                                     *ngIf="latest.messages[latest.messages.length -1].instanciate_id == 0;">

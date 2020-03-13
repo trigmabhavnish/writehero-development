@@ -45,8 +45,10 @@ export class EditProjectComponent implements OnInit {
   disabled: boolean = false;
   calculateCost: any = 0;
   lastProjectCost: any;
+  lastProjectStatus: any;
   writersAgeBracket: any;
   selectedProjectPackageId: number;
+  selectedProjectPackageName:any;
   packagePrice: any;
   userCredits: any;
   userCreditsCheck: boolean = true;
@@ -55,6 +57,9 @@ export class EditProjectComponent implements OnInit {
 
   projectId: any;
   projectDetailsArray: any = {};
+
+  expandProjectDetails: boolean = false;
+  expandAdditionalResources: boolean = false;
 
   loading: boolean = false; //Page Loader
 
@@ -338,6 +343,7 @@ export class EditProjectComponent implements OnInit {
           this.projectDetailsForm.controls.project_cost.patchValue(res.project_details.project_cost);
           this.calculateCost = res.project_details.project_cost;
           this.lastProjectCost = res.project_details.project_cost;
+          this.lastProjectStatus = res.project_details.project_status;
 
           // Update Project Files Array
           if (res.project_details.file_path) {
@@ -370,7 +376,7 @@ export class EditProjectComponent implements OnInit {
     this.projectSpecsForm = this.formBuilder.group({
       project_id: [''],
       project_code: [''],
-      project_name: ['', [Validators.required]],
+      project_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       project_topic: ['', [Validators.required]],
       project_type: ['', [Validators.required]]
     });
@@ -449,13 +455,14 @@ export class EditProjectComponent implements OnInit {
     }
     //console.log('updatedProjectCost', updatedProjectCost);
     //console.log('this.userCredits', this.userCredits);
-    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, { userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost: this.lastProjectCost });
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, { userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost: this.lastProjectCost, lastProjectStatus: this.lastProjectStatus });
 
     this.loading = true; // Show Loader
     //check if Project Cost is greater than available credits.
-    if (Math.abs(updatedProjectCost) > Math.abs(this.userCredits)) {
+    if (Math.abs(projectCost) > Math.abs(this.userCredits)) {
       this.commonUtilsService.onError(environment.MESSAGES.NOT_ENOUGH_CREDITS);
       this.userCreditsCheck = true;
+      this.loading = false; // Show Loader
     } else {
       this.userCreditsCheck = false;
       this.projectsService.updateProject(mergeProjectData).pipe(untilDestroyed(this)).subscribe(
@@ -661,7 +668,7 @@ export class EditProjectComponent implements OnInit {
   * @return Price (number)
   */
   calculateProjectCost(quantity, word_count) {
-    if (quantity && word_count) {
+    if ((quantity > 0) && (word_count > 0)) {
       this.calculateCost = (quantity * word_count * this.packagePrice).toFixed(2);
       this.projectDetailsForm.controls.project_cost.patchValue(this.calculateCost);
       //if cost is greater than user credits.
@@ -681,6 +688,7 @@ export class EditProjectComponent implements OnInit {
   * @return void
   */
   getProjectPackagePrice(event, quantity, word_count) {
+    this.selectedProjectPackageName = event.target.getAttribute('data-packageName');
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
   }
