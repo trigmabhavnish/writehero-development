@@ -67,7 +67,7 @@
                                                 
                                                 <p *ngIf="(message?.message) && (message?.message.length >= 1) && expandAdminTicketData == false" class="ticket--span-p line--clamp">{{message?.message}}</p>
                     <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandAdminTicketData == false" class="expand_data" (click)="expandAdminTicketData = true">read more</span> 
-                    <p *ngIf="expandAdminTicketData == true" class="ticket--span-p">{{message?.message}}</p>
+                    <p *ngIf="expandAdminTicketData == true" class="ticket--span-p white--space">{{message?.message}}</p>
                     <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandAdminTicketData == true" class="expand_data" (click)="expandAdminTicketData = false">read less</span>
                                                                                         
 
@@ -92,7 +92,7 @@
                                                                                             class="card-text float-right ticket--span-date">{{message?.cur_date | date}}</span>
                     <p *ngIf="(message?.message) && (message?.message.length >= 1) && expandUserTicketData == false" class="ticket--span-p line--clamp">{{message?.message}}</p>
                     <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandUserTicketData == false" class="expand_data" (click)="expandUserTicketData = true">read more</span> 
-                    <p *ngIf="expandUserTicketData == true" class="ticket--span-p">{{message?.message}}</p>
+                    <p *ngIf="expandUserTicketData == true" class="ticket--span-p white--space">{{message?.message}}</p>
                     <span *ngIf="(message?.message) && (message?.message.length >= 385) && expandUserTicketData == true" class="expand_data" (click)="expandUserTicketData = false">read less</span>
                                                                                         <a class="ticket--download"
                                                                                             *ngIf="message?.support_file"

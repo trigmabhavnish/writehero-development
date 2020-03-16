@@ -648,12 +648,12 @@
                                                                     <span *ngIf="(project_details?.value) && (project_details?.value.length >= 420) && expandProjectDetails == false" class="expand_data" (click)="expandProjectDetails = true">read more</span>    
                                                             </div>
                                                             <div *ngIf="expandProjectDetails == true">
-                                                                <p class="dashboard-project-cum-body-contens">
+                                                                <p class="dashboard-project-cum-body-contens white--space">
                                                                     {{project_details?.value}}</p>
                                                                     <span class="expand_data" (click)="expandProjectDetails = false">read less</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-12 mt-3">
                                                             <div *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 10) && expandAdditionalResources == false">
                                                                 <label class="step-progress-fields-label">Additional
                                                                     Resources :</label>
@@ -663,21 +663,13 @@
                                                                 <span *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 420) && expandAdditionalResources == false" class="expand_data" (click)="expandAdditionalResources = true">read more</span>
                                                             </div>
                                                             <div *ngIf="expandAdditionalResources == true">
-                                                                <p class="dashboard-project-cum-body-contens">
+                                                                <p class="dashboard-project-cum-body-contens white--space">
                                                                     {{additional_resources?.value}}</p>
                                                                     <span class="expand_data" (click)="expandAdditionalResources = false">read less</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12">
-                                                            <div>
-                                                                <label class="step-progress-fields-label">Additional
-                                                                    Resources :</label>
-                                                                <p class="step-progress-fields-content">
-                                                                    {{(additional_resources?.value)?(additional_resources?.value):'NA'}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
+                                                        
+                                                        <div class="col-md-12 mt-3">
                                                             <label class="step-progress-fields-label">Choice
                                                                 Of Writers :</label>
                                                             <p class="step-progress-fields-content">

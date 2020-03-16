@@ -295,6 +295,10 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
     appearance: none;
 }
 
+.white--space{
+    white-space: pre-wrap;
+}
+
 .dashboard-rightside-updates.latest-feedback .feedback-star {
     font-size: 8px;
 }
