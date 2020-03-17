@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  API_ENDPOINT: 'http://13.235.163.1:3000',
-  S3_BUCKET_URL: 'http://bookwy.s3.amazonaws.com/',
+  API_ENDPOINT: 'http://144.208.69.196:3000',
+  S3_BUCKET_URL: 'https://bookwy.s3.amazonaws.com/',
   GOOGLE_RECAPTCHA_SITE_KEY: '6Ld-bc0UAAAAAFXMoaGuVnbrDcYSKLgpgSyC6SSs',
-  PAYPAL_CLIENT_ID: 'AQfA5nzAx7WkixB5bANwwv5wd--9KYCniND-qpUeHtdKGi9pHNnsFYeejAyNr6ovYpDd8iHXDc7hwIXi', 
+  PAYPAL_CLIENT_ID: 'AbRca5-AlCZs2wDIiJzbAgz9vXW-pRdR8APUJLqurwEcAv2i9kaeNS_ZbG_seagKy4Zc92rebZKWcKMZ', 
   DEFAULT_PROFILE_PIC: 'assets/image/default-user.png',  
   TWO_CEHCKOUT_SELLER_ID:'901419990',
   TWO_CHECKOUT_PUBLISHKEY:'E2998212-081C-4D18-8318-37FD811576B2',
