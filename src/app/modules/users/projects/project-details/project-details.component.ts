@@ -52,7 +52,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.projectsService.getProjectDetails({ projectId: this.projectId }).pipe(untilDestroyed(this)).subscribe(
       //case success
       (res) => {
-        console.log(res);
+        console.log(res.project_details);
         this.loading = false;
         this.projectDetails = res.project_details;
         this.projectStatus = res.project_status;

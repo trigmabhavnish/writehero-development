@@ -136,7 +136,7 @@ export class BuyCreditsComponent implements OnInit {
         let payVia = this.buyCreditsForm.controls.pay_via.value;
         let couponCode = this.buyCreditsForm.controls.coupon_code.value;
 
-        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: couponCode, discount: (this.discountPercentage) ? this.discountPercentage : 0, transaction_code: data.id, admin_note: "", amount_charged:this.calAmountToPay };
+        const transactionData = { code: this.makeRandomString(), unit: "Credits", qty: credits, cost: credits, payment_method: payVia, auth_token: localStorage.getItem('x-auth-token'), status: "Y", coupon_code: (this.isCouponApplied) ? couponCode : '', discount: (this.discountPercentage) ? this.discountPercentage : 0, transaction_code: data.id, admin_note: "", amount_charged:this.calAmountToPay };
 
         this.creditsService.onTransactionComplete(transactionData).pipe(untilDestroyed(this)).subscribe(
           //case success
@@ -230,6 +230,7 @@ export class BuyCreditsComponent implements OnInit {
     let calculateDiscount;
     calculateDiscount = this.buyCreditsForm.controls.credits.value;
     this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount);
+    this.buyCreditsForm.controls.coupon_code.patchValue('');
     this.isCouponApplied = false;
     this.discountPercentage = 0;
     this.appliedCouponCode = '';

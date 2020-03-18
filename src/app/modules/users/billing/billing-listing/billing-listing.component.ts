@@ -32,6 +32,7 @@ export class BillingListingComponent implements OnInit {
     this.creditService.getTransactionsListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
       this.billingListing = response.transactions;
       this.totalItems = response.totalItems;
+      //console.log(this.billingListing);
       this.loading = false;
     }, error => {
       this.loading = false;
@@ -40,9 +41,9 @@ export class BillingListingComponent implements OnInit {
 
 
   public openInvoiceDetails(invoice): void {
+    
     this.invoiceDetails = invoice;
-
-
+    //console.log(this.invoiceDetails);
     this.calculateDiscount = (invoice.discount / 100) * invoice.cost;
     $('#invoiceModal').modal('show')
   }

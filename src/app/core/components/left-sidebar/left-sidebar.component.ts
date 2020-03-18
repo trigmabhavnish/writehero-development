@@ -35,6 +35,10 @@ export class LeftSidebarComponent implements OnInit {
   notificationCount:any;
   defaultPath = environment.DEFAULT_PROFILE_PIC;
 
+  loginSubscription: Subscription;
+
+  isLoggedin: boolean = false;
+
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { 
     this.loadScripts()
   }
@@ -45,6 +49,15 @@ export class LeftSidebarComponent implements OnInit {
       this.isProfileUpdated = profileStatus.profileUpdatedStatus;
       this.getUserDetails();
       this.getNotificationCount();
+    });
+
+    // Page Refresh
+    if (localStorage.getItem('isLoggedIn')) {
+      this.isLoggedin = true;
+    }
+
+    this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
+      this.isLoggedin = loginStatus.isLoggedIn;
     });
 
     // On Page Refresh

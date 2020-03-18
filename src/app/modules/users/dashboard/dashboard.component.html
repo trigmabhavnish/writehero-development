@@ -55,7 +55,7 @@
                                                                                         x {{latest?.word_count}}
                                                                                         Words</span>
                                                                                 </div>
-                                                                                <div
+                                                                                <div *ngIf="latest?.project_type"
                                                                                     class="dashborad-project-estimation">
                                                                                     <span
                                                                                         class="dashboard-latest-project-subject">Type</span>
@@ -96,7 +96,8 @@
                                                                 <div class="dashboard-project-status-outer">
                                                                     <h6 class="project-status-heading">
                                                                         Status:</h6>
-                                                                    <ul *ngIf="latest.projectStatus; else elseProjectStatusBlock"
+
+                                                                    <ul *ngIf="(latest.projectStatus.length > 0); else elseProjectStatusBlock"
                                                                         class="list-unstyled">
                                                                         <li *ngFor="let status of latest.projectStatus;let i = index;"
                                                                             [ngClass]="status.status_class" class="circle-status">
@@ -110,7 +111,7 @@
                                                                             <li
                                                                                 class="new-project-detail circle-status">
                                                                                 <span>{{latest?.project_status}}</span>
-                                                                                <span>{{latest.project_cdate | date}}</span>
+                                                                                <span>{{latest.project_cdate | date:'shortDate'}}</span>
                                                                             </li>
                                                                         </ul>
                                                                     </ng-template>
