@@ -559,7 +559,7 @@ export class ProfileComponent implements OnInit {
   public updateProfilePic(body): void {
 
     this.loading = true; // show Page Loader
-    this.userService.updateProfilePic(body.fileLocation).pipe(untilDestroyed(this)).subscribe(response => {
+    this.userService.updateProfilePic(body.fileKey).pipe(untilDestroyed(this)).subscribe(response => {
       this.userProfileForm.patchValue({
         profile_pic: body.fileLocation
       })
