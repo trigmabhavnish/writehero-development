@@ -78,6 +78,8 @@ export class BuyCreditsComponent implements OnInit {
       let calculateDiscount = this.buyCreditsForm.controls.credits.value;
       this.buyCreditsForm.controls.amount_to_pay.patchValue(calculateDiscount); // Update Amout to pay value
       this.calAmountToPay = calculateDiscount;
+    }else{
+      this.calculateDiscount(this.buyCreditsForm.controls.coupon_code.value,this.buyCreditsForm.controls.credits.value);
     }
   }
 
@@ -193,7 +195,7 @@ export class BuyCreditsComponent implements OnInit {
         (res) => {
           if (res.cost != "") {
             let cost = res.cost;
-            calculateDiscount = credits * ((100 - cost) / 100);
+            calculateDiscount = (credits * ((100 - cost) / 100)).toFixed(2);
 
             this.discountPercentage = cost;
             this.isCouponApplied = true;
