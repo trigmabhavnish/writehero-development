@@ -92,6 +92,7 @@ export class LoginComponent implements OnInit {
           last_name: userData.name.split(" ")[1],
           director_id: 3,
           status: 'Y',
+          company_name: '',
           password: '435345HSFSDFRFTR#$',
           user_name: user_name
         }
