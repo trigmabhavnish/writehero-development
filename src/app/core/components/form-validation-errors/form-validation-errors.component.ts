@@ -11,6 +11,7 @@ export class FormValidationErrorsComponent implements OnInit {
 
   @Input() errorPrefix: string;
   @Input() minLength: number;
+  @Input() minPasswordLength: number;
   @Input() maxLength: number;
   @Input() minValue: number;
   @Input() maxValue: number;
