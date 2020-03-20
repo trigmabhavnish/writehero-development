@@ -24,7 +24,8 @@
 
                                         <div class="row">
                                             <div class="col-lg-9">
-                                                <img class="blob--logo" src="assets/image/dashboard--blobicon.png" alt="blob--logo">
+                                                <img class="blob--logo" src="assets/image/dashboard--blobicon.png"
+                                                    alt="blob--logo">
                                                 <div class="dashboard-welcome-note">
                                                     <p>Welcome Back, <span>{{showName}}</span></p>
                                                 </div>
@@ -35,7 +36,7 @@
                                                         class="dashboard-latest-project-outer mb-xs-20">
                                                         <div class="row">
                                                             <div class="col-lg-9 px-lg-3 p-0">
-            
+
                                                                 <div class="my-dashboard-project-main">
                                                                     <h2 class="dashboard-latest-project-title">
                                                                         Latest Project</h2>
@@ -82,12 +83,15 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="dashborad-project-estimation pt-2 mb-3 mb-lg-0">
+                                                                    <div
+                                                                        class="dashborad-project-estimation pt-2 mb-3 mb-lg-0">
                                                                         <span
                                                                             class="dashboard-latest-project-subject">Details</span>
-                                                                        <span 
+                                                                        <span
                                                                             class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0 line--clamp wb-all">{{latest?.project_dtl}}</span>
-                                                                            <a routerLink="/user/project-detail/{{latest.id}}" *ngIf="latest.project_dtl && latest.project_dtl.length >= 240 && expandProjectData == false" class="target--text expand_data" >+more</a>    
+                                                                        <a routerLink="/user/project-detail/{{latest.id}}"
+                                                                            *ngIf="latest.project_dtl && latest.project_dtl.length >= 240 && expandProjectData == false"
+                                                                            class="target--text expand_data">+more</a>
 
                                                                     </div>
                                                                 </div>
@@ -100,7 +104,8 @@
                                                                     <ul *ngIf="(latest.projectStatus.length > 0); else elseProjectStatusBlock"
                                                                         class="list-unstyled">
                                                                         <li *ngFor="let status of latest.projectStatus;let i = index;"
-                                                                            [ngClass]="status.status_class" class="circle-status">
+                                                                            [ngClass]="status.status_class"
+                                                                            class="circle-status">
                                                                             <span>{{status?.project_status}}</span>
                                                                             <span>{{status.status_date | date:'shortDate'}}</span>
                                                                         </li>
@@ -118,7 +123,8 @@
                                                                     <div class="pgrss">
                                                                         <p class="pgrss-title">Progress</p>
                                                                         <p class="pgrss-subtitle">
-                                                                            {{(latest?.progress)?(latest?.progress + ' articles completed.'):'NA'}}</p>
+                                                                            {{(latest?.progress)?(latest?.progress + ' articles completed.'):'NA'}}
+                                                                        </p>
                                                                     </div>
                                                                     <div class="est-date">
                                                                         <p><span>EDD : </span> <span
@@ -133,7 +139,7 @@
 
                                                 <ng-template #elseNoLatestProject>
                                                     <div class="dashboard-latest-project-outer mb-xs-20">
-                                                        <p class="noproject-foundtext">No Latest Project Found</p>
+                                                        <p class="noproject-foundtext">Nothing to show here yet....</p>
                                                     </div>
                                                 </ng-template>
                                                 <!-- Project Count Block -->
@@ -192,8 +198,8 @@
                                                                 <div class="dashborad-project-estimation pt-2 row mx-0">
                                                                     <span
                                                                         class="dashboard-latest-project-subject col-md-2">Details</span>
-                                                                        <span
-                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0 line--clamp">{{latest.messages[0]?.message}}</span> 
+                                                                    <span
+                                                                        class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0 line--clamp">{{latest.messages[0]?.message}}</span>
                                                                     <!-- <span
                                                                         class="dashboard-latest-project-result col-md-10 pt-2 pt-lg-0">{{latest.messages[latest.messages.length -1]?.message | slice:0:100}}</span> -->
                                                                 </div>
@@ -217,7 +223,8 @@
                                                                                             {{latest.messages[latest.messages.length -1]?.message | slice:0:100}}
                                                                                         </p>
                                                                                         <p class="cmnt-admin-date">
-                                                                                                {{latest.messages[latest.messages.length -1]?.cur_date | date}}</p>
+                                                                                            {{latest.messages[latest.messages.length -1]?.cur_date | date}}
+                                                                                        </p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -235,7 +242,7 @@
                                                 </ng-container>
                                                 <ng-template #elseNoLatestSupport>
                                                     <div class="dashboard-latest-project-outer">
-                                                        <p class="noproject-foundtext">No Ticket Found</p>
+                                                        <p class="noproject-foundtext">Nothing to show here too....</p>
                                                     </div>
                                                 </ng-template>
                                             </div>
@@ -250,25 +257,29 @@
                                                             </div>
                                                             <div class="dashboard-rightside-updates-content-outer">
                                                                 <div class="dashboard-rightside-updates-content-value">
-                                                                    <p class="ct-value">Lorem ipsum
-                                                                        dolor sit amet consectetur,
-                                                                        adipisicing elit. Beatae aut
-                                                                        dolorum nesciunt incidunt
-                                                                        reiciendis</p>
+                                                                    <p class="ct-value">
+                                                                        <a href="javascript:void(0)">How to craft the
+                                                                            perfect eBook
+                                                                            that sells like pancakes Part 1</a>
+                                                                    </p>
                                                                 </div>
                                                                 <div class="dashboard-rightside-updates-content-value">
-                                                                    <p class="ct-value">Lorem ipsum
-                                                                        dolor sit amet consectetur,
-                                                                        adipisicing elit. Beatae aut
-                                                                        dolorum nesciunt incidunt
-                                                                        reiciendis</p>
+                                                                    <p class="ct-value">
+                                                                        <a target="_blank"
+                                                                            href="https://www.youtube.com/watch?v=xadaDr0IjNc">New
+                                                                            Video: The 7 Foundations of Powerful
+                                                                            Storytelling by Damien Walter</a>
+
+
+                                                                    </p>
                                                                 </div>
                                                                 <div class="dashboard-rightside-updates-content-value">
-                                                                    <p class="ct-value">Lorem ipsum
-                                                                        dolor sit amet consectetur,
-                                                                        adipisicing elit. Beatae aut
-                                                                        dolorum nesciunt incidunt
-                                                                        reiciendis</p>
+                                                                    <p class="ct-value">
+                                                                        <a target="_blank"
+                                                                            href="https://intercom.help/bookwy/en/articles/3809984-merging-of-bookwy-epicwrite-and-fweez">Merging
+                                                                            of Bookwy, EpicWrite and Fweez
+                                                                        </a>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -286,7 +297,7 @@
                                                                     <div class="">
                                                                         <div class="user-feedback-user-photo">
                                                                             <img
-                                                                            [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath">
+                                                                                [src]="(feedback?.profile_pic) ? (feedback?.profile_pic)  : defaultPath">
                                                                         </div>
                                                                     </div>
 

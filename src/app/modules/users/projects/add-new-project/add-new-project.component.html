@@ -22,8 +22,7 @@
                                     <div class="row">
 
                                         <div class="col-md-12">
-                                            <h4 class="create-project-top-heading">Create New
-                                                Project</h4>
+                                            <h4 class="create-project-top-heading">Create a new eBook project</h4>
                                             <div class="counting-stepbar-wizard">
                                                 <div class="row">
                                                     <div class="col-3 col-md-2">
@@ -76,8 +75,7 @@
                                                             </div>
                                                             <div class="quarter-circle-top-right wizard-goals">
                                                             </div>
-                                                            <p class="wizard-specs-info">Writers
-                                                                Details</p>
+                                                            <p class="wizard-specs-info">Writer Details</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-3 col-md-2">
@@ -109,8 +107,8 @@
                                                 <form [formGroup]="projectSpecsForm">
                                                     <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Name <span class="red">*</span></label>
-                                                        <p>Think of a personal label for your project, not necessarily
-                                                            the eBook title.</p>
+                                                        <p>Think of a personal label for your eBook project, this is not
+                                                            the title.</p>
                                                         <input type="text" class="field-design" #project_name
                                                             formControlName="project_name" placeholder=""
                                                             [ngClass]="{ 'is-invalid': (projectSpecsForm.controls.project_name.touched || projectSpecsSubmitted) && projectSpecsForm.controls.project_name.errors }">
@@ -123,9 +121,8 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-lg-10 step-progress-fields">
-                                                        <label>Project Topic <span class="red">*</span></label>
-                                                        <p>Where would your main topic fall in with the following
-                                                            industries?</p>
+                                                        <label>Project Niche <span class="red">*</span></label>
+                                                        <p>Choose your eBook’s industry below</p>
                                                         <div class="px-0">
                                                             <select #project_topic class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
@@ -140,7 +137,7 @@
                                                             </select>
                                                             <p
                                                                 *ngIf="projectSpecsForm.controls.project_topic.touched || projectSpecsSubmitted">
-                                                                <app-form-validation-errors errorPrefix="Project Topic "
+                                                                <app-form-validation-errors errorPrefix="Project Niche "
                                                                     [errors]="projectSpecsForm.controls.project_topic.errors">
                                                                 </app-form-validation-errors>
                                                             </p>
@@ -148,8 +145,8 @@
                                                     </div>
                                                     <div class="col-lg-10 step-progress-fields">
                                                         <label>Project Type <span class="red">*</span></label>
-                                                        <p>Now – we want to know what type of content you will be
-                                                            needing.</p>
+                                                        <p>Now, we want to know what type of eBook content you will be
+                                                            needing</p>
                                                         <div class="px-0">
                                                             <select #project_type class="custom-select"
                                                                 id="inlineFormCustomSelectPref"
@@ -170,8 +167,7 @@
                                                     </div>
                                                     <div class="col-md-12 mt-4">
 
-                                                        <button
-                                                            [disabled]="projectSpecsForm.invalid"
+                                                        <button [disabled]="projectSpecsForm.invalid"
                                                             (click)="validateProjectSpecsWizard()" type="button"
                                                             awNextStep class="submit-btn-feedback min-w-130">
                                                             NEXT
@@ -181,7 +177,8 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
+                                            <aw-wizard-step
+                                                [canExit]="moveDirection.bind(this, projectDetailsForm.valid)"
                                                 stepTitle="Project Details">
                                                 <form [formGroup]="projectDetailsForm">
                                                     <div class="row m-0">
@@ -189,7 +186,8 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Quantity <span class="red">*</span></label>
-                                                                    <p>How many pieces do you need?
+                                                                    <p>How many pieces do you need? (Usually, it’s just
+                                                                        one)
                                                                     </p>
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
@@ -208,7 +206,9 @@
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Project Details <span
                                                                             class="red">*</span></label>
-                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">Here is the meat
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">
+                                                                        {{(profileDetails?.first_name) ? (profileDetails?.first_name) : profileDetails?.user_name}},
+                                                                        here is the meat
                                                                         of
                                                                         your project...
                                                                     </p>
@@ -216,30 +216,18 @@
                                                                         <img src="assets/image/test_logo_icon.png">
                                                                         <div class="lorem-tooltip--outer">
                                                                             <div class="lorem-tooltip">
-                                                                                Here is the meat of
-                                                                                your project. We would be
-                                                                                needing your complete project specs
-                                                                                or
-                                                                                instructions for
-                                                                                your order. You can add keywords,
-                                                                                titles,
-                                                                                instructions, writing styles, tone,
-                                                                                etc. The key
-                                                                                strategy to a
-                                                                                good product is to be VERY, VERY
-                                                                                SPECIFIC on
-                                                                                your needs - so we can better meet
-                                                                                your
+                                                                                {{(profileDetails?.first_name) ? (profileDetails?.first_name) : profileDetails?.user_name}},
+                                                                                here is the meat of your project. We
+                                                                                would be
+                                                                                needing your complete project specs or
+                                                                                instructions for your
+                                                                                eBook. You can also add focus words,
+                                                                                sources, writing styles, tone, etc.
+                                                                                The key strategy to a good product is to
+                                                                                be VERY, VERY
+                                                                                SPECIFIC on your needs – so we can
+                                                                                better meet your
                                                                                 expectations.
-
-                                                                                For those who need special
-                                                                                formatting for their
-                                                                                eBooks (e.g. photos, color, style),
-                                                                                please chat
-                                                                                with us or
-                                                                                create a support ticket after you
-                                                                                submit this
-                                                                                project.
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -267,11 +255,10 @@
                                                             <div class="row">
 
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Word for each space <span
-                                                                            class="red">*</span></label>
-                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">How many words
-                                                                        do you need per piece?</p>
-                                                                    <div class="about_logo_course_tooltip">
+                                                                    <label>Wordcount <span class="red">*</span></label>
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">How
+                                                                        many words do you need?</p>
+                                                                    <!-- <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
                                                                         <div class="lorem-tooltip--outer lor-right">
                                                                             <div class="lorem-tooltip">
@@ -281,7 +268,7 @@
                                                                                 words
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <input type="number"
                                                                         (change)="calculateProjectCost(quantity.value, word_count.value)"
                                                                         #word_count class="col-lg-4"
@@ -300,21 +287,17 @@
 
                                                                 <div class="col-lg-12 step-progress-fields">
                                                                     <label>Additional Resources</label>
-                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">Do you have any
-                                                                        online
-                                                                        references that...
+                                                                    <p class="d-inline-block ml-ipad-3 wtool-80">What’s on your mind?...
                                                                     </p>
                                                                     <div class="about_logo_course_tooltip">
                                                                         <img src="assets/image/test_logo_icon.png">
                                                                         <div class="lorem-tooltip--outer lor-right">
                                                                             <div class="lorem-tooltip">
-                                                                                Do you have any online references that
-                                                                                you would
-                                                                                like us to pattern your content
-                                                                                style/tone? Not
-                                                                                required but would be really, really
-                                                                                helpful for
-                                                                                your writers.
+                                                                                What’s on your mind? Give some links of
+                                                                                what your finished eBook should read or
+                                                                                look like.
+                                                                                Could be a blog, article or another
+                                                                                book.
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -337,12 +320,10 @@
                                                         </div>
                                                         <div class="col-lg-12 mt-3">
                                                             <div class="row step-progress-fields">
-                                                                <label class="col-md-12 mb-3">Choose your package <span
+                                                                <label class="col-md-12 mb-3">Choose your plan <span
                                                                         class="red">*</span></label>
-                                                                <p class="px-3">Choose the pricing plan that best fits
-                                                                    your needs.
-                                                                    All plans come with a 200% Workback Guarantee – so
-                                                                    you don’t have to worry about quality.</p>
+                                                                <p class="px-3">Choose the pricing plan that best fits your needs. All plans come with a 100% Moneyback
+                                                                    Guarantee – so you won’t have any anxiety attacks in bed.</p>
                                                                 <div *ngFor="let projectPackage of getProjectPackageArray"
                                                                     class="col-lg-4 mb-4">
                                                                     <div
@@ -378,9 +359,8 @@
                                                         <div class="col-lg-6">
                                                             <div class="col-lg-12 px-0 step-progress-fields">
                                                                 <label>Attach File?</label>
-                                                                <p>Do you need to attach files? (e.g. templates, sheets,
-                                                                    sample docs, etc.) We accept zip, rar, pdf, doc,
-                                                                    docx, txt, xls, xlsx, csv</p>
+                                                                <p>Do you need to attach files? (e.g. templates, sheets, sample docs, etc.) We accept zip, rar, pdf,
+                                                                    doc, docx, txt, xls, slsx, csv</p>
                                                                 <div class="uploadcode">
                                                                     <div class="uploadImages position-relative">
                                                                         <div class="dropzone dropzone-container"
@@ -436,7 +416,7 @@
                                                                 <div class="package-total-cost">
                                                                     <h4>Total Cost : <span>${{calculateCost}}</span>
                                                                     </h4>
-                                                                    <!--p>Estimated arround: 1-2 weeks</p-->
+                                                                    <p>Turnaround Time: {{turnAroundTime}}</p>
                                                                 </div>
                                                             </div>
 
@@ -445,8 +425,7 @@
                                                                     class="submit-btn-feedback min-w-130 mr-lg-3">
                                                                     PREVIOUS
                                                                 </button>
-                                                                <button
-                                                                    [disabled]="projectDetailsForm.invalid"
+                                                                <button [disabled]="projectDetailsForm.invalid"
                                                                     (click)="validateProjectDetailsWizard()"
                                                                     type="button" awNextStep
                                                                     class="submit-btn-feedback min-w-130 mr-lg-3">
@@ -466,21 +445,22 @@
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
-                                            <aw-wizard-step [canExit]="moveDirection.bind(this, writersDetailsForm.valid)">
+                                            <aw-wizard-step
+                                                [canExit]="moveDirection.bind(this, writersDetailsForm.valid)">
                                                 <form [formGroup]="writersDetailsForm">
                                                     <div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-lg-5 step-progress-fields">
-                                                                <label>Choice of writers</label>
-                                                                <p>We will try our best to find the writers that you
-                                                                    need</p>
+                                                                <label>Writer’s Tone</label>
+                                                                <p>What’s best describes the tone you need to set the mood of your eBook? Tone (attitude) and
+                                                                    voice (personality) create a writing style.</p>
                                                                 <div class="pl-0">
 
                                                                     <select #choice_of_writers class="custom-select"
                                                                         id="inlineFormCustomSelectPref"
                                                                         formControlName="choice_of_writers"
                                                                         placeholder="" class="field-design">
-                                                                        <option value="">Choose Writer</option>
+                                                                        <option value="">Choose Writer's Tone</option>
                                                                         <option
                                                                             *ngFor="let choiceOfWriter of choiceOfWriterArray"
                                                                             value="{{choiceOfWriter}}">
@@ -491,8 +471,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields mt-0">
-                                                                <label class="d-block mt-3 mt-lg-0">Career</label>
-                                                                <p class="d-inline-block ml-ipad-3 wtool-80"> Choose your writer’s niche expertise...
+                                                                <label class="d-block mt-3 mt-lg-0">Writer’s Career</label>
+                                                                <p class="d-inline-block ml-ipad-3 wtool-80"> Choose your writer’s niche expertise – it is strongly recommended to choose the same
+                                                                    industry to get the best results.
                                                                 </p>
 
                                                                 <!--lor1-->
@@ -500,9 +481,11 @@
                                                                     <img src="assets/image/test_logo_icon.png">
                                                                     <div class="lorem-tooltip--outer lor-right">
                                                                         <div class="lorem-tooltip">
-                                                                            Choose your writer’s niche expertise – It is strongly
-                                                                    recommended to choose the same industry to get
-                                                                    the best results.
+                                                                            Choose your writer’s niche expertise – It is
+                                                                            strongly
+                                                                            recommended to choose the same industry to
+                                                                            get
+                                                                            the best results.
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -523,12 +506,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12 step-progress-fields">
-                                                                <label>Age Bracket</label>
-                                                                <p>Who’s your target audience? Is your content
-                                                                    attractive for yuppies or seniors? Probably
-                                                                    middle-aged?
-                                                                    Choose your writer’s age bracket who can relate with
-                                                                    your market.
+                                                                <label>Writer’s Age Bracket</label>
+                                                                <p>Who’s your target audience? Is your content attractive for yuppies or seniors? Probably
+                                                                    middle-aged? Choose your writer’s age bracket who can relate with your market.
                                                                 </p>
 
                                                                 <div class="warpper">
@@ -547,11 +527,8 @@
 
                                                             </div>
                                                             <div class="col-lg-5 step-progress-fields">
-                                                                <label>Location</label>
-                                                                <p>Which country do you prefer your writers to be?
-                                                                    Subject to availability, but we’ll try to find a
-                                                                    good
-                                                                    match.
+                                                                <label>Writer’s Location</label>
+                                                                <p>Which continent do you prefer your writer to be? Subject to availability.
                                                                 </p>
                                                                 <div class="pl-0">
                                                                     <select #writers_location class="custom-select"
@@ -587,11 +564,9 @@
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-8 step-progress-fields mb-4">
-                                                            <p>Carefully review the following details buddy!
-                                                                Attention to detail is important for both parties to
-                                                                avoid misunderstanding. If you’re done, submit your
-                                                                project and your account manager will be the one to
-                                                                assemble your research and writing team.
+                                                            <p>Alright! We’re almost done! Carefully review the following details. Attention to detail is
+                                                                important for both parties to avoid misunderstanding. If you’re done, submit your project and
+                                                                your account manager will assemble your research team to contact you on your e-mail.
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12">
@@ -605,7 +580,7 @@
                                                         <div class="col-md-12">
                                                             <div>
                                                                 <label class="step-progress-fields-label">Project
-                                                                    Topic :</label>
+                                                                    Niche :</label>
                                                                 <p class="step-progress-fields-content">
                                                                     {{project_topic?.value}}</p>
                                                             </div>
@@ -628,7 +603,8 @@
                                                                 </div>
                                                                 <div class="step-4-summary-all-sections">
                                                                     <label>Package : </label>
-                                                                    <p class="color-primary-wr">{{selectedProjectPackageName}}</p>
+                                                                    <p class="color-primary-wr">
+                                                                        {{selectedProjectPackageName}}</p>
                                                                 </div>
                                                                 <!-- <div class="step-4-summary-all-sections">
                                                                     <label>Estimated turnarround :</label>
@@ -644,55 +620,68 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <div *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
+                                                            <div
+                                                                *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
                                                                 <label class="step-progress-fields-label">Project
                                                                     Details :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{project_details?.value}}</p>
-                                                                    <span *ngIf="(project_details?.value) && (project_details?.value.length >= 420) && expandProjectDetails == false" class="expand_data" (click)="expandProjectDetails = true">read more</span>    
+                                                                <span
+                                                                    *ngIf="(project_details?.value) && (project_details?.value.length >= 420) && expandProjectDetails == false"
+                                                                    class="expand_data"
+                                                                    (click)="expandProjectDetails = true">read
+                                                                    more</span>
                                                             </div>
                                                             <div *ngIf="expandProjectDetails == true">
                                                                 <label class="step-progress-fields-label">Project
                                                                     Details :</label>
-                                                                <p class="dashboard-project-cum-body-contens white--space">
+                                                                <p
+                                                                    class="dashboard-project-cum-body-contens white--space">
                                                                     {{project_details?.value}}</p>
-                                                                    <span class="expand_data" (click)="expandProjectDetails = false">read less</span>
+                                                                <span class="expand_data"
+                                                                    (click)="expandProjectDetails = false">read
+                                                                    less</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 mt-3">
-                                                            <div *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 10) && expandAdditionalResources == false">
+                                                            <div
+                                                                *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 10) && expandAdditionalResources == false">
                                                                 <label class="step-progress-fields-label">Additional
                                                                     Resources :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{(additional_resources?.value)?(additional_resources?.value):'NA'}}
                                                                 </p>
-                                                                <span *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 420) && expandAdditionalResources == false" class="expand_data" (click)="expandAdditionalResources = true">read more</span>
+                                                                <span
+                                                                    *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 420) && expandAdditionalResources == false"
+                                                                    class="expand_data"
+                                                                    (click)="expandAdditionalResources = true">read
+                                                                    more</span>
                                                             </div>
                                                             <div *ngIf="expandAdditionalResources == true">
-                                                                <label class="step-progress-fields-label">Additional
-                                                                    Resources :</label>
-                                                                <p class="dashboard-project-cum-body-contens white--space">
+                                                                <label class="step-progress-fields-label">Core Vision :</label>
+                                                                <p
+                                                                    class="dashboard-project-cum-body-contens white--space">
                                                                     {{additional_resources?.value}}</p>
-                                                                    <span class="expand_data" (click)="expandAdditionalResources = false">read less</span>
+                                                                <span class="expand_data"
+                                                                    (click)="expandAdditionalResources = false">read
+                                                                    less</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 mt-3">
-                                                            <label class="step-progress-fields-label">Choice
-                                                                Of Writers :</label>
+                                                            <label class="step-progress-fields-label">Writer’s Tone :</label>
                                                             <p class="step-progress-fields-content">
                                                                 {{(choice_of_writers?.value)?(choice_of_writers?.value):'NA'}}
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <label class="step-progress-fields-label">Career
+                                                            <label class="step-progress-fields-label">Writer’s Career
                                                                 :</label>
                                                             <p class="step-progress-fields-content">
                                                                 {{(writers_career?.value)?(writers_career?.value):'NA'}}
                                                             </p>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <label class="step-progress-fields-label">Age
-                                                                Bracket :</label>
+                                                            <label class="step-progress-fields-label">Writer’s Age Bracket :</label>
                                                             <p class="step-progress-fields-content">
                                                                 {{(writersAgeBracket)?(writersAgeBracket):'NA'}}</p>
                                                         </div>
@@ -750,7 +739,7 @@
                                                                         PREVIOUS
                                                                     </button>
 
-                                                                    <button type="button" 
+                                                                    <button type="button"
                                                                         (click)="onSubmitAddNewProject()"
                                                                         class="submit-btn-feedback min-w100 min-w-130">
                                                                         CREATE PROJECT

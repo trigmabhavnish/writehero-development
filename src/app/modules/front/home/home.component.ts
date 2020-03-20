@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
 
     this.feedbackservice.getFeedBackListing({ pageNumber: this.currentPage, pageSize: this.pageSize }).pipe(untilDestroyed(this)).subscribe(response => {
       this.feedbacks = response.feedback;
-      console.log(response.feedback);
+      //console.log(response.feedback);
       //this.totalItems = response.totalItems;
 
     }, error => {

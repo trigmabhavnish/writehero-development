@@ -309,6 +309,11 @@ perfect-scrollbar>.ps.ps--scrolling-x>.ps__rail-x, perfect-scrollbar>.ps.ps--scr
     color: #ee3a54;
 }
 
+.ct-value a{
+    color: #fff;
+}
+
+
 .lorem-tooltip--outer {
     padding: 9px 15px;
     position: absolute;

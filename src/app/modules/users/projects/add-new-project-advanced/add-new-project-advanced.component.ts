@@ -46,15 +46,45 @@ export class AddNewProjectAdvancedComponent implements OnInit {
   packagePrice: any;
   userCredits: any;
   userCreditsCheck: boolean = true;
+  profileDetails:any;
   loading:boolean =false; //Page Loader
+  turnAroundTime: any = 'NA';
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
-  projectTypeArray = ['Article Writing', 'Biography Writing', 'Blog Writing (1st POV)', 'Blog Writing (3rd POV)', 'Blurb Writing (Social Media Posts/ Blog Comments / Forum Posts)', 'Business Writing (Product/Services)', 'Column Writing (Commentary)', 'Copywriting (For Advertising Campaigns)', 'Copywriting (Light Tone)', 'Copywriting (Persuasive Tone)', 'Creative Writing', 'E-Book Writing (Ghostwriting)', 'Editing & Proofreading', 'Educational Writing', 'Erotica Writing', 'FAQ Writing', 'Feature Writing (Magazine Style)', 'Fiction Writing (Stories)', 'Grant Writing', 'Guide/Description Writing', 'How To Writing', 'Humor Writing', 'Letter Writing', 'News Writing', 'Newsletter Writing', 'Poetry Writing', 'Press Release Writing', 'Research Writing (Business)', 'Research Writing (Non-Business)', 'Review Writing', 'Rewriting', 'Script Writing', 'SEO Writing (Web Content / Keyword Focused)', 'Slang-style/Informal-tone', 'Song Writing', 'Speech Writing', 'Summary Writing', 'Technical Writing'];
+  //projectTypeArray = ['Article Writing', 'Biography Writing', 'Blog Writing (1st POV)', 'Blog Writing (3rd POV)', 'Blurb Writing (Social Media Posts/ Blog Comments / Forum Posts)', 'Business Writing (Product/Services)', 'Column Writing (Commentary)', 'Copywriting (For Advertising Campaigns)', 'Copywriting (Light Tone)', 'Copywriting (Persuasive Tone)', 'Creative Writing', 'E-Book Writing (Ghostwriting)', 'Editing & Proofreading', 'Educational Writing', 'Erotica Writing', 'FAQ Writing', 'Feature Writing (Magazine Style)', 'Fiction Writing (Stories)', 'Grant Writing', 'Guide/Description Writing', 'How To Writing', 'Humor Writing', 'Letter Writing', 'News Writing', 'Newsletter Writing', 'Poetry Writing', 'Press Release Writing', 'Research Writing (Business)', 'Research Writing (Non-Business)', 'Review Writing', 'Rewriting', 'Script Writing', 'SEO Writing (Web Content / Keyword Focused)', 'Slang-style/Informal-tone', 'Song Writing', 'Speech Writing', 'Summary Writing', 'Technical Writing'];
 
-  choiceOfWriterArray = ['Native US Speaker', 'Other English-speaking country', 'English as second language', 'No Specific Reference'];
+  projectTypeArray = ['Niche eBook – for self-publishing', 'Niche eBook – for lead generation', 'Fiction/Story eBook','Others'];
+
+  choiceOfWriterArray = ['Normal','Happy & Optimistic','Friendly & Casual','Fun & Playful','Funny & Whimsical','Excited & Overjoyed','Frustrated & Threatening','Self-Righteous & Critical','Serious & Formal','Worried & Anxious','Gloomy & Depressed','Sad & Disheartened','Persuasive'];
 
   writterLocationArray = [
+    {
+      "name": "North America",
+      "abbreviation": "North America"
+    },
+    {
+      "name": "South America",
+      "abbreviation": "South America"
+    },
+    {
+      "name": "Australia",
+      "abbreviation": "Australia"
+    },
+    {
+      "name": "Europe",
+      "abbreviation": "Europe"
+    },
+    {
+      "name": "Asia",
+      "abbreviation": "Asia"
+    },
+    {
+      "name": "Africa",
+      "abbreviation": "Africa"
+    }
+  ];
+  /*writterLocationArray = [
     {
       "name": "Alabama",
       "abbreviation": "AL"
@@ -291,7 +321,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
       "name": "Wyoming",
       "abbreviation": "WY"
     }
-  ]
+  ] */
 
   writterGenderArray = ['Male', 'Female', 'LGBTQIA+', 'No Specific Preference'];
   writterCareerArray = ['Arts & Literature', 'Automotive', 'Business', 'Clerical', 'Design', 'Education', 'Finance', 'Food', 'Health and Wellness', 'Information Technology', 'Internet Marketing', 'Law Enforcement', 'Manufacturing', 'Marketing', 'Media', 'Medicine', 'No Specific Preference', 'Others', 'Sales', 'Student', 'Transportation'];
@@ -550,6 +580,17 @@ export class AddNewProjectAdvancedComponent implements OnInit {
   */
   calculateProjectCost(quantity, word_count) {
     if (quantity && word_count) {
+      
+      if(word_count > 20000){
+        this.turnAroundTime = '4-8 weeks';
+      }else if(word_count > 10000 && word_count <= 20000){
+        this.turnAroundTime = '2-4 weeks';
+      }else if(word_count > 0 && word_count <= 10000){
+        this.turnAroundTime = '1-2 weeks';
+      }else{
+        this.turnAroundTime = 'NA';
+      }
+
       this.calculateCost = (quantity * word_count * this.packagePrice).toFixed(2);
       this.projectSpecsForm.controls.project_cost.patchValue(this.calculateCost);
       //if cost is greater than user credits.
@@ -621,12 +662,28 @@ export class AddNewProjectAdvancedComponent implements OnInit {
     return text;
   }
 
+  /*
+    get Logged In User Details
+  */
+ public getUserDetails() {
+  this.userAuthService.getUserProfile().pipe(untilDestroyed(this)).subscribe(
+    //case success
+    (res) => {
+      this.profileDetails = res.profile[0];       
+      //console.log(this.profileDetails);
+      //case error 
+    }, error => {
+      this.commonUtilsService.onError(error.response);
+    });
+}
+
   ngOnInit() {
 
     this.checkAccountCredits(); // Check User Balance
     this.projectSpecs(); // Project Specs Wizard    
     this.getProjectPackages();   // get Avaiable Packages from DB
     this.projectImagesDropzoneInit(); //Initialize Dropzone
+    this.getUserDetails();
   }
 
   // This method must be present, even if empty.
