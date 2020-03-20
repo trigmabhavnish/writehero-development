@@ -10,13 +10,13 @@ import { ValidationErrors } from '@angular/forms';
 export class FormValidationErrorsComponent implements OnInit {
 
   @Input() errorPrefix: string;
-  @Input() minLength: number;
-  @Input() minPasswordLength: number;
+  @Input() minLength: number; 
   @Input() maxLength: number;
   @Input() minValue: number;
   @Input() maxValue: number;
   @Input() patternError: string;
   @Input() errors: ValidationErrors;
+  @Input() isPassword: boolean;
   @Input() isInteger: boolean;
   @Input() minIntegerValue: number;
 

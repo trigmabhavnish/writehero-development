@@ -204,7 +204,7 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Project Details <span
+                                                                    <label>Master Details <span
                                                                             class="red">*</span></label>
                                                                     <p class="d-inline-block ml-ipad-3 wtool-80">
                                                                         {{(profileDetails?.first_name) ? (profileDetails?.first_name) : profileDetails?.user_name}},
@@ -242,7 +242,7 @@
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
                                                                             maxLength=100000
-                                                                            errorPrefix="Project Details "
+                                                                            errorPrefix="Master Details "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -279,14 +279,14 @@
                                                                         *ngIf="projectDetailsForm.controls.word_count.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors [isInteger]=true
                                                                             minIntegerValue="1"
-                                                                            errorPrefix="Word for each space "
+                                                                            errorPrefix="Wordcount "
                                                                             [errors]="projectDetailsForm.controls.word_count.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
                                                                 </div>
 
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Additional Resources</label>
+                                                                    <label>Core Vision (Strongly Recommended)</label>
                                                                     <p class="d-inline-block ml-ipad-3 wtool-80">What’s on your mind?...
                                                                     </p>
                                                                     <div class="about_logo_course_tooltip">
@@ -310,7 +310,7 @@
                                                                         *ngIf="projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
                                                                             maxLength=100000
-                                                                            errorPrefix="Project Details "
+                                                                            errorPrefix="Core Vision "
                                                                             [errors]="projectDetailsForm.controls.additional_resources.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -598,19 +598,19 @@
                                                                     <p>{{quantity?.value}}</p>
                                                                 </div>
                                                                 <div class="step-4-summary-all-sections">
-                                                                    <label>Words for each piece : </label>
+                                                                    <label>Wordcount : </label>
                                                                     <p>{{word_count?.value}}</p>
                                                                 </div>
                                                                 <div class="step-4-summary-all-sections">
-                                                                    <label>Package : </label>
+                                                                    <label>Plan : </label>
                                                                     <p class="color-primary-wr">
                                                                         {{selectedProjectPackageName}}</p>
                                                                 </div>
-                                                                <!-- <div class="step-4-summary-all-sections">
-                                                                    <label>Estimated turnarround :</label>
-                                                                    <p class="color-primary-wr">1 - 2 weeks
+                                                                 <div class="step-4-summary-all-sections">
+                                                                    <label>Turnaround Time :</label>
+                                                                    <p class="color-primary-wr">{{turnAroundTime}}
                                                                     </p>
-                                                                </div> -->
+                                                                </div>
                                                                 <div class="step-4-summary-all-sections-result">
                                                                     <p class="color-primary-wr">Total Cost
                                                                     </p>
@@ -622,7 +622,7 @@
                                                         <div class="col-md-12">
                                                             <div
                                                                 *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
-                                                                <label class="step-progress-fields-label">Project
+                                                                <label class="step-progress-fields-label">Master
                                                                     Details :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{project_details?.value}}</p>
@@ -633,7 +633,7 @@
                                                                     more</span>
                                                             </div>
                                                             <div *ngIf="expandProjectDetails == true">
-                                                                <label class="step-progress-fields-label">Project
+                                                                <label class="step-progress-fields-label">Master
                                                                     Details :</label>
                                                                 <p
                                                                     class="dashboard-project-cum-body-contens white--space">
@@ -646,8 +646,7 @@
                                                         <div class="col-md-12 mt-3">
                                                             <div
                                                                 *ngIf="(additional_resources?.value) && (additional_resources?.value.length >= 10) && expandAdditionalResources == false">
-                                                                <label class="step-progress-fields-label">Additional
-                                                                    Resources :</label>
+                                                                <label class="step-progress-fields-label">Core Vision :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{(additional_resources?.value)?(additional_resources?.value):'NA'}}
                                                                 </p>

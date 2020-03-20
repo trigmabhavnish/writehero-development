@@ -385,6 +385,7 @@ export class EditProjectComponent implements OnInit {
           this.writersDetailsForm.controls.choice_of_writers.patchValue(res.project_details.choice_of_writers);
           this.writersDetailsForm.controls.writers_career.patchValue(res.project_details.writers_career);
           this.writersDetailsForm.controls.writers_age.patchValue(res.project_details.writers_age);
+          this.getWritersAgeBracket(res.project_details.writers_age);
           this.writersDetailsForm.controls.writers_location.patchValue(res.project_details.writers_location);
         } else {
           this.loading = false; // Hide Loader

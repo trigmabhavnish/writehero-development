@@ -1070,7 +1070,7 @@ footer p span {
 }
 .dahboard-links-outer .list-group-item {
     font-size: 12px;
-    text-transform: uppercase;
+    /*text-transform: uppercase; */
     font-weight: 600;
     text-align: center;
     background-color: transparent !important;

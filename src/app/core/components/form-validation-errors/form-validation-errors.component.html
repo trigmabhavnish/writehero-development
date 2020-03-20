@@ -1,8 +1,8 @@
 <ng-container *ngIf="errors && errors['required']">{{errorPrefix}} is required.<br/></ng-container>
 <ng-container *ngIf="errors && errors['notUnique']">{{errorPrefix}} is not unique.<br/></ng-container>
 <ng-container *ngIf="errors && errors['email']">Please enter a valid email.<br/></ng-container>
-<ng-container *ngIf="errors && errors['minlength']">Minimum length is {{minLength}}.<br/></ng-container>
-<ng-container *ngIf="errors && errors['minPasswordLength']">Minimum password length is {{minLength}} characters.<br/></ng-container>
+<ng-container *ngIf="errors && errors['minlength'] && !isPassword">Minimum length is {{minLength}}.<br/></ng-container>
+<ng-container *ngIf="errors && errors['minlength'] && isPassword">Minimum password length is {{minLength}} characters.<br/></ng-container>
 <ng-container *ngIf="errors && errors['maxlength']">Maximum length is {{maxLength}}.<br/></ng-container>
 <ng-container *ngIf="errors && errors['hasNumber']">Must contain at least 1 number.<br/></ng-container>
 <ng-container *ngIf="errors && errors['ccNumber']">Enter valid credit card number.<br/></ng-container>

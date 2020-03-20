@@ -63,7 +63,7 @@
                                         class="field-design"
                                         [ngClass]="{ 'is-invalid': (signUpForm.controls.password.touched || signUpSubmitted) && signUpForm.controls.password.errors }">
                                     <p *ngIf="signUpForm.controls.password.touched || signUpSubmitted">
-                                        <app-form-validation-errors minLength=8 maxLength=50 errorPrefix="Password "
+                                        <app-form-validation-errors [isPassword]=true minLength=8 maxLength=50 errorPrefix="Password "
                                             [errors]="signUpForm.controls.password.errors"></app-form-validation-errors>
                                     </p>
                                 </div>
@@ -73,7 +73,7 @@
                                         class="field-design"
                                         [ngClass]="{ 'is-invalid': (signUpForm.controls.confirm_password.touched || signUpSubmitted) && signUpForm.controls.confirm_password.errors }">
                                     <p *ngIf="signUpForm.controls.confirm_password.touched || signUpSubmitted">
-                                        <app-form-validation-errors minLength=8 maxLength=50
+                                        <app-form-validation-errors [isPassword]=true minLength=8 maxLength=50
                                             errorPrefix="Confirm password "
                                             [errors]="signUpForm.controls.confirm_password.errors">
                                         </app-form-validation-errors>

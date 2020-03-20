@@ -209,7 +209,7 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Project Details <span
+                                                                    <label>Master Details <span
                                                                             class="red">*</span></label>
                                                                     <div>
                                                                         <p class="d-inline-block ml-ipad-3 wtool-80">
@@ -245,7 +245,7 @@
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
                                                                             maxLength=100000
-                                                                            errorPrefix="Project Details "
+                                                                            errorPrefix="Master Details "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -289,7 +289,7 @@
                                                                 </div>
 
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Additional Resources</label>
+                                                                    <label>Core Vision (Strongly Recommended)</label>
                                                                     <p class="d-inline-block ml-ipad-3 wtool-80">What’s
                                                                         on your mind?...
                                                                     </p>
@@ -315,7 +315,7 @@
                                                                         *ngIf="projectDetailsForm.controls.additional_resources.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
                                                                             maxLength=100000
-                                                                            errorPrefix="Project Details "
+                                                                            errorPrefix="Core Vision "
                                                                             [errors]="projectDetailsForm.controls.additional_resources.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -614,7 +614,7 @@
                                                         <div class="col-md-12">
                                                             <div
                                                                 *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
-                                                                <label class="step-progress-fields-label">Project
+                                                                <label class="step-progress-fields-label">Master
                                                                     Details :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{project_details?.value}}</p>
@@ -625,6 +625,8 @@
                                                                     more</span>
                                                             </div>
                                                             <div *ngIf="expandProjectDetails == true">
+                                                                <label class="step-progress-fields-label">Master
+                                                                    Details :</label>
                                                                 <p
                                                                     class="dashboard-project-cum-body-contens white--space">
                                                                     {{project_details?.value}}</p>
@@ -647,6 +649,7 @@
                                                                     more</span>
                                                             </div>
                                                             <div *ngIf="expandAdditionalResources == true">
+                                                                <label class="step-progress-fields-label">Core Vision :</label>
                                                                 <p
                                                                     class="dashboard-project-cum-body-contens white--space">
                                                                     {{additional_resources?.value}}</p>
