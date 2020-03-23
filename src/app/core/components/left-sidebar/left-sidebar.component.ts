@@ -82,6 +82,14 @@ export class LeftSidebarComponent implements OnInit {
         localStorage.clear();
         this.userAuthService.isLoggedIn(false, ''); //trigger loggedin observable 
         this.router.navigate(['/user/login']);
+
+        /* Update Intercom */
+        (<any>window).Intercom('shutdown');
+        (<any>window).Intercom('boot', {
+          app_id: "joro9d7f",
+        });
+        /* Update Intercom */
+        
         //case error 
       }, error => {
         this.commonUtilsService.onError(error.response);

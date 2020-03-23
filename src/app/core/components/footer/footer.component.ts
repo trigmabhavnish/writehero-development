@@ -29,63 +29,12 @@ import { UsersService, CommonUtilsService } from '../../../core/_services';
 })
 export class FooterComponent implements OnInit {
 
-  isProfileUpdated: boolean = false;
-  profileSubscription: Subscription;
-  profileDetails: any;
-  isLoggedin: boolean = false;
-  loginSubscription: Subscription;
-  userName:string = '';
-  userEmail:string = '';
-  userRegDate:any = '';
-
   constructor(private commonUtilsService: CommonUtilsService, private userAuthService: UsersService, private toastr: ToastrManager, private router: Router) { }
 
   ngOnInit() {
-
-    
-
-    // Page Refresh
-    if (localStorage.getItem('isLoggedIn')) {
-      this.isLoggedin = true;
-
-      this.profileSubscription = this.userAuthService.getUpdatedProfileStatus().subscribe((profileStatus) => {
-        this.isProfileUpdated = profileStatus.profileUpdatedStatus;
-        this.getUserDetails();
+   
+  }
   
-      });
-      this.getUserDetails();
-
-    }
-
-    this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
-      this.isLoggedin = loginStatus.isLoggedIn;
-      this.getUserDetails();
-    });     
-  }
-
-  /*
-    get Logged In User Details
-  */
-  public getUserDetails() {
-    this.userAuthService.getUserProfile().pipe(untilDestroyed(this)).subscribe(
-      //case success
-      (res) => {
-        this.profileDetails = res.profile[0];
-        this.userName = res.profile[0].first_name + ' ' + res.profile[0].last_name;
-        this.userEmail = res.profile[0].email;
-        this.userRegDate = this.toTimestamp(res.profile[0].reg_date)
-        //console.log(this.profileDetails);
-        //console.log(this.userRegDate);
-        //case error 
-      }, error => {
-        this.commonUtilsService.onError(error.response);
-      });
-  }
-
-  public toTimestamp(strDate){
-    var datum = Date.parse(strDate);
-    return datum/1000;
-   }
 
   // This method must be present, even if empty.
   ngOnDestroy() {

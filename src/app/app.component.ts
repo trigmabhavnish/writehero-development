@@ -30,6 +30,7 @@ export class AppComponent {
   loginSubscription: Subscription;
 
   constructor(private router: Router, private userAuthService: UsersService, private toastr: ToastrManager, private commonUtilsService: CommonUtilsService) { }
+  
 
   ngOnInit() {
 

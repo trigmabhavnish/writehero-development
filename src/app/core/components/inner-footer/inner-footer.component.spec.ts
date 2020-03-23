@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TermsConditionsComponent } from './terms-conditions.component';
+import { InnerFooterComponent } from './inner-footer.component';
 
-describe('TermsConditionsComponent', () => {
-  let component: TermsConditionsComponent;
-  let fixture: ComponentFixture<TermsConditionsComponent>;
+describe('InnerFooterComponent', () => {
+  let component: InnerFooterComponent;
+  let fixture: ComponentFixture<InnerFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermsConditionsComponent ]
+      declarations: [ InnerFooterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TermsConditionsComponent);
+    fixture = TestBed.createComponent(InnerFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
