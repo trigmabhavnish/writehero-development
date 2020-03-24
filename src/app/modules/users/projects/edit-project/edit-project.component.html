@@ -178,7 +178,7 @@
                                                             NEXT
                                                         </button>
                                                         <!-- <a routerLink="/user/add-new-project-advanced"
-                                                            class="advance-text">( or go advance )</a> -->
+                                                            class="advance-text">( or go advanced )</a> -->
                                                     </div>
                                                 </form>
                                             </aw-wizard-step>
@@ -209,7 +209,7 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="col-lg-12 step-progress-fields">
-                                                                    <label>Master Details <span
+                                                                    <label>Master Scope <span
                                                                             class="red">*</span></label>
                                                                     <div>
                                                                         <p class="d-inline-block ml-ipad-3 wtool-80">
@@ -245,7 +245,7 @@
                                                                         *ngIf="projectDetailsForm.controls.project_details.touched || projectDetailsSubmitted">
                                                                         <app-form-validation-errors minLength=10
                                                                             maxLength=100000
-                                                                            errorPrefix="Master Details "
+                                                                            errorPrefix="Master Scope "
                                                                             [errors]="projectDetailsForm.controls.project_details.errors">
                                                                         </app-form-validation-errors>
                                                                     </p>
@@ -299,8 +299,8 @@
                                                                             <div class="lorem-tooltip">
                                                                                 What’s on your mind? Give some links of
                                                                                 what your finished eBook should read or
-                                                                                look like.
-                                                                                Could be a blog, article or another
+                                                                                look like. 
+                                                                                It Could be a blog, article or another
                                                                                 book.
                                                                             </div>
                                                                         </div>
@@ -614,8 +614,8 @@
                                                         <div class="col-md-12">
                                                             <div
                                                                 *ngIf="(project_details?.value) && (project_details?.value.length >= 10) && expandProjectDetails == false">
-                                                                <label class="step-progress-fields-label">Master
-                                                                    Details :</label>
+                                                                <label class="step-progress-fields-label">Master Scope
+                                                                     :</label>
                                                                 <p class="step-progress-fields-content line--clamp">
                                                                     {{project_details?.value}}</p>
                                                                 <span
@@ -626,7 +626,7 @@
                                                             </div>
                                                             <div *ngIf="expandProjectDetails == true">
                                                                 <label class="step-progress-fields-label">Master
-                                                                    Details :</label>
+                                                                    Scope :</label>
                                                                 <p
                                                                     class="dashboard-project-cum-body-contens white--space">
                                                                     {{project_details?.value}}</p>

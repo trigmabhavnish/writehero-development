@@ -54,6 +54,7 @@ export class ProjectsListingComponent implements OnInit {
         if (res.totalProjects > 0) {
           this.commonUtilsService.hidePageLoader();
           this.projects = res.projectListings;
+          console.log(this.projects);
           this.totalProjects = res.totalProjects;
         } else {
           //this.commonUtilsService.onError(environment.MESSAGES.NO_PROJECTS_FOUND);

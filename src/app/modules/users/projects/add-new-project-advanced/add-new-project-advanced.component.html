@@ -118,7 +118,7 @@
                                                                         </p>
                                                                     </div>
                                                                     <div class="col-lg-12 step-progress-fields">
-                                                                        <label>Master Details</label>
+                                                                        <label>Master Scope</label>
                                                                         <p class="d-inline-block ml-ipad-3 wtool-80">
                                                                             {{(profileDetails?.first_name) ? (profileDetails?.first_name) : profileDetails?.user_name}},
                                                                             here is the meat of your project. We would
@@ -153,7 +153,7 @@
                                                                             *ngIf="projectSpecsForm.controls.project_details.touched || projectSpecsSubmitted">
                                                                             <app-form-validation-errors minLength=10
                                                                                 maxLength=100000
-                                                                                errorPrefix="Project Details "
+                                                                                errorPrefix="Master Scope "
                                                                                 [errors]="projectSpecsForm.controls.project_details.errors">
                                                                             </app-form-validation-errors>
                                                                         </p>
@@ -268,8 +268,8 @@
                                                                                 <div class="lorem-tooltip">
                                                                                     What’s on your mind? Give some links
                                                                                     of what your finished eBook should
-                                                                                    read or look like.
-                                                                                    Could be a blog, article or another
+                                                                                    read or look like. 
+                                                                                    It Could be a blog, article or another
                                                                                     book.
                                                                                 </div>
                                                                             </div>

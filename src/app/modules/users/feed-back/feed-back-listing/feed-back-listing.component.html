@@ -9,7 +9,7 @@
         <p>Feedbacks</p>
       </div>
       <p class="support-content-desc">Here you can see most of our REAL feedbacks from happy, delighted, disappointed, raging or
-        meh customers! To add a feedback from a recent completed project, click the red button
+        meh customers! To add feedback from a recently completed project, click the blue button
         below.</p>
 
       <div class="table-responsive">
@@ -18,7 +18,7 @@
         <table class="table sr__only sr--0 respon--date">
           <thead>
             <tr>
-              <th>S.No.</th>
+              <!-- <th>S.No.</th> -->
               <th>Date</th>
               <th>Feedback</th>
               <th>Rating</th>
@@ -31,7 +31,7 @@
               itemsPerPage: pageSize,
               currentPage: currentPage,
               totalItems: totalItems };let i = index;">
-              <td>{{i+1}}</td>
+              <!-- <td>{{i+1}}</td> -->
               <td>{{feedback?.feed_date | date }}</td>
               <td><span class="line--clamp">{{feedback?.feed_desc}}</span></td>
               <td>

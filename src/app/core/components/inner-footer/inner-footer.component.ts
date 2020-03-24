@@ -73,7 +73,7 @@ export class InnerFooterComponent implements OnInit {
         this.userName = (res.profile[0].first_name) ? (res.profile[0].first_name + ' ' + res.profile[0].last_name) : res.profile[0].user_name;
         this.userEmail = res.profile[0].email;
         this.userRegDate = this.toTimestamp(res.profile[0].reg_date);        
-        console.log('userRegDate', this.userRegDate); 
+        //console.log('userRegDate', this.userRegDate); 
         (<any>window).Intercom('shutdown');
 
         (<any>window).Intercom('boot', {

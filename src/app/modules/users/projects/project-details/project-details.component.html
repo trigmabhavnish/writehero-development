@@ -67,7 +67,7 @@
                                                                 <ng-container *ngIf="projectDetails?.project_dtl">
                                                                     <div class="col-lg-12">
                                                                         <p class="dashboard-project-cum-body-labels">
-                                                                            master details :
+                                                                            master scope :
                                                                         </p>
                                                                     </div>
                                                                     <div *ngIf="projectDetails.project_dtl && projectDetails.project_dtl.length >= 0 && expandProjectDetails == false"
@@ -186,7 +186,7 @@
                                                             <!--Penidng / Revised Status-->
                                                             <a routerLink="/user/create-ticket"
                                                                 *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Resume')"
-                                                                class="btn-cmn-pro mr-2">Ask update</a>
+                                                                class="btn-cmn-pro mr-2">Ask for update</a>
 
                                                             <a routerLink="/user/create-ticket"
                                                                 *ngIf="(projectDetails.project_status == 'Pending') || (projectDetails.project_status == 'Revised')"
@@ -294,10 +294,17 @@
 
                                                     <div class="dashboard-rightside-updates latest-feedback">
                                                         <div class="dashboard-rightside-updates-haeder">
+
+
                                                             <p class="dashboard-rightside-updates-header-title">Project
                                                                 Status : <span
-                                                                    class="font-weight-bold">{{(projectDetails.project_status)?projectDetails.project_status: 'NA'}}</span>
+                                                                    class="font-weight-bold">{{(projectDetails.show_project_status)?projectDetails.show_project_status: 'NA'}}</span>
                                                             </p>
+
+                                                           
+
+                                                            
+
                                                         </div>
                                                         <div class="project-status-active-o">
                                                             <div class="display-table">
@@ -320,7 +327,7 @@
                                                                     </div>
                                                                     <div class="table-cell">
                                                                         <p class="wr-hero-project-history-assigned">
-                                                                            {{(projectDetails.progress)?projectDetails.progress + ' articles completed.': 'NA'}}
+                                                                            {{(projectDetails.progress)?projectDetails.progress + ' words completed.': 'NA'}}
                                                                         </p>
                                                                     </div>
                                                                 </div>

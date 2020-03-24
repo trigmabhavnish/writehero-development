@@ -93,7 +93,7 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     width: auto;
 }
 .sr__only tr td:nth-child(3) {
-    width: 40%;
+    width: 20%;
     word-break: break-all;
 }
 .invoice--billbox {
@@ -603,7 +603,7 @@ table.sr__only {
     top:0 !important;
  }
 .sr__only tr td:nth-child(2) {
-    width: 15%;
+    width: 40%;
 }
 #toastr-node-24 {
     z-index: 9999999999;
@@ -1067,7 +1067,7 @@ fieldset app-form-validation-errors {
     outline: medium none;
     transition-duration: 0.3s;
     background-color: transparent;
-    color: #6d6d6d;
+    color: #212529;
 }
 .profileinfo-box {
     margin-top: 35px;
@@ -1096,7 +1096,7 @@ fieldset app-form-validation-errors {
     font-weight: 500;
     transition: background 0s ease-out 0s;
     padding: 0px 0px 7px 0px;
-    color: #6d6d6d;
+    color: #212529;
     font-size: 15px;
     width: 100%;
 }
