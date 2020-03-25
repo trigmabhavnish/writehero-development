@@ -42,11 +42,11 @@ export class ResetPasswordComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((params) => {
       this.verifyToken = params['token'];
-      this.verifyAuthToken(this.verifyToken);      
+      this.verifyAuthToken(this.verifyToken);
     });
 
     this.buildResetPasswordForm(); // if verify then build reset password form
-    
+
   }
 
 
@@ -118,24 +118,32 @@ export class ResetPasswordComponent implements OnInit {
    * return boolean 
    */
   private verifyAuthToken(verifyToken) {
-    this.userAuthService.userVerifyAuthToken({ verifyToken: verifyToken }).pipe(untilDestroyed(this)).subscribe(
-      //case success
-      (res) => {
-        //case error 
-        if (res.response) {
-          this.tokenVerified = true;
-          this.fetchUserId = res.user_id;
-        } else {
-          this.tokenVerified = false;
-          this.commonUtilsService.onError(environment.MESSAGES.FAILED_TO_VERIFY);
-          this.router.navigate(['/user/forgot-password']);
-        }
+    if (verifyToken) {
 
-      }, error => {
-        this.commonUtilsService.onError(error.response);
-        this.tokenVerified = false;
-        this.router.navigate(['/user/forgot-password']);
-      });
+
+      this.userAuthService.userVerifyAuthToken({ verifyToken: verifyToken }).pipe(untilDestroyed(this)).subscribe(
+        //case success
+        (res) => {
+          //case error 
+          if (res.response) {
+            this.tokenVerified = true;
+            this.fetchUserId = res.user_id;
+          } else {
+            this.tokenVerified = false;
+            this.commonUtilsService.onError(environment.MESSAGES.FAILED_TO_VERIFY);
+            this.router.navigate(['/user/forgot-password']);
+          }
+
+        }, error => {
+          this.commonUtilsService.onError(error.response);
+          this.tokenVerified = false;
+          this.router.navigate(['/user/forgot-password']);
+        });
+    } else {
+      this.tokenVerified = false;
+      this.commonUtilsService.onError(environment.MESSAGES.FAILED_TO_VERIFY);
+      this.router.navigate(['/user/forgot-password']);
+    }
   }
 
   // This method must be present, even if empty.

@@ -343,7 +343,7 @@ export class EditProjectComponent implements OnInit {
 
   writterGenderArray = ['Male', 'Female', 'LGBTQIA+', 'No Specific Preference'];
   writterCareerArray = ['Arts & Literature', 'Automotive', 'Business', 'Clerical', 'Design', 'Education', 'Finance', 'Food', 'Health and Wellness', 'Information Technology', 'Internet Marketing', 'Law Enforcement', 'Manufacturing', 'Marketing', 'Media', 'Medicine', 'No Specific Preference', 'Others', 'Sales', 'Student', 'Transportation'];
-  writterAgeArray = ['18-25', '26-35', '36-45', '46-55', '55 and older', 'No Specific Preference'];
+  writterAgeArray = ['18-25', '26-35', '36-45', '46-55', '55 years and older', 'No Specific Preference'];
 
   /**
    * GET the details of project

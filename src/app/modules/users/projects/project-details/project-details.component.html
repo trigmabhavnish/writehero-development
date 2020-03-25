@@ -161,9 +161,14 @@
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.writers_age"
                                                                     class="col-lg-12 mb-3">
+                                                                    <p *ngIf="((projectDetails?.writers_age == '55 years and older') || (projectDetails?.writers_age == 'No Specific Preference')); else elseWritersAgeBlock" class="dashboard-project-cum-body-contens">
+                                                                        {{(projectDetails?.writers_age)?(projectDetails?.writers_age):'NA'}}
+                                                                    </p>
+                                                                    <ng-template #elseWritersAgeBlock>
                                                                     <p class="dashboard-project-cum-body-contens">
                                                                         {{(projectDetails?.writers_age)?(projectDetails?.writers_age)+' years':'NA'}}
                                                                     </p>
+                                                                </ng-template>
                                                                 </div>
                                                                 <div *ngIf="projectDetails?.writers_location"
                                                                     class="col-lg-12">

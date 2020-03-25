@@ -106,7 +106,7 @@ export class BuyCreditsComponent implements OnInit {
             },
             items: [
               {
-                name: 'Buywy Credits',
+                name: 'Bookwy Credits',
                 quantity: '1',
                 category: 'DIGITAL_GOODS',
                 unit_amount: {

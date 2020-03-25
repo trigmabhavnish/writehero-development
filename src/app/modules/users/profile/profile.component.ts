@@ -508,7 +508,7 @@ export class ProfileComponent implements OnInit {
           self.updateProfilePic(serverResponse);
           this.removeFile(file);
 
-          self.loading = false;
+          
         });
 
         this.on("error", function (file, error) {

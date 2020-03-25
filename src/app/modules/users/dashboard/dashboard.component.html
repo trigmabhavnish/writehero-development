@@ -50,7 +50,7 @@
                                                                                 <div
                                                                                     class="dashborad-project-estimation">
                                                                                     <span
-                                                                                        class="dashboard-latest-project-subject">Quantity</span>
+                                                                                        class="dashboard-latest-project-subject">Wordcount</span>
                                                                                     <span
                                                                                         class="dashboard-latest-project-result">{{latest?.quantity}}
                                                                                         x {{latest?.word_count}}
@@ -66,7 +66,7 @@
                                                                                 <div
                                                                                     class="dashborad-project-estimation">
                                                                                     <span
-                                                                                        class="dashboard-latest-project-subject">Topic</span>
+                                                                                        class="dashboard-latest-project-subject">Niche</span>
                                                                                     <span
                                                                                         class="dashboard-latest-project-result">{{latest?.project_topic}}</span>
                                                                                 </div>
@@ -86,7 +86,7 @@
                                                                     <div
                                                                         class="dashborad-project-estimation pt-2 mb-3 mb-lg-0">
                                                                         <span
-                                                                            class="dashboard-latest-project-subject">Details</span>
+                                                                            class="dashboard-latest-project-subject">Scope</span>
                                                                         <span
                                                                             class="dashboard-latest-project-result col-12 col-lg-9 pt-2 pt-lg-0 line--clamp wb-all">{{latest?.project_dtl}}</span>
                                                                         <a routerLink="/user/project-detail/{{latest.id}}"
@@ -218,7 +218,7 @@
                                                                                         <p class="reply-text">
                                                                                             Last Reply</p>
                                                                                         <p class="admin-text">
-                                                                                            James T</p>
+                                                                                            Clarice R.</p>
                                                                                         <p class="cmnt-admin-text">
                                                                                             {{latest.messages[latest.messages.length -1]?.message | slice:0:100}}
                                                                                         </p>
