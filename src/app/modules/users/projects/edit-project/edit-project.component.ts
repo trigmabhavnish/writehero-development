@@ -342,7 +342,7 @@ export class EditProjectComponent implements OnInit {
   ] */
 
   writterGenderArray = ['Male', 'Female', 'LGBTQIA+', 'No Specific Preference'];
-  writterCareerArray = ['Arts & Literature', 'Automotive', 'Business', 'Clerical', 'Design', 'Education', 'Finance', 'Food', 'Health and Wellness', 'Information Technology', 'Internet Marketing', 'Law Enforcement', 'Manufacturing', 'Marketing', 'Media', 'Medicine', 'No Specific Preference', 'Others', 'Sales', 'Student', 'Transportation'];
+  writterCareerArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
   writterAgeArray = ['18-25', '26-35', '36-45', '46-55', '55 years and older', 'No Specific Preference'];
 
   /**

@@ -70,6 +70,13 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  public openYoutubePopup(): void {    
+    $('#videoModal').modal('show')
+  }
+
+  public stopYoutubeVideo(): void {    
+    $("#videoModal iframe").attr("src", $("#videoModal iframe").attr("src"));
+  }
 
   public toggleClass(): void {
     $("body").toggleClass("overflow-hidinghome");

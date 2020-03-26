@@ -42,8 +42,8 @@
                     <div class="col-lg-5">
                         <div class="video-outer" data-aos="fade-left" data-aos-delay="600">
                             <div class="writehero_video-card">
-                                <img src="assets/image/youtube-picture1.png" class="img-fluid"
-                                    alt="silverback-video-posters">
+                                <a href="javascript:void(0)" (click)="openYoutubePopup()"><img src="assets/image/homepage_thumb.png" class="img-fluid"
+                                    alt="silverback-video-posters"></a>
                                 <!-- <iframe width="560" height="415" src="https://www.youtube.com/embed/AHerdCk8Vg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                             </div>
                         </div>
@@ -101,4 +101,25 @@
         </div>
     </div>
 </section>
+
+<!-- Modal Popup of Invoice Details -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button (click)="stopYoutubeVideo()" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <iframe width="736" height="422" src="https://www.youtube.com/embed/OsX1Zu5skqE?start=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
 <!-- if User Logged In -->
