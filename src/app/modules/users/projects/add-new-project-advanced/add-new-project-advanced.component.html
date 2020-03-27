@@ -321,6 +321,7 @@
                                                                                     (change)="getProjectPackagePrice($event, quantity.value, word_count.value)"
                                                                                     type="radio"
                                                                                     [attr.data-packagePrice]="projectPackage.price"
+                                                                                    [attr.data-packageName]="projectPackage.project_type_name" 
                                                                                     [checked]="projectPackage.id == selectedProjectPackageId"
                                                                                     #project_package
                                                                                     formControlName="project_package"

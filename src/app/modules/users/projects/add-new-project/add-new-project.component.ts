@@ -420,7 +420,9 @@ export class AddNewProjectComponent implements OnInit {
 
     this.loading = true; // Show Loader
 
-    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value);
+    let PricingPlan = {pricing_plan: this.selectedProjectPackageName}
+
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, PricingPlan);
 
     let projectCost = this.projectDetailsForm.controls.project_cost.value;
 

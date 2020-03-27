@@ -49,6 +49,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
   profileDetails:any;
   loading:boolean =false; //Page Loader
   turnAroundTime: any = 'NA';
+  selectedProjectPackageName: any;
 
   productCategoriesArray = ['Arts & Entertainment', 'Automotive & Transportation', 'Beauty & Fashion', 'Business & Finance', 'Computers & Internet', 'Crafts & Hobbies', 'Dating & Relationships', 'Education, & Reference', 'Entertainment & Music', 'Family & Parenting', 'Fiction & Literature', 'Food & Drinks', 'Gadgets & Technology', 'Games & Recreation', 'Health, Nutrition, & Fitness', 'History, Society & People', 'Home & Design', 'Hotels & Restaurants', 'Internet & Social Media', 'Internet Marketing & SEO', 'Legal, Politics & Government', 'Lifestyle', 'Nature & Environment', 'News & Events', 'Nonprofits & Campaigns', 'Others / Miscellaneous', 'Pets & Animals', 'Philosophy & Religion', 'Real Estate & Construction', 'Science & Space', 'Self Improvement', 'Sports & Outdoors', 'Travel & Places'];
 
@@ -365,7 +366,9 @@ export class AddNewProjectAdvancedComponent implements OnInit {
       return;
     }
 
-    var mergeProjectData = Object.assign(this.projectSpecsForm.value);
+    let PricingPlan = {pricing_plan: this.selectedProjectPackageName}
+
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, PricingPlan);
 
     let projectCost = this.projectSpecsForm.controls.project_cost.value;
 
@@ -403,6 +406,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
         this.getProjectPackageArray = res.projectPackages;
         this.selectedProjectPackageId = res.projectPackages[0].id;
         this.projectSpecsForm.controls.project_package.patchValue(res.projectPackages[0].id);
+        this.selectedProjectPackageName = res.projectPackages[0].project_type_name;
         this.packagePrice = res.projectPackages[0].price;
         //case error 
       }, error => {
@@ -610,6 +614,7 @@ export class AddNewProjectAdvancedComponent implements OnInit {
   * @return void
   */
   getProjectPackagePrice(event, quantity, word_count) {
+    this.selectedProjectPackageName = event.target.getAttribute('data-packageName');
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
   }

@@ -356,6 +356,7 @@ export class EditProjectComponent implements OnInit {
       (res) => {
         this.loading = false; // Hide Loader
         if (res.project_details) {
+          console.log(res.project_details);
           // Project Specs Form
           this.projectSpecsForm.controls.project_id.patchValue(res.project_details.id);
           this.projectSpecsForm.controls.project_code.patchValue(res.project_details.code);
@@ -370,6 +371,7 @@ export class EditProjectComponent implements OnInit {
           this.projectDetailsForm.controls.additional_resources.patchValue(res.project_details.additional_resources);
           this.projectDetailsForm.controls.project_package.patchValue(res.project_details.project_type_id);
           this.selectedProjectPackageId = res.project_details.project_type_id;
+          this.selectedProjectPackageName = res.project_details.project_type_name;
           // Update Project Cost
           this.projectDetailsForm.controls.project_cost.patchValue(res.project_details.project_cost);
           this.calculateCost = res.project_details.project_cost;
@@ -485,9 +487,11 @@ export class EditProjectComponent implements OnInit {
     } else {
       userAccountBalanceCheck = "S";
     }
+
+    let PricingPlan = {pricing_plan: this.selectedProjectPackageName}
     //console.log('updatedProjectCost', updatedProjectCost);
     //console.log('this.userCredits', this.userCredits);
-    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, { userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost: this.lastProjectCost, lastProjectStatus: this.lastProjectStatus });
+    var mergeProjectData = Object.assign(this.projectSpecsForm.value, this.projectDetailsForm.value, this.writersDetailsForm.value, { userAccountBalanceCheck: userAccountBalanceCheck, lastProjectCost: this.lastProjectCost, lastProjectStatus: this.lastProjectStatus }, PricingPlan);
 
     this.loading = true; // Show Loader
     //check if Project Cost is greater than available credits.
@@ -731,7 +735,7 @@ export class EditProjectComponent implements OnInit {
   * @return void
   */
   getProjectPackagePrice(event, quantity, word_count) {
-    this.selectedProjectPackageName = event.target.getAttribute('data-packageName');
+    this.selectedProjectPackageName = event.target.getAttribute('data-packageName');    
     this.packagePrice = event.target.getAttribute('data-packagePrice');
     this.calculateProjectCost(quantity, word_count);
   }
