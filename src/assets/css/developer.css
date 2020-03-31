@@ -1216,6 +1216,24 @@ fieldset app-form-validation-errors {
     100% {top: 8%;}
 }
 
+
+
+@media (max-device-width:1200px) { 
+.thumb {
+    float:none;
+    margin:auto;
+    }
+.thumb_info {
+    float: none;
+    width: 100%;
+    margin: 10px 0px;
+    text-align: center;
+    }   
+    .testimonial_thumb,  .testimonial_icon {
+    height:auto;
+    }  
+}
+
 @media only screen and (min-width: 1200px) {
     /* .min--height-box, .create-project-button-tab {
         min-height: 260px;

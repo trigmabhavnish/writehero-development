@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // Page Refresh
     if (localStorage.getItem('isLoggedIn')) {
       this.isLoggedin = true;
@@ -41,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.subscribe(() => {
       this.isHomeUrl = !(this.router.routerState.snapshot.url.includes('user') || this.router.routerState.snapshot.url.includes('terms') || this.router.routerState.snapshot.url.includes('privacy'));
-      //console.log('hello', this.isHomeUrl);
+      //console.log('hello', this.isHomeUrl);      
     })
 
     this.loginSubscription = this.userAuthService.checkLoggedinStatus().subscribe((loginStatus) => {
@@ -57,10 +56,9 @@ export class HeaderComponent implements OnInit {
     $(".navbar-collapse").removeClass("show");
   }
 
-
-  public setScrollToDiv(value): void {    
-    this.router.navigate(['/']);    
-    this.setScroll(value);   
+  public setScrolltoDiv(value): void {
+    this.router.navigate(['/']);
+    this.setScroll(value);
   }
 
 
