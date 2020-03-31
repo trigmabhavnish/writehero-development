@@ -54,7 +54,15 @@ export class HeaderComponent implements OnInit {
 
   public setScroll(value): void {
     this.userAuthService.setScroll(value);
+    $(".navbar-collapse").removeClass("show");
   }
+
+
+  public setScrollToDiv(value): void {    
+    this.router.navigate(['/']);    
+    this.setScroll(value);   
+  }
+
 
   loadScripts() {
     const dynamicScripts = [

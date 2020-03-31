@@ -402,15 +402,22 @@ rgba(0,0,0,0.18);
 	padding: 30px 22px;
 	margin-top: 10px;
     margin: 20px;
-    height: 270px;
+    height: 650px;
 }
 .thumb_info {
-	float: right;
+    float: right;
+    word-break:break-all;
 	width: calc(100% - 100px);
 }
+.testimonial_icon {
+    height: 90px;
+}
 .testimonial_info {
-	clear: both;
-	padding: 25px 0px 0px 0px;
+	color: #595959;
+    line-height: 1.4;
+    padding: 0;
+    margin-bottom: 0;
+    text-transform: capitalize;
 }
 .thumb_name {
 	display: inline-block;
@@ -422,7 +429,7 @@ rgba(0,0,0,0.18);
 .thumb_tag {
 	display: inline-block;
 	width: 100%;
-	font-size: 25px;
+	font-size: 17px;
 	color: #3e3e3e;
 	font-weight: 700;
 }
@@ -430,13 +437,9 @@ rgba(0,0,0,0.18);
 	color: #595959;
 	font-size: 19px;
 	line-height: 1.4;
-    height: 70px;
+    /* height: 70px; */
     padding: 0px;
-    margin-bottom: 0px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin-bottom: 0px;    
     text-transform: capitalize;
 }
 .testimonial_star a {
@@ -634,6 +637,7 @@ left: 50%;
 transform: translateX(-50%);
 bottom: -18px;
 white-space: nowrap;
+cursor: pointer;
 }
 .btn-signup:hover {
     text-decoration: none;

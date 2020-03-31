@@ -18,6 +18,9 @@ aw-wizard-navigation-bar.horizontal.small {display: none;}
     margin: 12px 0px 15px;
     display: inline-block;
 }
+.modal-body iframe {
+    max-width:100%;
+  }
 .notEnoughCredits a {
     color: #ffffff;
     font-weight: 700;
